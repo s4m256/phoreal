@@ -79,7 +79,7 @@ export async function readAllData() {
   const db = getD1();
   const queries = [
     "SELECT DISTINCT c.* FROM phors_competitions c JOIN phors_exams e ON e.competition_id=c.id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY c.id",
-    "SELECT * FROM phors_exams WHERE series IN ('X','Y') AND year BETWEEN 2018 AND 2026 ORDER BY year, code",
+    "SELECT * FROM phors_exams WHERE series IN ('X','Y') AND year BETWEEN 2018 AND 2026 ORDER BY year DESC, code",
     "SELECT p.id,p.exam_id,p.source_id,p.source_url,p.code,p.title,p.title_pt,p.kind,p.statement_url,p.solution_url,p.marking_scheme_url,p.statement_pdf_url,p.parts_status,p.statement_status,p.translation_status FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY p.exam_id,p.code",
     "SELECT pp.id,pp.problem_id,pp.source_key,pp.code,pp.parent_code,pp.ordinal,pp.score,pp.score_reliability,pp.prompt_text,pp.prompt_text_pt,pp.source_url FROM phors_problem_parts pp JOIN phors_problems p ON p.id=pp.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY pp.problem_id,pp.ordinal",
     "SELECT DISTINCT t.* FROM phors_tags t JOIN phors_problem_tags pt ON pt.tag_id=t.id JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY t.name",
@@ -97,4 +97,17 @@ export async function readAllData() {
     attempts: results[6].results, timeSegments: results[7].results, mockExams: results[8].results,
     mockExamProblemScores: results[9].results, settings: results[10].results[0] ?? { id: 1, tbf_date: null },
   };
+}
+
+export async function readFullExportData() {
+  const data = await readAllData();
+  const db = getD1();
+  const scope = "e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026";
+  const results = await db.batch([
+    db.prepare(`SELECT p.* FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE ${scope} ORDER BY p.exam_id,p.code`),
+    db.prepare(`SELECT pp.* FROM phors_problem_parts pp JOIN phors_problems p ON p.id=pp.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE ${scope} ORDER BY pp.problem_id,pp.ordinal`),
+    db.prepare(`SELECT DISTINCT t.* FROM phors_tags t JOIN phors_problem_tags pt ON pt.tag_id=t.id JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE ${scope} ORDER BY t.name`),
+    db.prepare(`SELECT pt.* FROM phors_problem_tags pt JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE ${scope} ORDER BY pt.problem_id,pt.tag_id`),
+  ]);
+  return { ...data, problems:results[0].results, problemParts:results[1].results, tags:results[2].results, problemTags:results[3].results };
 }
