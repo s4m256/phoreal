@@ -14,7 +14,7 @@ export type TrainingData = { competitions:unknown[]; exams:Exam[]; problems:Prob
 
 export function useTrainingData() {
   const [data,setData]=useState<TrainingData|null>(null); const [error,setError]=useState<string|null>(null); const [loading,setLoading]=useState(true);
-  const refresh=useCallback(async()=>{setLoading(true);try{const response=await fetch("/api/bootstrap",{cache:"no-store"});const payload=await response.json();if(!response.ok)throw new Error(payload.error||"Falha ao carregar");setData(payload);setError(null);}catch(e){setError(e instanceof Error?e.message:"Falha ao carregar");}finally{setLoading(false);}},[]);
+  const refresh=useCallback(async(options?:{silent?:boolean})=>{if(!options?.silent)setLoading(true);try{const response=await fetch("/api/bootstrap",{cache:"no-store"});const payload=await response.json();if(!response.ok)throw new Error(payload.error||"Falha ao carregar");setData(payload);setError(null);}catch(e){setError(e instanceof Error?e.message:"Falha ao carregar");}finally{if(!options?.silent)setLoading(false);}},[]);
   useEffect(()=>{const id=setTimeout(()=>void refresh(),0);return()=>clearTimeout(id);},[refresh]); return {data,error,loading,refresh};
 }
 

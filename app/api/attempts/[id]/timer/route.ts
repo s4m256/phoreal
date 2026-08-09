@@ -11,8 +11,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   if (action === "pause") {
     await db.batch([close, db.prepare("UPDATE user_attempts SET current_state='paused', updated_at=? WHERE id=?").bind(now,id)]);
   } else if (action === "resume") {
-    const state = attempt.active_part_id ? "item_active" : "initial_reading";
-    await db.batch([close, db.prepare("INSERT INTO user_time_segments (id,attempt_id,state,problem_part_id,started_at) VALUES (?,?,?,?,?)").bind(crypto.randomUUID(),id,state,attempt.active_part_id ?? null,now), db.prepare("UPDATE user_attempts SET current_state=?, updated_at=? WHERE id=?").bind(state,now,id)]);
+    if (!attempt.active_part_id) return Response.json({ error: "Selecione um item para começar" }, { status: 400 });
+    await db.batch([close, db.prepare("INSERT INTO user_time_segments (id,attempt_id,state,problem_part_id,started_at) VALUES (?,?,'item_active',?,?)").bind(crypto.randomUUID(),id,attempt.active_part_id,now), db.prepare("UPDATE user_attempts SET current_state='item_active', updated_at=? WHERE id=?").bind(now,id)]);
   } else if (action === "select_part") {
     if (!Number.isInteger(payload.partId)) return Response.json({ error: "Item inválido" }, { status: 400 });
     const part = await db.prepare("SELECT pp.id FROM phors_problem_parts pp JOIN user_attempts a ON a.problem_id=pp.problem_id WHERE pp.id=? AND a.id=?").bind(payload.partId,id).first();

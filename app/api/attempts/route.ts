@@ -9,10 +9,7 @@ export async function POST(request: Request) {
   if (!problem) return Response.json({ error: "Problema não encontrado" }, { status: 404 });
   const existing = await db.prepare("SELECT * FROM user_attempts WHERE problem_id=? AND status='in_progress' LIMIT 1").bind(problemId).first();
   if (existing) return Response.json({ attempt: existing, resumed: true });
-  const id = crypto.randomUUID(); const segmentId = crypto.randomUUID(); const now = new Date().toISOString();
-  await db.batch([
-    db.prepare("INSERT INTO user_attempts (id,problem_id,status,current_state,started_at,updated_at) VALUES (?,?,'in_progress','initial_reading',?,?)").bind(id,problemId,now,now),
-    db.prepare("INSERT INTO user_time_segments (id,attempt_id,state,started_at) VALUES (?,?,'initial_reading',?)").bind(segmentId,id,now),
-  ]);
-  return Response.json({ attempt: { id, problem_id: problemId, status: "in_progress", current_state: "initial_reading", active_part_id: null, started_at: now }, resumed: false }, { status: 201 });
+  const id = crypto.randomUUID(); const now = new Date().toISOString();
+  await db.prepare("INSERT INTO user_attempts (id,problem_id,status,current_state,started_at,updated_at) VALUES (?,?,'in_progress','paused',?,?)").bind(id,problemId,now,now).run();
+  return Response.json({ attempt: { id, problem_id: problemId, status: "in_progress", current_state: "paused", active_part_id: null, started_at: now }, resumed: false }, { status: 201 });
 }

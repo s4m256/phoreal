@@ -30,7 +30,8 @@ function ExamBlock({data,examId}:{data:TrainingData;examId:number}) {
     const attempts=data.attempts.filter((attempt) => attempt.problem_id===problem.id);
     const completed=attempts.filter((attempt) => attempt.status==="completed").length;
     const inProgress=attempts.some((attempt) => attempt.status==="in_progress");
-    const status=[inProgress?"em andamento":"",completed?`${completed}× concluída`:""].filter(Boolean).join(" · ");
+    const completionStatus=completed===1?"concluída":completed>1?`${completed}× concluída`:"";
+    const status=[inProgress?"em andamento":"",completionStatus].filter(Boolean).join(" · ");
     return <Link className="problem-row" href={`/questao/${problem.id}`} key={problem.id}><span className="problem-code">{problem.code}</span><span className="problem-main"><strong>{translated&&problem.title_pt?problem.title_pt:problem.title}</strong><span className="tag-line">{tags.map((tag) => <em key={tag}>{tag}</em>)}</span>{status&&<span className="problem-status">{status}</span>}</span></Link>;
   })}</div></section>;
 }
