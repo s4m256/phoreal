@@ -67,7 +67,7 @@ for (const row of problems) {
   appendContent(row.source_id,"statement_html_source",row.statement_html_source);
   appendContent(row.source_id,"statement_html_original",row.statement_html_original);
   appendContent(row.source_id,"statement_text_original",row.statement_text_original);
-  appendContent(row.source_id,"statement_html_pt",row.statement_html_pt,"NOT (translation_status='verified' AND translation_source_hash=statement_content_hash)");
+  appendContent(row.source_id,"statement_html_pt",row.statement_html_pt,"NOT (translation_status='verified' AND translation_source_hash=statement_content_hash AND statement_html_pt IS NOT NULL AND statement_html_pt<>'')");
 }
 for (const row of tags) {
   sql.push(statement(`INSERT INTO phors_tags (name,name_pt,normalized_name) VALUES (${quote(row.name)},${quote(row.name_pt)},${quote(row.normalized_name)}) ON CONFLICT(normalized_name) DO UPDATE SET name=excluded.name,name_pt=COALESCE(excluded.name_pt,phors_tags.name_pt)`));

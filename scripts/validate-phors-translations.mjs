@@ -16,7 +16,7 @@ let originalCyrillic = 0;
 let translatedCyrillic = 0;
 
 for (const row of rows) {
-  assert.equal(row.translation_status, "draft", `${row.code}: translation is not a draft`);
+  assert.ok(["draft", "verified"].includes(row.translation_status), `${row.code}: translation is not available`);
   assert.equal(row.translation_source_hash, row.statement_content_hash, `${row.code}: stale translation`);
   assert.ok(row.title_pt && row.statement_html_pt, `${row.code}: translation missing`);
   assert.equal(structure(row.statement_html_pt), structure(row.statement_html_original), `${row.code}: HTML structure changed`);
@@ -53,12 +53,13 @@ assert.equal(tags.translated, tags.total, "not every X24 tag was translated");
 assert.ok(translatedCyrillic / originalCyrillic < 0.03, "too much Russian text remains in the draft");
 
 console.log(JSON.stringify({
-  status: "structurally_valid_draft",
+  status: "structurally_valid_translations",
   exam: "X24",
   problems: rows.length,
   parts: partRows.length,
   translatedPrompts: sourcePrompts.length,
   translatedTags: tags.translated,
+  verifiedProblems: rows.filter((row) => row.translation_status === "verified").length,
   remainingCyrillicRatio: Number((translatedCyrillic / originalCyrillic).toFixed(4)),
 }, null, 2));
 db.close();

@@ -23,10 +23,11 @@ assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problem_parts").get
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_tags").get().count, 233);
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problem_tags").get().count, 797);
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problems WHERE statement_status='public' AND statement_html_original IS NOT NULL").get().count, 164);
-assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.code='X24' AND p.translation_status='draft'").get().count, 9);
+assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.code='X24' AND p.translation_status IN ('draft','verified')").get().count, 9);
+assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.code='X24' AND p.translation_status='verified'").get().count, 1);
 const source = new DatabaseSync("data/phors-full.sqlite", { readOnly:true });
-const sourceRows = source.prepare("SELECT source_id,statement_html_source,statement_html_original,statement_text_original,statement_html_pt FROM phors_problems ORDER BY source_id").all();
-const migratedRows = fresh.prepare("SELECT source_id,statement_html_source,statement_html_original,statement_text_original,statement_html_pt FROM phors_problems ORDER BY source_id").all();
+const sourceRows = source.prepare("SELECT source_id,statement_html_source,statement_html_original,statement_text_original,statement_html_pt,translation_status,translation_source_hash FROM phors_problems ORDER BY source_id").all();
+const migratedRows = fresh.prepare("SELECT source_id,statement_html_source,statement_html_original,statement_text_original,statement_html_pt,translation_status,translation_source_hash FROM phors_problems ORDER BY source_id").all();
 assert.deepEqual(migratedRows,sourceRows,"chunked statement content did not round-trip exactly");
 source.close();
 fresh.close();
