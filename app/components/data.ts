@@ -1,10 +1,10 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 
-export type Exam = { id:number; code:string; title:string; year:number|null; series:string|null; source_url:string };
-export type Problem = { id:number; exam_id:number; source_id:string; code:string; title:string; kind:string; source_url:string; statement_url:string|null; solution_url:string|null; marking_scheme_url:string|null; statement_pdf_url:string|null; parts_status:string };
-export type Part = { id:number; problem_id:number; code:string; ordinal:number; score:number|null; prompt_text:string|null; source_url:string };
-export type Tag = { id:number; name:string };
+export type Exam = { id:number; code:string; title:string; title_pt:string|null; year:number|null; series:string|null; source_url:string };
+export type Problem = { id:number; exam_id:number; source_id:string; code:string; title:string; title_pt:string|null; kind:string; source_url:string; statement_url:string|null; solution_url:string|null; marking_scheme_url:string|null; statement_pdf_url:string|null; parts_status:string; statement_status:string; translation_status:"missing"|"draft"|"verified" };
+export type Part = { id:number; problem_id:number; code:string; ordinal:number; score:number|null; prompt_text:string|null; prompt_text_pt:string|null; source_url:string };
+export type Tag = { id:number; name:string; name_pt:string|null };
 export type ProblemTag = { problem_id:number; tag_id:number };
 export type Attempt = { id:string; problem_id:number; status:"in_progress"|"completed"; current_state:"initial_reading"|"item_active"|"paused"; active_part_id:number|null; started_at:string; finished_at:string|null };
 export type Segment = { id:string; attempt_id:string; state:"initial_reading"|"item_active"; problem_part_id:number|null; started_at:string; ended_at:string|null; duration_seconds:number|null };

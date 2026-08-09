@@ -46,3 +46,5 @@ next-env.d.ts
 /data/*.sqlite
 /data/*.sqlite-shm
 /data/*.sqlite-wal
+/data/phors-full.json
+/scripts/__pycache__/

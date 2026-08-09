@@ -13,8 +13,13 @@
     "test:training": "node --test tests/training-core.test.mjs",
     "test:phors": "node --test tests/phors-importer.test.mjs",
     "phors:sync": "node scripts/sync-phors.mjs",
+    "phors:sync:full": "node scripts/sync-phors.mjs --xy-2018-2026 --db data/phors-full.sqlite --export data/phors-full.json",
+    "validate:phors": "node scripts/validate-phors-catalog.mjs",
+    "validate:translations": "node scripts/validate-phors-translations.mjs",
+    "phors:site-data": "node scripts/build-phors-site-data.mjs",
+    "validate:site-data": "node scripts/validate-phors-site-data.mjs",
     "phors:sample": "node scripts/sync-phors.mjs --db data/phors-sample.sqlite --export data/phors-sample.json --limit-per-exam 2 https://xy.pho.rs/W25 https://xy.pho.rs/X24 https://xy.pho.rs/Y25",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern work",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

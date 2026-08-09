@@ -14,7 +14,7 @@ export const exams = sqliteTable("phors_exams", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   competitionId: integer("competition_id").notNull().references(() => competitions.id, { onDelete: "cascade" }),
   sourceKey: text("source_key").notNull(), sourceUrl: text("source_url").notNull(),
-  title: text("title").notNull(), year: integer("year"), code: text("code"), series: text("series", { enum: ["W", "X", "Y"] }),
+  title: text("title").notNull(), titlePt: text("title_pt"), year: integer("year"), code: text("code"), series: text("series", { enum: ["W", "X", "Y"] }),
   sourceHash: text("source_hash").notNull(), importedAt: text("imported_at").notNull(),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
@@ -25,10 +25,20 @@ export const problems = sqliteTable("phors_problems", {
   examId: integer("exam_id").notNull().references(() => exams.id, { onDelete: "cascade" }),
   sourceId: text("source_id").notNull(), sourceUrl: text("source_url").notNull(), code: text("code"),
   title: text("title").notNull(),
+  titlePt: text("title_pt"),
   kind: text("kind", { enum: ["theoretical", "experimental", "unknown"] }).notNull().default("unknown"),
   statementUrl: text("statement_url"), solutionUrl: text("solution_url"),
   markingSchemeUrl: text("marking_scheme_url"), statementPdfUrl: text("statement_pdf_url"),
   solutionPdfUrl: text("solution_pdf_url"), attachmentsJson: text("attachments_json").notNull().default("[]"),
+  statementHtmlSource: text("statement_html_source"),
+  statementHtmlOriginal: text("statement_html_original"),
+  statementTextOriginal: text("statement_text_original"),
+  statementContentHash: text("statement_content_hash"),
+  statementLanguage: text("statement_language").notNull().default("ru"),
+  statementStatus: text("statement_status", { enum: ["public", "authentication_required", "not_available", "not_fetched"] }).notNull().default("not_fetched"),
+  statementHtmlPt: text("statement_html_pt"),
+  translationStatus: text("translation_status", { enum: ["missing", "draft", "verified"] }).notNull().default("missing"),
+  translationSourceHash: text("translation_source_hash"),
   partsStatus: text("parts_status", { enum: ["structured", "not_available", "not_fetched"] }).notNull().default("not_fetched"),
   sourceHash: text("source_hash").notNull(), importedAt: text("imported_at").notNull(),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
@@ -41,12 +51,12 @@ export const problemParts = sqliteTable("phors_problem_parts", {
   sourceKey: text("source_key").notNull(), code: text("code").notNull(), parentCode: text("parent_code"),
   ordinal: integer("ordinal").notNull(), score: real("score"),
   scoreReliability: text("score_reliability", { enum: ["explicit_html"] }),
-  promptText: text("prompt_text"), sourceUrl: text("source_url").notNull(),
+  promptText: text("prompt_text"), promptTextPt: text("prompt_text_pt"), sourceUrl: text("source_url").notNull(),
 }, (t) => [uniqueIndex("phors_problem_parts_problem_source_uq").on(t.problemId, t.sourceKey), index("phors_problem_parts_problem_idx").on(t.problemId)]);
 
 export const tags = sqliteTable("phors_tags", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  name: text("name").notNull(), normalizedName: text("normalized_name").notNull(),
+  name: text("name").notNull(), namePt: text("name_pt"), normalizedName: text("normalized_name").notNull(),
 }, (t) => [uniqueIndex("phors_tags_normalized_name_uq").on(t.normalizedName)]);
 
 export const problemTags = sqliteTable("phors_problem_tags", {
