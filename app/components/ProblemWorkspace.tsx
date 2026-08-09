@@ -64,7 +64,7 @@ export function ProblemWorkspace() {
 
   if (loading || !data) return <Loading error={error}/>;
   if (!problem) return <section className="empty"><strong>Questão não encontrada</strong></section>;
-  const translated = problem.translation_status === "verified";
+  const translated = problem.translation_status === "draft" || problem.translation_status === "verified";
   const title = translated && problem.title_pt ? problem.title_pt : problem.title;
   const tags = data.problemTags.filter((row) => row.problem_id === problem.id).map((row) => {
     const tag = data.tags.find((item) => item.id === row.tag_id);
@@ -98,8 +98,8 @@ export function ProblemWorkspace() {
       <div className="problem-main-column">
         <section className="panel statement-panel">
           <div className="section-head">
-            <div><p className="eyebrow">Enunciado</p><h2>{statement?.language === "pt-BR" ? "Português verificado" : "Original do pho.rs"}</h2></div>
-            {statement?.hasDraft && <span className="review-badge">Tradução em revisão</span>}
+            <div><p className="eyebrow">Enunciado</p><h2>{statement?.language === "pt-BR" ? "Português" : "Original do pho.rs"}</h2></div>
+            {statement?.hasDraft && <span className="review-badge">Tradução automática</span>}
           </div>
           {statementError ? <p className="muted">{statementError}</p>
             : !statement ? <p className="muted">Carregando enunciado…</p>

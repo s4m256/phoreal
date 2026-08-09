@@ -17,14 +17,14 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     statement_content_hash:string|null; translation_status:string; translation_source_hash:string|null;
   }>();
   if (!row) return Response.json({ error: "Problema não encontrado" }, { status: 404 });
-  const verified = row.translation_status === "verified"
+  const translated = ["draft", "verified"].includes(row.translation_status)
     && row.translation_source_hash === row.statement_content_hash
     && Boolean(row.statement_html_pt);
   return Response.json({
-    html: verified ? row.statement_html_pt : row.statement_html_original,
-    language: verified ? "pt-BR" : "ru",
+    html: translated ? row.statement_html_pt : row.statement_html_original,
+    language: translated ? "pt-BR" : "ru",
     statementStatus: row.statement_status,
     translationStatus: row.translation_status,
-    hasDraft: row.translation_status === "draft" && Boolean(row.statement_html_pt),
+    hasDraft: translated && row.translation_status === "draft",
   });
 }

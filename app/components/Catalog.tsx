@@ -22,7 +22,7 @@ function ExamBlock({data,examId}:{data:TrainingData;examId:number}) {
   if (!exam) return null;
   const problems=data.problems.filter((problem) => problem.exam_id===exam.id).sort((a,b) => compareProblemCodes(a.code,b.code));
   return <section className="panel exam"><div className="section-head"><strong className="exam-year">{exam.year}</strong></div><div className="problem-list">{problems.map((problem) => {
-    const translated=problem.translation_status==="verified";
+    const translated=problem.translation_status==="draft"||problem.translation_status==="verified";
     const tags=data.problemTags.filter((row) => row.problem_id===problem.id).map((row) => {
       const tag=data.tags.find((item) => item.id===row.tag_id);
       return translated&&tag?.name_pt?tag.name_pt:tag?.name;

@@ -14,37 +14,37 @@ if (!selectedIds.length) assert.equal(rows.length, 9);
 
 const math = /(\$\$.*?\$\$|(?<!\$)\$(?!\$).*?(?<!\$)\$(?!\$)|\\\[.*?\\\]|\\\(.*?\\\))/gs;
 const numbers = /[+-]?\d+(?:[.,]\d+)*/g;
+const unexpectedForeignScript = /[\u0530-\u058f\u10a0-\u10ff\u0600-\u06ff\u4e00-\u9fff]/u;
 const structure = (value) => value.replace(/>[^<]*</gs, "><");
-const texCommands = (value) => value.match(/\\[A-Za-z]+/g) ?? [];
-const delimiter = (value) => value.startsWith("$$") ? "$$" : value.startsWith("$") ? "$" : value.startsWith("\\[") ? "\\[]" : "\\()";
 function assertSafeMath(source, translated, label) {
   const sourceMath = source.match(math) ?? [];
   const translatedMath = translated.match(math) ?? [];
   assert.equal(translatedMath.length, sourceMath.length, `${label}: TeX expression count changed`);
-  const signature = (value) => JSON.stringify({
-    delimiter: delimiter(value),
-    commands: texCommands(value),
-    numbers: value.match(numbers) ?? [],
-    grouping: Object.fromEntries(Array.from("{}[]()", (character) => [character, value.split(character).length - 1])),
-  });
-  assert.deepEqual(translatedMath.map(signature).sort(), sourceMath.map(signature).sort(), `${label}: TeX structure changed`);
+  const canonicalMath = (value) => value.replace(/\s*<br\s*\/?>\s*/gi, "<br>");
+  assert.deepEqual(translatedMath.map(canonicalMath).sort(), sourceMath.map(canonicalMath).sort(), `${label}: TeX content changed`);
 }
 let originalCyrillic = 0;
 let translatedCyrillic = 0;
 
 for (const row of rows) {
+  if (!row.statement_html_original) {
+    assert.equal(row.statement_status, "authentication_required", `${row.exam_code}-${row.code}: unavailable statement was not classified`);
+    assert.ok(row.title_pt, `${row.exam_code}-${row.code}: translated metadata missing`);
+    continue;
+  }
   assert.ok(["draft", "verified"].includes(row.translation_status), `${row.code}: translation is not available`);
   assert.equal(row.translation_source_hash, row.statement_content_hash, `${row.code}: stale translation`);
-  assert.ok(row.title_pt && row.statement_html_pt, `${row.code}: translation missing`);
+  assert.ok((row.title_pt || !/[\u0400-\u04ff]/u.test(row.title)) && row.statement_html_pt, `${row.exam_code}-${row.code}: translation missing`);
+  assert.ok(!unexpectedForeignScript.test(row.statement_html_pt), `${row.exam_code}-${row.code}: unexpected foreign script remains`);
   assert.equal(structure(row.statement_html_pt), structure(row.statement_html_original), `${row.code}: HTML structure changed`);
   assertSafeMath(row.statement_html_original, row.statement_html_pt, `${row.exam_code}-${row.code}`);
-  assert.deepEqual(row.statement_html_pt.match(numbers) ?? [], row.statement_html_original.match(numbers) ?? [], `${row.code}: numbers changed`);
+  assert.deepEqual((row.statement_html_pt.match(numbers) ?? []).sort(), (row.statement_html_original.match(numbers) ?? []).sort(), `${row.exam_code}-${row.code}: numbers changed`);
   const source = load(`<body>${row.statement_html_original}</body>`);
   const translated = load(`<body>${row.statement_html_pt}</body>`);
   assert.deepEqual(translated("img").map((_, image) => translated(image).attr("src")).get(), source("img").map((_, image) => source(image).attr("src")).get(), `${row.code}: images changed`);
   assert.deepEqual(translated(".statement-part-label").map((_, label) => translated(label).text().replace(/\s+/g, " ").trim()).get(), source(".statement-part-label").map((_, label) => source(label).text().replace(/\s+/g, " ").trim()).get(), `${row.code}: item labels changed`);
-  originalCyrillic += (row.statement_html_original.match(/[А-Яа-яЁё]/g) ?? []).length;
-  translatedCyrillic += (row.statement_html_pt.match(/[А-Яа-яЁё]/g) ?? []).length;
+  originalCyrillic += (row.statement_html_original.replace(math, "").match(/[А-Яа-яЁё]/g) ?? []).length;
+  translatedCyrillic += (row.statement_html_pt.replace(math, "").match(/[А-Яа-яЁё]/g) ?? []).length;
 }
 
 const problemIds = rows.map((row) => row.id);
@@ -57,8 +57,9 @@ const partRows = db.prepare(`
 const sourcePrompts = partRows.filter((part) => part.prompt_text !== null);
 for (const part of sourcePrompts) {
   assert.ok(part.prompt_text_pt, `${part.source_key}: translated item prompt missing`);
+  assert.ok(!unexpectedForeignScript.test(part.prompt_text_pt), `${part.source_key}: unexpected foreign script remains`);
   assertSafeMath(part.prompt_text, part.prompt_text_pt, part.source_key);
-  assert.deepEqual(part.prompt_text_pt.match(numbers) ?? [], part.prompt_text.match(numbers) ?? [], `${part.source_key}: item numbers changed`);
+  assert.deepEqual((part.prompt_text_pt.match(numbers) ?? []).sort(), (part.prompt_text.match(numbers) ?? []).sort(), `${part.source_key}: item numbers changed`);
 }
 const tags = db.prepare(`
   SELECT DISTINCT t.id,t.name,t.name_pt

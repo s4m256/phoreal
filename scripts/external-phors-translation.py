@@ -92,7 +92,48 @@ def validate_math_translation(source: str, translated: str) -> None:
 def canonicalize_math_translation(source: str, translated: str) -> str:
     if "рез" in source:
         translated = translated.replace("{ress}", "{res}")
+    translated = re.sub(r"\\mu(?=(?:m|s|F|A|V|W|g|l)\b)", "μ", translated)
+    source_commands = TEX_COMMAND.findall(source)
+    for command, symbol in (("\\mu", "μ"), ("\\Omega", "Ω"), ("\\degree", "°")):
+        extra = TEX_COMMAND.findall(translated).count(command) - source_commands.count(command)
+        for _ in range(max(0, extra)):
+            translated = translated.replace(command, symbol, 1)
+    for command in ("\\text", "\\mathrm"):
+        extra = TEX_COMMAND.findall(translated).count(command) - source_commands.count(command)
+        pattern = re.compile(re.escape(command) + r"\{([^{}]*)\}")
+        for _ in range(max(0, extra)):
+            translated, replacements = pattern.subn(r"\1", translated, count=1)
+            if replacements != 1:
+                break
     return translated
+
+
+def math_signature(value: str) -> tuple:
+    return (
+        math_delimiter(value),
+        tuple(TEX_COMMAND.findall(value)),
+        tuple(NUMBER.findall(value)),
+        tuple(value.count(character) for character in "{}[]()"),
+    )
+
+
+def restore_source_math(source: str, translated: str) -> str:
+    """Restore every formula from source, including formulas spanning HTML tags."""
+    queues: dict[tuple, list[str]] = defaultdict(list)
+    for match in MATH.finditer(source):
+        queues[math_signature(match.group(0))].append(match.group(0))
+
+    def replace(match: re.Match[str]) -> str:
+        signature = math_signature(match.group(0))
+        candidates = queues.get(signature, [])
+        if not candidates:
+            raise RuntimeError(f"Translated formula has no source counterpart: {match.group(0)}")
+        return candidates.pop(0)
+
+    restored = MATH.sub(replace, translated)
+    if any(queues.values()):
+        raise RuntimeError("Not every source formula was restored")
+    return restored
 
 
 def translatable_html_nodes(source_html: str) -> list[tuple[int, str]]:
@@ -244,8 +285,9 @@ def parse_results(job: dict, result: dict) -> dict[str, str]:
                 raise RuntimeError(f"Batch {batch['id']}, record {index}: expected one marked translation, found {len(matches)}")
             record = records_by_index[index]
             value = restore(matches[0].strip(), record["protected_values"], record["key"])
-            for source_math, translated_math in math_translations.items():
-                value = value.replace(source_math, translated_math)
+            # Formulas are source evidence. Keep them byte-for-byte identical;
+            # the separately validated math translations remain review data
+            # but are never applied automatically.
             translated[record["key"]] = value
     if len(translated) != len(job["records"]):
         raise RuntimeError(f"Expected {len(job['records'])} translations, found {len(translated)}")
@@ -261,11 +303,13 @@ def rebuild_html(source_html: str, problem_id: int, translated: dict[str, str]) 
             continue
         key = f"statement:{problem_id}:{text_index}"
         if key in translated:
-            output.append(html.escape(translated[key], quote=False).replace("'", "&#x27;"))
+            # Apostrophes are safe in HTML text nodes and significant in TeX
+            # (for example $\\tau'$), so they must not become &#x27;.
+            output.append(html.escape(translated[key], quote=False))
         else:
             output.append(token)
         text_index += 1
-    return "".join(output)
+    return restore_source_math(source_html, "".join(output))
 
 
 def apply(args: argparse.Namespace) -> None:
@@ -284,14 +328,22 @@ def apply(args: argparse.Namespace) -> None:
         expected_hash = job["source_hashes"][str(problem_id)]
         if problem["statement_content_hash"] != expected_hash:
             raise RuntimeError(f"{problem['code']}: source changed after translation job was prepared")
-        translated_html = rebuild_html(problem["statement_html_original"], problem_id, translated)
-        connection.execute(
-            """
-            UPDATE phors_problems SET title_pt=?,statement_html_pt=?,translation_status='draft',
-              translation_source_hash=?,updated_at=CURRENT_TIMESTAMP WHERE id=?
-            """,
-            (translated.get(f"problem-title:{problem_id}", problem["title_pt"]), translated_html, expected_hash, problem_id),
-        )
+        title_pt = translated.get(f"problem-title:{problem_id}", problem["title_pt"])
+        if not title_pt and not re.search(r"[\u0400-\u04ff]", problem["title"]):
+            # Names such as "Patch-clamp" are already language-neutral and the
+            # model may legitimately return them unchanged.
+            title_pt = problem["title"]
+        if problem["statement_html_original"]:
+            translated_html = rebuild_html(problem["statement_html_original"], problem_id, translated)
+            connection.execute(
+                """
+                UPDATE phors_problems SET title_pt=?,statement_html_pt=?,translation_status='draft',
+                  translation_source_hash=?,updated_at=CURRENT_TIMESTAMP WHERE id=?
+                """,
+                (title_pt, translated_html, expected_hash, problem_id),
+            )
+        else:
+            connection.execute("UPDATE phors_problems SET title_pt=?,updated_at=CURRENT_TIMESTAMP WHERE id=?", (title_pt, problem_id))
     for record in job["records"]:
         value = translated[record["key"]]
         if record["entity"] == "part":
