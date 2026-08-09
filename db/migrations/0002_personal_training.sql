@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS user_settings (id INTEGER PRIMARY KEY, tbf_date TEXT, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS user_attempts (id TEXT PRIMARY KEY, problem_id INTEGER NOT NULL REFERENCES phors_problems(id), status TEXT NOT NULL CHECK(status IN ('in_progress','completed')), current_state TEXT NOT NULL CHECK(current_state IN ('initial_reading','item_active','paused')), active_part_id INTEGER REFERENCES phors_problem_parts(id), started_at TEXT NOT NULL, finished_at TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS user_attempts_problem_idx ON user_attempts(problem_id);
+CREATE INDEX IF NOT EXISTS user_attempts_status_idx ON user_attempts(status);
+CREATE TABLE IF NOT EXISTS user_time_segments (id TEXT PRIMARY KEY, attempt_id TEXT NOT NULL REFERENCES user_attempts(id) ON DELETE CASCADE, state TEXT NOT NULL CHECK(state IN ('initial_reading','item_active')), problem_part_id INTEGER REFERENCES phors_problem_parts(id), started_at TEXT NOT NULL, ended_at TEXT, duration_seconds INTEGER);
+CREATE INDEX IF NOT EXISTS user_time_segments_attempt_idx ON user_time_segments(attempt_id);
+CREATE INDEX IF NOT EXISTS user_time_segments_part_idx ON user_time_segments(problem_part_id);
+CREATE TABLE IF NOT EXISTS user_mock_exams (id TEXT PRIMARY KEY, exam_id INTEGER NOT NULL REFERENCES phors_exams(id), date TEXT NOT NULL, type TEXT NOT NULL CHECK(type IN ('theoretical','experimental')), total_score REAL NOT NULL, max_score REAL NOT NULL, drive_url TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS user_mock_exams_date_idx ON user_mock_exams(date);
+CREATE TABLE IF NOT EXISTS user_mock_exam_problem_scores (id TEXT PRIMARY KEY, mock_exam_id TEXT NOT NULL REFERENCES user_mock_exams(id) ON DELETE CASCADE, problem_id INTEGER NOT NULL REFERENCES phors_problems(id), score REAL NOT NULL, max_score REAL NOT NULL, UNIQUE(mock_exam_id, problem_id));
+CREATE INDEX IF NOT EXISTS user_mock_scores_problem_idx ON user_mock_exam_problem_scores(problem_id);
+INSERT OR IGNORE INTO user_settings (id) VALUES (1);

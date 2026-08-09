@@ -1,0 +1,1 @@
+export function Loading({ error }: { error?: string|null }) { return <section className="empty"><strong>{error ? "Não foi possível carregar" : "Carregando…"}</strong>{error && <p>{error}</p>}</section>; }

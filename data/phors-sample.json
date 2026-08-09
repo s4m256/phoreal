@@ -1,0 +1,1205 @@
+{
+  "exported_at": "2026-08-08T23:56:05.985Z",
+  "source_scope": "xy.pho.rs only",
+  "competitions": [
+    {
+      "id": 1,
+      "source_key": "xy.pho.rs",
+      "name": "Pho.rs XY — квалификационные сборы",
+      "source_url": "https://xy.pho.rs/",
+      "source_host": "xy.pho.rs",
+      "created_at": "2026-08-08 23:55:53",
+      "updated_at": "2026-08-08 23:56:05"
+    }
+  ],
+  "exams": [
+    {
+      "id": 1,
+      "competition_id": 1,
+      "source_key": "xy.pho.rs:X24",
+      "source_url": "https://xy.pho.rs/X24",
+      "title": "Квалификационные сборы X24, август 2023",
+      "year": 2023,
+      "code": "X24",
+      "series": "X",
+      "source_hash": "e7856b99d29589adc00bfa3f1d46ed2b649cca8a623758f15006241f968a4757",
+      "imported_at": "2026-08-08T23:56:05.716Z",
+      "created_at": "2026-08-08 23:55:53",
+      "updated_at": "2026-08-08 23:56:05"
+    },
+    {
+      "id": 2,
+      "competition_id": 1,
+      "source_key": "xy.pho.rs:Y25",
+      "source_url": "https://xy.pho.rs/Y25",
+      "title": "Квалификационные сборы Y25, февраль 2025",
+      "year": 2025,
+      "code": "Y25",
+      "series": "Y",
+      "source_hash": "d8764cdf53b173f5a9fb07b162de0aa94ed7477b9ee8049b6eb7648fc3be5133",
+      "imported_at": "2026-08-08T23:56:05.716Z",
+      "created_at": "2026-08-08 23:55:53",
+      "updated_at": "2026-08-08 23:56:05"
+    }
+  ],
+  "problems": [
+    {
+      "id": 1,
+      "exam_id": 1,
+      "source_id": "3732",
+      "source_url": "https://pho.rs/p/3732",
+      "code": "T1",
+      "title": "Физика дождевых капель",
+      "kind": "theoretical",
+      "statement_url": "https://pho.rs/p/3732",
+      "solution_url": "https://pho.rs/p/3732/s",
+      "marking_scheme_url": "https://pho.rs/p/3732/m",
+      "statement_pdf_url": "https://pho.rs/b/p/433/pdf",
+      "solution_pdf_url": null,
+      "attachments_json": "[{\"label\":\"Условие\",\"url\":\"https://pho.rs/b/p/433/pdf\"},{\"label\":\"Листы ответов\",\"url\":\"https://pho.rs/b/p/435/pdf\"}]",
+      "parts_status": "structured",
+      "source_hash": "332ad405d776d7ffef280554bd5b742dd4b52d5c205c7196f0c83055fcfa864e",
+      "imported_at": "2026-08-08T23:56:05.716Z",
+      "created_at": "2026-08-08 23:55:53",
+      "updated_at": "2026-08-08 23:56:05"
+    },
+    {
+      "id": 2,
+      "exam_id": 1,
+      "source_id": "3703",
+      "source_url": "https://pho.rs/p/3703",
+      "code": "T2",
+      "title": "Атмосферное электричество",
+      "kind": "theoretical",
+      "statement_url": "https://pho.rs/p/3703",
+      "solution_url": "https://pho.rs/p/3703/s",
+      "marking_scheme_url": "https://pho.rs/p/3703/m",
+      "statement_pdf_url": null,
+      "solution_pdf_url": null,
+      "attachments_json": "[]",
+      "parts_status": "structured",
+      "source_hash": "2c26f98a07f87d6409ba5c44b17dac4576e6d9296b09c91688c9ac50e3d059b4",
+      "imported_at": "2026-08-08T23:56:05.716Z",
+      "created_at": "2026-08-08 23:55:53",
+      "updated_at": "2026-08-08 23:56:05"
+    },
+    {
+      "id": 3,
+      "exam_id": 2,
+      "source_id": "4557",
+      "source_url": "https://pho.rs/p/4557",
+      "code": "T1",
+      "title": "Необратимые термодинамические циклы",
+      "kind": "theoretical",
+      "statement_url": "https://pho.rs/p/4557",
+      "solution_url": "https://pho.rs/p/4557/s",
+      "marking_scheme_url": "https://pho.rs/p/4557/m",
+      "statement_pdf_url": null,
+      "solution_pdf_url": null,
+      "attachments_json": "[]",
+      "parts_status": "structured",
+      "source_hash": "fe21a7cb313cc5e43b058828603e43ce9df3a19dde2c31acada95c36a90fd8c0",
+      "imported_at": "2026-08-08T23:56:05.716Z",
+      "created_at": "2026-08-08 23:55:53",
+      "updated_at": "2026-08-08 23:56:05"
+    },
+    {
+      "id": 4,
+      "exam_id": 2,
+      "source_id": "4222",
+      "source_url": "https://pho.rs/p/4222",
+      "code": "T2",
+      "title": "Гауссовы пучки",
+      "kind": "theoretical",
+      "statement_url": "https://pho.rs/p/4222",
+      "solution_url": "https://pho.rs/p/4222/s",
+      "marking_scheme_url": "https://pho.rs/p/4222/m",
+      "statement_pdf_url": null,
+      "solution_pdf_url": null,
+      "attachments_json": "[]",
+      "parts_status": "structured",
+      "source_hash": "ed5ed113e550396eb0fab6c9ffe90894726e3b831397eb456e067205e6a4ad11",
+      "imported_at": "2026-08-08T23:56:05.716Z",
+      "created_at": "2026-08-08 23:55:53",
+      "updated_at": "2026-08-08 23:56:05"
+    }
+  ],
+  "problem_parts": [
+    {
+      "id": 76,
+      "problem_id": 1,
+      "source_key": "row29593",
+      "code": "A1",
+      "parent_code": "A",
+      "ordinal": 1,
+      "score": 1,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите изменение свободной энергии водяного пара, если из него образовать каплю радиуса $r$. Выразите ответ через $r$, $\\sigma$, $\\varphi$, $R$, $T$, $\\rho_L$, $\\mu$.",
+      "source_url": "https://pho.rs/p/3732#row29593"
+    },
+    {
+      "id": 77,
+      "problem_id": 1,
+      "source_key": "row29594",
+      "code": "A2",
+      "parent_code": "A",
+      "ordinal": 2,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите критическое значение радиуса капли $r_c$, при котором $\\Delta G$ максимально, а также соответствующее значение $\\Delta G_с$. Выразите ответ через $\\sigma$, $\\varphi$, $R$, $T$, $\\rho_L$, $\\mu$. Найдите численное значение $r_c$ при $\\varphi = 1.01$.",
+      "source_url": "https://pho.rs/p/3732#row29594"
+    },
+    {
+      "id": 78,
+      "problem_id": 1,
+      "source_key": "row29617",
+      "code": "A3",
+      "parent_code": "A",
+      "ordinal": 3,
+      "score": 0.7,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Рассмотрим каплю критического радиуса $r_c$. Определите время $\\tau$, за которое количество молекул в ней увеличится на $g$. Выразите ответ через $r_c$, $g$, $p_s$, $m$, $k$, $T$, $\\varphi$. Считайте, что в процессе роста радиус капли не меняется, испарением молекул из капли можно пренебречь. Известно, что на площадь $dS$ поверхности за время $dt$ попадает $$ dN = dt dS \\frac{p_v}{\\sqrt{2\\pi m k T}} $$ молекул. Здесь $p_v$ – давление пара, $m$ – масса молекул, $T$ – температура газа.",
+      "source_url": "https://pho.rs/p/3732#row29617"
+    },
+    {
+      "id": 79,
+      "problem_id": 1,
+      "source_key": "row29618",
+      "code": "A4",
+      "parent_code": "A",
+      "ordinal": 4,
+      "score": 0.6,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите количество капель $J$, которые образуются в единицу времени в единице объема перенасыщенного водяного пара. Выразите ответ через $\\sigma$, $\\varphi$, $p_s$, $r_c$, $T$, $g$.",
+      "source_url": "https://pho.rs/p/3732#row29618"
+    },
+    {
+      "id": 80,
+      "problem_id": 1,
+      "source_key": "row29619",
+      "code": "A5",
+      "parent_code": "A",
+      "ordinal": 5,
+      "score": 0.9,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Из результатов предыдущего пункта следует, что скорость образования капель очень сильно зависит от коэффициента перенасыщения пара. Определите численно значение коэффициента перенасыщения пара $\\varphi$, при котором при температуре $T = 283~\\text{К}$ в $1~\\text{см}^3$ воздуха рождается одна капля в секунду. Считайте, что $g = 100$. Остальные численные данные приведены в начале задачи.",
+      "source_url": "https://pho.rs/p/3732#row29619"
+    },
+    {
+      "id": 81,
+      "problem_id": 1,
+      "source_key": "row29625",
+      "code": "B1",
+      "parent_code": "B",
+      "ordinal": 6,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Для насыщенного пара, находящегося в равновесии с жидкостью, выразите производную давления по температуре $dp_s/dT$ через $p_s$, $L$, $R$, $T$, $\\mu$. Используя полученный результат, найдите относительное изменение плотности насыщенного водяного пара $\\Delta \\rho_s/\\rho_s$ при малом изменении температуры $\\Delta T$. Выразите ответ через $\\Delta T$, $T$, $L$, $\\mu$, $R$. Вы можете использовать связь малых изменений давления, плотности и температуры идеального газа $$ \\frac{\\Delta p_s}{p_s} = \\frac{\\Delta \\rho_s}{\\rho_s} +\\frac {\\Delta T}{T}. $$",
+      "source_url": "https://pho.rs/p/3732#row29625"
+    },
+    {
+      "id": 82,
+      "problem_id": 1,
+      "source_key": "row29603",
+      "code": "B2",
+      "parent_code": "B",
+      "ordinal": 7,
+      "score": 0.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите $dQ/dt$ через $dM/dt$ и $L$.",
+      "source_url": "https://pho.rs/p/3732#row29603"
+    },
+    {
+      "id": 83,
+      "problem_id": 1,
+      "source_key": "row29709",
+      "code": "B3",
+      "parent_code": "B",
+      "ordinal": 8,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Используя результат предыдущего пункта и уравнение теплопроводности, выразите разность температур капли и атмосферы, $T_r- T$, через $dM/dt$, а также $r$, $L$, $K$.",
+      "source_url": "https://pho.rs/p/3732#row29709"
+    },
+    {
+      "id": 84,
+      "problem_id": 1,
+      "source_key": "row29604",
+      "code": "B4",
+      "parent_code": "B",
+      "ordinal": 9,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Будем считать, что вблизи поверхности капли плотность водяного пара равна плотности насыщенного пара при температуре капли. Считая разности температур и плотностей малыми и используя результаты $B1$, $B3$ выразите отношение $(\\rho_r - \\rho_s)/\\rho_s$ ($\\rho_r$ – давление пара вблизи поверхности капли) через $L$, $r$, $K$, $\\mu$, $R$, $T$ и $dM/dt$.",
+      "source_url": "https://pho.rs/p/3732#row29604"
+    },
+    {
+      "id": 85,
+      "problem_id": 1,
+      "source_key": "row29621",
+      "code": "B5",
+      "parent_code": "B",
+      "ordinal": 10,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Используя уравнение диффузии, выразите отношение $(\\rho_r - \\rho_v)/\\rho_s$ через $dM/dt$, $r$, $D$, $\\rho_s$.",
+      "source_url": "https://pho.rs/p/3732#row29621"
+    },
+    {
+      "id": 86,
+      "problem_id": 1,
+      "source_key": "row29622",
+      "code": "B6",
+      "parent_code": "B",
+      "ordinal": 11,
+      "score": 0.6,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Исключив из ответов в двух предыдущих пунктах плотность пара вблизи поверхности капли $\\rho_r$, получите выражение для $dM/dt$. Выразите ответ через $\\varphi$, $\\mu$, $R$, $T$, $D$, $p_s$, $L$, $K$, $r$.",
+      "source_url": "https://pho.rs/p/3732#row29622"
+    },
+    {
+      "id": 87,
+      "problem_id": 1,
+      "source_key": "row29687",
+      "code": "B7",
+      "parent_code": "B",
+      "ordinal": 12,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Скорость увеличения радиуса капли имеет вид $$ \\frac{dr}{dt} = \\frac{\\xi}{r^k}. $$ Определите $k$ и $\\xi$, выразите ответ через $\\varphi $, $\\rho_L$, $\\mu$, $R$, $T$, $D$, $p_s$, $L$, $K$.",
+      "source_url": "https://pho.rs/p/3732#row29687"
+    },
+    {
+      "id": 88,
+      "problem_id": 1,
+      "source_key": "row29688",
+      "code": "B8",
+      "parent_code": "B",
+      "ordinal": 13,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите зависимость радиуса капли от времени. Начальный радиус капли равен $r_0$. Выразите ответ через $r_0$, $\\xi$, $t$.",
+      "source_url": "https://pho.rs/p/3732#row29688"
+    },
+    {
+      "id": 89,
+      "problem_id": 1,
+      "source_key": "row29690",
+      "code": "B9",
+      "parent_code": "B",
+      "ordinal": 14,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть начальный радиус капли равен $r_0 = 0.7~\\text{мкм}$. Найдите численное значение времени, за которое она вырастет до размера $r_1 = 10~\\text{мкм}$ при коэффициенте перенасыщения $\\varphi = 1.1$. Остальные численные значения приведены в начале этой части.",
+      "source_url": "https://pho.rs/p/3732#row29690"
+    },
+    {
+      "id": 90,
+      "problem_id": 2,
+      "source_key": "row29523",
+      "code": "A1",
+      "parent_code": "A",
+      "ordinal": 1,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть проводящий шар радиусом $R$, несущий заряд $Q$, помещён в однородное электростатическое поле напряжённостью $\\vec{E}_0$. Определите полную напряжённость $\\vec{E}$ электрического поля в точке с радиус-вектором $\\vec{r}$ относительно центра шара, находящейся вне шара. Ответ выразите через $Q$, $\\vec{E}_0$, $R$, $\\varepsilon_0$ и $\\vec{r}$.",
+      "source_url": "https://pho.rs/p/3703#row29523"
+    },
+    {
+      "id": 91,
+      "problem_id": 2,
+      "source_key": "row29529",
+      "code": "A2",
+      "parent_code": "A",
+      "ordinal": 2,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть $\\theta$ — угол между направлением вектора электростатического поля $\\vec{E}_0$ и радиус-вектором $\\vec{r}$ некоторой точки поверхности шара относительно его центра.",
+      "source_url": "https://pho.rs/p/3703#row29529"
+    },
+    {
+      "id": 92,
+      "problem_id": 2,
+      "source_key": "row29524",
+      "code": "A3",
+      "parent_code": "A",
+      "ordinal": 3,
+      "score": 0.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "При каких значениях заряда $Q$ шара величина $E_n$ может обращаться в ноль? Ответ выразите через $E_0$, $\\varepsilon_0$ и $R$.",
+      "source_url": "https://pho.rs/p/3703#row29524"
+    },
+    {
+      "id": 93,
+      "problem_id": 2,
+      "source_key": "row29526",
+      "code": "A4",
+      "parent_code": "A",
+      "ordinal": 4,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть заряд шара равен $Q$. При каком значении угла $\\theta_0$ компонента напряжённости $E_n(\\theta_0)$ обращается в ноль? Ответ выразите через $Q$, $E_0$, $\\varepsilon_0$ и $R$.",
+      "source_url": "https://pho.rs/p/3703#row29526"
+    },
+    {
+      "id": 94,
+      "problem_id": 2,
+      "source_key": "row29527",
+      "code": "A5",
+      "parent_code": "A",
+      "ordinal": 5,
+      "score": 1,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите полную производную по времени заряда шара $dQ/dt$. Ответ выразите через $Q$, $E_0$, $\\varepsilon_0$, $R$, $\\sigma_+$, $\\sigma_-$ и, если понадобится, $\\theta_0$.",
+      "source_url": "https://pho.rs/p/3703#row29527"
+    },
+    {
+      "id": 95,
+      "problem_id": 2,
+      "source_key": "row29528",
+      "code": "A6",
+      "parent_code": "A",
+      "ordinal": 6,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите стационарный заряд шара $Q_0$, при котором он остаётся постоянным во времени. Ответ выразите через $E_0$, $\\varepsilon_0$, $R$, $\\sigma_+$ и $\\sigma_-$.",
+      "source_url": "https://pho.rs/p/3703#row29528"
+    },
+    {
+      "id": 96,
+      "problem_id": 2,
+      "source_key": "row29605",
+      "code": "A7",
+      "parent_code": "A",
+      "ordinal": 7,
+      "score": 0.6,
+      "score_reliability": "explicit_html",
+      "prompt_text": "При малых значениях $\\Delta{Q}$ зависимость $\\dot{Q}(\\Delta{Q})$ можно представить в виде: $$\\dot{Q}\\approx A\\Delta{Q}{.} $$ Выразите $A$ через $\\sigma_+$, $\\sigma_-$ и $\\varepsilon_0$.",
+      "source_url": "https://pho.rs/p/3703#row29605"
+    },
+    {
+      "id": 97,
+      "problem_id": 2,
+      "source_key": "row29606",
+      "code": "A8",
+      "parent_code": "A",
+      "ordinal": 8,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Получите зависимость отклонения заряда шара $\\Delta{Q}$ от времени $t$. Ответ выразите через $\\Delta{Q}_0$, $\\varepsilon_0$, $\\sigma_+$, $\\sigma_-$ и $t$. Покажите также, что вид временной зависимости определяется только произведением $\\sigma_+\\sigma_-$.",
+      "source_url": "https://pho.rs/p/3703#row29606"
+    },
+    {
+      "id": 98,
+      "problem_id": 2,
+      "source_key": "row28728",
+      "code": "B1",
+      "parent_code": "B",
+      "ordinal": 9,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите вектор $\\vec{E}$ напряжённости электростатического поля в области пересечения изолированных эллипсоидов. Ответ выразите через $\\rho$, $\\vec{l}$, $\\varepsilon_0$ и $A$.",
+      "source_url": "https://pho.rs/p/3703#row28728"
+    },
+    {
+      "id": 99,
+      "problem_id": 2,
+      "source_key": "row28730",
+      "code": "B2",
+      "parent_code": "B",
+      "ordinal": 10,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Рассмотрим изолированный равномерно поляризованный вдоль оси $z$ эллипсоид.Пусть напряжённость электростатического поля внутри эллипсоида равняется $\\vec{E}$. Определите вектор поляризации эллипсоида $\\vec{P}$. Ответ выразите через $\\vec{E}$, $\\varepsilon_0$ и $A$.",
+      "source_url": "https://pho.rs/p/3703#row28730"
+    },
+    {
+      "id": 100,
+      "problem_id": 2,
+      "source_key": "row28732",
+      "code": "B3",
+      "parent_code": "B",
+      "ordinal": 11,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите вектор поляризации $\\vec{P}$ эллипсоида. Ответ выразите через $\\vec{E}_0$, $\\varepsilon_0$ и $A$.",
+      "source_url": "https://pho.rs/p/3703#row28732"
+    },
+    {
+      "id": 101,
+      "problem_id": 2,
+      "source_key": "row28733",
+      "code": "B4",
+      "parent_code": "B",
+      "ordinal": 12,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите полную компоненту напряжённости электростатического поля $E_n$ на поверхности проводника через поверхностную плотность заряда $\\sigma$ и $\\varepsilon_0$.",
+      "source_url": "https://pho.rs/p/3703#row28733"
+    },
+    {
+      "id": 102,
+      "problem_id": 2,
+      "source_key": "row29537",
+      "code": "B5",
+      "parent_code": "B",
+      "ordinal": 13,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "В листах ответов приведён рисунок, на котором над бесконечной проводящей плоскостью расположен точечный диполь, дипольный момент которого направлен перпендикулярно плоскости. В листах ответов приведите электростатическое изображение диполя в проводящей плоскости.",
+      "source_url": "https://pho.rs/p/3703#row29537"
+    },
+    {
+      "id": 103,
+      "problem_id": 2,
+      "source_key": "row29533",
+      "code": "B6",
+      "parent_code": "B",
+      "ordinal": 14,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Покажите, что выражение для максимальной напряжённости электростатического поля $E_{max}$ совпадает с выражением, найденным в пункте $\\mathrm{B4}$, и найдите его численное значение. Достаточно ли величины напряжённости электростатического поля $E_0$ для пробоя воздуха в какой—либо точке пространства, если он происходит при напряжённости, равной $E_\\text{пр}=30~\\text{кВ}/\\text{см}$?",
+      "source_url": "https://pho.rs/p/3703#row29533"
+    },
+    {
+      "id": 104,
+      "problem_id": 2,
+      "source_key": "row28736",
+      "code": "C1",
+      "parent_code": "C",
+      "ordinal": 15,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Принимая потенциал шара равным потенциалу на поверхности Земли, т.е. нулю, определите величину заряда $q_0$ шара. Ответ выразите через $\\varepsilon_0$, $E_0$, $R_0$ и $h$.",
+      "source_url": "https://pho.rs/p/3703#row28736"
+    },
+    {
+      "id": 105,
+      "problem_id": 2,
+      "source_key": "row28737",
+      "code": "C2",
+      "parent_code": "C",
+      "ordinal": 16,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите величину силы тока $I$, перетекающего из атмосферы в шар, если проводимость воздуха во всей атмосфере можно принять равной $\\sigma_0$. Ответ выразите через $E_0$, $R_0$, $h$, $\\varepsilon_0$ и $\\sigma_0$.",
+      "source_url": "https://pho.rs/p/3703#row28737"
+    },
+    {
+      "id": 106,
+      "problem_id": 2,
+      "source_key": "row29575",
+      "code": "C3",
+      "parent_code": "C",
+      "ordinal": 17,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Запишите выражение для условия равенства нулю потенциала шара. В уравнение могут войти $E_0$, $h$, $q_0$, $q$, $R_0$ и $R$.",
+      "source_url": "https://pho.rs/p/3703#row29575"
+    },
+    {
+      "id": 107,
+      "problem_id": 2,
+      "source_key": "row29576",
+      "code": "C4",
+      "parent_code": "C",
+      "ordinal": 18,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Из условия равенства силы текущего тока $I$, пересекающего сферическую поверхность внутри и вне ионизированного слоя, получите уравнение, связывающее заряды $q_0$ и $q$. В уравнение также могут войти проводимости $\\sigma_0$ и $\\sigma$.",
+      "source_url": "https://pho.rs/p/3703#row29576"
+    },
+    {
+      "id": 108,
+      "problem_id": 2,
+      "source_key": "row29577",
+      "code": "C5",
+      "parent_code": "C",
+      "ordinal": 19,
+      "score": 0.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите величину силы тока $I$, перетекающего из атмосферы в шар в этом случае. Ответ выразите через $E_0$, $R_0$, $R$, $h$, $\\varepsilon_0$, $\\sigma_0$ и $\\sigma$.",
+      "source_url": "https://pho.rs/p/3703#row29577"
+    },
+    {
+      "id": 109,
+      "problem_id": 2,
+      "source_key": "row29539",
+      "code": "C6",
+      "parent_code": "C",
+      "ordinal": 20,
+      "score": 0.1,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Покажите, что при $R\\approx R_0$ приближённое выражение для силы тока $I$ переходит в выражение, соответствующее отсутствию ионизированного слоя.",
+      "source_url": "https://pho.rs/p/3703#row29539"
+    },
+    {
+      "id": 110,
+      "problem_id": 2,
+      "source_key": "row28741",
+      "code": "D1",
+      "parent_code": "D",
+      "ordinal": 21,
+      "score": 0.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите величину дрейфовой скорости $u$ движения электронов. Ответ выразите через $e$, $E$, $\\lambda$, $m$ и $\\overline{v}_\\text{т}$.",
+      "source_url": "https://pho.rs/p/3703#row28741"
+    },
+    {
+      "id": 111,
+      "problem_id": 2,
+      "source_key": "row28743",
+      "code": "D2",
+      "parent_code": "D",
+      "ordinal": 22,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Из баланса энергии определите среднюю величину $\\overline{\\Delta{W}}$ потери кинетической энергии электрона при столкновении с молекулами воздуха. Ответ выразите через $e$, $E$, $\\lambda$, $m$ и $\\overline{W}$.",
+      "source_url": "https://pho.rs/p/3703#row28743"
+    },
+    {
+      "id": 112,
+      "problem_id": 2,
+      "source_key": "row28745",
+      "code": "D3",
+      "parent_code": "D",
+      "ordinal": 23,
+      "score": 1,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Получите точное выражение для величины $\\overline{\\Delta{W}}/\\overline{W}$. Ответ выразите через $m$ и $M$. Упростите ваш ответ с учётом $m\\ll{M}$.",
+      "source_url": "https://pho.rs/p/3703#row28745"
+    },
+    {
+      "id": 113,
+      "problem_id": 2,
+      "source_key": "row28747",
+      "code": "D4",
+      "parent_code": "D",
+      "ordinal": 24,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите стационарное значение кинетической энергии теплового движения электронов $\\overline{W}$ и скорости образования искрового канала $u$. Ответы выразите через $m$, $M$, $e$, $E$ и $\\lambda$. Рассчитайте полученные значения.",
+      "source_url": "https://pho.rs/p/3703#row28747"
+    },
+    {
+      "id": 114,
+      "problem_id": 3,
+      "source_key": "row43862",
+      "code": "A1",
+      "parent_code": "A",
+      "ordinal": 1,
+      "score": 0.7,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Запишите выражение для полезной мощности двигателя. Выразите ответ через $Q_1$, $Q_2$, $\\gamma$, $D$, $\\tau$.",
+      "source_url": "https://pho.rs/p/4557#row43862"
+    },
+    {
+      "id": 115,
+      "problem_id": 3,
+      "source_key": "row43863",
+      "code": "A2",
+      "parent_code": "A",
+      "ordinal": 2,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите оптимальную продолжительность цикла $\\tau$, при которой мощность будет максимальной.",
+      "source_url": "https://pho.rs/p/4557#row43863"
+    },
+    {
+      "id": 116,
+      "problem_id": 3,
+      "source_key": "row43864",
+      "code": "A3",
+      "parent_code": "A",
+      "ordinal": 3,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите выражение для КПД (отношения полезной работы к подведенному количеству теплоты) в случае работы двигателя при оптимальной продолжительности цикла.",
+      "source_url": "https://pho.rs/p/4557#row43864"
+    },
+    {
+      "id": 117,
+      "problem_id": 3,
+      "source_key": "row43865",
+      "code": "A4",
+      "parent_code": "A",
+      "ordinal": 4,
+      "score": 0.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть $Q_1$, $Q_2$ такие же, как если бы двигатель работал по идеальному циклу Карно. Выразите КПД рассматриваемого цикла через КПД такого цикла Карно $\\eta_c$.",
+      "source_url": "https://pho.rs/p/4557#row43865"
+    },
+    {
+      "id": 118,
+      "problem_id": 3,
+      "source_key": "row43868",
+      "code": "B1",
+      "parent_code": "B",
+      "ordinal": 5,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Определите количества теплоты $Q_1$ и $Q_2$, выразите ответ через $\\nu$, $R$, $T_1'$, $T_2'$, $V_1$, $V_2$.",
+      "source_url": "https://pho.rs/p/4557#row43868"
+    },
+    {
+      "id": 119,
+      "problem_id": 3,
+      "source_key": "row43869",
+      "code": "B2",
+      "parent_code": "B",
+      "ordinal": 6,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите время цикла $t_c$ через $Q_1$, $Q_2$, $\\alpha_1$, $\\alpha_2$, $\\Delta T_1$, $\\Delta T_2$. Временем, которое занимают адиабатические процессы, можно пренебречь.",
+      "source_url": "https://pho.rs/p/4557#row43869"
+    },
+    {
+      "id": 120,
+      "problem_id": 3,
+      "source_key": "row43870",
+      "code": "B3",
+      "parent_code": "B",
+      "ordinal": 7,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите полезную мощность цикла $P$ через $T_1$, $T_2$, $\\Delta T_1$, $\\Delta T_2$, $\\alpha_1$, $\\alpha_2$.",
+      "source_url": "https://pho.rs/p/4557#row43870"
+    },
+    {
+      "id": 121,
+      "problem_id": 3,
+      "source_key": "row43871",
+      "code": "B4",
+      "parent_code": "B",
+      "ordinal": 8,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Будем рассматривать только циклы, продолжающиеся фиксированное время $t_c$. Найдите следующее отсюда соотношение между приращениями $d \\Delta T_1$ и $d \\Delta T_2$. Выразите ответ через $T_1$, $T_2$, $\\alpha_1$, $\\alpha_2$, $\\Delta T_1$, $\\Delta T_2$.",
+      "source_url": "https://pho.rs/p/4557#row43871"
+    },
+    {
+      "id": 122,
+      "problem_id": 3,
+      "source_key": "row44058",
+      "code": "B5",
+      "parent_code": "B",
+      "ordinal": 9,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть продолжительность цикла $t_c$ фиксирована. Найдите отношение $\\Delta T_1/\\Delta T_2$, при котором мощность $P$ максимальна.",
+      "source_url": "https://pho.rs/p/4557#row44058"
+    },
+    {
+      "id": 123,
+      "problem_id": 3,
+      "source_key": "row44059",
+      "code": "B6",
+      "parent_code": "B",
+      "ordinal": 10,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Продифференцируйте мощность по $\\Delta T_1$. Покажите, что условие равенства нулю этой производной можно записать в виде$$\\frac{\\Delta T_1}{\\Delta T_2} = h\\frac{P}{\\Delta T_1 \\Delta T_2},$$где $h$ – некоторая величина, не зависящая от $\\Delta T_1$ и $\\Delta T_2$. Получите выражение для $h$.",
+      "source_url": "https://pho.rs/p/4557#row44059"
+    },
+    {
+      "id": 124,
+      "problem_id": 3,
+      "source_key": "row44186",
+      "code": "B7",
+      "parent_code": "B",
+      "ordinal": 11,
+      "score": 1.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Используя результаты предыдущих двух пунктов, определите значения $\\Delta T_1$, $\\Delta T_2$, при которых мощность максимально. То, что найденные значения соответствуют именно максимуму доказывать не требуется. Выразите ответ через $T_1$, $T_2$, $\\alpha_1$, $\\alpha_2$. Вы можете существенно упростить вычисления, если будете считать, что соотношения между $\\Delta T_1$ и $\\Delta T_2$, полученное в предыдущем пункте, выполняется.",
+      "source_url": "https://pho.rs/p/4557#row44186"
+    },
+    {
+      "id": 125,
+      "problem_id": 3,
+      "source_key": "row43872",
+      "code": "B8",
+      "parent_code": "B",
+      "ordinal": 12,
+      "score": 0.7,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите значение максимальной мощности $P$ и кпд $\\eta$ цикла при оптимальных значениях $\\Delta T_1$, $\\Delta T_2$. Выразите ответ через $T_1$, $T_2$, $\\alpha_1$, $\\alpha_2$.",
+      "source_url": "https://pho.rs/p/4557#row43872"
+    },
+    {
+      "id": 126,
+      "problem_id": 3,
+      "source_key": "row43873",
+      "code": "B9",
+      "parent_code": "B",
+      "ordinal": 13,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Типичная температура нагревателя тепловой электростанции $560 ~^\\circ \\mbox{C}$, холодильника $25~^\\circ \\mbox{C}$. Вычислите для этих температур кпд цикла карно и кпд найденный в предыдущем пункте. Какое из этих значений лучше описывает измеренное значение $\\eta = 0.36$?",
+      "source_url": "https://pho.rs/p/4557#row43873"
+    },
+    {
+      "id": 127,
+      "problem_id": 3,
+      "source_key": "row43944",
+      "code": "C1",
+      "parent_code": "C",
+      "ordinal": 14,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите коэффициент полезного действия $\\eta$ тепловой машины через коэффициенты полезного действия ее частей $\\eta_1$, $\\eta_2$ (они определяются как отношения полезных работ к количествам теплоты, поданных на рабочее тело соответствующей машины), а также через коэффициенты $N_1$, $N_2$.",
+      "source_url": "https://pho.rs/p/4557#row43944"
+    },
+    {
+      "id": 128,
+      "problem_id": 3,
+      "source_key": "row43945",
+      "code": "C2",
+      "parent_code": "C",
+      "ordinal": 15,
+      "score": 0.9,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите $\\eta$ через температуры $T_H$, $T_L$, $T_{L1}$ и коэффициенты $K_1$, $K_2$. Считайте, что отдельные циклы тепловых двигателей — это циклы Карно.",
+      "source_url": "https://pho.rs/p/4557#row43945"
+    },
+    {
+      "id": 129,
+      "problem_id": 3,
+      "source_key": "row44064",
+      "code": "C3",
+      "parent_code": "C",
+      "ordinal": 16,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "При $T_L/T_H = 0.5$, $K_1 T_H = 0.3$, $K_2 T_H = 0.2$ постройте график зависимости КПД от отношения $T_{L1}/T_H$.",
+      "source_url": "https://pho.rs/p/4557#row44064"
+    },
+    {
+      "id": 130,
+      "problem_id": 3,
+      "source_key": "row43947",
+      "code": "C4",
+      "parent_code": "C",
+      "ordinal": 17,
+      "score": 0.9,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите температуру промежуточного холодильника $T_{L1}$, при котором найденный КПД максимален. Для случая $K_1 = K_2$ приведите выражение для максимального КПД.",
+      "source_url": "https://pho.rs/p/4557#row43947"
+    },
+    {
+      "id": 131,
+      "problem_id": 4,
+      "source_key": "row44151",
+      "code": "A1",
+      "parent_code": "A",
+      "ordinal": 1,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "На очень больших расстояниях $L$ оцените по порядку величины размер пятна $D$ на экране. Выразите ответ через $\\lambda$, $w_0$, $L$.",
+      "source_url": "https://pho.rs/p/4222#row44151"
+    },
+    {
+      "id": 132,
+      "problem_id": 4,
+      "source_key": "row44153",
+      "code": "A2",
+      "parent_code": "A",
+      "ordinal": 2,
+      "score": 0.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "При каком ограничении на $L$ применима теория дифракции Фраунгофера? Выразите ответ через $L$, $w_0$, $\\lambda$.",
+      "source_url": "https://pho.rs/p/4222#row44153"
+    },
+    {
+      "id": 133,
+      "problem_id": 4,
+      "source_key": "row44149",
+      "code": "A3",
+      "parent_code": "A",
+      "ordinal": 3,
+      "score": 0.8,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Запишите в этом случае выражение для амплитуды электрического поля в виде интеграла по $dx'dy'$. Найдите выражение для амплитуды поля на экране в зависимости от расстояния до оси симметрии $r$. Также в ответ могут входить $E_0$, $w_0$, $k$. Вам может потребоваться интеграл$$\\int\\limits_{-\\infty}^{+\\infty} dx\\, e^{- ax^2 + i b x} = \\sqrt{\\frac{\\pi}{a}}e^{- b^2/4 a}.$$",
+      "source_url": "https://pho.rs/p/4222#row44149"
+    },
+    {
+      "id": 134,
+      "problem_id": 4,
+      "source_key": "row44163",
+      "code": "A4",
+      "parent_code": "A",
+      "ordinal": 4,
+      "score": 0.7,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Теперь рассмотрим случай дифракции Френеля. При этом расстояние $L$ произвольно, однако углы между лучами, идущими к точке наблюдения, и осью $z$ можно считать малыми. Найдите $A(z) = v(0, 0, z) \\exp\\left(ikz\\right)$ – комплексную амплитуду на оси $Oz$ без учёта фазы плоской волны. Ответ выразите через $E_0$, $w_0$, $k$, $z$.",
+      "source_url": "https://pho.rs/p/4222#row44163"
+    },
+    {
+      "id": 135,
+      "problem_id": 4,
+      "source_key": "row44167",
+      "code": "B1",
+      "parent_code": "B",
+      "ordinal": 5,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Подставьте $(2)$ в $(1)$ и получите дифференциальное уравнение, которому удовлетворяет $u(x, y, z)$.",
+      "source_url": "https://pho.rs/p/4222#row44167"
+    },
+    {
+      "id": 136,
+      "problem_id": 4,
+      "source_key": "row44096",
+      "code": "B2",
+      "parent_code": "B",
+      "ordinal": 6,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Покажите, что сумма вторых частных производных $u$ по «поперечным» координатам $x$, $y$ представима в виде:$$\\frac{\\partial^2 u}{\\partial x^2} + \\frac{\\partial^2 u}{\\partial y^2} = \\left[-2 i \\chi(z) - \\chi^2(z) \\cdot r^2 \\right]\\cdot u.$$ Выразите $\\chi(z)$ через $q(z)$, $k$.",
+      "source_url": "https://pho.rs/p/4222#row44096"
+    },
+    {
+      "id": 137,
+      "problem_id": 4,
+      "source_key": "row44097",
+      "code": "B3",
+      "parent_code": "B",
+      "ordinal": 7,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Покажите, что частная производная $u$ по $z$ представима в виде:$$\\frac{\\partial u}{\\partial z} = \\left[\\frac{A'(z)}{A(z)} + i \\zeta(z) \\cdot r^2 \\right] \\cdot u.$$Выразите $\\zeta(z)$ через $q(z)$, $q'(z)$, $k$.",
+      "source_url": "https://pho.rs/p/4222#row44097"
+    },
+    {
+      "id": 138,
+      "problem_id": 4,
+      "source_key": "row44098",
+      "code": "B4",
+      "parent_code": "B",
+      "ordinal": 8,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Получите дифференциальное уравнение на $q(z)$. Решите его с начальным условием$$q(0) = i z_0,$$ где $z_0$ – действительная величина, $z_0 > 0$. Выразите $z_0$ через $w_0$, $k$.",
+      "source_url": "https://pho.rs/p/4222#row44098"
+    },
+    {
+      "id": 139,
+      "problem_id": 4,
+      "source_key": "row39793",
+      "code": "B5",
+      "parent_code": "B",
+      "ordinal": 9,
+      "score": 0.2,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите $R(z)$ и $w(z)$ через $k$, $z$, $z_0$.",
+      "source_url": "https://pho.rs/p/4222#row39793"
+    },
+    {
+      "id": 140,
+      "problem_id": 4,
+      "source_key": "row44043",
+      "code": "B6",
+      "parent_code": "B",
+      "ordinal": 10,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Проверьте, что найденная в части A функция $A(z)$ действительно удовлетворяет уравнению $(5)$, то есть при ее подстановке слагаемые, не содержащие $r^2$, обращаются в 0.",
+      "source_url": "https://pho.rs/p/4222#row44043"
+    },
+    {
+      "id": 141,
+      "problem_id": 4,
+      "source_key": "row44062",
+      "code": "B7",
+      "parent_code": "B",
+      "ordinal": 11,
+      "score": 0.3,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Представим функцию $A(z) $ в виде$$A(z) = A_0 (z) e^{i \\psi (z)}$$с вещественными $A_0$ и $\\psi$. Выразите $A_0$ и $\\psi$ через $z$, $z_0$, $E_0$.",
+      "source_url": "https://pho.rs/p/4222#row44062"
+    },
+    {
+      "id": 142,
+      "problem_id": 4,
+      "source_key": "row39796",
+      "code": "C1",
+      "parent_code": "C",
+      "ordinal": 12,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите распределение интенсивности в пучке $I(r, z)$. Ответ выразите через $\\beta$, $A_0(z)$, $w(z)$. Изобразите характерный график распределения интенсивности в радиальном направлении при фиксированном $z$.",
+      "source_url": "https://pho.rs/p/4222#row39796"
+    },
+    {
+      "id": 143,
+      "problem_id": 4,
+      "source_key": "row39797",
+      "code": "C2",
+      "parent_code": "C",
+      "ordinal": 13,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите полную мощность излучения $P$, передаваемого пучком через плоскость $z = \\operatorname{const}$. Ответ выразите через $\\beta$, $E_0$, $k$, $z_0$, $z$.",
+      "source_url": "https://pho.rs/p/4222#row39797"
+    },
+    {
+      "id": 144,
+      "problem_id": 4,
+      "source_key": "row44047",
+      "code": "C3",
+      "parent_code": "C",
+      "ordinal": 14,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Выразите ширину пучка $d(z)$ через $w(z)$. Постройте качественный график зависимости $d(z)$.",
+      "source_url": "https://pho.rs/p/4222#row44047"
+    },
+    {
+      "id": 145,
+      "problem_id": 4,
+      "source_key": "row44130",
+      "code": "C5",
+      "parent_code": "C",
+      "ordinal": 15,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Получите уравнение, определяющее форму волнового фронта гауссова пучка, проходящего через заданную точку $(0, z_1)$. В уравнении могут присутствовать $R(z)$, $\\psi(z)$, $k$, $z$, $z_1$.",
+      "source_url": "https://pho.rs/p/4222#row44130"
+    },
+    {
+      "id": 146,
+      "problem_id": 4,
+      "source_key": "row44131",
+      "code": "C6",
+      "parent_code": "C",
+      "ordinal": 16,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите радиус кривизны фронта $\\rho(z_1)$. Ответ выразите через $R(z)$. Постройте график зависимости $\\rho(z_1)$, указав на нём характерные особенности и их координаты.",
+      "source_url": "https://pho.rs/p/4222#row44131"
+    },
+    {
+      "id": 147,
+      "problem_id": 4,
+      "source_key": "row39798",
+      "code": "C8",
+      "parent_code": "C",
+      "ordinal": 17,
+      "score": 1,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть гауссов пучок с длиной волны $\\lambda_0 = 10.6~мкм$ имеет ширину $d_1 = 3.398~мм$ и $d_2 = 6.760~мм$ в двух точках, расстояние между которыми $L = 10~см$. Численно рассчитайте ширину перетяжки пучка $d_п$.",
+      "source_url": "https://pho.rs/p/4222#row39798"
+    },
+    {
+      "id": 148,
+      "problem_id": 4,
+      "source_key": "row43971",
+      "code": "D1",
+      "parent_code": "D",
+      "ordinal": 18,
+      "score": 0.7,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Известно, что линза изменяет фазу падающей волны таким образом, что все лучи приходят в фокус с одинаковой фазой. Используя этот факт, выразите коэффициент $\\eta$ через $k$, $f$.",
+      "source_url": "https://pho.rs/p/4222#row43971"
+    },
+    {
+      "id": 149,
+      "problem_id": 4,
+      "source_key": "row43982",
+      "code": "D2",
+      "parent_code": "D",
+      "ordinal": 19,
+      "score": 0.5,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Пусть на тонкую собирающую линзу с фокусным расстоянием $f$ падает гауссов пучок, распространяющийся вдоль $Oz$. Плоскость линзы перпендикулярна оси $Oz$. Непосредственно перед линзой параметры пучка $R(z_л) = R_1$, $w(z_л) = w_1$. Известно, что после линзы он также останется гауссовым. Найдите параметры пучка $R_2$, $w_2$ непосредственно после прохождения через линзу. Диаметр линзы много больше $w_1$.",
+      "source_url": "https://pho.rs/p/4222#row43982"
+    },
+    {
+      "id": 150,
+      "problem_id": 4,
+      "source_key": "row44054",
+      "code": "D3",
+      "parent_code": "D",
+      "ordinal": 20,
+      "score": 0.4,
+      "score_reliability": "explicit_html",
+      "prompt_text": "Найдите условие, связывающее $R_1$, $w_1$ и $f$, при котором гауссов пучок сфокусируется за линзой, то есть его плоскость перетяжки будет расположена после линзы.",
+      "source_url": "https://pho.rs/p/4222#row44054"
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "Термодинамика",
+      "normalized_name": "термодинамика"
+    },
+    {
+      "id": 2,
+      "name": "Явления переноса",
+      "normalized_name": "явления переноса"
+    },
+    {
+      "id": 3,
+      "name": "X",
+      "normalized_name": "x"
+    },
+    {
+      "id": 4,
+      "name": "Диффузия",
+      "normalized_name": "диффузия"
+    },
+    {
+      "id": 5,
+      "name": "Насыщенный пар",
+      "normalized_name": "насыщенный пар"
+    },
+    {
+      "id": 6,
+      "name": "Электростатика",
+      "normalized_name": "электростатика"
+    },
+    {
+      "id": 7,
+      "name": "Напряженность",
+      "normalized_name": "напряженность"
+    },
+    {
+      "id": 8,
+      "name": "Электромагнетизм",
+      "normalized_name": "электромагнетизм"
+    },
+    {
+      "id": 9,
+      "name": "МКТ",
+      "normalized_name": "мкт"
+    },
+    {
+      "id": 11,
+      "name": "Расчет полей",
+      "normalized_name": "расчет полей"
+    },
+    {
+      "id": 13,
+      "name": "Тепловые машины",
+      "normalized_name": "тепловые машины"
+    },
+    {
+      "id": 14,
+      "name": "КПД",
+      "normalized_name": "кпд"
+    },
+    {
+      "id": 15,
+      "name": "Циклы",
+      "normalized_name": "циклы"
+    },
+    {
+      "id": 16,
+      "name": "Оптика",
+      "normalized_name": "оптика"
+    },
+    {
+      "id": 17,
+      "name": "Волновая оптика",
+      "normalized_name": "волновая оптика"
+    },
+    {
+      "id": 18,
+      "name": "Электромагнитные волны",
+      "normalized_name": "электромагнитные волны"
+    }
+  ],
+  "problem_tags": [
+    {
+      "problem_id": 1,
+      "tag_id": 1
+    },
+    {
+      "problem_id": 1,
+      "tag_id": 2
+    },
+    {
+      "problem_id": 1,
+      "tag_id": 3
+    },
+    {
+      "problem_id": 1,
+      "tag_id": 4
+    },
+    {
+      "problem_id": 1,
+      "tag_id": 5
+    },
+    {
+      "problem_id": 2,
+      "tag_id": 6
+    },
+    {
+      "problem_id": 2,
+      "tag_id": 7
+    },
+    {
+      "problem_id": 2,
+      "tag_id": 8
+    },
+    {
+      "problem_id": 2,
+      "tag_id": 9
+    },
+    {
+      "problem_id": 2,
+      "tag_id": 3
+    },
+    {
+      "problem_id": 2,
+      "tag_id": 11
+    },
+    {
+      "problem_id": 3,
+      "tag_id": 1
+    },
+    {
+      "problem_id": 3,
+      "tag_id": 13
+    },
+    {
+      "problem_id": 3,
+      "tag_id": 14
+    },
+    {
+      "problem_id": 3,
+      "tag_id": 15
+    },
+    {
+      "problem_id": 4,
+      "tag_id": 16
+    },
+    {
+      "problem_id": 4,
+      "tag_id": 17
+    },
+    {
+      "problem_id": 4,
+      "tag_id": 18
+    }
+  ],
+  "sync_runs": [
+    {
+      "id": 1,
+      "started_at": "2026-08-08T23:55:53.565Z",
+      "finished_at": "2026-08-08T23:55:53.799Z",
+      "status": "succeeded",
+      "exam_urls_json": "[\"https://xy.pho.rs/X24\",\"https://xy.pho.rs/Y25\"]",
+      "stats_json": "{\"examPagesFetched\":0,\"problemPagesFetched\":0,\"offlineSourcePages\":6,\"importedProblems\":4,\"competitions\":1,\"exams\":2,\"problems\":4,\"problemParts\":75,\"tags\":16,\"problemTags\":18}",
+      "error_text": null
+    },
+    {
+      "id": 2,
+      "started_at": "2026-08-08T23:56:05.716Z",
+      "finished_at": "2026-08-08T23:56:05.976Z",
+      "status": "succeeded",
+      "exam_urls_json": "[\"https://xy.pho.rs/X24\",\"https://xy.pho.rs/Y25\"]",
+      "stats_json": "{\"examPagesFetched\":0,\"problemPagesFetched\":0,\"offlineSourcePages\":6,\"importedProblems\":4,\"competitions\":1,\"exams\":2,\"problems\":4,\"problemParts\":75,\"tags\":16,\"problemTags\":18}",
+      "error_text": null
+    }
+  ]
+}
