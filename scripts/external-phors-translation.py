@@ -28,6 +28,8 @@ PROTECTED_VALUE = re.compile(
     r"(https?://\S+|[+-]?\d+(?:[.,]\d+)*(?:\s*[·×x]\s*10(?:\^\{?[+-]?\d+\}?)?)?|\b(?:[A-Z]{1,4}\d+(?:\.\d+)*|X24|PE)\b)"
 )
 NODE_OPEN = re.compile(r"ZXQNODE(\d{6})QXZ")
+TEX_COMMAND = re.compile(r"\\[A-Za-z]+")
+NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
 
 
 def protect(source: str) -> tuple[str, list[str]]:
@@ -53,10 +55,43 @@ def protect(source: str) -> tuple[str, list[str]]:
 def restore(translated: str, values: list[str], key: str) -> str:
     expected = [f"ZXQSAFE{index:06d}QXZ" for index in range(len(values))]
     found = re.findall(r"ZXQSAFE\d{6}QXZ", translated)
-    if found != expected:
-        raise RuntimeError(f"{key}: protected values changed: expected {expected}, found {found}")
+    if sorted(found) != expected:
+        raise RuntimeError(f"{key}: protected values missing, duplicated or changed: expected {expected}, found {found}")
     for index, value in enumerate(values):
         translated = translated.replace(f"ZXQSAFE{index:06d}QXZ", value)
+    return translated
+
+
+def math_delimiter(value: str) -> str:
+    stripped = value.strip()
+    if stripped.startswith("$$") and stripped.endswith("$$"):
+        return "$$"
+    if stripped.startswith("$") and stripped.endswith("$"):
+        return "$"
+    if stripped.startswith("\\[") and stripped.endswith("\\]"):
+        return "\\[]"
+    if stripped.startswith("\\(") and stripped.endswith("\\)"):
+        return "\\()"
+    return ""
+
+
+def validate_math_translation(source: str, translated: str) -> None:
+    if CYRILLIC.search(translated):
+        raise RuntimeError(f"Translated math still contains Cyrillic: {translated}")
+    if math_delimiter(source) != math_delimiter(translated):
+        raise RuntimeError(f"Math delimiters changed: {source} -> {translated}")
+    if TEX_COMMAND.findall(source) != TEX_COMMAND.findall(translated):
+        raise RuntimeError(f"TeX commands changed: {source} -> {translated}")
+    if NUMBER.findall(source) != NUMBER.findall(translated):
+        raise RuntimeError(f"Numbers changed in math: {source} -> {translated}")
+    for character in "{}[]()":
+        if source.count(character) != translated.count(character):
+            raise RuntimeError(f"Math grouping changed for {character}: {source} -> {translated}")
+
+
+def canonicalize_math_translation(source: str, translated: str) -> str:
+    if "рез" in source:
+        translated = translated.replace("{ress}", "{res}")
     return translated
 
 
@@ -184,6 +219,20 @@ def prepare(args: argparse.Namespace) -> None:
 def parse_results(job: dict, result: dict) -> dict[str, str]:
     translated: dict[str, str] = {}
     records_by_index = {record["index"]: record for record in job["records"]}
+    required_math = {
+        value
+        for record in job["records"]
+        for value in record["protected_values"]
+        if CYRILLIC.search(value)
+    }
+    math_translations = {
+        source: canonicalize_math_translation(source, translated)
+        for source, translated in result.get("math_translations", {}).items()
+    }
+    if set(math_translations) != required_math:
+        raise RuntimeError("Math translations do not exactly cover the protected Cyrillic expressions")
+    for source, translated_math in math_translations.items():
+        validate_math_translation(source, translated_math)
     for batch in job["batches"]:
         raw = result.get("batches", {}).get(str(batch["id"]))
         if not raw:
@@ -194,7 +243,10 @@ def parse_results(job: dict, result: dict) -> dict[str, str]:
             if len(matches) != 1:
                 raise RuntimeError(f"Batch {batch['id']}, record {index}: expected one marked translation, found {len(matches)}")
             record = records_by_index[index]
-            translated[record["key"]] = restore(matches[0].strip(), record["protected_values"], record["key"])
+            value = restore(matches[0].strip(), record["protected_values"], record["key"])
+            for source_math, translated_math in math_translations.items():
+                value = value.replace(source_math, translated_math)
+            translated[record["key"]] = value
     if len(translated) != len(job["records"]):
         raise RuntimeError(f"Expected {len(job['records'])} translations, found {len(translated)}")
     return translated

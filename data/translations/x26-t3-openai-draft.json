@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "exam": "X26",
+  "locale": "pt-BR",
+  "status": "external_draft_review_required",
+  "engine": "OpenAI Responses API / gpt-5.6-terra / reasoning low",
+  "translated_at": "2026-08-09T21:49:11.312445+00:00",
+  "source_job_sha256": "f91b8458f833a52a3380739676c5f9c644eb06fbd6b86e5b7bd72963489f23ed",
+  "problem_codes": [
+    "T3"
+  ],
+  "translations": {
+    "problem-title:149": "Problemas de fotografia",
+    "statement:149:3": "Esta tarefa consiste em três partes independentes, unidas por um tema comum: cada uma delas é dedicada a um problema específico que pode surgir ao fotografar. Procure compreender a física por trás desses efeitos e responda às perguntas propostas.",
+    "statement:149:11": "Parte A. Desfocalização (2.0 pontos)",
+    "statement:149:18": "A figura mostra uma câmera fotografando um fio fino. Ela consiste em dois planos: o plano frontal contém uma lente circular convergente ideal, fina, com distância focal $f$ e diâmetro $D$; o plano traseiro é uma tela. A distância entre os planos é $l$. A fotografia é a imagem invertida obtida na tela; portanto, introduziremos sistemas de coordenadas conforme indicado na figura: $xyz$ descreve a posição do objeto no espaço, e $YZ$ – a posição da imagem na fotografia.",
+    "statement:149:31": "A imagem do fio fino obtida por essa câmera é limitada acima e abaixo pelas retas $Z = \\pm kY$, onde $k > 0$, e não é limitada em ambas as direções ao longo do eixo $Y$.",
+    "statement:149:50": "Encontre a posição e a forma do fio, se seu comprimento for mínimo.",
+    "statement:149:58": "Parte B. Obturador rolante (3.0 pontos)",
+    "statement:149:65": "Ao fotografar objetos que se movem rapidamente, pode surgir uma distorção da imagem associada à leitura não simultânea de diferentes regiões da fotografia. Esse efeito é chamado de paralaxe temporal ou obturador rolante. Em geral, a leitura ocorre linha por linha. Consideraremos que, em nossa câmera, a imagem é registrada começando pela parte superior, todas as linhas são registradas durante um mesmo intervalo de tempo extremamente curto; portanto, não é necessário considerar as distorções de linhas individuais. Sabe-se que o tempo total gasto para tirar a fotografia é 10 ms. Com uma câmera apontada verticalmente para baixo, foi fotografado um disco de hóquei de diâmetro 7.62 cm, deslizando sobre uma superfície horizontal lisa.",
+    "statement:149:83": "Usando compasso e régua sem graduação, construa uma reta paralela à direção da velocidade do disco.",
+    "statement:149:94": "Usando adicionalmente uma régua graduada, determine o módulo da velocidade do disco.",
+    "statement:149:102": "Parte C. Distorção (3.0 pontos)",
+    "statement:149:109": "Consideremos a fotografia de uma tela plana. Introduziremos as coordenadas na tela e na fotografia, $(y,z)$ e $(Y,Z)$, respectivamente. Para uma reprodução realista das imagens na tela, é necessário que o fator de ampliação linear seja constante em toda a fotografia, isto é:",
+    "statement:149:111": "\\vec{R} = \\alpha \\vec r,\\quad\\text{onde:}\\quad \\vec r = (y,z);\\quad \\vec R = (Y,Z).",
+    "statement:149:113": "Consideremos a câmera escura mais simples. Ela consiste em duas telas paralelas, em uma das quais foi feito um pequeno orifício. A luz que passa por esse orifício forma uma imagem na segunda tela. A imagem de qualquer ponto do espaço estará no ponto de interseção entre o raio que parte desse ponto e passa pelo orifício e a tela.",
+    "statement:149:114": "Denotemos a distância entre o plano da fotografia e o orifício por $l$, e a distância entre a câmera e a tela fotografada por $L$.",
+    "statement:149:132": "Mostre que a ampliação linear da câmara escura é constante e determine $\\alpha$.",
+    "statement:149:138": "Na maioria dos casos, a propriedade de linearidade é violada e observa-se o efeito de distorção, isto é, a ampliação é diferente em diferentes pontos da fotografia. Consideremos a distorção de terceira ordem dos raios paraxiais:",
+    "statement:149:154": "Desenhe qualitativamente a fotografia de uma parte de uma folha de caderno representada na figura abaixo, nos casos $\\beta > 0$ (distorção positiva) e $\\beta < 0$ (distorção negativa). Considere que $\\alpha > 0$.",
+    "statement:149:165": "Consideremos novamente a câmara escura. Suponha que, desta vez, entre a câmera e a tela haja um aquário plano de espessura $h$, preenchido com um líquido de índice de refração $n$. O restante do espaço é preenchido por ar com índice de refração $n_0 = 1$.",
+    "statement:149:183": "Determine os coeficientes $\\alpha$ e $\\beta$ nesse caso. Que distorção é observada em tal sistema: positiva ($\\alpha$ e $\\beta$ de mesmo sinal) ou negativa ($\\alpha$ e $\\beta$ de sinais opostos)?",
+    "part:1893": "Determine a posição e a forma do fio, se seu comprimento for mínimo.",
+    "part:1894": "Usando compasso e régua sem graduação, construa uma reta paralela à direção da velocidade do disco.",
+    "part:1895": "Usando adicionalmente uma régua graduada, determine o módulo da velocidade do disco.",
+    "part:6207": "Mostre que a ampliação linear da câmara escura é constante e determine $\\alpha$.",
+    "part:1896": "Determine os coeficientes $\\alpha$ e $\\beta$ nesse caso. Que distorção é observada em tal sistema: positiva ($\\alpha$ e $\\beta$ de mesmo sinal) ou negativa ($\\alpha$ e $\\beta$ de sinais opostos)?",
+    "tag:17": "Óptica",
+    "tag:18": "Óptica geométrica",
+    "tag:393": "Construções"
+  }
+}

@@ -19,7 +19,7 @@ const counts = fresh.prepare(`
 `).get();
 assert.equal(counts.exams, 18);
 assert.equal(counts.problems, 165);
-assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problem_parts").get().count, 2123);
+assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problem_parts").get().count, 2200);
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_tags").get().count, 233);
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problem_tags").get().count, 797);
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problems WHERE statement_status='public' AND statement_html_original IS NOT NULL").get().count, 164);
@@ -46,4 +46,4 @@ assert.equal(existing.prepare("SELECT problem_id FROM user_attempts WHERE id='pr
 assert.equal(existing.prepare(`SELECT COUNT(*) count FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026`).get().count, 165);
 existing.close();
 
-console.log(JSON.stringify({ status: "valid", ...counts, parts: 2123, tags: 233, problemTags: 797, publicStatements: 164, maxMigrationStatementBytes:Math.max(...migrationStatementBytes), preservedExistingAttempt: true }, null, 2));
+console.log(JSON.stringify({ status: "valid", ...counts, parts: 2200, tags: 233, problemTags: 797, publicStatements: 164, maxMigrationStatementBytes:Math.max(...migrationStatementBytes), preservedExistingAttempt: true }, null, 2));

@@ -28,6 +28,7 @@ const problemHtml = `
 <a class="navi-link" href="/p/4001/s"><span class="label">S</span></a>
 <p><a name="row10"></a><span class="label label-lg label-primary">A1<sup>&nbsp;0.70</sup></span> Рассчитайте силу $F$.</p>
 <p><a name="row11"></a><span class="label label-lg label-primary">B1</span> Explique o resultado.</p>
+<p><a name="row12"></a><span class="label label-lg label-primary">С2<sup>&nbsp;0.50</sup></span> Use a letra cirílica visualmente idêntica.</p>
 <p><img src=" //pho.rs/p/img/10/task " onerror="alert(1)" style="width:300px"></p>
 </div></div></main><script>alert(1)</script></body></html>`;
 
@@ -72,7 +73,7 @@ test("reads complete content, structured parts, and only explicit scores", () =>
   const parsed = parseProblemPage(problemHtml, "https://pho.rs/p/4001");
   assert.equal(parsed.partsStatus, "structured");
   assert.deepEqual(parsed.parts.map((part) => [part.code, part.score, part.scoreReliability]), [
-    ["A1", 0.7, "explicit_html"], ["B1", null, null],
+    ["A1", 0.7, "explicit_html"], ["B1", null, null], ["C2", 0.5, "explicit_html"],
   ]);
   assert.match(parsed.statementHtmlSource, /Рассчитайте силу/);
   assert.match(parsed.statementHtmlOriginal, /https:\/\/pho\.rs\/p\/img\/10\/task/);
@@ -92,7 +93,7 @@ test("database upserts are idempotent without replacing stable part ids", () => 
     const partId = db.prepare("SELECT id FROM phors_problem_parts WHERE source_key='row10'").get().id;
     upsertExamCatalog(db, catalog, "2026-08-08T00:01:00.000Z");
     assert.equal(db.prepare("SELECT id FROM phors_problem_parts WHERE source_key='row10'").get().id, partId);
-    assert.deepEqual(catalogCounts(db), { competitions: 1, exams: 1, problems: 1, problemParts: 2, tags: 3, problemTags: 3 });
+    assert.deepEqual(catalogCounts(db), { competitions: 1, exams: 1, problems: 1, problemParts: 3, tags: 3, problemTags: 3 });
     const saved = db.prepare("SELECT statement_content_hash, statement_html_original FROM phors_problems").get();
     assert.equal(saved.statement_content_hash, catalog.problems[0].statementContentHash);
     assert.match(saved.statement_html_original, /Рассчитайте силу/);
