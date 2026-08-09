@@ -4,6 +4,8 @@ import { DatabaseSync } from "node:sqlite";
 
 const splitMigration = (file) => readFileSync(file, "utf8").split("--> statement-breakpoint").map((sql) => sql.trim()).filter(Boolean);
 const migrations = ["drizzle/0000_light_magik.sql", "drizzle/0001_broken_ikaris.sql", "drizzle/0002_seed_xy_2018_2026.sql"];
+const migrationStatementBytes = splitMigration(migrations[2]).map((sql) => Buffer.byteLength(sql));
+assert.ok(Math.max(...migrationStatementBytes) < 50000, "a site-data migration statement is too large for D1");
 const run = (db, files = migrations) => {
   for (const file of files) for (const sql of splitMigration(file)) db.exec(sql.replace(/;\s*$/, ""));
 };
@@ -22,6 +24,11 @@ assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_tags").get().count,
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problem_tags").get().count, 797);
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problems WHERE statement_status='public' AND statement_html_original IS NOT NULL").get().count, 164);
 assert.equal(fresh.prepare("SELECT COUNT(*) count FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.code='X24' AND p.translation_status='draft'").get().count, 9);
+const source = new DatabaseSync("data/phors-full.sqlite", { readOnly:true });
+const sourceRows = source.prepare("SELECT source_id,statement_html_source,statement_html_original,statement_text_original,statement_html_pt FROM phors_problems ORDER BY source_id").all();
+const migratedRows = fresh.prepare("SELECT source_id,statement_html_source,statement_html_original,statement_text_original,statement_html_pt FROM phors_problems ORDER BY source_id").all();
+assert.deepEqual(migratedRows,sourceRows,"chunked statement content did not round-trip exactly");
+source.close();
 fresh.close();
 
 const existing = new DatabaseSync(":memory:");
@@ -38,4 +45,4 @@ assert.equal(existing.prepare("SELECT problem_id FROM user_attempts WHERE id='pr
 assert.equal(existing.prepare(`SELECT COUNT(*) count FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026`).get().count, 165);
 existing.close();
 
-console.log(JSON.stringify({ status: "valid", ...counts, parts: 2123, tags: 233, problemTags: 797, publicStatements: 164, preservedExistingAttempt: true }, null, 2));
+console.log(JSON.stringify({ status: "valid", ...counts, parts: 2123, tags: 233, problemTags: 797, publicStatements: 164, maxMigrationStatementBytes:Math.max(...migrationStatementBytes), preservedExistingAttempt: true }, null, 2));
