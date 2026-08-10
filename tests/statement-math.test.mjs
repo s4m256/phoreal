@@ -30,3 +30,11 @@ test("repairs legacy TeX forms used by the XY statements",()=>{
   assert.equal((html.match(/class="katex"/g)||[]).length,4);
   assert.doesNotMatch(html,/\$|katex-error|[А-Яа-я]/u);
 });
+
+test("normalizes every unit family found in the XY catalog",()=>{
+  const errors = [];
+  const html = renderStatementMath(String.raw`<p>$L=1~\text{нГн}$, $c=200~мкМ$, $D=2~дБ$, $E=1~эВ$, $\Phi=3~\text{Вб}$, $\sigma=4~См$, $t=2~\text{фс}$, $d=10~\text{кпк}$, $P=30~\text{МВт}$</p>`,{onError:(error)=>errors.push(error)});
+  assert.deepEqual(errors,[]);
+  assert.equal((html.match(/class="katex"/g)||[]).length,9);
+  assert.doesNotMatch(html,/[А-Яа-яЁё]/u);
+});

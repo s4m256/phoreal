@@ -1,7 +1,7 @@
 import { ensureDatabase, getD1 } from "../../../../../db/runtime";
 import { requireSiteUserApi } from "../../../../chatgpt-auth";
 
-type Action = "select_part" | "pause" | "resume" | "finish";
+type Action = "select_part" | "pause" | "resume" | "discard_current" | "finish";
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const user=await requireSiteUserApi(); if (user instanceof Response) return user;
   await ensureDatabase();
@@ -20,6 +20,14 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const part = await db.prepare("SELECT pp.id FROM phors_problem_parts pp JOIN user_attempts a ON a.problem_id=pp.problem_id WHERE pp.id=? AND a.id=?").bind(payload.partId,id).first();
     if (!part) return Response.json({ error: "Item não pertence à questão" }, { status: 400 });
     await db.batch([close, db.prepare("INSERT INTO user_time_segments (id,attempt_id,state,problem_part_id,started_at) VALUES (?,?,'item_active',?,?)").bind(crypto.randomUUID(),id,payload.partId,now), db.prepare("UPDATE user_attempts SET current_state='item_active', active_part_id=?, updated_at=? WHERE id=?").bind(payload.partId,now,id)]);
+  } else if (action === "discard_current") {
+    if (attempt.current_state !== "item_active") return Response.json({ error: "Nenhum intervalo em andamento" }, { status: 400 });
+    const segment = await db.prepare("SELECT id FROM user_time_segments WHERE attempt_id=? AND ended_at IS NULL ORDER BY started_at DESC LIMIT 1").bind(id).first<{ id:string }>();
+    if (!segment) return Response.json({ error: "Nenhum intervalo em andamento" }, { status: 400 });
+    await db.batch([
+      db.prepare("DELETE FROM user_time_segments WHERE id=? AND attempt_id=? AND ended_at IS NULL").bind(segment.id,id),
+      db.prepare("UPDATE user_attempts SET current_state='paused', updated_at=? WHERE id=?").bind(now,id),
+    ]);
   } else if (action === "finish") {
     await db.batch([close, db.prepare("UPDATE user_attempts SET status='completed', current_state='paused', finished_at=?, updated_at=? WHERE id=?").bind(now,now,id)]);
   } else return Response.json({ error: "Ação inválida" }, { status: 400 });

@@ -2,7 +2,7 @@
 
 import renderMathInElement from "katex/contrib/auto-render";
 import { memo, useEffect, useLayoutEffect, useRef } from "react";
-import { normalizeMathMarkup,normalizePhysicsUnits } from "../lib/physics-math.mjs";
+import { normalizeLegacyLatex,normalizeMathMarkup,normalizePhysicsUnits } from "../lib/physics-math.mjs";
 
 const delimiters = [
   { left: "$$", right: "$$", display: true },
@@ -17,6 +17,7 @@ const delimiters = [
 ];
 
 type LinkedPart = { id:number; code:string };
+const prepareMath = (formula:string) => normalizePhysicsUnits(normalizeLegacyLatex(formula));
 
 function addPartButtons(root:HTMLElement, parts:LinkedPart[], disabled:boolean) {
   const byCode = new Map(parts.map((part) => [part.code.toUpperCase(),part]));
@@ -25,6 +26,7 @@ function addPartButtons(root:HTMLElement, parts:LinkedPart[], disabled:boolean) 
   const matcher = new RegExp(`^(\\s*)(${codes.join("|")})(?=$|[\\s.:;)\\]\\-\\u2212])`,"i");
 
   for (const block of root.querySelectorAll<HTMLElement>("p, li, .statement-row")) {
+    if (block.querySelector(".statement-part-button")) continue;
     const walker = document.createTreeWalker(block,NodeFilter.SHOW_TEXT);
     let node = walker.nextNode() as Text|null;
     while (node && !(node.textContent || "").trim()) node = walker.nextNode() as Text|null;
@@ -42,6 +44,13 @@ function addPartButtons(root:HTMLElement, parts:LinkedPart[], disabled:boolean) 
     button.title = disabled ? "Entre para registrar seu tempo" : `Contar tempo no item ${part.code}`;
     node.replaceWith(document.createTextNode(match[1]),button,document.createTextNode((node.textContent || "").slice(match[0].length)));
   }
+
+  for (const label of root.querySelectorAll<HTMLElement>(".statement-part-label")) {
+    const labelParagraph = label.closest("p");
+    let heading = labelParagraph?.nextElementSibling;
+    while (heading && !(heading.textContent || "").trim()) heading = heading.nextElementSibling;
+    if (heading?.matches("p")) heading.classList.add("statement-part-heading");
+  }
 }
 
 export const MathHtml = memo(function MathHtml({
@@ -58,7 +67,7 @@ export const MathHtml = memo(function MathHtml({
     if (!root) return;
     root.innerHTML = normalizeMathMarkup(html);
     addPartButtons(root,parts,disabled);
-    renderMathInElement(root,{ delimiters,throwOnError:false,strict:"ignore",trust:false,preProcess:normalizePhysicsUnits });
+    renderMathInElement(root,{ delimiters,throwOnError:false,strict:"ignore",trust:false,preProcess:prepareMath });
     const handleClick = (event:MouseEvent) => {
       const button = (event.target as Element).closest<HTMLButtonElement>(".statement-part-button");
       if (!button || button.disabled) return;
@@ -85,7 +94,7 @@ export const MathText = memo(function MathText({ children,className }:{ children
   useLayoutEffect(() => {
     if (!ref.current) return;
     ref.current.textContent = children;
-    renderMathInElement(ref.current,{ delimiters,throwOnError:false,strict:"ignore",trust:false,preProcess:normalizePhysicsUnits });
+    renderMathInElement(ref.current,{ delimiters,throwOnError:false,strict:"ignore",trust:false,preProcess:prepareMath });
   },[children]);
   return <div ref={ref} className={className}/>;
 });

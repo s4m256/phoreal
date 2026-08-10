@@ -28,6 +28,32 @@ const UNIT_TEXT = {
   "мл":"mL", "л":"L", "Кл":"C", "кН":"kN", "Н":"N", "К":"K", "мин":"min", "рад":"rad", "год":"ano", "года":"anos", "дней":"dias", "сут":"dias",
 };
 
+const SI_PREFIXES = [
+  ["а","\\mathrm{a}","a"], ["ф","\\mathrm{f}","f"], ["п","\\mathrm{p}","p"], ["н","\\mathrm{n}","n"], ["мк","\\mu","µ"], ["м","\\mathrm{m}","m"],
+  ["к","\\mathrm{k}","k"], ["М","\\mathrm{M}","M"], ["Г","\\mathrm{G}","G"], ["Т","\\mathrm{T}","T"],
+];
+const SI_BASES = [
+  ["Гц","\\mathrm{Hz}","Hz"], ["Па","\\mathrm{Pa}","Pa"], ["Ом","\\Omega","Ω"], ["Гн","\\mathrm{H}","H"],
+  ["Ф","\\mathrm{F}","F"], ["Тл","\\mathrm{T}","T"], ["А","\\mathrm{A}","A"], ["В","\\mathrm{V}","V"],
+  ["Вт","\\mathrm{W}","W"], ["Дж","\\mathrm{J}","J"], ["Вб","\\mathrm{Wb}","Wb"], ["См","\\mathrm{S}","S"],
+  ["эВ","\\mathrm{eV}","eV"], ["м","\\mathrm{m}","m"], ["с","\\mathrm{s}","s"], ["г","\\mathrm{g}","g"],
+  ["л","\\mathrm{L}","L"], ["моль","\\mathrm{mol}","mol"], ["К","\\mathrm{K}","K"], ["Н","\\mathrm{N}","N"],
+  ["Кл","\\mathrm{C}","C"],
+];
+for (const [prefix,texPrefix,textPrefix] of SI_PREFIXES) for (const [base,texBase,textBase] of SI_BASES) {
+  UNIT_TEX[`${prefix}${base}`] ||= `${texPrefix}${texBase}`;
+  UNIT_TEXT[`${prefix}${base}`] ||= `${textPrefix}${textBase}`;
+}
+Object.assign(UNIT_TEX,{
+  "Вб":"\\mathrm{Wb}", "См":"\\mathrm{S}", "эВ":"\\mathrm{eV}", "мкМ":"\\mu\\mathrm{M}", "дБ":"\\mathrm{dB}", "дптр":"\\mathrm{dpt}", "пк":"\\mathrm{pc}", "кпк":"\\mathrm{kpc}",
+  "Мпа":"\\mathrm{MPa}", "руб":"\\mathrm{RUB}", "ч":"\\mathrm{h}", "час":"\\mathrm{h}", "часа":"\\mathrm{h}",
+  "суток":"\\mathrm{d}", "сутки":"\\mathrm{d}", "оборот":"\\mathrm{rev}",
+});
+Object.assign(UNIT_TEXT,{
+  "Вб":"Wb", "См":"S", "эВ":"eV", "мкМ":"µM", "дБ":"dB", "дптр":"dpt", "пк":"pc", "кпк":"kpc", "Мпа":"MPa", "руб":"RUB",
+  "ч":"h", "час":"h", "часа":"h", "суток":"d", "сутки":"d", "оборот":"rev", "С":"C",
+});
+
 const unitAlternation = Object.keys(UNIT_TEX)
   .sort((a,b) => b.length-a.length)
   .map((unit) => unit.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"))
@@ -40,16 +66,22 @@ function replaceUnitTokens(value) {
 }
 
 export function normalizePhysicsUnits(formula) {
-  let normalized = formula.replace(/\\(?:text|mathrm)\{([^{}]*)\}/g,(whole,content) => {
+  let normalized = formula.replace(/\\(text|mathrm|textbf|textit|operatorname)\{([^{}]*)\}/g,(whole,command,content) => {
     if (!/[А-Яа-яЁё]/u.test(content)) return whole;
     const prepared = content
       .replace(/мм\.\s*рт\.\s*ст\.?/gu,"\\mathrm{mmHg}")
-      .replace(/\bв\s+(?=Тл\b)/gu,"");
+      .replace(/[аa]\.\s*е\.?/gu,"\\mathrm{au}")
+      .replace(/у\.\s*е\.?/gu,"\\mathrm{a.u.}")
+      .replace(/земных\s+часа/gu,"\\text{horas terrestres}")
+      .replace(/(^|[\s(])в\s+(?=[A-ZА-Я])/gu,"$1em ");
     const mathUnits = replaceUnitTokens(prepared);
-    if (!/[А-Яа-яЁё]/u.test(mathUnits)) return mathUnits;
+    if (!/[А-Яа-яЁё]/u.test(mathUnits) && (command==="text" || command==="mathrm")) return mathUnits;
     const translated = prepared.replace(cyrillicPattern,(token) => UNIT_TEXT[token] || token);
     return whole.replace(content,translated);
   });
+  normalized = normalized
+    .replace(/[аa]\.\s*е\.?/gu,"{\\mathrm{au}}")
+    .replace(/у\.\s*е\.?/gu,"{\\mathrm{a.u.}}");
   normalized = normalized.replace(/\\(?:text|mathrm)\s+([А-Яа-яЁё]+)/gu,(whole,unit) => UNIT_TEX[unit] ? `{${UNIT_TEX[unit]}}` : whole);
   return replaceUnitTokens(normalized);
 }
@@ -63,6 +95,7 @@ export function normalizeLegacyLatex(formula) {
     .replace(/_\\rm\{([^{}]+)\}/g,"_{\\mathrm{$1}}")
     .replace(/_\{([^{}]*?)\\(min|max)\b([^{}]*)\}/g,"_{$1\\mathrm{$2}$3}")
     .replace(/\\tag\{#\}/g,"\\tag{\\#}")
+    .replace(/(\\circ\s*)С\b/gu,"$1\\mathrm{C}")
     .replace(/\\begin\{array\}\s*\\\s+(?=[A-Za-z\\])/g,"\\begin{array}{c} ");
 }
 

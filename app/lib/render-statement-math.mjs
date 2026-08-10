@@ -44,7 +44,7 @@ function decodeEntities(value) {
   });
 }
 
-function renderText(text,onError) {
+function renderText(text,onError,onFormula) {
   let output = "";
   let cursor = 0;
   while (cursor<text.length) {
@@ -59,6 +59,7 @@ function renderText(text,onError) {
       : text.slice(bodyStart,close);
     try {
       const formula = normalizePhysicsUnits(normalizeLegacyLatex(decodeEntities(raw)));
+      onFormula?.({formula,raw});
       output += katex.renderToString(formula,{
         displayMode:found.delimiter.display,throwOnError:true,strict:"ignore",trust:false,output:"htmlAndMathml",
       });
@@ -71,7 +72,7 @@ function renderText(text,onError) {
   return output;
 }
 
-export function renderStatementMath(html,{onError}={}) {
+export function renderStatementMath(html,{onError,onFormula}={}) {
   const normalized = normalizeMathMarkup(html);
   const pieces = normalized.split(/(<[^>]+>)/g);
   let ignored = null;
@@ -83,6 +84,6 @@ export function renderStatementMath(html,{onError}={}) {
       if (close && close[1].toLowerCase()===ignored) ignored = null;
       return piece;
     }
-    return ignored ? piece : renderText(piece,onError);
+    return ignored ? piece : renderText(piece,onError,onFormula);
   }).join("");
 }
