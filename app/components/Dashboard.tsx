@@ -88,7 +88,7 @@ export function Dashboard() {
 
     <section className="panel tbf-progress" aria-label="Progresso entre o início dos estudos e o TBF">
       <div className="tbf-dates"><span>02/05/2026<small>início</small></span><span>20/02/2027<small>TBF</small></span></div>
-      <div className="tbf-track"><div className="tbf-elapsed" style={{ width: `${progress}%` }}/><span className="tbf-today" style={{ left: `${progress}%` }}><i/><small>hoje</small></span></div>
+      <div className="tbf-track"><div className="tbf-elapsed" style={{ width: `${progress}%` }}/><span className="tbf-today" style={{ left: `${progress}%` }} aria-label="Data atual"><i/></span></div>
     </section>
 
     {data.attempts.some((attempt) => attempt.status === "in_progress") && <section className="notice"><strong>Tentativa em andamento</strong>{data.attempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = data.problems.find((item) => item.id === attempt.problem_id); return <Link key={attempt.id} href={`/questao/${attempt.problem_id}`}>{problem?.code} · {problem?.title_pt || problem?.title}</Link>; })}</section>}

@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { formatTime, postJson, secondsFor, useClock, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 import { MathHtml } from "./MathContent";
@@ -23,6 +23,8 @@ export function ProblemWorkspace() {
   const [minimized,setMinimized] = useState(false);
   const [statement,setStatement] = useState<Statement|null>(null);
   const [statementError,setStatementError] = useState<string|null>(null);
+  const [brownNoise,setBrownNoise] = useState(false);
+  const noiseRef = useRef<{ context:AudioContext; source:AudioBufferSourceNode }|null>(null);
   const problem = data?.problems.find((item) => item.id === problemId);
   const parts = useMemo(() => data?.problemParts.filter((part) => part.problem_id === problemId) || [], [data,problemId]);
   const attempts = useMemo(() => data?.attempts.filter((attempt) => attempt.problem_id === problemId) || [], [data,problemId]);
@@ -46,6 +48,11 @@ export function ProblemWorkspace() {
       .catch((fetchError) => { if (!cancelled) setStatementError(fetchError instanceof Error ? fetchError.message : "Falha ao carregar o enunciado"); });
     return () => { cancelled = true; };
   }, [problemId]);
+
+  useEffect(() => () => {
+    noiseRef.current?.source.stop();
+    void noiseRef.current?.context.close();
+  },[]);
 
   const act = useCallback(async (action:string,partId?:number) => {
     if (!active) return;
@@ -92,7 +99,38 @@ export function ProblemWorkspace() {
     await act("finish");
   }
 
-  return <>
+  async function toggleBrownNoise() {
+    if (noiseRef.current) {
+      noiseRef.current.source.stop();
+      await noiseRef.current.context.close();
+      noiseRef.current = null;
+      setBrownNoise(false);
+      return;
+    }
+    const context = new AudioContext();
+    const seconds = 8;
+    const buffer = context.createBuffer(2,context.sampleRate*seconds,context.sampleRate);
+    for (let channel=0;channel<buffer.numberOfChannels;channel++) {
+      const samples = buffer.getChannelData(channel);
+      let last = 0;
+      for (let index=0;index<samples.length;index++) {
+        const white = Math.random()*2-1;
+        last = (last+0.02*white)/1.02;
+        samples[index] = last*3.2;
+      }
+    }
+    const source = context.createBufferSource();
+    const gain = context.createGain();
+    source.buffer = buffer;
+    source.loop = true;
+    gain.gain.value = 0.12;
+    source.connect(gain).connect(context.destination);
+    source.start();
+    noiseRef.current = { context,source };
+    setBrownNoise(true);
+  }
+
+  return <div className="problem-page">
     <section className="problem-header">
       <div>
         <p className="eyebrow">{data.exams.find((exam) => exam.id === problem.exam_id)?.code} · {problem.kind === "experimental" ? "Experimental" : "Teórica"}</p>
@@ -108,10 +146,7 @@ export function ProblemWorkspace() {
     <div className="workspace">
       <div className="problem-main-column">
         <section className="panel statement-panel">
-          <div className="section-head">
-            <div><p className="eyebrow">Enunciado</p><h2>{statement?.language === "pt-BR" ? "Português" : "Original do pho.rs"}</h2></div>
-            {statement?.hasDraft && <span className="review-badge">Tradução automática</span>}
-          </div>
+          <p className="eyebrow statement-label">Enunciado</p>
           {statementError ? <p className="muted">{statementError}</p>
             : !statement ? <p className="muted">Carregando enunciado…</p>
             : statement.html ? <MathHtml className="statement-content" html={statement.html} parts={parts} activePartId={active?.current_state === "item_active" ? active.active_part_id : null} disabled={busy || !data.canEdit} onPartClick={selectPart}/>
@@ -124,8 +159,9 @@ export function ProblemWorkspace() {
         <div className="timer-top"><div><span className="timer-state">{!active ? "Sem tentativa" : active.current_state === "paused" ? currentPart ? `Pausado · ${currentPart.code}` : "Selecione um item" : `Item ${currentPart?.code || ""}`}</span><strong className="timer-total">{formatTime(total)}</strong>{minimized && currentPart && <small className="timer-mini-time">{currentPart.code} · {formatTime(currentPartTime)}</small>}</div>{active && <button className="icon-button" onClick={() => setMinimized((value) => !value)} aria-label={minimized ? "Expandir cronômetro" : "Minimizar cronômetro"}>{minimized ? "□" : "—"}</button>}</div>
         {!minimized && <>{active ? <><div className="timer-details">{currentPart ? <div><dt>{active.current_state === "paused" ? "Último item" : "Item atual"} · {currentPart.code}</dt><dd>{formatTime(currentPartTime)}</dd></div> : <p className="timer-instruction">Clique em um item para começar.</p>}{workedParts.length > 0 && <div className="timer-part-times"><span>Tempo por item</span>{workedParts.map((part) => <small key={part.id}><b>{part.code}</b>{formatTime(partTimes.get(part.id) || 0)}</small>)}</div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>FINALIZAR QUESTÃO</button></div><p className="shortcuts"><kbd>Espaço</kbd>/<kbd>P</kbd> pausa · <kbd>M</kbd> minimiza</p></> : <p className="timer-instruction">Clique em qualquer item para iniciar uma tentativa e contar o tempo.</p>}</>}
         </>}
+        <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-pressed={brownNoise} onClick={toggleBrownNoise}>{brownNoise ? "Parar brown noise" : "Brown noise"}</button>
       </aside>
     </div>
     <section className="panel history"><div className="section-head"><h2>Dados pessoais desta questão</h2><span>{attempts.length} tentativa(s)</span></div>{attempts.length ? <div className="history-list">{attempts.map((attempt) => { const seconds = data.timeSegments.filter((segment) => segment.attempt_id === attempt.id).reduce((sum,segment) => sum + secondsFor(segment,now),0); return <div key={attempt.id}><span>{attempt.status === "completed" ? "Concluída" : "Em andamento"}</span><strong>{formatTime(seconds)}</strong><small>{new Date(attempt.started_at).toLocaleString("pt-BR")}</small></div>; })}</div> : <p className="muted">Ainda não há treino registrado.</p>}</section>
-  </>;
+  </div>;
 }
