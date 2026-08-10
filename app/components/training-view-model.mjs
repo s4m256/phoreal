@@ -23,7 +23,7 @@ export function parseDayKey(key) {
  */
 function addDailySlice(target, date, seconds, problemId) {
   const key = dayKey(date);
-  const entry = target.get(key) ?? { seconds: 0, problems: new Map() };
+  const entry = target.get(key) ?? { seconds: 0, problems: new Map(), completed: 0 };
   entry.seconds += seconds;
   entry.problems.set(problemId, (entry.problems.get(problemId) ?? 0) + seconds);
   target.set(key, entry);
@@ -59,7 +59,7 @@ export function fixedPeriodDays(start, end, daily, now) {
   for (const cursor = new Date(start); cursor <= end; cursor.setDate(cursor.getDate() + 1)) {
     const date = new Date(cursor);
     const key = dayKey(date);
-    days.push({ key, date, seconds: date > today ? null : daily.get(key)?.seconds ?? 0 });
+    days.push({ key, date, seconds: date > today ? null : daily.get(key)?.seconds ?? 0, questions: date > today ? null : daily.get(key)?.completed ?? 0 });
   }
   return days;
 }

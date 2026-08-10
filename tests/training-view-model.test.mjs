@@ -11,7 +11,9 @@ test("fixed training period contains every day from start through TBF", () => {
   assert.equal(days[0].key, "2026-05-02");
   assert.equal(days.at(-1).key, "2027-02-20");
   assert.equal(days.find((day) => day.key === "2026-08-09").seconds, 0);
+  assert.equal(days.find((day) => day.key === "2026-08-09").questions, 0);
   assert.equal(days.find((day) => day.key === "2026-08-10").seconds, null);
+  assert.equal(days.find((day) => day.key === "2026-08-10").questions, null);
 });
 
 test("segments crossing midnight are split and aggregated by problem", () => {

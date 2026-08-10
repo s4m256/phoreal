@@ -12,12 +12,14 @@ const TBF_DATE = new Date(2027, 1, 20);
 type DailyEntry = {
   seconds: number;
   problems: Map<number, number>;
+  completed: number;
 };
 
 type HeatmapDay = {
   key: string;
   date: Date;
   seconds: number | null;
+  questions: number | null;
 };
 
 const formatDate = (date: Date) => date.toLocaleDateString("pt-BR");
@@ -45,6 +47,14 @@ export function Dashboard() {
       if (!attempt) continue;
       totalSeconds += seconds;
       splitSegmentByDay(segment.started_at, seconds, attempt.problem_id, daily);
+    }
+    for (const attempt of completed) {
+      const finishedAt = attempt.finished_at ?? attempt.started_at;
+      const key = dayKey(new Date(finishedAt));
+      const entry = daily.get(key) ?? { seconds: 0, problems: new Map<number, number>(), completed: 0 };
+      entry.completed = (entry.completed ?? 0) + 1;
+      if (!entry.problems.has(attempt.problem_id)) entry.problems.set(attempt.problem_id, 0);
+      daily.set(key, entry);
     }
 
     const todayKey = dayKey(new Date(now));
@@ -97,10 +107,10 @@ export function Dashboard() {
 
     <section className="two-col dashboard-main">
       <div className="panel heatmap-panel">
-        <div className="section-head"><div><p className="eyebrow">02/05/2026 — 20/02/2027</p><h2>Tempo resolvendo por dia</h2></div></div>
+        <div className="section-head"><div><p className="eyebrow">02/05/2026 — 20/02/2027</p><h2>Questões resolvidas por dia</h2></div></div>
         <Heatmap days={metrics.heatmap} selected={selectedDay} onSelect={setSelectedDay}/>
         <div className="day-detail" aria-live="polite">
-          <div className="day-detail-head"><div><strong>{formatDate(selectedDate)}</strong><span>{selectedIsFuture ? "Ainda não chegou" : formatHoursMinutes(selectedEntry?.seconds ?? 0)}</span></div></div>
+          <div className="day-detail-head"><div><strong>{formatDate(selectedDate)}</strong><span>{selectedIsFuture ? "Ainda não chegou" : `${formatQuestionCount(selectedEntry?.completed ?? 0)} · ${formatHoursMinutes(selectedEntry?.seconds ?? 0)}`}</span></div></div>
           {!selectedIsFuture && selectedProblems.length > 0 ? <div className="day-problems">{selectedProblems.map(({ problem, exam, seconds }) => <Link href={`/questao/${problem!.id}`} key={problem!.id}><span><strong>{exam?.code} · {problem!.code}</strong><small>{problem!.title_pt || problem!.title}</small></span><b>{formatHoursMinutes(seconds)}</b></Link>)}</div> : !selectedIsFuture && <p className="muted">Nenhum treino registrado neste dia.</p>}
         </div>
       </div>
@@ -119,10 +129,14 @@ function Metric({ label, value }: { label: string; value: string }) {
 }
 
 function Heatmap({ days, selected, onSelect }: { days: HeatmapDay[]; selected: string; onSelect: (key: string) => void }) {
-  const level = (seconds: number | null) => seconds == null ? "future" : seconds === 0 ? "zero" : seconds < 15 * 60 ? "one" : seconds < 45 * 60 ? "two" : seconds < 90 * 60 ? "three" : "four";
+  const level = (questions: number | null) => questions == null ? "future" : questions === 0 ? "zero" : questions === 1 ? "one" : questions === 2 ? "two" : questions === 3 ? "three" : "four";
   const mondayOffset = (STUDY_START.getDay() + 6) % 7;
   const slots: Array<HeatmapDay | null> = [...Array<null>(mondayOffset).fill(null), ...days];
-  return <div><div className="heatmap" aria-label="Tempo resolvendo em cada dia do período">{slots.map((day, index) => day ? <button type="button" className={`heat-cell heat-${level(day.seconds)} ${selected === day.key ? "selected" : ""}`} key={day.key} title={`${formatDate(day.date)}: ${day.seconds == null ? "ainda não chegou" : formatHoursMinutes(day.seconds)}`} aria-label={`${formatDate(day.date)}: ${day.seconds == null ? "ainda não chegou" : formatHoursMinutes(day.seconds)}`} aria-pressed={selected === day.key} onClick={() => onSelect(day.key)}/> : <span className="heat-cell heat-blank" key={`blank-${index}`}/>)}</div><div className="heat-legend"><span>menos</span>{["zero", "one", "two", "three", "four"].map((name) => <i className={`heat-cell heat-${name}`} key={name}/>)}<span>mais</span></div></div>;
+  return <div><div className="heatmap" aria-label="Questões resolvidas em cada dia do período">{slots.map((day, index) => { const label = day?.questions == null ? "ainda não chegou" : formatQuestionCount(day.questions); return day ? <button type="button" className={`heat-cell heat-${level(day.questions)} ${selected === day.key ? "selected" : ""}`} key={day.key} title={`${formatDate(day.date)}: ${label}`} aria-label={`${formatDate(day.date)}: ${label}`} aria-pressed={selected === day.key} onClick={() => onSelect(day.key)}/> : <span className="heat-cell heat-blank" key={`blank-${index}`}/>; })}</div><div className="heat-legend" aria-label="Escala de questões resolvidas">{[["zero","0"],["one","1"],["two","2"],["three","3"],["four","4+"]].map(([name,label]) => <span key={name}><i className={`heat-cell heat-${name}`}/>{label}</span>)}</div></div>;
+}
+
+function formatQuestionCount(count: number) {
+  return `${count} ${count === 1 ? "questão resolvida" : "questões resolvidas"}`;
 }
 
 function TagBars({ tags }: { tags: { id: number; name: string; resolved: number }[] }) {
