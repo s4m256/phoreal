@@ -5,6 +5,7 @@ import path from "node:path";
 const dbPath = process.argv[2] ?? "data/phors-full.sqlite";
 const catalogPath = process.argv[3] ?? "data/phors-catalog.json";
 const migrationPath = process.argv[4] ?? "drizzle/0002_seed_xy_2018_2026.sql";
+const translationMigrationPath = process.argv[5] ?? "drizzle/0003_translate_xy_2018_2026.sql";
 const db = new DatabaseSync(dbPath, { readOnly: true });
 
 const all = (table) => db.prepare(`SELECT * FROM phors_${table} ORDER BY rowid`).all();
@@ -43,6 +44,7 @@ const examSourceById = new Map(exams.map((exam) => [exam.id, exam.source_url]));
 const problemSourceById = new Map(problems.map((problem) => [problem.id, problem.source_id]));
 const tagNameById = new Map(tags.map((tag) => [tag.id, tag.normalized_name]));
 const sql = [];
+const translationSql = [];
 const contentChunkSize = 24000;
 
 function appendContent(sourceId, field, value, guard = "1=1") {
@@ -53,6 +55,14 @@ function appendContent(sourceId, field, value, guard = "1=1") {
   sql.push(statement(`UPDATE phors_problems SET ${field}='' WHERE source_id=${quote(sourceId)} AND ${guard}`));
   for (let offset = 0; offset < value.length; offset += contentChunkSize) {
     sql.push(statement(`UPDATE phors_problems SET ${field}=${field}||${quote(value.slice(offset,offset+contentChunkSize))} WHERE source_id=${quote(sourceId)} AND ${guard}`));
+  }
+}
+
+function appendTranslatedStatement(row) {
+  const sourceGuard = `source_id=${quote(row.source_id)} AND statement_content_hash=${quote(row.statement_content_hash)}`;
+  translationSql.push(statement(`UPDATE phors_problems SET title_pt=${quote(row.title_pt)},translation_status=${quote(row.translation_status)},translation_source_hash=${quote(row.translation_source_hash)},statement_html_pt='' WHERE ${sourceGuard}`));
+  for (let offset = 0; offset < row.statement_html_pt.length; offset += contentChunkSize) {
+    translationSql.push(statement(`UPDATE phors_problems SET statement_html_pt=statement_html_pt||${quote(row.statement_html_pt.slice(offset,offset+contentChunkSize))} WHERE ${sourceGuard}`));
   }
 }
 
@@ -80,7 +90,19 @@ for (const row of problemTags) {
   sql.push(statement(`INSERT OR IGNORE INTO phors_problem_tags (problem_id,tag_id) VALUES ((SELECT id FROM phors_problems WHERE source_id=${quote(problemSourceById.get(row.problem_id))}),(SELECT id FROM phors_tags WHERE normalized_name=${quote(tagNameById.get(row.tag_id))}))`));
 }
 
+for (const row of problems) {
+  if (row.statement_html_pt && row.translation_source_hash === row.statement_content_hash) appendTranslatedStatement(row);
+  else if (row.title_pt) translationSql.push(statement(`UPDATE phors_problems SET title_pt=${quote(row.title_pt)} WHERE source_id=${quote(row.source_id)}`));
+}
+for (const row of problemParts.filter((part) => part.prompt_text_pt)) {
+  translationSql.push(statement(`UPDATE phors_problem_parts SET prompt_text_pt=${quote(row.prompt_text_pt)} WHERE problem_id=(SELECT id FROM phors_problems WHERE source_id=${quote(problemSourceById.get(row.problem_id))}) AND source_key=${quote(row.source_key)}`));
+}
+for (const row of tags.filter((tag) => tag.name_pt)) {
+  translationSql.push(statement(`UPDATE phors_tags SET name_pt=${quote(row.name_pt)} WHERE normalized_name=${quote(row.normalized_name)}`));
+}
+
 mkdirSync(path.dirname(path.resolve(migrationPath)), { recursive: true });
 writeFileSync(migrationPath, `${sql.join("\n")}\n`, "utf8");
-console.log(JSON.stringify({ exams: exams.length, problems: problems.length, parts: problemParts.length, tags: tags.length, problemTags: problemTags.length, catalogPath, migrationPath }, null, 2));
+writeFileSync(translationMigrationPath, `${translationSql.join("\n")}\n`, "utf8");
+console.log(JSON.stringify({ exams: exams.length, problems: problems.length, parts: problemParts.length, tags: tags.length, problemTags: problemTags.length, catalogPath, migrationPath, translationMigrationPath, translationStatements:translationSql.length }, null, 2));
 db.close();

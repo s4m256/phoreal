@@ -3,14 +3,16 @@ import { DatabaseSync } from "node:sqlite";
 import { load } from "cheerio";
 
 const db = new DatabaseSync(process.argv[2] ?? "data/phors-full.sqlite", { readOnly: true });
-const selectedIds = (process.argv[3] ?? "").split(",").filter(Boolean).map(Number);
-const where = selectedIds.length ? `p.id IN (${selectedIds.map(() => "?").join(",")})` : "e.code='X24'";
+const selection = process.argv[3] ?? "";
+const validateAll = selection === "--all";
+const selectedIds = validateAll ? [] : selection.split(",").filter(Boolean).map(Number);
+const where = validateAll ? "e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026" : selectedIds.length ? `p.id IN (${selectedIds.map(() => "?").join(",")})` : "e.code='X24'";
 const rows = db.prepare(`
   SELECT p.*,e.code AS exam_code FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id
   WHERE ${where} ORDER BY e.code,p.code
 `).all(...selectedIds);
 assert.ok(rows.length, "no translated problems selected");
-if (!selectedIds.length) assert.equal(rows.length, 9);
+if (!selectedIds.length && !validateAll) assert.equal(rows.length, 9);
 
 const math = /(\$\$.*?\$\$|(?<!\$)\$(?!\$).*?(?<!\$)\$(?!\$)|\\\[.*?\\\]|\\\(.*?\\\))/gs;
 const numbers = /[+-]?\d+(?:[.,]\d+)*/g;

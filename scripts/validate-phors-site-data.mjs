@@ -3,8 +3,8 @@ import { readFileSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 
 const splitMigration = (file) => readFileSync(file, "utf8").split("--> statement-breakpoint").map((sql) => sql.trim()).filter(Boolean);
-const migrations = ["drizzle/0000_light_magik.sql", "drizzle/0001_broken_ikaris.sql", "drizzle/0002_seed_xy_2018_2026.sql"];
-const migrationStatementBytes = splitMigration(migrations[2]).map((sql) => Buffer.byteLength(sql));
+const migrations = ["drizzle/0000_light_magik.sql", "drizzle/0001_broken_ikaris.sql", "drizzle/0002_seed_xy_2018_2026.sql", "drizzle/0003_translate_xy_2018_2026.sql"];
+const migrationStatementBytes = migrations.slice(2).flatMap((file) => splitMigration(file).map((sql) => Buffer.byteLength(sql)));
 assert.ok(Math.max(...migrationStatementBytes) < 50000, "a site-data migration statement is too large for D1");
 const run = (db, files = migrations) => {
   for (const file of files) for (const sql of splitMigration(file)) db.exec(sql.replace(/;\s*$/, ""));
@@ -40,10 +40,29 @@ existing.exec(`
   INSERT INTO phors_problems (id,exam_id,source_id,source_url,code,title,source_hash,imported_at) VALUES (9001,9001,'309','https://pho.rs/p/309','old','old','old','old');
   INSERT INTO user_attempts (id,problem_id,status,current_state,started_at) VALUES ('preserved',9001,'in_progress','paused','2026-01-01T00:00:00Z');
 `);
-run(existing, [migrations[1], migrations[2]]);
+run(existing, [migrations[1], migrations[2], migrations[3]]);
 assert.equal(existing.prepare("SELECT id FROM phors_problems WHERE source_id='309'").get().id, 9001);
 assert.equal(existing.prepare("SELECT problem_id FROM user_attempts WHERE id='preserved'").get().problem_id, 9001);
 assert.equal(existing.prepare(`SELECT COUNT(*) count FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026`).get().count, 165);
 existing.close();
 
-console.log(JSON.stringify({ status: "valid", ...counts, parts: 2200, tags: 233, problemTags: 797, publicStatements: 164, maxMigrationStatementBytes:Math.max(...migrationStatementBytes), preservedExistingAttempt: true }, null, 2));
+// Reproduce the hosted upgrade path: the catalog seed already ran, but its
+// translation columns were still empty. The new migration must fill only the
+// imported translation fields without disturbing personal records.
+const upgrade = new DatabaseSync(":memory:");
+run(upgrade, migrations.slice(0, 3));
+const upgradeProblemId = upgrade.prepare("SELECT id FROM phors_problems WHERE source_id='309'").get().id;
+upgrade.prepare("INSERT INTO user_attempts (id,problem_id,status,current_state,started_at) VALUES ('upgrade-preserved',?,'in_progress','paused','2026-01-01T00:00:00Z')").run(upgradeProblemId);
+upgrade.exec(`
+  UPDATE phors_problems SET title_pt=NULL,statement_html_pt=NULL,translation_status='missing',translation_source_hash=NULL;
+  UPDATE phors_problem_parts SET prompt_text_pt=NULL;
+  UPDATE phors_tags SET name_pt=NULL;
+`);
+run(upgrade, [migrations[3]]);
+assert.equal(upgrade.prepare("SELECT COUNT(*) count FROM phors_problems WHERE statement_status='public' AND translation_status IN ('draft','verified') AND statement_html_pt IS NOT NULL AND translation_source_hash=statement_content_hash").get().count, 164);
+assert.equal(upgrade.prepare("SELECT COUNT(*) count FROM phors_problem_parts WHERE prompt_text_pt IS NOT NULL").get().count, 2190);
+assert.equal(upgrade.prepare("SELECT COUNT(*) count FROM phors_tags WHERE name_pt IS NOT NULL").get().count, 229);
+assert.equal(upgrade.prepare("SELECT problem_id FROM user_attempts WHERE id='upgrade-preserved'").get().problem_id, upgradeProblemId);
+upgrade.close();
+
+console.log(JSON.stringify({ status: "valid", ...counts, parts: 2200, tags: 233, problemTags: 797, publicStatements: 164, translatedParts: 2190, translatedTags: 229, maxMigrationStatementBytes:Math.max(...migrationStatementBytes), preservedExistingAttempt: true, validatedHostedTranslationUpgrade: true }, null, 2));
