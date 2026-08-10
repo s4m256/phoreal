@@ -118,3 +118,19 @@ export const mockExamProblemScores = sqliteTable("user_mock_exam_problem_scores"
   score: real("score").notNull(),
   maxScore: real("max_score").notNull(),
 }, (t) => [uniqueIndex("user_mock_problem_uq").on(t.mockExamId, t.problemId), index("user_mock_scores_problem_idx").on(t.problemId)]);
+
+export const mockExamsV2 = sqliteTable("user_mock_exams_v2", {
+  id: text("id").primaryKey(), examName: text("exam_name").notNull(), date: text("date").notNull(),
+  type: text("type", { enum:["theoretical","experimental"] }).notNull(), totalScore: real("total_score").notNull(),
+  driveUrl: text("drive_url"), createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (t) => [index("user_mock_exams_v2_date_idx").on(t.date)]);
+
+export const mockExamProblemScoresV2 = sqliteTable("user_mock_exam_problem_scores_v2", {
+  id: text("id").primaryKey(), mockExamId: text("mock_exam_id").notNull().references(() => mockExamsV2.id, { onDelete:"cascade" }),
+  problemNumber: integer("problem_number").notNull(), problemLabel: text("problem_label"), score: real("score").notNull(),
+}, (t) => [uniqueIndex("user_mock_scores_v2_number_uq").on(t.mockExamId,t.problemNumber)]);
+
+export const experiments = sqliteTable("user_experiments", {
+  id:text("id").primaryKey(), title:text("title").notNull(), date:text("date"), imageUrl:text("image_url"), notes:text("notes"),
+  createdAt:text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (t) => [index("user_experiments_date_idx").on(t.date)]);

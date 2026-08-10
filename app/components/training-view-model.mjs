@@ -77,3 +77,8 @@ export function compareProblemCodes(a, b) {
   const right = problemCodeOrder(b);
   return left.group - right.group || left.number - right.number || left.code.localeCompare(right.code, "pt-BR");
 }
+
+export function isTheoryTag(name) {
+  const value = String(name ?? "").trim();
+  return value !== "" && !/^(?:X|Y|[XY]\d{2}|(?:19|20)\d{2})$/i.test(value);
+}

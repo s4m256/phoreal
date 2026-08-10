@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { type TrainingData, useTrainingData } from "./data";
 import { Loading } from "./Loading";
-import { compareProblemCodes } from "./training-view-model.mjs";
+import { compareProblemCodes, isTheoryTag } from "./training-view-model.mjs";
 
 export function Catalog() {
   const {data,error,loading}=useTrainingData();
@@ -26,7 +26,7 @@ function ExamBlock({data,examId}:{data:TrainingData;examId:number}) {
     const tags=data.problemTags.filter((row) => row.problem_id===problem.id).map((row) => {
       const tag=data.tags.find((item) => item.id===row.tag_id);
       return translated&&tag?.name_pt?tag.name_pt:tag?.name;
-    }).filter(Boolean) as string[];
+    }).filter((tag): tag is string => Boolean(tag) && isTheoryTag(tag));
     const attempts=data.attempts.filter((attempt) => attempt.problem_id===problem.id);
     const completed=attempts.filter((attempt) => attempt.status==="completed").length;
     const inProgress=attempts.some((attempt) => attempt.status==="in_progress");

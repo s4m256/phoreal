@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { formatHoursMinutes, secondsFor, useClock, useTrainingData } from "./data";
 import { Loading } from "./Loading";
-import { dayKey, dayNumber, dayStart, fixedPeriodDays, parseDayKey, splitSegmentByDay } from "./training-view-model.mjs";
+import { dayKey, dayNumber, dayStart, fixedPeriodDays, isTheoryTag, parseDayKey, splitSegmentByDay } from "./training-view-model.mjs";
 
 const STUDY_START = new Date(2026, 4, 2);
 const TBF_DATE = new Date(2027, 1, 20);
@@ -52,7 +52,7 @@ export function Dashboard() {
       const problemIds = new Set(data.problemTags.filter((row) => row.tag_id === tag.id).map((row) => row.problem_id));
       const resolved = [...problemIds].reduce((sum, problemId) => sum + (completedByProblem.get(problemId) ?? 0), 0);
       return { id: tag.id, name: tag.name_pt || tag.name, resolved };
-    }).filter((tag) => tag.name !== "X" && tag.name !== "Y" && tag.resolved > 0)
+    }).filter((tag) => isTheoryTag(tag.name) && tag.resolved > 0)
       .sort((a, b) => b.resolved - a.resolved || a.name.localeCompare(b.name, "pt-BR"));
 
     return {
@@ -105,12 +105,12 @@ export function Dashboard() {
         </div>
       </div>
 
-      <div className="panel"><div className="section-head"><div><p className="eyebrow">Simulados</p><h2>Notas ao longo do tempo</h2></div><Link href="/simulados">Cadastrar</Link></div>{data.mockExams.length ? <div className="score-list">{[...data.mockExams].reverse().map((mock) => <div key={mock.id}><span>{new Date(`${mock.date}T12:00:00`).toLocaleDateString("pt-BR")}</span><strong>{mock.total_score}/{mock.max_score}</strong><meter min="0" max="100" value={(mock.total_score / mock.max_score) * 100}/></div>)}</div> : <p className="muted">Nenhum simulado cadastrado.</p>}</div>
+      <div className="panel"><div className="section-head"><div><p className="eyebrow">Simulados</p><h2>Notas ao longo do tempo</h2></div><Link href="/simulados">Cadastrar</Link></div>{data.mockExams.length ? <div className="score-list">{[...data.mockExams].reverse().map((mock) => <div key={mock.id}><span>{new Date(`${mock.date}T12:00:00`).toLocaleDateString("pt-BR")} · {mock.exam_name}</span><strong>{mock.total_score}</strong></div>)}</div> : <p className="muted">Nenhum simulado cadastrado.</p>}</div>
     </section>
 
     <section className="panel"><div className="section-head"><div><p className="eyebrow">Conteúdos</p><h2>Questões resolvidas por tag</h2></div><span className="muted">Uma tentativa conta em todas as tags da questão.</span></div>{metrics.tags.length ? <TagBars tags={metrics.tags}/> : <p className="muted">Os conteúdos aparecerão após a primeira questão finalizada.</p>}</section>
 
-    <section className="panel export-panel"><div><p className="eyebrow">Dados brutos</p><h2>Exportar tudo</h2><p className="muted">Catálogo, tags, tentativas, segmentos de tempo e simulados.</p></div><div className="actions"><a className="button" href="/api/export/json">Baixar todos os dados</a></div></section>
+    {data.canEdit&&<section className="panel export-panel"><div><p className="eyebrow">Dados brutos</p><h2>Exportar tudo</h2><p className="muted">Catálogo, tags, tentativas, segmentos de tempo, simulados e laboratório.</p></div><div className="actions"><a className="button" href="/api/export/json">Baixar todos os dados</a></div></section>}
   </>;
 }
 

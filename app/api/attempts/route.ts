@@ -1,6 +1,8 @@
 import { ensureDatabase, getD1 } from "../../../db/runtime";
+import { requireSiteOwnerApi } from "../../chatgpt-auth";
 
 export async function POST(request: Request) {
+  const forbidden=await requireSiteOwnerApi(); if (forbidden) return forbidden;
   await ensureDatabase();
   const { problemId } = await request.json() as { problemId?: number };
   if (!Number.isInteger(problemId)) return Response.json({ error: "Problema inválido" }, { status: 400 });

@@ -1,8 +1,48 @@
 "use client";
-import { FormEvent, useMemo, useState } from "react";
+
+import { FormEvent, useState } from "react";
 import { postJson, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 
-export function MockExams(){const {data,error,loading,refresh}=useTrainingData();const [examId,setExamId]=useState(0);const [scores,setScores]=useState<Record<number,{score:string;max:string}>>({});const [busy,setBusy]=useState(false);const selected=examId||data?.exams[0]?.id||0;const problems=useMemo(()=>data?.problems.filter(p=>p.exam_id===selected)||[],[data,selected]);if(loading||!data)return <Loading error={error}/>;
-  async function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();const form=new FormData(e.currentTarget);setBusy(true);try{await postJson("/api/mock-exams",{examId:selected,date:form.get("date"),type:form.get("type"),totalScore:Number(form.get("totalScore")),maxScore:Number(form.get("maxScore")),driveUrl:form.get("driveUrl"),problemScores:problems.map(p=>({problemId:p.id,score:Number(scores[p.id]?.score),maxScore:Number(scores[p.id]?.max)})).filter(s=>Number.isFinite(s.score)&&s.maxScore>0)});setScores({});e.currentTarget.reset();await refresh();}finally{setBusy(false)}}
-  return <><section className="page-head"><p className="eyebrow">Fluxo separado</p><h1>Simulados</h1><p className="muted">Registre a prova depois de fazê-la offline. Estes problemas não entram nas métricas de treino isolado.</p></section><section className="panel"><form className="mock-form" onSubmit={submit}><div className="form-grid"><label>Prova<select value={selected} onChange={e=>setExamId(Number(e.target.value))}>{data.exams.map(e=><option key={e.id} value={e.id}>{e.code} · {e.title}</option>)}</select></label><label>Data<input required name="date" type="date"/></label><label>Tipo<select name="type"><option value="theoretical">Teórico</option><option value="experimental">Experimental</option></select></label><label>Nota total<input required name="totalScore" type="number" step="0.01" min="0"/></label><label>Nota máxima<input required name="maxScore" type="number" step="0.01" min="0.01"/></label><label className="span-2">Link da correção no Google Drive<input name="driveUrl" type="url" placeholder="https://drive.google.com/…"/></label></div><div className="problem-scores"><h2>Nota por problema</h2>{problems.map(p=><div key={p.id}><span><strong>{p.code}</strong> {p.title}</span><input aria-label={`Nota ${p.code}`} type="number" step="0.01" min="0" placeholder="nota" value={scores[p.id]?.score||""} onChange={e=>setScores({...scores,[p.id]:{score:e.target.value,max:scores[p.id]?.max||""}})}/><input aria-label={`Máximo ${p.code}`} type="number" step="0.01" min="0.01" placeholder="máx." value={scores[p.id]?.max||""} onChange={e=>setScores({...scores,[p.id]:{score:scores[p.id]?.score||"",max:e.target.value}})}/></div>)}</div><button disabled={busy} className="button" type="submit">Salvar simulado</button></form></section><section className="panel"><div className="section-head"><h2>Histórico</h2><span>{data.mockExams.length} registro(s)</span></div>{data.mockExams.length?<div className="mock-history">{data.mockExams.map(mock=>{const exam=data.exams.find(e=>e.id===mock.exam_id);const rows=data.mockExamProblemScores.filter(s=>s.mock_exam_id===mock.id);return <article key={mock.id}><div><span>{new Date(`${mock.date}T12:00:00`).toLocaleDateString("pt-BR")} · {mock.type==="theoretical"?"Teórico":"Experimental"}</span><h3>{exam?.code}</h3></div><strong>{mock.total_score}/{mock.max_score} <small>({Math.round(mock.total_score/mock.max_score*100)}%)</small></strong><p>{rows.map(r=>{const p=data.problems.find(p=>p.id===r.problem_id);return `${p?.code}: ${r.score}/${r.max_score}`}).join(" · ")||"Sem notas por problema"}</p>{mock.drive_url&&<a href={mock.drive_url} target="_blank" rel="noreferrer">Correção ↗</a>}</article>})}</div>:<p className="muted">Nenhum simulado cadastrado.</p>}</section></>}
+type ScoreDraft = { label:string; score:string };
+
+export function MockExams() {
+  const { data, error, loading, refresh } = useTrainingData();
+  const [scores,setScores] = useState<ScoreDraft[]>([{ label:"Questão 1", score:"" }]);
+  const [busy,setBusy] = useState(false);
+  if (loading || !data) return <Loading error={error}/>;
+
+  async function submit(event:FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    setBusy(true);
+    try {
+      await postJson("/api/mock-exams",{
+        examName:form.get("examName"), date:form.get("date"), type:form.get("type"),
+        totalScore:Number(form.get("totalScore")), driveUrl:form.get("driveUrl"),
+        problemScores:scores.map((row,index) => ({ problemNumber:index+1, problemLabel:row.label.trim() || `Questão ${index+1}`, score:Number(row.score) })).filter((row) => Number.isFinite(row.score)),
+      });
+      setScores([{ label:"Questão 1", score:"" }]);
+      event.currentTarget.reset();
+      await refresh();
+    } finally { setBusy(false); }
+  }
+
+  return <>
+    <section className="page-head"><p className="eyebrow">Provas feitas offline</p><h1>Simulados</h1><p className="muted">Cadastre provas como IPhO e APhO. Elas ficam separadas das questões isoladas do catálogo XY.</p></section>
+    {data.canEdit&&<section className="panel"><form className="mock-form" onSubmit={submit}>
+      <div className="form-grid">
+        <label className="span-2">Prova<input required name="examName" placeholder="IPhO 2022"/></label>
+        <label>Data<input required name="date" type="date"/></label>
+        <label>Tipo<select name="type"><option value="theoretical">Teórico</option><option value="experimental">Experimental</option></select></label>
+        <label>Nota total<input required name="totalScore" type="number" step="0.01" min="0"/></label>
+        <label className="span-2">Link da prova ou correção no Google Drive<input name="driveUrl" type="url" placeholder="https://drive.google.com/…"/></label>
+      </div>
+      <div className="problem-scores"><div className="section-head"><h2>Notas por questão</h2><button className="button ghost" type="button" onClick={() => setScores([...scores,{label:`Questão ${scores.length+1}`,score:""}])}>Adicionar questão</button></div>
+        {scores.map((row,index) => <div className="score-row" key={index}><input aria-label={`Nome da questão ${index+1}`} value={row.label} onChange={(event) => setScores(scores.map((item,i) => i===index?{...item,label:event.target.value}:item))}/><input aria-label={`Nota da questão ${index+1}`} type="number" step="0.01" min="0" placeholder="nota" value={row.score} onChange={(event) => setScores(scores.map((item,i) => i===index?{...item,score:event.target.value}:item))}/>{scores.length>1&&<button className="remove-row" type="button" aria-label={`Remover questão ${index+1}`} onClick={() => setScores(scores.filter((_,i) => i!==index))}>×</button>}</div>)}
+      </div>
+      <button disabled={busy} className="button" type="submit">Salvar simulado</button>
+    </form></section>}
+    <section className="panel"><div className="section-head"><h2>Histórico</h2><span>{data.mockExams.length} registro(s)</span></div>{data.mockExams.length?<div className="mock-history">{data.mockExams.map((mock) => { const rows=data.mockExamProblemScores.filter((score)=>score.mock_exam_id===mock.id).sort((a,b)=>a.problem_number-b.problem_number); return <article key={mock.id}><div><span>{new Date(`${mock.date}T12:00:00`).toLocaleDateString("pt-BR")} · {mock.type==="theoretical"?"Teórico":"Experimental"}</span><h3>{mock.exam_name}</h3></div><strong>{mock.total_score}</strong><p>{rows.map((row)=>`${row.problem_label || `Questão ${row.problem_number}`}: ${row.score}`).join(" · ")||"Sem notas por questão"}</p>{mock.drive_url&&<a href={mock.drive_url} target="_blank" rel="noreferrer">Abrir no Drive ↗</a>}</article> })}</div>:<p className="muted">Nenhum simulado cadastrado.</p>}</section>
+  </>;
+}

@@ -1,6 +1,8 @@
 import { ensureDatabase, getD1 } from "../../../db/runtime";
+import { requireSiteOwnerApi } from "../../chatgpt-auth";
 
 export async function POST(request: Request) {
+  const forbidden=await requireSiteOwnerApi(); if (forbidden) return forbidden;
   await ensureDatabase();
   const payload = await request.json() as { tbfDate?: string | null };
   const value = payload.tbfDate?.trim() || null;

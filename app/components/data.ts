@@ -8,9 +8,10 @@ export type Tag = { id:number; name:string; name_pt:string|null };
 export type ProblemTag = { problem_id:number; tag_id:number };
 export type Attempt = { id:string; problem_id:number; status:"in_progress"|"completed"; current_state:"initial_reading"|"item_active"|"paused"; active_part_id:number|null; started_at:string; finished_at:string|null };
 export type Segment = { id:string; attempt_id:string; state:"initial_reading"|"item_active"; problem_part_id:number|null; started_at:string; ended_at:string|null; duration_seconds:number|null };
-export type MockExam = { id:string; exam_id:number; date:string; type:"theoretical"|"experimental"; total_score:number; max_score:number; drive_url:string|null };
-export type MockScore = { id:string; mock_exam_id:string; problem_id:number; score:number; max_score:number };
-export type TrainingData = { competitions:unknown[]; exams:Exam[]; problems:Problem[]; problemParts:Part[]; tags:Tag[]; problemTags:ProblemTag[]; attempts:Attempt[]; timeSegments:Segment[]; mockExams:MockExam[]; mockExamProblemScores:MockScore[]; settings:{ tbf_date:string|null } };
+export type MockExam = { id:string; exam_name:string; date:string; type:"theoretical"|"experimental"; total_score:number; drive_url:string|null };
+export type MockScore = { id:string; mock_exam_id:string; problem_number:number; problem_label:string|null; score:number };
+export type Experiment = { id:string; title:string; date:string|null; image_url:string|null; notes:string|null; created_at:string };
+export type TrainingData = { canEdit:boolean; competitions:unknown[]; exams:Exam[]; problems:Problem[]; problemParts:Part[]; tags:Tag[]; problemTags:ProblemTag[]; attempts:Attempt[]; timeSegments:Segment[]; mockExams:MockExam[]; mockExamProblemScores:MockScore[]; experiments:Experiment[]; settings:{ tbf_date:string|null } };
 
 export function useTrainingData() {
   const [data,setData]=useState<TrainingData|null>(null); const [error,setError]=useState<string|null>(null); const [loading,setLoading]=useState(true);

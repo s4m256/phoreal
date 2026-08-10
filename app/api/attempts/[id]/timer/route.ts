@@ -1,7 +1,9 @@
 import { ensureDatabase, getD1 } from "../../../../../db/runtime";
+import { requireSiteOwnerApi } from "../../../../chatgpt-auth";
 
 type Action = "select_part" | "pause" | "resume" | "finish";
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const forbidden=await requireSiteOwnerApi(); if (forbidden) return forbidden;
   await ensureDatabase();
   const { id } = await params; const payload = await request.json() as { action?: Action; partId?: number };
   const db = getD1(); const attempt = await db.prepare("SELECT * FROM user_attempts WHERE id=?").bind(id).first<Record<string, unknown>>();

@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { env } from "cloudflare:workers";
 
 export type ChatGPTUser = {
   displayName: string;
@@ -33,6 +34,16 @@ export async function getChatGPTUser(): Promise<ChatGPTUser | null> {
     email,
     fullName,
   };
+}
+
+export async function isSiteOwner(): Promise<boolean> {
+  const user = await getChatGPTUser();
+  const ownerEmail = (env as unknown as { OWNER_EMAIL?:string }).OWNER_EMAIL?.trim().toLowerCase();
+  return Boolean(user && ownerEmail && user.email.trim().toLowerCase() === ownerEmail);
+}
+
+export async function requireSiteOwnerApi(): Promise<Response | null> {
+  return await isSiteOwner() ? null : Response.json({ error:"Este site está em modo somente leitura para visitantes" },{status:403});
 }
 
 export async function requireChatGPTUser(

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { compareProblemCodes, dayKey, fixedPeriodDays, splitSegmentByDay } from "../app/components/training-view-model.mjs";
+import { compareProblemCodes, dayKey, fixedPeriodDays, isTheoryTag, splitSegmentByDay } from "../app/components/training-view-model.mjs";
 
 test("fixed training period contains every day from start through TBF", () => {
   const start = new Date(2026, 4, 2);
@@ -31,3 +31,5 @@ test("catalog orders T, E and PE using natural numeric order", () => {
   const codes = ["PE2", "E2", "T10", "T2", "PE", "E1", "T1", "PE1"];
   assert.deepEqual(codes.sort(compareProblemCodes), ["T1", "T2", "T10", "E1", "E2", "PE", "PE1", "PE2"]);
 });
+
+test("technical catalog tags are hidden from content views",()=>{assert.equal(isTheoryTag("X"),false);assert.equal(isTheoryTag("Y25"),false);assert.equal(isTheoryTag("2025"),false);assert.equal(isTheoryTag("Mecânica"),true)});

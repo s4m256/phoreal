@@ -20,6 +20,11 @@ const schemaStatements = [
   `CREATE INDEX IF NOT EXISTS user_mock_exams_date_idx ON user_mock_exams(date)`,
   `CREATE TABLE IF NOT EXISTS user_mock_exam_problem_scores (id TEXT PRIMARY KEY, mock_exam_id TEXT NOT NULL REFERENCES user_mock_exams(id) ON DELETE CASCADE, problem_id INTEGER NOT NULL REFERENCES phors_problems(id), score REAL NOT NULL, max_score REAL NOT NULL, UNIQUE(mock_exam_id, problem_id))`,
   `CREATE INDEX IF NOT EXISTS user_mock_scores_problem_idx ON user_mock_exam_problem_scores(problem_id)`,
+  `CREATE TABLE IF NOT EXISTS user_mock_exams_v2 (id TEXT PRIMARY KEY, exam_name TEXT NOT NULL, date TEXT NOT NULL, type TEXT NOT NULL CHECK(type IN ('theoretical','experimental')), total_score REAL NOT NULL, drive_url TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+  `CREATE INDEX IF NOT EXISTS user_mock_exams_v2_date_idx ON user_mock_exams_v2(date)`,
+  `CREATE TABLE IF NOT EXISTS user_mock_exam_problem_scores_v2 (id TEXT PRIMARY KEY, mock_exam_id TEXT NOT NULL REFERENCES user_mock_exams_v2(id) ON DELETE CASCADE, problem_number INTEGER NOT NULL, problem_label TEXT, score REAL NOT NULL, UNIQUE(mock_exam_id,problem_number))`,
+  `CREATE TABLE IF NOT EXISTS user_experiments (id TEXT PRIMARY KEY, title TEXT NOT NULL, date TEXT, image_url TEXT, notes TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+  `CREATE INDEX IF NOT EXISTS user_experiments_date_idx ON user_experiments(date)`,
 ];
 
 let initialization: Promise<void> | null = null;
@@ -86,8 +91,9 @@ export async function readAllData() {
     "SELECT pt.* FROM phors_problem_tags pt JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY pt.problem_id,pt.tag_id",
     "SELECT a.* FROM user_attempts a JOIN phors_problems p ON p.id=a.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY a.started_at DESC",
     "SELECT s.* FROM user_time_segments s JOIN user_attempts a ON a.id=s.attempt_id JOIN phors_problems p ON p.id=a.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY s.started_at",
-    "SELECT m.* FROM user_mock_exams m JOIN phors_exams e ON e.id=m.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY m.date DESC",
-    "SELECT ms.* FROM user_mock_exam_problem_scores ms JOIN user_mock_exams m ON m.id=ms.mock_exam_id JOIN phors_exams e ON e.id=m.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY ms.mock_exam_id,ms.problem_id",
+    "SELECT * FROM user_mock_exams_v2 ORDER BY date DESC,created_at DESC",
+    "SELECT * FROM user_mock_exam_problem_scores_v2 ORDER BY mock_exam_id,problem_number",
+    "SELECT * FROM user_experiments ORDER BY COALESCE(date,created_at) DESC,created_at DESC",
     "SELECT * FROM user_settings WHERE id=1",
   ];
   const results = await db.batch(queries.map((query) => db.prepare(query)));
@@ -95,7 +101,7 @@ export async function readAllData() {
     competitions: results[0].results, exams: results[1].results, problems: results[2].results,
     problemParts: results[3].results, tags: results[4].results, problemTags: results[5].results,
     attempts: results[6].results, timeSegments: results[7].results, mockExams: results[8].results,
-    mockExamProblemScores: results[9].results, settings: results[10].results[0] ?? { id: 1, tbf_date: null },
+    mockExamProblemScores: results[9].results, experiments:results[10].results, settings: results[11].results[0] ?? { id: 1, tbf_date: null },
   };
 }
 
