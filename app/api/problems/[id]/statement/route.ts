@@ -1,4 +1,5 @@
 import { ensureDatabase, getD1 } from "../../../../../db/runtime";
+import { renderStatementMath } from "../../../../lib/render-statement-math.mjs";
 
 export const dynamic = "force-dynamic";
 
@@ -20,8 +21,9 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   const translated = ["draft", "verified"].includes(row.translation_status)
     && row.translation_source_hash === row.statement_content_hash
     && Boolean(row.statement_html_pt);
+  const statementHtml = translated ? row.statement_html_pt : row.statement_html_original;
   return Response.json({
-    html: translated ? row.statement_html_pt : row.statement_html_original,
+    html: statementHtml ? renderStatementMath(statementHtml) : null,
     language: translated ? "pt-BR" : "ru",
     statementStatus: row.statement_status,
     translationStatus: row.translation_status,

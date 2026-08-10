@@ -2,6 +2,7 @@
 
 import renderMathInElement from "katex/contrib/auto-render";
 import { memo, useEffect, useLayoutEffect, useRef } from "react";
+import { normalizeMathMarkup,normalizePhysicsUnits } from "../lib/physics-math.mjs";
 
 const delimiters = [
   { left: "$$", right: "$$", display: true },
@@ -16,26 +17,6 @@ const delimiters = [
 ];
 
 type LinkedPart = { id:number; code:string };
-
-function normalizeMathMarkup(html:string) {
-  const joinDisplayFormula = (_match:string,formula:string,left:string,right:string) =>
-    `${left}${formula.replace(/<br\s*\/?\s*>/gi,"\n")}${right}`;
-  return html
-    .replace(/\$\$([\s\S]*?)\$\$/g,(match,formula) => joinDisplayFormula(match,formula,"$$","$$"))
-    .replace(/\\\[([\s\S]*?)\\\]/g,(match,formula) => joinDisplayFormula(match,formula,"\\[","\\]"));
-}
-
-const unitNames:Record<string,string> = {
-  "Гн":"\\mathrm{H}", "Тл":"\\mathrm{T}", "Ом":"\\Omega", "Гц":"\\mathrm{Hz}",
-  "Вт":"\\mathrm{W}", "Дж":"\\mathrm{J}", "Па":"\\mathrm{Pa}", "Кл":"\\mathrm{C}",
-  "км":"\\mathrm{km}", "см":"\\mathrm{cm}", "мм":"\\mathrm{mm}", "мс":"\\mathrm{ms}",
-  "кг":"\\mathrm{kg}", "моль":"\\mathrm{mol}", "А":"\\mathrm{A}", "В":"\\mathrm{V}",
-  "Н":"\\mathrm{N}", "К":"\\mathrm{K}", "м":"\\mathrm{m}", "с":"\\mathrm{s}", "г":"\\mathrm{g}",
-};
-const unitPattern = /(^|[~\s=+\-*/^_{}()[\],.;:·\\])(моль|Гн|Тл|Ом|Гц|Вт|Дж|Па|Кл|км|см|мм|мс|кг|А|В|Н|К|м|с|г)(?=$|[~\s=+\-*/^_{}()[\],.;:·\\])/gu;
-function normalizePhysicsUnits(formula:string) {
-  return formula.replace(unitPattern,(_match,prefix:string,unit:string) => `${prefix}${unitNames[unit]}`);
-}
 
 function addPartButtons(root:HTMLElement, parts:LinkedPart[], disabled:boolean) {
   const byCode = new Map(parts.map((part) => [part.code.toUpperCase(),part]));
