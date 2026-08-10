@@ -1,12 +1,12 @@
 import { ensureDatabase, getD1 } from "../../../../../db/runtime";
-import { requireSiteOwnerApi } from "../../../../chatgpt-auth";
+import { requireSiteUserApi } from "../../../../chatgpt-auth";
 
 type Action = "select_part" | "pause" | "resume" | "finish";
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const forbidden=await requireSiteOwnerApi(); if (forbidden) return forbidden;
+  const user=await requireSiteUserApi(); if (user instanceof Response) return user;
   await ensureDatabase();
   const { id } = await params; const payload = await request.json() as { action?: Action; partId?: number };
-  const db = getD1(); const attempt = await db.prepare("SELECT * FROM user_attempts WHERE id=?").bind(id).first<Record<string, unknown>>();
+  const db = getD1(); const attempt = await db.prepare("SELECT * FROM user_attempts WHERE id=? AND owner_id=?").bind(id,user.userId).first<Record<string, unknown>>();
   if (!attempt || attempt.status !== "in_progress") return Response.json({ error: "Tentativa em andamento não encontrada" }, { status: 404 });
   const action = payload.action; const now = new Date().toISOString();
   const close = db.prepare("UPDATE user_time_segments SET ended_at=?, duration_seconds=MAX(0,CAST((julianday(?) - julianday(started_at))*86400 AS INTEGER)) WHERE attempt_id=? AND ended_at IS NULL").bind(now,now,id);

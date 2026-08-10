@@ -1,14 +1,15 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { env } from "cloudflare:workers";
 
 export type ChatGPTUser = {
+  userId: string;
   displayName: string;
   email: string;
   fullName: string | null;
 };
 
 const USER_EMAIL_HEADER = "oai-authenticated-user-email";
+const USER_ID_HEADER = "oai-authenticated-user-id";
 const USER_FULL_NAME_HEADER = "oai-authenticated-user-full-name";
 const USER_FULL_NAME_ENCODING_HEADER =
   "oai-authenticated-user-full-name-encoding";
@@ -19,8 +20,9 @@ const CALLBACK_PATH = "/callback";
 
 export async function getChatGPTUser(): Promise<ChatGPTUser | null> {
   const requestHeaders = await headers();
+  const userId = requestHeaders.get(USER_ID_HEADER);
   const email = requestHeaders.get(USER_EMAIL_HEADER);
-  if (!email) return null;
+  if (!userId || !email) return null;
 
   const encodedFullName = requestHeaders.get(USER_FULL_NAME_HEADER);
   const fullName =
@@ -30,20 +32,15 @@ export async function getChatGPTUser(): Promise<ChatGPTUser | null> {
       : null;
 
   return {
+    userId,
     displayName: fullName ?? email,
     email,
     fullName,
   };
 }
 
-export async function isSiteOwner(): Promise<boolean> {
-  const user = await getChatGPTUser();
-  const ownerEmail = (env as unknown as { OWNER_EMAIL?:string }).OWNER_EMAIL?.trim().toLowerCase();
-  return Boolean(user && ownerEmail && user.email.trim().toLowerCase() === ownerEmail);
-}
-
-export async function requireSiteOwnerApi(): Promise<Response | null> {
-  return await isSiteOwner() ? null : Response.json({ error:"Este site está em modo somente leitura para visitantes" },{status:403});
+export async function requireSiteUserApi(): Promise<ChatGPTUser | Response> {
+  return await getChatGPTUser() ?? Response.json({ error:"Entre com o ChatGPT para registrar seus dados" },{status:401});
 }
 
 export async function requireChatGPTUser(

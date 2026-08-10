@@ -1,11 +1,11 @@
 import { readAllData } from "../../../../db/runtime";
-import { requireSiteOwnerApi } from "../../../chatgpt-auth";
+import { requireSiteUserApi } from "../../../chatgpt-auth";
 
 const escapeCsv = (value: unknown) => `"${String(value ?? "").replaceAll('"','""')}"`;
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
-  const forbidden=await requireSiteOwnerApi(); if (forbidden) return forbidden;
-  const data = await readAllData(); const requested = new URL(request.url).searchParams.get("table") ?? "attempts";
+  const user=await requireSiteUserApi(); if (user instanceof Response) return user;
+  const data = await readAllData(user.userId); const requested = new URL(request.url).searchParams.get("table") ?? "attempts";
   const tables = { attempts: data.attempts, segments: data.timeSegments, mock_exams: data.mockExams, mock_scores: data.mockExamProblemScores, experiments:data.experiments } as const;
   const rows = tables[requested as keyof typeof tables];
   if (!rows) return Response.json({ error: "Tabela inválida" }, { status: 400 });

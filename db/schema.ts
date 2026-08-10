@@ -80,6 +80,7 @@ export const userSettings = sqliteTable("user_settings", {
 
 export const attempts = sqliteTable("user_attempts", {
   id: text("id").primaryKey(),
+  ownerId:text("owner_id"),
   problemId: integer("problem_id").notNull().references(() => problems.id),
   status: text("status", { enum: ["in_progress", "completed"] }).notNull(),
   currentState: text("current_state", { enum: ["initial_reading", "item_active", "paused"] }).notNull(),
@@ -120,7 +121,7 @@ export const mockExamProblemScores = sqliteTable("user_mock_exam_problem_scores"
 }, (t) => [uniqueIndex("user_mock_problem_uq").on(t.mockExamId, t.problemId), index("user_mock_scores_problem_idx").on(t.problemId)]);
 
 export const mockExamsV2 = sqliteTable("user_mock_exams_v2", {
-  id: text("id").primaryKey(), examName: text("exam_name").notNull(), date: text("date").notNull(),
+  id: text("id").primaryKey(), ownerId:text("owner_id"), examName: text("exam_name").notNull(), date: text("date").notNull(),
   type: text("type", { enum:["theoretical","experimental"] }).notNull(), totalScore: real("total_score").notNull(),
   driveUrl: text("drive_url"), createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 }, (t) => [index("user_mock_exams_v2_date_idx").on(t.date)]);
@@ -131,6 +132,10 @@ export const mockExamProblemScoresV2 = sqliteTable("user_mock_exam_problem_score
 }, (t) => [uniqueIndex("user_mock_scores_v2_number_uq").on(t.mockExamId,t.problemNumber)]);
 
 export const experiments = sqliteTable("user_experiments", {
-  id:text("id").primaryKey(), title:text("title").notNull(), date:text("date"), imageUrl:text("image_url"), notes:text("notes"),
+  id:text("id").primaryKey(), ownerId:text("owner_id"), title:text("title").notNull(), date:text("date"), imageUrl:text("image_url"), notes:text("notes"),
   createdAt:text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 }, (t) => [index("user_experiments_date_idx").on(t.date)]);
+
+export const userSettingsV2 = sqliteTable("user_settings_v2", {
+  ownerId:text("owner_id").primaryKey(), tbfDate:text("tbf_date"), updatedAt:text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});

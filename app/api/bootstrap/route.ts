@@ -1,8 +1,8 @@
 import { readAllData } from "../../../db/runtime";
-import { isSiteOwner } from "../../chatgpt-auth";
+import { getChatGPTUser } from "../../chatgpt-auth";
 
 export const dynamic = "force-dynamic";
 export async function GET() {
-  try { return Response.json({...(await readAllData()),canEdit:await isSiteOwner()}); }
+  try { const user=await getChatGPTUser(); return Response.json({...(await readAllData(user?.userId??null)),canEdit:Boolean(user)}); }
   catch (error) { return Response.json({ error: error instanceof Error ? error.message : "Falha ao carregar dados" }, { status: 500 }); }
 }

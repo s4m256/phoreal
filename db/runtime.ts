@@ -10,9 +10,10 @@ const schemaStatements = [
   `CREATE TABLE IF NOT EXISTS phors_problem_tags (problem_id INTEGER NOT NULL REFERENCES phors_problems(id) ON DELETE CASCADE, tag_id INTEGER NOT NULL REFERENCES phors_tags(id) ON DELETE CASCADE, PRIMARY KEY(problem_id, tag_id))`,
   `CREATE TABLE IF NOT EXISTS phors_sync_runs (id INTEGER PRIMARY KEY AUTOINCREMENT, started_at TEXT NOT NULL, finished_at TEXT, status TEXT NOT NULL DEFAULT 'running', exam_urls_json TEXT NOT NULL, stats_json TEXT NOT NULL DEFAULT '{}', error_text TEXT)`,
   `CREATE TABLE IF NOT EXISTS user_settings (id INTEGER PRIMARY KEY, tbf_date TEXT, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
-  `CREATE TABLE IF NOT EXISTS user_attempts (id TEXT PRIMARY KEY, problem_id INTEGER NOT NULL REFERENCES phors_problems(id), status TEXT NOT NULL CHECK(status IN ('in_progress','completed')), current_state TEXT NOT NULL CHECK(current_state IN ('initial_reading','item_active','paused')), active_part_id INTEGER REFERENCES phors_problem_parts(id), started_at TEXT NOT NULL, finished_at TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+  `CREATE TABLE IF NOT EXISTS user_attempts (id TEXT PRIMARY KEY, owner_id TEXT, problem_id INTEGER NOT NULL REFERENCES phors_problems(id), status TEXT NOT NULL CHECK(status IN ('in_progress','completed')), current_state TEXT NOT NULL CHECK(current_state IN ('initial_reading','item_active','paused')), active_part_id INTEGER REFERENCES phors_problem_parts(id), started_at TEXT NOT NULL, finished_at TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
   `CREATE INDEX IF NOT EXISTS user_attempts_problem_idx ON user_attempts(problem_id)`,
   `CREATE INDEX IF NOT EXISTS user_attempts_status_idx ON user_attempts(status)`,
+  `CREATE INDEX IF NOT EXISTS user_attempts_owner_idx ON user_attempts(owner_id)`,
   `CREATE TABLE IF NOT EXISTS user_time_segments (id TEXT PRIMARY KEY, attempt_id TEXT NOT NULL REFERENCES user_attempts(id) ON DELETE CASCADE, state TEXT NOT NULL CHECK(state IN ('initial_reading','item_active')), problem_part_id INTEGER REFERENCES phors_problem_parts(id), started_at TEXT NOT NULL, ended_at TEXT, duration_seconds INTEGER)`,
   `CREATE INDEX IF NOT EXISTS user_time_segments_attempt_idx ON user_time_segments(attempt_id)`,
   `CREATE INDEX IF NOT EXISTS user_time_segments_part_idx ON user_time_segments(problem_part_id)`,
@@ -20,11 +21,14 @@ const schemaStatements = [
   `CREATE INDEX IF NOT EXISTS user_mock_exams_date_idx ON user_mock_exams(date)`,
   `CREATE TABLE IF NOT EXISTS user_mock_exam_problem_scores (id TEXT PRIMARY KEY, mock_exam_id TEXT NOT NULL REFERENCES user_mock_exams(id) ON DELETE CASCADE, problem_id INTEGER NOT NULL REFERENCES phors_problems(id), score REAL NOT NULL, max_score REAL NOT NULL, UNIQUE(mock_exam_id, problem_id))`,
   `CREATE INDEX IF NOT EXISTS user_mock_scores_problem_idx ON user_mock_exam_problem_scores(problem_id)`,
-  `CREATE TABLE IF NOT EXISTS user_mock_exams_v2 (id TEXT PRIMARY KEY, exam_name TEXT NOT NULL, date TEXT NOT NULL, type TEXT NOT NULL CHECK(type IN ('theoretical','experimental')), total_score REAL NOT NULL, drive_url TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+  `CREATE TABLE IF NOT EXISTS user_mock_exams_v2 (id TEXT PRIMARY KEY, owner_id TEXT, exam_name TEXT NOT NULL, date TEXT NOT NULL, type TEXT NOT NULL CHECK(type IN ('theoretical','experimental')), total_score REAL NOT NULL, drive_url TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
   `CREATE INDEX IF NOT EXISTS user_mock_exams_v2_date_idx ON user_mock_exams_v2(date)`,
+  `CREATE INDEX IF NOT EXISTS user_mock_exams_v2_owner_idx ON user_mock_exams_v2(owner_id)`,
   `CREATE TABLE IF NOT EXISTS user_mock_exam_problem_scores_v2 (id TEXT PRIMARY KEY, mock_exam_id TEXT NOT NULL REFERENCES user_mock_exams_v2(id) ON DELETE CASCADE, problem_number INTEGER NOT NULL, problem_label TEXT, score REAL NOT NULL, UNIQUE(mock_exam_id,problem_number))`,
-  `CREATE TABLE IF NOT EXISTS user_experiments (id TEXT PRIMARY KEY, title TEXT NOT NULL, date TEXT, image_url TEXT, notes TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+  `CREATE TABLE IF NOT EXISTS user_experiments (id TEXT PRIMARY KEY, owner_id TEXT, title TEXT NOT NULL, date TEXT, image_url TEXT, notes TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
   `CREATE INDEX IF NOT EXISTS user_experiments_date_idx ON user_experiments(date)`,
+  `CREATE INDEX IF NOT EXISTS user_experiments_owner_idx ON user_experiments(owner_id)`,
+  `CREATE TABLE IF NOT EXISTS user_settings_v2 (owner_id TEXT PRIMARY KEY, tbf_date TEXT, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
 ];
 
 let initialization: Promise<void> | null = null;
@@ -79,24 +83,24 @@ export function ensureDatabase() {
   return initialization;
 }
 
-export async function readAllData() {
+export async function readAllData(ownerId:string|null) {
   await ensureDatabase();
   const db = getD1();
-  const queries = [
-    "SELECT DISTINCT c.* FROM phors_competitions c JOIN phors_exams e ON e.competition_id=c.id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY c.id",
-    "SELECT * FROM phors_exams WHERE series IN ('X','Y') AND year BETWEEN 2018 AND 2026 ORDER BY year DESC, code",
-    "SELECT p.id,p.exam_id,p.source_id,p.source_url,p.code,p.title,p.title_pt,p.kind,p.statement_url,p.solution_url,p.marking_scheme_url,p.statement_pdf_url,p.parts_status,p.statement_status,p.translation_status FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY p.exam_id,p.code",
-    "SELECT pp.id,pp.problem_id,pp.source_key,pp.code,pp.parent_code,pp.ordinal,pp.score,pp.score_reliability,pp.prompt_text,pp.prompt_text_pt,pp.source_url FROM phors_problem_parts pp JOIN phors_problems p ON p.id=pp.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY pp.problem_id,pp.ordinal",
-    "SELECT DISTINCT t.* FROM phors_tags t JOIN phors_problem_tags pt ON pt.tag_id=t.id JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY t.name",
-    "SELECT pt.* FROM phors_problem_tags pt JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY pt.problem_id,pt.tag_id",
-    "SELECT a.* FROM user_attempts a JOIN phors_problems p ON p.id=a.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY a.started_at DESC",
-    "SELECT s.* FROM user_time_segments s JOIN user_attempts a ON a.id=s.attempt_id JOIN phors_problems p ON p.id=a.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY s.started_at",
-    "SELECT * FROM user_mock_exams_v2 ORDER BY date DESC,created_at DESC",
-    "SELECT * FROM user_mock_exam_problem_scores_v2 ORDER BY mock_exam_id,problem_number",
-    "SELECT * FROM user_experiments ORDER BY COALESCE(date,created_at) DESC,created_at DESC",
-    "SELECT * FROM user_settings WHERE id=1",
-  ];
-  const results = await db.batch(queries.map((query) => db.prepare(query)));
+  const owner=ownerId??"";
+  const results = await db.batch([
+    db.prepare("SELECT DISTINCT c.* FROM phors_competitions c JOIN phors_exams e ON e.competition_id=c.id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY c.id"),
+    db.prepare("SELECT * FROM phors_exams WHERE series IN ('X','Y') AND year BETWEEN 2018 AND 2026 ORDER BY year DESC, code"),
+    db.prepare("SELECT p.id,p.exam_id,p.source_id,p.source_url,p.code,p.title,p.title_pt,p.kind,p.statement_url,p.solution_url,p.marking_scheme_url,p.statement_pdf_url,p.parts_status,p.statement_status,p.translation_status FROM phors_problems p JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY p.exam_id,p.code"),
+    db.prepare("SELECT pp.id,pp.problem_id,pp.source_key,pp.code,pp.parent_code,pp.ordinal,pp.score,pp.score_reliability,pp.prompt_text,pp.prompt_text_pt,pp.source_url FROM phors_problem_parts pp JOIN phors_problems p ON p.id=pp.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY pp.problem_id,pp.ordinal"),
+    db.prepare("SELECT DISTINCT t.* FROM phors_tags t JOIN phors_problem_tags pt ON pt.tag_id=t.id JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY t.name"),
+    db.prepare("SELECT pt.* FROM phors_problem_tags pt JOIN phors_problems p ON p.id=pt.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY pt.problem_id,pt.tag_id"),
+    db.prepare("SELECT a.* FROM user_attempts a JOIN phors_problems p ON p.id=a.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE a.owner_id=? AND e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY a.started_at DESC").bind(owner),
+    db.prepare("SELECT s.* FROM user_time_segments s JOIN user_attempts a ON a.id=s.attempt_id JOIN phors_problems p ON p.id=a.problem_id JOIN phors_exams e ON e.id=p.exam_id WHERE a.owner_id=? AND e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026 ORDER BY s.started_at").bind(owner),
+    db.prepare("SELECT * FROM user_mock_exams_v2 WHERE owner_id=? ORDER BY date DESC,created_at DESC").bind(owner),
+    db.prepare("SELECT ms.* FROM user_mock_exam_problem_scores_v2 ms JOIN user_mock_exams_v2 m ON m.id=ms.mock_exam_id WHERE m.owner_id=? ORDER BY ms.mock_exam_id,ms.problem_number").bind(owner),
+    db.prepare("SELECT * FROM user_experiments WHERE owner_id=? ORDER BY COALESCE(date,created_at) DESC,created_at DESC").bind(owner),
+    db.prepare("SELECT * FROM user_settings_v2 WHERE owner_id=?").bind(owner),
+  ]);
   return {
     competitions: results[0].results, exams: results[1].results, problems: results[2].results,
     problemParts: results[3].results, tags: results[4].results, problemTags: results[5].results,
@@ -105,8 +109,8 @@ export async function readAllData() {
   };
 }
 
-export async function readFullExportData() {
-  const data = await readAllData();
+export async function readFullExportData(ownerId:string) {
+  const data = await readAllData(ownerId);
   const db = getD1();
   const scope = "e.series IN ('X','Y') AND e.year BETWEEN 2018 AND 2026";
   const results = await db.batch([
