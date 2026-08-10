@@ -152,7 +152,6 @@ export function ProblemWorkspace() {
     <div className="workspace">
       <div className="problem-main-column">
         <section className="panel statement-panel">
-          <p className="eyebrow statement-label">Enunciado</p>
           {statementError ? <p className="muted">{statementError}</p>
             : !statement ? <p className="muted">Carregando enunciado…</p>
             : statement.html ? <MathHtml className="statement-content" html={statement.html} parts={parts} activePartId={active?.current_state === "item_active" ? active.active_part_id : null} disabled={busy || !data.canEdit} onPartClick={selectPart}/>

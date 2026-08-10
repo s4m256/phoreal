@@ -45,11 +45,10 @@ function addPartButtons(root:HTMLElement, parts:LinkedPart[], disabled:boolean) 
     node.replaceWith(document.createTextNode(match[1]),button,document.createTextNode((node.textContent || "").slice(match[0].length)));
   }
 
-  for (const label of root.querySelectorAll<HTMLElement>(".statement-part-label")) {
-    const labelParagraph = label.closest("p");
-    let heading = labelParagraph?.nextElementSibling;
-    while (heading && !(heading.textContent || "").trim()) heading = heading.nextElementSibling;
-    if (heading?.matches("p")) heading.classList.add("statement-part-heading");
+  for (const section of root.querySelectorAll<HTMLElement>(".statement-section")) {
+    if (/^Parte\s+[A-Z0-9]+(?:[.:]|\s)/i.test((section.textContent || "").trim())) {
+      section.classList.add("statement-part-heading");
+    }
   }
 }
 
