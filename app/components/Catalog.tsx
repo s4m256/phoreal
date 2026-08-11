@@ -4,17 +4,20 @@ import { type TrainingData, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 import { compareProblemCodes, isTheoryTag } from "./training-view-model.mjs";
 import { selectedProblemArea } from "../lib/selected-problems.mjs";
+import taiwanVolume10 from "../../data/taiwan/volume-10.json";
 
 export function Catalog() {
   const {data,error,loading}=useTrainingData();
   if (loading||!data) return <Loading error={error}/>;
   const series=["X","Y"] as const;
   return <>
-    <section className="page-head"><h1>Catálogo XY</h1></section>
-    <div className="catalog-series-grid">{series.map((seriesCode) => {
+    <section className="page-head problems-head"><h1>Problemas</h1><p>Escolha uma coleção.</p></section>
+    <nav className="problem-source-nav" aria-label="Coleções de problemas"><a href="#xy">XY <small>165</small></a><a href="#taiwan">Taiwan <small>31</small></a></nav>
+    <section className="problem-collection" id="xy"><div className="collection-heading"><div><h2>XY</h2><p>Provas X e Y · 2018–2026</p></div><span>165 problemas</span></div><div className="catalog-series-grid">{series.map((seriesCode) => {
       const exams=data.exams.filter((exam) => exam.series===seriesCode).sort((a,b) => (b.year||0)-(a.year||0));
       return <section className="catalog-series" key={seriesCode} aria-labelledby={`series-${seriesCode}`}><div className="series-heading"><h2 id={`series-${seriesCode}`}>{seriesCode}</h2></div>{exams.map((exam) => <ExamBlock data={data} examId={exam.id} key={exam.id}/>)}</section>;
-    })}</div>
+    })}</div></section>
+    <section className="problem-collection" id="taiwan"><div className="collection-heading"><div><h2>Taiwan</h2><p>Material de treinamento · volume 10</p></div><span>{taiwanVolume10.problems.length} problemas</span></div><div className="taiwan-problem-grid">{taiwanVolume10.problems.map((problem) => <Link className="taiwan-problem-row" href={`/problemas/taiwan/10/${problem.id}`} key={problem.id}><span>{String(problem.id).padStart(2,"0")}</span><strong>{problem.title_pt}</strong><small>p. {problem.page_start}{problem.page_end!==problem.page_start?`–${problem.page_end}`:""}</small></Link>)}</div></section>
   </>;
 }
 
