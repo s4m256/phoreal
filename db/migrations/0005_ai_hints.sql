@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS phors_hint_sources (problem_id INTEGER PRIMARY KEY REFERENCES phors_problems(id) ON DELETE CASCADE, marking_text TEXT, solution_text TEXT, fetched_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS user_hint_events (id TEXT PRIMARY KEY, owner_id TEXT NOT NULL, attempt_id TEXT NOT NULL REFERENCES user_attempts(id) ON DELETE CASCADE, problem_part_id INTEGER NOT NULL REFERENCES phors_problem_parts(id), question TEXT, answer_text TEXT NOT NULL, answer_html TEXT NOT NULL, revealed_steps_json TEXT NOT NULL DEFAULT '[]', penalty REAL NOT NULL, full_solution INTEGER NOT NULL DEFAULT 0, model TEXT NOT NULL, input_tokens INTEGER, output_tokens INTEGER, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS user_hint_events_attempt_part_idx ON user_hint_events(attempt_id,problem_part_id);
+CREATE INDEX IF NOT EXISTS user_hint_events_owner_idx ON user_hint_events(owner_id);

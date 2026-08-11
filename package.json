@@ -10,6 +10,7 @@
     "build": "vinext build",
     "start": "vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs tests/statement-math.test.mjs tests/training-core.test.mjs tests/training-view-model.test.mjs tests/phors-importer.test.mjs tests/openai-translation-transport.test.mjs",
+    "test:hints": "node --test tests/ai-hints.test.mjs",
     "test:training": "node --test tests/training-core.test.mjs",
     "test:phors": "node --test tests/phors-importer.test.mjs",
     "phors:sync": "node scripts/sync-phors.mjs",

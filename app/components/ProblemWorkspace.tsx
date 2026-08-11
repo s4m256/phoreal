@@ -14,6 +14,8 @@ type Statement = {
   hasDraft:boolean;
 };
 
+type HintEvent = { id:string; attempt_id:string; problem_part_id:number; question:string|null; answer_html:string; penalty:number; full_solution:number; created_at:string };
+
 export function ProblemWorkspace() {
   const params = useParams<{id:string}>();
   const problemId = Number(params.id);
@@ -24,6 +26,10 @@ export function ProblemWorkspace() {
   const [statement,setStatement] = useState<Statement|null>(null);
   const [statementError,setStatementError] = useState<string|null>(null);
   const [brownNoise,setBrownNoise] = useState(false);
+  const [aiMinimized,setAiMinimized] = useState(false);
+  const [hintQuestion,setHintQuestion] = useState("");
+  const [hintBusy,setHintBusy] = useState(false);
+  const [hintError,setHintError] = useState<string|null>(null);
   const noiseRef = useRef<{ context:AudioContext; source:AudioBufferSourceNode }|null>(null);
   const problem = data?.problems.find((item) => item.id === problemId);
   const parts = useMemo(() => data?.problemParts.filter((part) => part.problem_id === problemId) || [], [data,problemId]);
@@ -36,6 +42,15 @@ export function ProblemWorkspace() {
   const currentPart = parts.find((part) => part.id === active?.active_part_id);
   const currentPartTime = currentPart ? partTimes.get(currentPart.id) || 0 : 0;
   const workedParts = parts.filter((part) => (partTimes.get(part.id) || 0) > 0);
+  const hintEvents = ((data as unknown as {hintEvents?:HintEvent[]}|null)?.hintEvents || []).filter((hint) => hint.attempt_id === active?.id);
+  const currentHints = hintEvents.filter((hint) => hint.problem_part_id === currentPart?.id);
+  const currentPenalty = currentHints.reduce((sum,hint) => sum+Number(hint.penalty||0),0);
+  const currentAutonomy = currentPart?.score == null ? null : Math.max(0,currentPart.score-currentPenalty);
+  const scoredWorkedParts = workedParts.filter((part) => part.score != null);
+  const attemptPoints = scoredWorkedParts.reduce((sum,part) => sum+Number(part.score),0);
+  const attemptPenalty = hintEvents.reduce((sum,hint) => sum+Number(hint.penalty||0),0);
+  const attemptAutonomy = Math.max(0,attemptPoints-attemptPenalty);
+  const formatPoints = (value:number) => Number(value.toFixed(2)).toLocaleString("pt-BR");
 
   useEffect(() => {
     let cancelled = false;
@@ -136,6 +151,20 @@ export function ProblemWorkspace() {
     setBrownNoise(true);
   }
 
+  async function requestHint() {
+    if (!active || !currentPart || hintBusy) return;
+    setHintBusy(true); setHintError(null);
+    try {
+      await postJson(`/api/attempts/${active.id}/hints`,{
+        question:hintQuestion.trim() || undefined,
+        requestId:crypto.randomUUID(),
+      });
+      setHintQuestion("");
+      await refresh({silent:true});
+    } catch(error) {
+      setHintError(error instanceof Error ? error.message : "N\u00e3o foi poss\u00edvel pedir o hint");
+    } finally { setHintBusy(false); }
+  }
   return <div className="problem-page">
     <section className="problem-header">
       <div>
@@ -167,6 +196,31 @@ export function ProblemWorkspace() {
         <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-label={brownNoise ? "Parar brown noise" : "Ativar brown noise"} title={brownNoise ? "Parar brown noise" : "Ativar brown noise"} aria-pressed={brownNoise} onClick={toggleBrownNoise}><span aria-hidden="true">🔊︎</span></button>
       </aside>
     </div>
+    <aside className={`ai-hint-card ${aiMinimized ? "minimized" : ""}`}>
+      <button type="button" className="ai-hint-head" onClick={() => setAiMinimized((value) => !value)} aria-expanded={!aiMinimized}>
+        <span>IA{currentPart ? ` ? ${currentPart.code}` : ""}</span><b>{aiMinimized ? "?" : "?"}</b>
+      </button>
+      {!aiMinimized && <div className="ai-hint-body">
+        {!data.canEdit ? <p>Entre para usar hints.</p>
+          : !active || !currentPart ? <p>{"Clique em um item da quest\u00e3o para pedir um hint."}</p>
+          : <>
+            <div className="autonomy-line">
+              <span>Autonomia do item</span>
+              <strong>{currentAutonomy == null ? "sem pontua\u00e7\u00e3o" : `${formatPoints(currentAutonomy)} / ${formatPoints(Number(currentPart.score))}`}</strong>
+              {attemptPoints > 0 && <small>Tentativa: {formatPoints(attemptAutonomy)} / {formatPoints(attemptPoints)}</small>}
+            </div>
+            {currentHints.length > 0 && <div className="hint-history">{currentHints.map((hint) => <article key={hint.id}>
+              {hint.question && <small>Voc?: {hint.question}</small>}
+              <MathHtml className="hint-answer" html={hint.answer_html}/>
+              <span>{hint.full_solution ? "solu\u00e7\u00e3o completa" : `-${formatPoints(Number(hint.penalty))} ponto${Number(hint.penalty)===1?"":"s"}`}</span>
+            </article>)}</div>}
+            <textarea value={hintQuestion} maxLength={600} rows={2} onChange={(event) => setHintQuestion(event.target.value)} onKeyDown={(event) => { if ((event.ctrlKey||event.metaKey)&&event.key==="Enter") void requestHint(); }} placeholder="D?vida opcional?"/>
+            {hintError && <p className="hint-error">{hintError}</p>}
+            <button type="button" className="button wide" disabled={hintBusy} onClick={requestHint}>{hintBusy ? "Pensando?" : "Pedir hint"}</button>
+            <small className="hint-rule">{"A ajuda desconta de 0,1 a 0,5 ponto. Pedir a solu\u00e7\u00e3o completa zera o restante do item."}</small>
+          </>}
+      </div>}
+    </aside>
     <section className="panel history"><div className="section-head"><h2>Dados pessoais desta questão</h2><span>{attempts.length} tentativa(s)</span></div>{attempts.length ? <div className="history-list">{attempts.map((attempt) => { const seconds = data.timeSegments.filter((segment) => segment.attempt_id === attempt.id).reduce((sum,segment) => sum + secondsFor(segment,now),0); return <div key={attempt.id}><span>{attempt.status === "completed" ? "Concluída" : "Em andamento"}</span><strong>{formatTime(seconds)}</strong><small>{new Date(attempt.started_at).toLocaleString("pt-BR")}</small></div>; })}</div> : <p className="muted">Ainda não há treino registrado.</p>}</section>
   </div>;
 }

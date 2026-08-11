@@ -139,3 +139,21 @@ export const experiments = sqliteTable("user_experiments", {
 export const userSettingsV2 = sqliteTable("user_settings_v2", {
   ownerId:text("owner_id").primaryKey(), tbfDate:text("tbf_date"), updatedAt:text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+// Official solution material is cached server-side and is never sent in bootstrap data.
+export const hintSources = sqliteTable("phors_hint_sources", {
+  problemId:integer("problem_id").primaryKey().references(() => problems.id, { onDelete:"cascade" }),
+  markingText:text("marking_text"), solutionText:text("solution_text"),
+  fetchedAt:text("fetched_at").notNull(),
+});
+
+export const hintEvents = sqliteTable("user_hint_events", {
+  id:text("id").primaryKey(), ownerId:text("owner_id").notNull(),
+  attemptId:text("attempt_id").notNull().references(() => attempts.id, { onDelete:"cascade" }),
+  problemPartId:integer("problem_part_id").notNull().references(() => problemParts.id),
+  question:text("question"), answerText:text("answer_text").notNull(), answerHtml:text("answer_html").notNull(),
+  revealedStepsJson:text("revealed_steps_json").notNull().default("[]"),
+  penalty:real("penalty").notNull(), fullSolution:integer("full_solution", { mode:"boolean" }).notNull().default(false),
+  model:text("model").notNull(), inputTokens:integer("input_tokens"), outputTokens:integer("output_tokens"),
+  createdAt:text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (t) => [index("user_hint_events_attempt_part_idx").on(t.attemptId,t.problemPartId),index("user_hint_events_owner_idx").on(t.ownerId)]);
