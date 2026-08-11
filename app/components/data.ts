@@ -21,7 +21,7 @@ export function useTrainingData() {
 
 export function useClock(period=1000){const [now,setNow]=useState(0);useEffect(()=>{const tick=()=>setNow(Date.now());const first=setTimeout(tick,0);const id=setInterval(tick,period);return()=>{clearTimeout(first);clearInterval(id)}},[period]);return now;}
 
-export async function postJson(url:string, body:unknown){const response=await fetch(url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(body)});const payload=await response.json();if(!response.ok)throw new Error(payload.error||"Não foi possível salvar");return payload;}
+export async function postJson(url:string, body:unknown, method="POST"){const response=await fetch(url,{method,headers:{"content-type":"application/json"},body:JSON.stringify(body)});const payload=await response.json();if(!response.ok)throw new Error(payload.error||"Não foi possível salvar");return payload;}
 export function secondsFor(segment:Segment, now=Date.now()){if(segment.duration_seconds!=null)return Number(segment.duration_seconds);return Math.max(0,Math.floor((now-Date.parse(segment.started_at))/1000));}
 export function formatTime(total:number){const seconds=Math.max(0,Math.floor(total));const h=Math.floor(seconds/3600);const m=Math.floor((seconds%3600)/60);const s=seconds%60;return h?`${h}h ${String(m).padStart(2,"0")}m`:`${m}:${String(s).padStart(2,"0")}`;}
 export function formatHoursMinutes(total:number){const seconds=Math.max(0,Math.floor(total));const h=Math.floor(seconds/3600);const m=Math.floor((seconds%3600)/60);return h?`${h}h ${String(m).padStart(2,"0")}m`:`${m}m`;}
