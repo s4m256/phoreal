@@ -1,7 +1,7 @@
 import { load } from "cheerio";
 import { env } from "cloudflare:workers";
 import { ensureDatabase, getD1 } from "../../../../../db/runtime";
-import { requireSiteUserApi } from "../../../../chatgpt-auth";
+import { requireAiOwnerApi } from "../../../../chatgpt-auth";
 import { clampHintPenalty,parseHintModelOutput,safeHintHtml } from "../../../../lib/ai-hints.mjs";
 import { extractStructuredMarking,isStructuredMarking,markingForPart } from "../../../../lib/marking-scheme.mjs";
 import { renderStatementMath } from "../../../../lib/render-statement-math.mjs";
@@ -40,7 +40,7 @@ async function sourceFor(problemId:number,problem:ProblemRow) {
 }
 
 export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}) {
-  const user=await requireSiteUserApi(); if (user instanceof Response) return user;
+  const user=await requireAiOwnerApi(); if (user instanceof Response) return user;
   await ensureDatabase(); const {id}=await params;
   const attempt=await getD1().prepare("SELECT id FROM user_attempts WHERE id=? AND owner_id=?").bind(id,user.userId).first();
   if (!attempt) return Response.json({error:"Tentativa n\u00e3o encontrada"},{status:404});
@@ -49,7 +49,7 @@ export async function GET(_request:Request,{params}:{params:Promise<{id:string}>
 }
 
 export async function POST(request:Request,{params}:{params:Promise<{id:string}>}) {
-  const user=await requireSiteUserApi(); if (user instanceof Response) return user;
+  const user=await requireAiOwnerApi(); if (user instanceof Response) return user;
   await ensureDatabase(); const {id}=await params; const db=getD1();
   const body=await request.json() as {question?:string;requestId?:string};
   const requestId=typeof body.requestId === "string" && /^[a-zA-Z0-9-]{10,80}$/.test(body.requestId) ? body.requestId : crypto.randomUUID();
@@ -59,13 +59,16 @@ export async function POST(request:Request,{params}:{params:Promise<{id:string}>
   const attempt=await db.prepare("SELECT id,problem_id,active_part_id,status,owner_id FROM user_attempts WHERE id=? AND owner_id=?").bind(id,user.userId).first<AttemptRow>();
   if (!attempt || attempt.status !== "in_progress") return Response.json({error:"Inicie uma tentativa e selecione um item antes de pedir um hint"},{status:400});
   if (!attempt.active_part_id) return Response.json({error:"Clique no item em que voc\u00ea est\u00e1 trabalhando antes de pedir um hint"},{status:400});
-  const [part,problem,previous,worked]=await Promise.all([
+  const oneHourAgo=new Date(Date.now()-60*60*1000).toISOString();
+  const [part,problem,previous,worked,recentHints]=await Promise.all([
     db.prepare("SELECT id,code,ordinal,score,score_reliability,prompt_text,prompt_text_pt FROM phors_problem_parts WHERE id=? AND problem_id=?").bind(attempt.active_part_id,attempt.problem_id).first<PartRow>(),
     db.prepare("SELECT title,title_pt,statement_html_original,statement_html_pt,solution_url,marking_scheme_url FROM phors_problems WHERE id=?").bind(attempt.problem_id).first<ProblemRow>(),
     db.prepare("SELECT question,answer_text,revealed_steps_json,penalty,full_solution FROM user_hint_events WHERE attempt_id=? AND problem_part_id=? AND owner_id=? ORDER BY created_at").bind(id,attempt.active_part_id,user.userId).all(),
     db.prepare("SELECT COUNT(*) AS count FROM user_time_segments WHERE attempt_id=? AND problem_part_id=?").bind(id,attempt.active_part_id).first<{count:number}>(),
+    db.prepare("SELECT COUNT(*) AS count FROM user_hint_events WHERE owner_id=? AND created_at>=?").bind(user.userId,oneHourAgo).first<{count:number}>(),
   ]);
   if (!part || !problem || !Number(worked?.count)) return Response.json({error:"Comece a contar o tempo deste item antes de pedir um hint"},{status:400});
+  if (Number(recentHints?.count)>=30) return Response.json({error:"Limite de seguran\u00e7a atingido. Tente novamente em alguns minutos."},{status:429});
   const key=(env as unknown as {OPENAI_API_KEY?:string}).OPENAI_API_KEY;
   if (!key) return Response.json({error:"A chave da IA ainda n\u00e3o est\u00e1 configurada no site"},{status:503});
   let source:{marking_text:string|null;solution_text:string|null};

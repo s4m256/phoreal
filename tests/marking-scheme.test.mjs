@@ -29,4 +29,6 @@ test("hint route sends only the active item marking scheme for ordinary hints",a
   assert.match(route,/MARKING SCHEME EXCLUSIVO DO ITEM \$\{part\.code\}:\\n\$\{itemMarking\}/);
   assert.match(route,/solutionReference=asksFull \?/);
   assert.doesNotMatch(route,/\$\{source\.marking_text\}/);
+  assert.match(route,/requireAiOwnerApi\(\)/);
+  assert.match(route,/Number\(recentHints\?\.count\)>=30/);
 });

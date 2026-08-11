@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { env } from "cloudflare:workers";
 
 export type ChatGPTUser = {
   userId: string;
@@ -41,6 +42,18 @@ export async function getChatGPTUser(): Promise<ChatGPTUser | null> {
 
 export async function requireSiteUserApi(): Promise<ChatGPTUser | Response> {
   return await getChatGPTUser() ?? Response.json({ error:"Entre com o ChatGPT para registrar seus dados" },{status:401});
+}
+
+export function canUsePrivateAi(user: ChatGPTUser | null): boolean {
+  const ownerId = (env as unknown as { AI_OWNER_USER_ID?: string }).AI_OWNER_USER_ID;
+  return Boolean(user && ownerId && user.userId === ownerId);
+}
+
+export async function requireAiOwnerApi(): Promise<ChatGPTUser | Response> {
+  const user = await getChatGPTUser();
+  if (!user) return Response.json({ error:"Entre com o ChatGPT para usar a IA" },{status:401});
+  if (!canUsePrivateAi(user)) return Response.json({ error:"A IA deste site \u00e9 privada" },{status:403});
+  return user;
 }
 
 export async function requireChatGPTUser(

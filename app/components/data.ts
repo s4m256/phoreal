@@ -11,7 +11,7 @@ export type Segment = { id:string; attempt_id:string; state:"initial_reading"|"i
 export type MockExam = { id:string; exam_name:string; date:string; type:"theoretical"|"experimental"; total_score:number; drive_url:string|null };
 export type MockScore = { id:string; mock_exam_id:string; problem_number:number; problem_label:string|null; score:number };
 export type Experiment = { id:string; title:string; date:string|null; image_url:string|null; notes:string|null; created_at:string };
-export type TrainingData = { canEdit:boolean; competitions:unknown[]; exams:Exam[]; problems:Problem[]; problemParts:Part[]; tags:Tag[]; problemTags:ProblemTag[]; attempts:Attempt[]; timeSegments:Segment[]; mockExams:MockExam[]; mockExamProblemScores:MockScore[]; experiments:Experiment[]; settings:{ tbf_date:string|null } };
+export type TrainingData = { canEdit:boolean; canUseAi:boolean; competitions:unknown[]; exams:Exam[]; problems:Problem[]; problemParts:Part[]; tags:Tag[]; problemTags:ProblemTag[]; attempts:Attempt[]; timeSegments:Segment[]; mockExams:MockExam[]; mockExamProblemScores:MockScore[]; experiments:Experiment[]; settings:{ tbf_date:string|null } };
 
 export function useTrainingData() {
   const [data,setData]=useState<TrainingData|null>(null); const [error,setError]=useState<string|null>(null); const [loading,setLoading]=useState(true);

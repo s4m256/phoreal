@@ -196,7 +196,7 @@ export function ProblemWorkspace() {
         <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-label={brownNoise ? "Parar brown noise" : "Ativar brown noise"} title={brownNoise ? "Parar brown noise" : "Ativar brown noise"} aria-pressed={brownNoise} onClick={toggleBrownNoise}><span aria-hidden="true">🔊︎</span></button>
       </aside>
     </div>
-    <aside className={`ai-hint-card ${aiMinimized ? "minimized" : ""}`}>
+    {data.canUseAi && <aside className={`ai-hint-card ${aiMinimized ? "minimized" : ""}`}>
       <button type="button" className="ai-hint-head" onClick={() => setAiMinimized((value) => !value)} aria-expanded={!aiMinimized}>
         <span>IA{currentPart ? ` ? ${currentPart.code}` : ""}</span><b>{aiMinimized ? "?" : "?"}</b>
       </button>
@@ -220,7 +220,7 @@ export function ProblemWorkspace() {
             <small className="hint-rule">{"O hint segue o marking scheme deste item e desconta de 0,1 a 0,5 ponto. Pedir a solu\u00e7\u00e3o completa zera o restante."}</small>
           </>}
       </div>}
-    </aside>
+    </aside>}
     <section className="panel history"><div className="section-head"><h2>Dados pessoais desta questão</h2><span>{attempts.length} tentativa(s)</span></div>{attempts.length ? <div className="history-list">{attempts.map((attempt) => { const seconds = data.timeSegments.filter((segment) => segment.attempt_id === attempt.id).reduce((sum,segment) => sum + secondsFor(segment,now),0); return <div key={attempt.id}><span>{attempt.status === "completed" ? "Concluída" : "Em andamento"}</span><strong>{formatTime(seconds)}</strong><small>{new Date(attempt.started_at).toLocaleString("pt-BR")}</small></div>; })}</div> : <p className="muted">Ainda não há treino registrado.</p>}</section>
   </div>;
 }
