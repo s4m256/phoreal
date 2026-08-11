@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "katex/dist/katex.min.css";
+@import "./timer-budget.css";
 
 :root{--bg:#f4f4f4;--panel:#fff;--ink:#222;--muted:#666;--line:#b9b9b9;--accent:#315f9b;--accent-soft:#eef3f8;--danger:#a52a2a;--shadow:none}
 .problem-main-column{min-width:0}.statement-panel{overflow:hidden}.review-badge{border:1px solid #d4a72c;background:#fff8db;color:#765b00;padding:4px 7px;font-size:11px;font-weight:700}.statement-content{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;overflow-wrap:anywhere}.statement-content img{display:block;max-width:100%;height:auto;margin:14px auto}.statement-content table{width:100%;display:block;overflow:auto}.statement-content .statement-row{margin:14px 0}.statement-content .statement-part-label{display:inline-block;margin-right:8px;color:var(--accent);font-weight:800}.statement-content a{color:#0645ad}
