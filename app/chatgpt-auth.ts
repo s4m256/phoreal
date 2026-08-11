@@ -45,8 +45,13 @@ export async function requireSiteUserApi(): Promise<ChatGPTUser | Response> {
 }
 
 export function canUsePrivateAi(user: ChatGPTUser | null): boolean {
-  const ownerId = (env as unknown as { AI_OWNER_USER_ID?: string }).AI_OWNER_USER_ID;
-  return Boolean(user && ownerId && user.userId === ownerId);
+  if (!user) return false;
+  const bindings = env as unknown as { AI_OWNER_USER_ID?: string; AI_OWNER_EMAIL?: string };
+  const ownerEmail = bindings.AI_OWNER_EMAIL?.trim().toLowerCase();
+  return Boolean(
+    (bindings.AI_OWNER_USER_ID && user.userId === bindings.AI_OWNER_USER_ID) ||
+    (ownerEmail && user.email.trim().toLowerCase() === ownerEmail)
+  );
 }
 
 export async function requireAiOwnerApi(): Promise<ChatGPTUser | Response> {
