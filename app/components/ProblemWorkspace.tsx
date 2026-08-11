@@ -26,11 +26,12 @@ export function ProblemWorkspace() {
   const [statement,setStatement] = useState<Statement|null>(null);
   const [statementError,setStatementError] = useState<string|null>(null);
   const [brownNoise,setBrownNoise] = useState(false);
+  const [noiseVolume,setNoiseVolume] = useState(0.3);
   const [aiMinimized,setAiMinimized] = useState(false);
   const [hintQuestion,setHintQuestion] = useState("");
   const [hintBusy,setHintBusy] = useState(false);
   const [hintError,setHintError] = useState<string|null>(null);
-  const noiseRef = useRef<{ context:AudioContext; source:AudioBufferSourceNode }|null>(null);
+  const noiseRef = useRef<{ context:AudioContext; source:AudioBufferSourceNode; gain:GainNode }|null>(null);
   const problem = data?.problems.find((item) => item.id === problemId);
   const parts = useMemo(() => data?.problemParts.filter((part) => part.problem_id === problemId) || [], [data,problemId]);
   const attempts = useMemo(() => data?.attempts.filter((attempt) => attempt.problem_id === problemId) || [], [data,problemId]);
@@ -144,11 +145,16 @@ export function ProblemWorkspace() {
     const gain = context.createGain();
     source.buffer = buffer;
     source.loop = true;
-    gain.gain.value = 0.12;
+    gain.gain.value = noiseVolume;
     source.connect(gain).connect(context.destination);
     source.start();
-    noiseRef.current = { context,source };
+    noiseRef.current = { context,source,gain };
     setBrownNoise(true);
+  }
+
+  function changeNoiseVolume(value:number) {
+    setNoiseVolume(value);
+    if (noiseRef.current) noiseRef.current.gain.gain.value=value;
   }
 
   async function requestHint() {
@@ -173,9 +179,7 @@ export function ProblemWorkspace() {
         <div className="tag-line">{tags.map((tag) => <em key={tag}>{tag}</em>)}</div>
       </div>
       <div className="source-links">
-        {problem.statement_url && <a href={problem.statement_url} target="_blank" rel="noreferrer">Enunciado ↗</a>}
         {problem.solution_url && <a href={problem.solution_url} target="_blank" rel="noreferrer">Solução ↗</a>}
-        {problem.marking_scheme_url && <a href={problem.marking_scheme_url} target="_blank" rel="noreferrer">Pontuação ↗</a>}
       </div>
     </section>
     <div className="workspace">
@@ -191,14 +195,27 @@ export function ProblemWorkspace() {
       <aside className={`timer-card ${minimized ? "minimized" : ""}`}>
         {!data.canEdit ? <><span className="timer-state">Entre para treinar</span><p className="timer-instruction">Faça login para registrar seu próprio tempo.</p></> : <>
         <div className="timer-top"><div><span className="timer-state">{!active ? "Sem tentativa" : active.current_state === "paused" ? currentPart ? `Pausado · ${currentPart.code}` : "Selecione um item" : `Item ${currentPart?.code || ""}`}</span><strong className="timer-total">{formatTime(total)}</strong>{minimized && currentPart && <small className="timer-mini-time">{currentPart.code} · {formatTime(currentPartTime)}</small>}</div>{active && <button className="icon-button" onClick={() => setMinimized((value) => !value)} aria-label={minimized ? "Expandir cronômetro" : "Minimizar cronômetro"}>{minimized ? "□" : "—"}</button>}</div>
-        {!minimized && <>{active ? <><div className="timer-details">{currentPart ? <div><dt>{active.current_state === "paused" ? "Último item" : "Item atual"} · {currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}</dd>{active.current_state === "item_active" && <button type="button" className="timer-discard" disabled={busy} onClick={discardCurrent} aria-label={`Descartar intervalo atual de ${currentPart.code}`} title="Descartar somente o intervalo atual">↶</button>}</span></div> : <p className="timer-instruction">Clique em um item para começar.</p>}{workedParts.length > 0 && <div className="timer-part-times"><span>Tempo por item</span>{workedParts.map((part) => <small key={part.id}><b>{part.code}</b>{formatTime(partTimes.get(part.id) || 0)}</small>)}</div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>FINALIZAR QUESTÃO</button></div><p className="shortcuts"><kbd>Espaço</kbd>/<kbd>P</kbd> pausa · <kbd>M</kbd> minimiza</p></> : <p className="timer-instruction">Clique em qualquer item para iniciar uma tentativa e contar o tempo.</p>}</>}
+        {!minimized && <>{active ? <><div className="timer-details">{currentPart ? <div><dt>{active.current_state === "paused" ? "Último item" : "Item atual"} · {currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}</dd>{active.current_state === "item_active" && <button type="button" className="timer-discard" disabled={busy} onClick={discardCurrent} aria-label={`Descartar intervalo atual de ${currentPart.code}`} title="Descartar somente o intervalo atual">↶</button>}</span></div> : <p className="timer-instruction">Clique em um item para começar.</p>}{workedParts.length > 0 && <div className="timer-part-times"><span>Tempo por item</span>{workedParts.map((part) => <small key={part.id}><b>{part.code}</b>{formatTime(partTimes.get(part.id) || 0)}</small>)}</div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>FINALIZAR QUESTÃO</button></div></> : <p className="timer-instruction">Clique em qualquer item para iniciar uma tentativa e contar o tempo.</p>}</>}
         </>}
+        {brownNoise && (
+          <input
+            className="noise-volume"
+            type="range"
+            min="0.05"
+            max="0.6"
+            step="0.05"
+            value={noiseVolume}
+            onChange={(event) => changeNoiseVolume(Number(event.target.value))}
+            aria-label="Volume do brown noise"
+            title={`Volume ${Math.round(noiseVolume * 100)}%`}
+          />
+        )}
         <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-label={brownNoise ? "Parar brown noise" : "Ativar brown noise"} title={brownNoise ? "Parar brown noise" : "Ativar brown noise"} aria-pressed={brownNoise} onClick={toggleBrownNoise}><span aria-hidden="true">🔊︎</span></button>
       </aside>
     </div>
     {data.canUseAi && <aside className={`ai-hint-card ${aiMinimized ? "minimized" : ""}`}>
       <button type="button" className="ai-hint-head" onClick={() => setAiMinimized((value) => !value)} aria-expanded={!aiMinimized}>
-        <span>IA{currentPart ? ` ? ${currentPart.code}` : ""}</span><b>{aiMinimized ? "?" : "?"}</b>
+        <span>IA{currentPart ? ` · ${currentPart.code}` : ""}</span><b>{aiMinimized ? "+" : "−"}</b>
       </button>
       {!aiMinimized && <div className="ai-hint-body">
         {!data.canEdit ? <p>Entre para usar hints.</p>
@@ -210,14 +227,14 @@ export function ProblemWorkspace() {
               {attemptPoints > 0 && <small>Tentativa: {formatPoints(attemptAutonomy)} / {formatPoints(attemptPoints)}</small>}
             </div>
             {currentHints.length > 0 && <div className="hint-history">{currentHints.map((hint) => <article key={hint.id}>
-              {hint.question && <small>Voc?: {hint.question}</small>}
+              {hint.question && <small>Você: {hint.question}</small>}
               <MathHtml className="hint-answer" html={hint.answer_html}/>
               <span>{hint.full_solution ? "solu\u00e7\u00e3o completa" : `-${formatPoints(Number(hint.penalty))} ponto${Number(hint.penalty)===1?"":"s"}`}</span>
             </article>)}</div>}
-            <textarea value={hintQuestion} maxLength={600} rows={2} onChange={(event) => setHintQuestion(event.target.value)} onKeyDown={(event) => { if ((event.ctrlKey||event.metaKey)&&event.key==="Enter") void requestHint(); }} placeholder="D?vida opcional?"/>
+            <textarea value={hintQuestion} maxLength={600} rows={2} onChange={(event) => setHintQuestion(event.target.value)} onKeyDown={(event) => { if (event.key==="Enter"&&!event.shiftKey&&!event.nativeEvent.isComposing) { event.preventDefault(); void requestHint(); } }} placeholder="Dúvida opcional"/>
             {hintError && <p className="hint-error">{hintError}</p>}
-            <button type="button" className="button wide" disabled={hintBusy} onClick={requestHint}>{hintBusy ? "Pensando?" : "Pedir hint"}</button>
-            <small className="hint-rule">{"O hint segue o marking scheme deste item e desconta de 0,1 a 0,5 ponto. Pedir a solu\u00e7\u00e3o completa zera o restante."}</small>
+            <button type="button" className="button wide" disabled={hintBusy} onClick={requestHint}>{hintBusy ? "Pensando…" : "Pedir hint"}</button>
+            <small className="hint-rule">Enter envia · Shift+Enter quebra a linha.</small>
           </>}
       </div>}
     </aside>}
