@@ -3,6 +3,7 @@ import Link from "next/link";
 import { type TrainingData, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 import { compareProblemCodes, isTheoryTag } from "./training-view-model.mjs";
+import { selectedProblemArea } from "../lib/selected-problems.mjs";
 
 export function Catalog() {
   const {data,error,loading}=useTrainingData();
@@ -32,6 +33,7 @@ function ExamBlock({data,examId}:{data:TrainingData;examId:number}) {
     const inProgress=attempts.some((attempt) => attempt.status==="in_progress");
     const completionStatus=completed===1?"concluída":completed>1?`${completed}× concluída`:"";
     const status=[inProgress?"em andamento":"",completionStatus].filter(Boolean).join(" · ");
-    return <Link className="problem-row" href={`/questao/${problem.id}`} key={problem.id}><span className="problem-code">{problem.code}</span><span className="problem-main"><strong>{translated&&problem.title_pt?problem.title_pt:problem.title}</strong><span className="tag-line">{tags.map((tag) => <em key={tag}>{tag}</em>)}</span>{status&&<span className="problem-status">{status}</span>}</span></Link>;
+    const selectedArea=selectedProblemArea(problem.source_id);
+    return <Link className="problem-row" href={`/questao/${problem.id}`} key={problem.id}><span className="problem-code">{problem.code}{selectedArea&&<span className="selected-star" title={`Selecionada em ${selectedArea}`} aria-label={`Selecionada em ${selectedArea}`}>★</span>}</span><span className="problem-main"><strong>{translated&&problem.title_pt?problem.title_pt:problem.title}</strong><span className="tag-line">{tags.map((tag) => <em key={tag}>{tag}</em>)}</span>{status&&<span className="problem-status">{status}</span>}</span></Link>;
   })}</div></section>;
 }

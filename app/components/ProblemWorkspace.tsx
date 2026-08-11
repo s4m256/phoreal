@@ -5,6 +5,7 @@ import { formatTime, postJson, secondsFor, useClock, useTrainingData } from "./d
 import { Loading } from "./Loading";
 import { MathHtml } from "./MathContent";
 import { isTheoryTag } from "./training-view-model.mjs";
+import { selectedProblemArea } from "../lib/selected-problems.mjs";
 
 type Statement = {
   html:string|null;
@@ -26,12 +27,11 @@ export function ProblemWorkspace() {
   const [statement,setStatement] = useState<Statement|null>(null);
   const [statementError,setStatementError] = useState<string|null>(null);
   const [brownNoise,setBrownNoise] = useState(false);
-  const [noiseVolume,setNoiseVolume] = useState(0.3);
   const [aiMinimized,setAiMinimized] = useState(false);
   const [hintQuestion,setHintQuestion] = useState("");
   const [hintBusy,setHintBusy] = useState(false);
   const [hintError,setHintError] = useState<string|null>(null);
-  const noiseRef = useRef<{ context:AudioContext; source:AudioBufferSourceNode; gain:GainNode }|null>(null);
+  const noiseRef = useRef<{ context:AudioContext; source:AudioBufferSourceNode }|null>(null);
   const problem = data?.problems.find((item) => item.id === problemId);
   const parts = useMemo(() => data?.problemParts.filter((part) => part.problem_id === problemId) || [], [data,problemId]);
   const attempts = useMemo(() => data?.attempts.filter((attempt) => attempt.problem_id === problemId) || [], [data,problemId]);
@@ -95,6 +95,7 @@ export function ProblemWorkspace() {
     const tag = data.tags.find((item) => item.id === row.tag_id);
     return translated && tag?.name_pt ? tag.name_pt : tag?.name;
   }).filter((tag): tag is string => Boolean(tag) && isTheoryTag(tag));
+  const selectedArea = selectedProblemArea(problem.source_id);
 
   async function selectPart(partId:number) {
     if (!data.canEdit) return;
@@ -145,16 +146,11 @@ export function ProblemWorkspace() {
     const gain = context.createGain();
     source.buffer = buffer;
     source.loop = true;
-    gain.gain.value = noiseVolume;
+    gain.gain.value = 0.3;
     source.connect(gain).connect(context.destination);
     source.start();
-    noiseRef.current = { context,source,gain };
+    noiseRef.current = { context,source };
     setBrownNoise(true);
-  }
-
-  function changeNoiseVolume(value:number) {
-    setNoiseVolume(value);
-    if (noiseRef.current) noiseRef.current.gain.gain.value=value;
   }
 
   async function requestHint() {
@@ -175,7 +171,7 @@ export function ProblemWorkspace() {
     <section className="problem-header">
       <div>
         <p className="eyebrow">{data.exams.find((exam) => exam.id === problem.exam_id)?.code} · {problem.kind === "experimental" ? "Experimental" : "Teórica"}</p>
-        <h1><span>{problem.code}</span> {title}</h1>
+        <h1><span>{problem.code}</span> {title}{selectedArea&&<span className="selected-star problem-selected-star" title={`Selecionada em ${selectedArea}`} aria-label={`Selecionada em ${selectedArea}`}>★</span>}</h1>
         <div className="tag-line">{tags.map((tag) => <em key={tag}>{tag}</em>)}</div>
       </div>
       <div className="source-links">
@@ -197,19 +193,6 @@ export function ProblemWorkspace() {
         <div className="timer-top"><div><span className="timer-state">{!active ? "Sem tentativa" : active.current_state === "paused" ? currentPart ? `Pausado · ${currentPart.code}` : "Selecione um item" : `Item ${currentPart?.code || ""}`}</span><strong className="timer-total">{formatTime(total)}</strong>{minimized && currentPart && <small className="timer-mini-time">{currentPart.code} · {formatTime(currentPartTime)}</small>}</div>{active && <button className="icon-button" onClick={() => setMinimized((value) => !value)} aria-label={minimized ? "Expandir cronômetro" : "Minimizar cronômetro"}>{minimized ? "□" : "—"}</button>}</div>
         {!minimized && <>{active ? <><div className="timer-details">{currentPart ? <div><dt>{active.current_state === "paused" ? "Último item" : "Item atual"} · {currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}</dd>{active.current_state === "item_active" && <button type="button" className="timer-discard" disabled={busy} onClick={discardCurrent} aria-label={`Descartar intervalo atual de ${currentPart.code}`} title="Descartar somente o intervalo atual">↶</button>}</span></div> : <p className="timer-instruction">Clique em um item para começar.</p>}{workedParts.length > 0 && <div className="timer-part-times"><span>Tempo por item</span>{workedParts.map((part) => <small key={part.id}><b>{part.code}</b>{formatTime(partTimes.get(part.id) || 0)}</small>)}</div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>FINALIZAR QUESTÃO</button></div></> : <p className="timer-instruction">Clique em qualquer item para iniciar uma tentativa e contar o tempo.</p>}</>}
         </>}
-        {brownNoise && (
-          <input
-            className="noise-volume"
-            type="range"
-            min="0.05"
-            max="0.6"
-            step="0.05"
-            value={noiseVolume}
-            onChange={(event) => changeNoiseVolume(Number(event.target.value))}
-            aria-label="Volume do brown noise"
-            title={`Volume ${Math.round(noiseVolume * 100)}%`}
-          />
-        )}
         <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-label={brownNoise ? "Parar brown noise" : "Ativar brown noise"} title={brownNoise ? "Parar brown noise" : "Ativar brown noise"} aria-pressed={brownNoise} onClick={toggleBrownNoise}><span aria-hidden="true">🔊︎</span></button>
       </aside>
     </div>

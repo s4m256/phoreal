@@ -3,6 +3,7 @@
 import renderMathInElement from "katex/contrib/auto-render";
 import { memo, useEffect, useLayoutEffect, useRef } from "react";
 import { normalizeLegacyLatex,normalizeMathMarkup,normalizePhysicsUnits } from "../lib/physics-math.mjs";
+import { isStatementPartHeading } from "../lib/statement-headings.mjs";
 
 const delimiters = [
   { left: "$$", right: "$$", display: true },
@@ -46,7 +47,7 @@ function addPartButtons(root:HTMLElement, parts:LinkedPart[], disabled:boolean) 
   }
 
   for (const section of root.querySelectorAll<HTMLElement>(".statement-section")) {
-    if (/^Parte\s+[A-Z0-9]+(?:[.:]|\s)/i.test((section.textContent || "").trim())) {
+    if (isStatementPartHeading(section.textContent || "")) {
       section.classList.add("statement-part-heading");
     }
   }

@@ -9,7 +9,7 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "vinext start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/statement-images.test.mjs tests/statement-math.test.mjs tests/training-core.test.mjs tests/training-view-model.test.mjs tests/phors-importer.test.mjs tests/openai-translation-transport.test.mjs",
+    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/selected-problems.test.mjs tests/statement-headings.test.mjs tests/statement-images.test.mjs tests/statement-math.test.mjs tests/training-core.test.mjs tests/training-view-model.test.mjs tests/phors-importer.test.mjs tests/openai-translation-transport.test.mjs",
     "test:hints": "node --test tests/ai-hints.test.mjs tests/marking-scheme.test.mjs",
     "test:training": "node --test tests/training-core.test.mjs",
     "test:phors": "node --test tests/phors-importer.test.mjs",
