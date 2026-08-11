@@ -217,7 +217,7 @@ export function ProblemWorkspace() {
             <textarea value={hintQuestion} maxLength={600} rows={2} onChange={(event) => setHintQuestion(event.target.value)} onKeyDown={(event) => { if ((event.ctrlKey||event.metaKey)&&event.key==="Enter") void requestHint(); }} placeholder="D?vida opcional?"/>
             {hintError && <p className="hint-error">{hintError}</p>}
             <button type="button" className="button wide" disabled={hintBusy} onClick={requestHint}>{hintBusy ? "Pensando?" : "Pedir hint"}</button>
-            <small className="hint-rule">{"A ajuda desconta de 0,1 a 0,5 ponto. Pedir a solu\u00e7\u00e3o completa zera o restante do item."}</small>
+            <small className="hint-rule">{"O hint segue o marking scheme deste item e desconta de 0,1 a 0,5 ponto. Pedir a solu\u00e7\u00e3o completa zera o restante."}</small>
           </>}
       </div>}
     </aside>
