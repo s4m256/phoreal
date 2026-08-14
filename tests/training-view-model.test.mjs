@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { allocatePartTimeLimits, compareProblemCodes, dayKey, fixedPeriodDays, isTheoryTag, PROBLEM_TIME_BUDGET_SECONDS, splitSegmentByDay } from "../app/components/training-view-model.mjs";
+import { compareProblemCodes, dayKey, fixedPeriodDays, isTheoryTag, splitSegmentByDay } from "../app/components/training-view-model.mjs";
 
 test("fixed training period contains every day from start through TBF", () => {
   const start = new Date(2026, 4, 2);
@@ -35,15 +35,3 @@ test("catalog orders T, E and PE using natural numeric order", () => {
 });
 
 test("technical catalog tags are hidden from content views",()=>{assert.equal(isTheoryTag("X"),false);assert.equal(isTheoryTag("Y25"),false);assert.equal(isTheoryTag("2025"),false);assert.equal(isTheoryTag("Mecânica"),true)});
-
-test("two hours are distributed by item score and sum exactly to the problem budget",()=>{
-  const limits=allocatePartTimeLimits([{id:1,score:1},{id:2,score:2},{id:3,score:3}]);
-  assert.equal(PROBLEM_TIME_BUDGET_SECONDS,7200);
-  assert.deepEqual([...limits.values()],[1200,2400,3600]);
-  assert.equal([...limits.values()].reduce((sum,value)=>sum+value,0),7200);
-});
-
-test("incomplete scores fall back to an equal and exact distribution",()=>{
-  const limits=allocatePartTimeLimits([{id:1,score:2},{id:2,score:null},{id:3,score:1}]);
-  assert.deepEqual([...limits.values()],[2400,2400,2400]);
-});

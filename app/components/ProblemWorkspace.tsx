@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { formatTime, postJson, secondsFor, useClock, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 import { MathHtml } from "./MathContent";
-import { allocatePartTimeLimits, isTheoryTag, PROBLEM_TIME_BUDGET_SECONDS } from "./training-view-model.mjs";
+import { isTheoryTag } from "./training-view-model.mjs";
 import { selectedProblemArea } from "../lib/selected-problems.mjs";
 
 type Statement = {
@@ -42,18 +42,10 @@ export function ProblemWorkspace() {
   for (const segment of segments) if (segment.problem_part_id) partTimes.set(segment.problem_part_id,(partTimes.get(segment.problem_part_id) || 0) + secondsFor(segment,now));
   const currentPart = parts.find((part) => part.id === active?.active_part_id);
   const currentPartTime = currentPart ? partTimes.get(currentPart.id) || 0 : 0;
-  const partTimeLimits = useMemo(() => allocatePartTimeLimits(parts),[parts]);
-  const currentPartLimit = currentPart ? partTimeLimits.get(currentPart.id) || null : null;
-  const itemOverTime = Boolean(currentPartLimit && currentPartTime >= currentPartLimit);
-  const workedParts = parts.filter((part) => (partTimes.get(part.id) || 0) > 0);
   const hintEvents = ((data as unknown as {hintEvents?:HintEvent[]}|null)?.hintEvents || []).filter((hint) => hint.attempt_id === active?.id);
   const currentHints = hintEvents.filter((hint) => hint.problem_part_id === currentPart?.id);
   const currentPenalty = currentHints.reduce((sum,hint) => sum+Number(hint.penalty||0),0);
   const currentAutonomy = currentPart?.score == null ? null : Math.max(0,currentPart.score-currentPenalty);
-  const scoredWorkedParts = workedParts.filter((part) => part.score != null);
-  const attemptPoints = scoredWorkedParts.reduce((sum,part) => sum+Number(part.score),0);
-  const attemptPenalty = hintEvents.reduce((sum,hint) => sum+Number(hint.penalty||0),0);
-  const attemptAutonomy = Math.max(0,attemptPoints-attemptPenalty);
   const formatPoints = (value:number) => Number(value.toFixed(2)).toLocaleString("pt-BR");
 
   useEffect(() => {
@@ -157,7 +149,7 @@ export function ProblemWorkspace() {
   }
 
   async function requestHint() {
-    if (!active || !currentPart || hintBusy) return;
+    if (!active || !currentPart || hintBusy || !hintQuestion.trim()) return;
     setHintBusy(true); setHintError(null);
     try {
       await postJson(`/api/attempts/${active.id}/hints`,{
@@ -191,12 +183,14 @@ export function ProblemWorkspace() {
             : <p className="muted">Enunciado não disponível no catálogo público.</p>}
         </section>
       </div>
-      <aside className={`timer-card ${minimized ? "minimized" : ""} ${itemOverTime ? "over-time" : ""}`}>
-        {!data.canEdit ? <><span className="timer-state">Entre para treinar</span><p className="timer-instruction">Faça login para registrar seu próprio tempo.</p></> : <>
-        <div className="timer-top"><div><span className="timer-state">{!active ? "Sem tentativa" : active.current_state === "paused" ? currentPart ? `Pausado · ${currentPart.code}` : "Selecione um item" : `Item ${currentPart?.code || ""}`}</span><strong className="timer-total">{formatTime(total)}</strong>{minimized && currentPart && <small className="timer-mini-time">{currentPart.code} · {formatTime(currentPartTime)}{currentPartLimit ? ` / ${formatTime(currentPartLimit)}` : ""}</small>}</div>{active && <button className="icon-button" onClick={() => setMinimized((value) => !value)} aria-label={minimized ? "Expandir cronômetro" : "Minimizar cronômetro"}>{minimized ? "□" : "—"}</button>}</div>
-        {!minimized && <>{active ? <><div className="timer-details">{currentPart ? <><div><dt>{active.current_state === "paused" ? "Último item" : "Item atual"} · {currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}{currentPartLimit ? ` / ${formatTime(currentPartLimit)}` : ""}</dd>{active.current_state === "item_active" && <button type="button" className="timer-discard" disabled={busy} onClick={discardCurrent} aria-label={`Descartar intervalo atual de ${currentPart.code}`} title="Descartar somente o intervalo atual">↶</button>}</span></div>{itemOverTime && <p className="timer-over-warning" aria-live="polite">Tempo do item atingido · considere pedir uma dica.</p>}</> : <p className="timer-instruction">Clique em um item para começar.</p>}{workedParts.length > 0 && <div className="timer-part-times"><span>Tempo por item · meta total {formatTime(PROBLEM_TIME_BUDGET_SECONDS)}</span>{workedParts.map((part) => { const elapsed=partTimes.get(part.id)||0; const limit=partTimeLimits.get(part.id); return <small className={limit&&elapsed>=limit?"over-time":""} key={part.id}><b>{part.code}</b>{formatTime(elapsed)}{limit?` / ${formatTime(limit)}`:""}</small>; })}</div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>FINALIZAR QUESTÃO</button></div></> : <p className="timer-instruction">Clique em qualquer item para iniciar uma tentativa e contar o tempo.</p>}</>}
-        </>}
-        <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-label={brownNoise ? "Parar brown noise" : "Ativar brown noise"} title={brownNoise ? "Parar brown noise" : "Ativar brown noise"} aria-pressed={brownNoise} onClick={toggleBrownNoise}><span aria-hidden="true">🔊︎</span></button>
+      <aside className={`timer-card ${minimized ? "minimized" : ""}`}>
+        {!data.canEdit ? <><span className="timer-state">Entre para treinar</span><p className="timer-instruction">Faça login para registrar seu próprio tempo.</p></> : minimized ?
+          <button type="button" className="timer-collapsed" onClick={() => setMinimized(false)} aria-label="Expandir cronômetro" title="Expandir cronômetro">⏱</button>
+          : <>
+            <div className="timer-top"><div><span className="timer-state">{!active ? "Clique em um item" : active.current_state === "paused" ? currentPart ? `Pausado · ${currentPart.code}` : "Pausado" : `Item ${currentPart?.code || ""}`}</span>{active && <strong className="timer-total">{formatTime(total)}</strong>}</div>{active && <button className="icon-button" onClick={() => setMinimized(true)} aria-label="Minimizar cronômetro">—</button>}</div>
+            {active && <><div className="timer-details">{currentPart && <div><dt>{currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}</dd>{active.current_state === "item_active" && <button type="button" className="timer-discard" disabled={busy} onClick={discardCurrent} aria-label={`Descartar intervalo atual de ${currentPart.code}`} title="Descartar somente o intervalo atual">↶</button>}</span></div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>Finalizar</button></div></>}
+            <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-label={brownNoise ? "Parar brown noise" : "Ativar brown noise"} title={brownNoise ? "Parar brown noise" : "Ativar brown noise"} aria-pressed={brownNoise} onClick={toggleBrownNoise}><span aria-hidden="true">🔊︎</span></button>
+          </>}
       </aside>
     </div>
     {data.canUseAi && <aside className={`ai-hint-card ${aiMinimized ? "minimized" : ""}`}>
@@ -210,17 +204,14 @@ export function ProblemWorkspace() {
             <div className="autonomy-line">
               <span>Autonomia do item</span>
               <strong>{currentAutonomy == null ? "sem pontua\u00e7\u00e3o" : `${formatPoints(currentAutonomy)} / ${formatPoints(Number(currentPart.score))}`}</strong>
-              {attemptPoints > 0 && <small>Tentativa: {formatPoints(attemptAutonomy)} / {formatPoints(attemptPoints)}</small>}
             </div>
             {currentHints.length > 0 && <div className="hint-history">{currentHints.map((hint) => <article key={hint.id}>
               {hint.question && <small>Você: {hint.question}</small>}
               <MathHtml className="hint-answer" html={hint.answer_html}/>
               <span>{hint.full_solution ? "solu\u00e7\u00e3o completa" : `-${formatPoints(Number(hint.penalty))} ponto${Number(hint.penalty)===1?"":"s"}`}</span>
             </article>)}</div>}
-            <textarea value={hintQuestion} maxLength={600} rows={2} onChange={(event) => setHintQuestion(event.target.value)} onKeyDown={(event) => { if (event.key==="Enter"&&!event.shiftKey&&!event.nativeEvent.isComposing) { event.preventDefault(); void requestHint(); } }} placeholder="Dúvida opcional"/>
+            <textarea value={hintQuestion} maxLength={600} rows={2} disabled={hintBusy} onChange={(event) => setHintQuestion(event.target.value)} onKeyDown={(event) => { if (event.key==="Enter"&&!event.shiftKey&&!event.nativeEvent.isComposing) { event.preventDefault(); void requestHint(); } }} placeholder={hintBusy ? "Pensando…" : "Escreva sua dúvida e pressione Enter"}/>
             {hintError && <p className="hint-error">{hintError}</p>}
-            <button type="button" className="button wide" disabled={hintBusy} onClick={requestHint}>{hintBusy ? "Pensando…" : "Pedir hint"}</button>
-            <small className="hint-rule">Enter envia · Shift+Enter quebra a linha.</small>
           </>}
       </div>}
     </aside>}

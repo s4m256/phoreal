@@ -82,31 +82,3 @@ export function isTheoryTag(name) {
   const value = String(name ?? "").trim();
   return value !== "" && !/^(?:X|Y|[XY]\d{2}|(?:19|20)\d{2})$/i.test(value);
 }
-
-export const PROBLEM_TIME_BUDGET_SECONDS = 2 * 60 * 60;
-
-/**
- * Distributes the two-hour problem budget among items. Scores are used only
- * when every item has a reliable positive value; incomplete scores fall back
- * to equal shares so missing data cannot distort the targets.
- * @param {Array<{id:number,score:number|null}>} parts
- * @param {number} totalSeconds
- */
-export function allocatePartTimeLimits(parts,totalSeconds=PROBLEM_TIME_BUDGET_SECONDS) {
-  const result = new Map();
-  if (!parts.length || totalSeconds <= 0) return result;
-  const useScores = parts.every((part) => part.score != null && Number(part.score) > 0);
-  const weights = parts.map((part) => useScores ? Number(part.score) : 1);
-  const weightTotal = weights.reduce((sum,weight) => sum+weight,0);
-  const allocations = parts.map((part,index) => {
-    const exact = totalSeconds*weights[index]/weightTotal;
-    return {id:part.id,seconds:Math.floor(exact),fraction:exact-Math.floor(exact),index};
-  });
-  let remainder = totalSeconds-allocations.reduce((sum,item) => sum+item.seconds,0);
-  for (const item of [...allocations].sort((a,b) => b.fraction-a.fraction || a.index-b.index)) {
-    if (remainder-- <= 0) break;
-    item.seconds += 1;
-  }
-  for (const item of allocations) result.set(item.id,item.seconds);
-  return result;
-}
