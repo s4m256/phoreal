@@ -1,13 +1,29 @@
-# Catálogo pessoal de treino — Etapa 1
+# PhoReal
 
-Esta etapa contém somente a integração reutilizável com o catálogo público [XY do pho.rs](https://xy.pho.rs/). Não há dashboard, cronômetro ou dados pessoais.
+Treino de física olímpica com problemas, cronômetro por item, hints baseados em soluções oficiais, simulados e acompanhamento de progresso.
 
-- investigação, estratégia e limitações: `docs/phors-integration.md`
-- schema D1/SQLite: `db/schema.ts` e `db/migrations/0001_phors_catalog.sql`
-- sincronizador: `scripts/sync-phors.mjs`
-- amostra: `data/phors-sample.json`
+**[Abrir o PhoReal](https://treino-fisica-xy-fabiano.al-2312-samuelsantia.chatgpt.site)**
+
+## Conteúdo
+
+- catálogo XY do [pho.rs](https://xy.pho.rs/), de 2018 a 2026;
+- material Taiwan 10 corrigido, com fórmulas e imagens preservadas;
+- tentativas e segmentos de tempo por item;
+- respostas oficiais e assistência por IA;
+- simulados, laboratório e exportação para feedback.
+
+O aplicativo completo usa autenticação, APIs e banco persistente. Por isso, o GitHub hospeda o código, enquanto o link acima executa a aplicação funcional.
+
+## Desenvolvimento
 
 ```powershell
-npm.cmd run test:phors
-npm.cmd run phors:sample
+npm.cmd install
+npm.cmd run dev
+```
+
+Validação:
+
+```powershell
+npm.cmd test
+npm.cmd run lint
 ```
