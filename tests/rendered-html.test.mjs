@@ -34,6 +34,15 @@ test("keeps math, answer and brown-noise controls isolated",async()=>{
   assert.match(math,/normalizeMathMarkup/);assert.match(renderer,/katex\.renderToString/);assert.match(workspace,/Mostrar resposta/);assert.match(solutionRoute,/renderStatementMath/);assert.match(noise,/gain\.gain\.value=0\.3/);assert.match(noise,/ambient-noise-toggle/);assert.match(css,/\.ambient-noise-toggle/);assert.doesNotMatch(workspace,/createBuffer|noise-toggle/);
 });
 
+test("uses bundled Computer Modern for every problem statement and solution",async()=>{
+  const css=await read("app/globals.css");
+  assert.match(css,/@font-face\{font-family:"Computer Modern"/);
+  assert.match(css,/\.problem-page \.problem-header h1,\.problem-page \.statement-content\{font-family:"Computer Modern"/);
+  assert.match(css,/computer-modern-regular\.woff2/);
+  assert.match(css,/computer-modern-bold\.woff2/);
+  assert.doesNotMatch(css,/\.problem-page \.statement-content\{font-family:"Times New Roman"/);
+});
+
 test("keeps timer and hint controls concise",async()=>{
   const [workspace,timer,math]=await Promise.all([read("app/components/ProblemWorkspace.tsx"),read("app/api/attempts/[id]/timer/route.ts"),read("app/components/MathContent.tsx")]);assert.match(workspace,/Descartar somente o intervalo atual/);assert.match(workspace,/className="timer-discard"/);assert.match(workspace,/Escreva sua dúvida e pressione Enter/);assert.match(workspace,/className="timer-collapsed"/);assert.match(timer,/action === "discard_current"/);assert.match(math,/isStatementPartHeading/);assert.doesNotMatch(workspace,/PROBLEM_TIME_BUDGET|allocatePartTimeLimits|Pedir hint|hint-rule|className="shortcuts"/);
 });
