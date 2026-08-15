@@ -92,7 +92,7 @@ export function Dashboard() {
 
   return <>
     <section className="hero dashboard-hero">
-      <div><p className="eyebrow">Treino de física</p><h1>Resumo</h1></div>
+      <div><p className="eyebrow">PhoReal · física olímpica</p><h1>Resumo</h1></div>
       <div className="days-left"><span>TBF</span><strong>{today > TBF_DATE ? "concluído" : `${daysRemaining} dias`}</strong><small>restantes</small></div>
     </section>
 

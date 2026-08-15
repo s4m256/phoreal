@@ -16,7 +16,7 @@ test("separates X and Y and shows compact completion states",async()=>{
 });
 
 test("uses the personal training shell",async()=>{
-  const [layout,page,pkg]=await Promise.all([read("app/layout.tsx"),read("app/page.tsx"),read("package.json")]);assert.match(layout,/Treino de Física/);assert.match(layout,/href="\/problemas">Problemas/);assert.match(layout,/Entrar com ChatGPT/);assert.match(page,/Dashboard/);assert.doesNotMatch(`${layout}${page}${pkg}`,/codex-preview|SkeletonPreview/);
+  const [layout,page,pkg]=await Promise.all([read("app/layout.tsx"),read("app/page.tsx"),read("package.json")]);assert.match(layout,/title: "PhoReal"/);assert.match(layout,/>PhoReal<\/Link>/);assert.match(layout,/href="\/problemas">Problemas/);assert.match(layout,/Entrar com ChatGPT/);assert.match(page,/Dashboard/);assert.doesNotMatch(`${layout}${page}${pkg}`,/codex-preview|SkeletonPreview/);
 });
 
 test("loads corrected Taiwan 10 with figures, parts and full training UI",async()=>{
