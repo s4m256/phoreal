@@ -34,12 +34,13 @@ test("keeps math, answer and brown-noise controls isolated",async()=>{
   assert.match(math,/normalizeMathMarkup/);assert.match(renderer,/katex\.renderToString/);assert.match(workspace,/Mostrar resposta/);assert.match(solutionRoute,/renderStatementMath/);assert.match(noise,/gain\.gain\.value=0\.3/);assert.match(noise,/ambient-noise-toggle/);assert.match(css,/\.ambient-noise-toggle/);assert.doesNotMatch(workspace,/createBuffer|noise-toggle/);
 });
 
-test("uses bundled Computer Modern for every problem statement and solution",async()=>{
+test("uses bundled Computer Modern only for statement and solution bodies",async()=>{
   const css=await read("app/globals.css");
   assert.match(css,/@font-face\{font-family:"Computer Modern"/);
-  assert.match(css,/\.problem-page \.problem-header h1,\.problem-page \.statement-content\{font-family:"Computer Modern"/);
+  assert.match(css,/\.problem-page \.statement-panel \.statement-content,\.problem-page \.solution-panel \.statement-content\{font-family:"Computer Modern"/);
   assert.match(css,/computer-modern-regular\.woff2/);
   assert.match(css,/computer-modern-bold\.woff2/);
+  assert.doesNotMatch(css,/\.problem-header h1[^}]*font-family:"Computer Modern"/);
   assert.doesNotMatch(css,/\.problem-page \.statement-content\{font-family:"Times New Roman"/);
 });
 
