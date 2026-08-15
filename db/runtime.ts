@@ -33,6 +33,15 @@ const schemaStatements = [
   `CREATE TABLE IF NOT EXISTS user_hint_events (id TEXT PRIMARY KEY, owner_id TEXT NOT NULL, attempt_id TEXT NOT NULL REFERENCES user_attempts(id) ON DELETE CASCADE, problem_part_id INTEGER NOT NULL REFERENCES phors_problem_parts(id), question TEXT, answer_text TEXT NOT NULL, answer_html TEXT NOT NULL, revealed_steps_json TEXT NOT NULL DEFAULT '[]', penalty REAL NOT NULL, full_solution INTEGER NOT NULL DEFAULT 0, model TEXT NOT NULL, input_tokens INTEGER, output_tokens INTEGER, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
   `CREATE INDEX IF NOT EXISTS user_hint_events_attempt_part_idx ON user_hint_events(attempt_id,problem_part_id)`,
   `CREATE INDEX IF NOT EXISTS user_hint_events_owner_idx ON user_hint_events(owner_id)`,
+  `CREATE TABLE IF NOT EXISTS user_taiwan_attempts (id TEXT PRIMARY KEY, owner_id TEXT NOT NULL, volume INTEGER NOT NULL, problem_number INTEGER NOT NULL, status TEXT NOT NULL CHECK(status IN ('in_progress','completed')), current_state TEXT NOT NULL CHECK(current_state IN ('item_active','paused')), active_item_code TEXT, started_at TEXT NOT NULL, finished_at TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+  `CREATE INDEX IF NOT EXISTS user_taiwan_attempts_owner_problem_idx ON user_taiwan_attempts(owner_id,volume,problem_number)`,
+  `CREATE INDEX IF NOT EXISTS user_taiwan_attempts_status_idx ON user_taiwan_attempts(status)`,
+  `CREATE TABLE IF NOT EXISTS user_taiwan_time_segments (id TEXT PRIMARY KEY, attempt_id TEXT NOT NULL REFERENCES user_taiwan_attempts(id) ON DELETE CASCADE, item_code TEXT NOT NULL, started_at TEXT NOT NULL, ended_at TEXT, duration_seconds INTEGER)`,
+  `CREATE INDEX IF NOT EXISTS user_taiwan_segments_attempt_idx ON user_taiwan_time_segments(attempt_id)`,
+  `CREATE INDEX IF NOT EXISTS user_taiwan_segments_item_idx ON user_taiwan_time_segments(item_code)`,
+  `CREATE TABLE IF NOT EXISTS user_taiwan_hint_events (id TEXT PRIMARY KEY, owner_id TEXT NOT NULL, attempt_id TEXT NOT NULL REFERENCES user_taiwan_attempts(id) ON DELETE CASCADE, item_code TEXT NOT NULL, question TEXT, answer_text TEXT NOT NULL, answer_html TEXT NOT NULL, full_solution INTEGER NOT NULL DEFAULT 0, model TEXT NOT NULL, input_tokens INTEGER, output_tokens INTEGER, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+  `CREATE INDEX IF NOT EXISTS user_taiwan_hints_attempt_item_idx ON user_taiwan_hint_events(attempt_id,item_code)`,
+  `CREATE INDEX IF NOT EXISTS user_taiwan_hints_owner_idx ON user_taiwan_hint_events(owner_id)`,
 ];
 
 let initialization: Promise<void> | null = null;
@@ -105,13 +114,17 @@ export async function readAllData(ownerId:string|null) {
     db.prepare("SELECT * FROM user_experiments WHERE owner_id=? ORDER BY COALESCE(date,created_at) DESC,created_at DESC").bind(owner),
     db.prepare("SELECT * FROM user_settings_v2 WHERE owner_id=?").bind(owner),
     db.prepare("SELECT h.* FROM user_hint_events h JOIN user_attempts a ON a.id=h.attempt_id WHERE h.owner_id=? AND a.owner_id=? ORDER BY h.created_at").bind(owner,owner),
+    db.prepare("SELECT * FROM user_taiwan_attempts WHERE owner_id=? ORDER BY started_at DESC").bind(owner),
+    db.prepare("SELECT s.* FROM user_taiwan_time_segments s JOIN user_taiwan_attempts a ON a.id=s.attempt_id WHERE a.owner_id=? ORDER BY s.started_at").bind(owner),
+    db.prepare("SELECT h.* FROM user_taiwan_hint_events h JOIN user_taiwan_attempts a ON a.id=h.attempt_id WHERE h.owner_id=? AND a.owner_id=? ORDER BY h.created_at").bind(owner,owner),
   ]);
   return {
     competitions: results[0].results, exams: results[1].results, problems: results[2].results,
     problemParts: results[3].results, tags: results[4].results, problemTags: results[5].results,
     attempts: results[6].results, timeSegments: results[7].results, mockExams: results[8].results,
     mockExamProblemScores: results[9].results, experiments:results[10].results, settings: results[11].results[0] ?? { id: 1, tbf_date: null },
-    hintEvents:results[12].results,
+    hintEvents:results[12].results, taiwanAttempts:results[13].results,
+    taiwanTimeSegments:results[14].results, taiwanHintEvents:results[15].results,
   };
 }
 

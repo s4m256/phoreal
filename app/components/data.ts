@@ -11,7 +11,11 @@ export type Segment = { id:string; attempt_id:string; state:"initial_reading"|"i
 export type MockExam = { id:string; exam_name:string; date:string; type:"theoretical"|"experimental"; total_score:number; drive_url:string|null };
 export type MockScore = { id:string; mock_exam_id:string; problem_number:number; problem_label:string|null; score:number };
 export type Experiment = { id:string; title:string; date:string|null; image_url:string|null; notes:string|null; created_at:string };
-export type TrainingData = { canEdit:boolean; canUseAi:boolean; competitions:unknown[]; exams:Exam[]; problems:Problem[]; problemParts:Part[]; tags:Tag[]; problemTags:ProblemTag[]; attempts:Attempt[]; timeSegments:Segment[]; mockExams:MockExam[]; mockExamProblemScores:MockScore[]; experiments:Experiment[]; settings:{ tbf_date:string|null } };
+export type HintEvent = { id:string; attempt_id:string; problem_part_id:number; question:string|null; answer_html:string; penalty:number; full_solution:number; created_at:string };
+export type TaiwanAttempt = { id:string; volume:number; problem_number:number; status:"in_progress"|"completed"; current_state:"item_active"|"paused"; active_item_code:string|null; started_at:string; finished_at:string|null };
+export type TaiwanSegment = { id:string; attempt_id:string; item_code:string; started_at:string; ended_at:string|null; duration_seconds:number|null };
+export type TaiwanHintEvent = { id:string; attempt_id:string; item_code:string; question:string|null; answer_html:string; full_solution:number; created_at:string };
+export type TrainingData = { canEdit:boolean; canUseAi:boolean; competitions:unknown[]; exams:Exam[]; problems:Problem[]; problemParts:Part[]; tags:Tag[]; problemTags:ProblemTag[]; attempts:Attempt[]; timeSegments:Segment[]; hintEvents:HintEvent[]; taiwanAttempts:TaiwanAttempt[]; taiwanTimeSegments:TaiwanSegment[]; taiwanHintEvents:TaiwanHintEvent[]; mockExams:MockExam[]; mockExamProblemScores:MockScore[]; experiments:Experiment[]; settings:{ tbf_date:string|null } };
 
 export function useTrainingData() {
   const [data,setData]=useState<TrainingData|null>(null); const [error,setError]=useState<string|null>(null); const [loading,setLoading]=useState(true);

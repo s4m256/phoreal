@@ -1,11 +1,12 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { formatTime, postJson, secondsFor, useClock, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 import { MathHtml } from "./MathContent";
 import { isTheoryTag } from "./training-view-model.mjs";
 import { selectedProblemArea } from "../lib/selected-problems.mjs";
+import { BrownNoiseButton } from "./BrownNoiseButton";
 
 type Statement = {
   html:string|null;
@@ -14,8 +15,6 @@ type Statement = {
   translationStatus:"missing"|"draft"|"verified";
   hasDraft:boolean;
 };
-
-type HintEvent = { id:string; attempt_id:string; problem_part_id:number; question:string|null; answer_html:string; penalty:number; full_solution:number; created_at:string };
 
 export function ProblemWorkspace() {
   const params = useParams<{id:string}>();
@@ -26,12 +25,14 @@ export function ProblemWorkspace() {
   const [minimized,setMinimized] = useState(false);
   const [statement,setStatement] = useState<Statement|null>(null);
   const [statementError,setStatementError] = useState<string|null>(null);
-  const [brownNoise,setBrownNoise] = useState(false);
+  const [solutionOpen,setSolutionOpen]=useState(false);
+  const [solutionHtml,setSolutionHtml]=useState<string|null>(null);
+  const [solutionBusy,setSolutionBusy]=useState(false);
+  const [solutionError,setSolutionError]=useState<string|null>(null);
   const [aiMinimized,setAiMinimized] = useState(false);
   const [hintQuestion,setHintQuestion] = useState("");
   const [hintBusy,setHintBusy] = useState(false);
   const [hintError,setHintError] = useState<string|null>(null);
-  const noiseRef = useRef<{ context:AudioContext; source:AudioBufferSourceNode }|null>(null);
   const problem = data?.problems.find((item) => item.id === problemId);
   const parts = useMemo(() => data?.problemParts.filter((part) => part.problem_id === problemId) || [], [data,problemId]);
   const attempts = useMemo(() => data?.attempts.filter((attempt) => attempt.problem_id === problemId) || [], [data,problemId]);
@@ -42,7 +43,7 @@ export function ProblemWorkspace() {
   for (const segment of segments) if (segment.problem_part_id) partTimes.set(segment.problem_part_id,(partTimes.get(segment.problem_part_id) || 0) + secondsFor(segment,now));
   const currentPart = parts.find((part) => part.id === active?.active_part_id);
   const currentPartTime = currentPart ? partTimes.get(currentPart.id) || 0 : 0;
-  const hintEvents = ((data as unknown as {hintEvents?:HintEvent[]}|null)?.hintEvents || []).filter((hint) => hint.attempt_id === active?.id);
+  const hintEvents = (data?.hintEvents || []).filter((hint) => hint.attempt_id === active?.id);
   const currentHints = hintEvents.filter((hint) => hint.problem_part_id === currentPart?.id);
   const currentPenalty = currentHints.reduce((sum,hint) => sum+Number(hint.penalty||0),0);
   const currentAutonomy = currentPart?.score == null ? null : Math.max(0,currentPart.score-currentPenalty);
@@ -59,11 +60,6 @@ export function ProblemWorkspace() {
       .catch((fetchError) => { if (!cancelled) setStatementError(fetchError instanceof Error ? fetchError.message : "Falha ao carregar o enunciado"); });
     return () => { cancelled = true; };
   }, [problemId]);
-
-  useEffect(() => () => {
-    noiseRef.current?.source.stop();
-    void noiseRef.current?.context.close();
-  },[]);
 
   const act = useCallback(async (action:string,partId?:number) => {
     if (!active) return;
@@ -117,35 +113,18 @@ export function ProblemWorkspace() {
     await act("discard_current");
   }
 
-  async function toggleBrownNoise() {
-    if (noiseRef.current) {
-      noiseRef.current.source.stop();
-      await noiseRef.current.context.close();
-      noiseRef.current = null;
-      setBrownNoise(false);
-      return;
-    }
-    const context = new AudioContext();
-    const seconds = 8;
-    const buffer = context.createBuffer(2,context.sampleRate*seconds,context.sampleRate);
-    for (let channel=0;channel<buffer.numberOfChannels;channel++) {
-      const samples = buffer.getChannelData(channel);
-      let last = 0;
-      for (let index=0;index<samples.length;index++) {
-        const white = Math.random()*2-1;
-        last = (last+0.02*white)/1.02;
-        samples[index] = last*3.2;
-      }
-    }
-    const source = context.createBufferSource();
-    const gain = context.createGain();
-    source.buffer = buffer;
-    source.loop = true;
-    gain.gain.value = 0.3;
-    source.connect(gain).connect(context.destination);
-    source.start();
-    noiseRef.current = { context,source };
-    setBrownNoise(true);
+  async function toggleSolution() {
+    if (solutionOpen) { setSolutionOpen(false); return; }
+    setSolutionOpen(true);
+    if (solutionHtml || solutionBusy) return;
+    setSolutionBusy(true); setSolutionError(null);
+    try {
+      const response=await fetch(`/api/problems/${problemId}/solution`,{cache:"no-store"});
+      const payload=await response.json() as {html?:string|null;error?:string};
+      if(!response.ok) throw new Error(payload.error||"Não foi possível carregar a resposta");
+      setSolutionHtml(payload.html||null);
+    } catch(error) { setSolutionError(error instanceof Error?error.message:"Não foi possível carregar a resposta"); }
+    finally { setSolutionBusy(false); }
   }
 
   async function requestHint() {
@@ -169,9 +148,7 @@ export function ProblemWorkspace() {
         <h1><span>{problem.code}</span> {title}{selectedArea&&<span className="selected-star problem-selected-star" title={`Selecionada em ${selectedArea}`} aria-label={`Selecionada em ${selectedArea}`}>★</span>}</h1>
         <div className="tag-line">{tags.map((tag) => <em key={tag}>{tag}</em>)}</div>
       </div>
-      <div className="source-links">
-        {problem.solution_url && <a href={problem.solution_url} target="_blank" rel="noreferrer">Solução ↗</a>}
-      </div>
+      <div className="source-links">{problem.solution_url&&<button type="button" className="solution-toggle" onClick={toggleSolution}>{solutionOpen?"Ocultar resposta":"Mostrar resposta"}</button>}</div>
     </section>
     <div className="workspace">
       <div className="problem-main-column">
@@ -182,6 +159,7 @@ export function ProblemWorkspace() {
             : statement.statementStatus === "authentication_required" ? <p className="muted">Este problema existe no índice XY, mas o enunciado público redireciona para autenticação. Nenhuma proteção foi contornada.</p>
             : <p className="muted">Enunciado não disponível no catálogo público.</p>}
         </section>
+        {solutionOpen&&<section className="panel solution-panel" aria-label="Resposta oficial">{solutionBusy?<p className="muted">Carregando resposta…</p>:solutionError?<p className="muted">{solutionError}</p>:solutionHtml?<MathHtml className="statement-content solution-content" html={solutionHtml}/>:<p className="muted">Resposta oficial não disponível.</p>}</section>}
       </div>
       <aside className={`timer-card ${minimized ? "minimized" : ""}`}>
         {!data.canEdit ? <><span className="timer-state">Entre para treinar</span><p className="timer-instruction">Faça login para registrar seu próprio tempo.</p></> : minimized ?
@@ -189,10 +167,10 @@ export function ProblemWorkspace() {
           : <>
             <div className="timer-top"><div><span className="timer-state">{!active ? "Clique em um item" : active.current_state === "paused" ? currentPart ? `Pausado · ${currentPart.code}` : "Pausado" : `Item ${currentPart?.code || ""}`}</span>{active && <strong className="timer-total">{formatTime(total)}</strong>}</div>{active && <button className="icon-button" onClick={() => setMinimized(true)} aria-label="Minimizar cronômetro">—</button>}</div>
             {active && <><div className="timer-details">{currentPart && <div><dt>{currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}</dd>{active.current_state === "item_active" && <button type="button" className="timer-discard" disabled={busy} onClick={discardCurrent} aria-label={`Descartar intervalo atual de ${currentPart.code}`} title="Descartar somente o intervalo atual">↶</button>}</span></div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>Finalizar</button></div></>}
-            <button type="button" className={`noise-toggle ${brownNoise ? "active" : ""}`} aria-label={brownNoise ? "Parar brown noise" : "Ativar brown noise"} title={brownNoise ? "Parar brown noise" : "Ativar brown noise"} aria-pressed={brownNoise} onClick={toggleBrownNoise}><span aria-hidden="true">🔊︎</span></button>
           </>}
       </aside>
     </div>
+    <BrownNoiseButton/>
     {data.canUseAi && <aside className={`ai-hint-card ${aiMinimized ? "minimized" : ""}`}>
       <button type="button" className="ai-hint-head" onClick={() => setAiMinimized((value) => !value)} aria-expanded={!aiMinimized}>
         <span>IA{currentPart ? ` · ${currentPart.code}` : ""}</span><b>{aiMinimized ? "+" : "−"}</b>

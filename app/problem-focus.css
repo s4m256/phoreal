@@ -71,12 +71,59 @@
   border-radius: 2px;
 }
 
-.problem-page .noise-toggle {
-  top: 7px;
-  right: 34px;
-  width: 22px;
-  height: 22px;
+.ambient-noise-toggle {
+  position: fixed;
+  left: 8px;
+  bottom: 8px;
+  z-index: 34;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #8b9390;
+  opacity: .55;
+  cursor: pointer;
+  font: 15px/1 Georgia,serif;
 }
+
+.ambient-noise-toggle:hover,.ambient-noise-toggle.active {
+  opacity: 1;
+  color: var(--accent);
+  border-color: var(--line);
+  background: #fff;
+}
+
+.solution-toggle {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--accent);
+  padding: 6px 9px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.solution-panel {
+  border-left: 3px solid var(--accent);
+}
+
+.solution-panel::before {
+  content: "Resposta";
+  display: block;
+  margin-bottom: 18px;
+  color: var(--accent);
+  font: 700 11px Consolas,"Courier New",monospace;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.taiwan-figure { margin: 18px auto; text-align: center; }
+.taiwan-figure img { display: inline-block; max-width: 100%; height: auto; }
+.taiwan-item { display: block; margin: 1em 0; }
+.taiwan-item>span:first-child { margin-right: 5px; }
+.taiwan-table { overflow: auto; white-space: pre-wrap; }
+.taiwan-problem-page { max-width: none; }
 
 .ai-hint-body {
   gap: 8px;

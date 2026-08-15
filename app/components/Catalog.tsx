@@ -17,7 +17,13 @@ export function Catalog() {
       const exams=data.exams.filter((exam) => exam.series===seriesCode).sort((a,b) => (b.year||0)-(a.year||0));
       return <section className="catalog-series" key={seriesCode} aria-labelledby={`series-${seriesCode}`}><div className="series-heading"><h2 id={`series-${seriesCode}`}>{seriesCode}</h2></div>{exams.map((exam) => <ExamBlock data={data} examId={exam.id} key={exam.id}/>)}</section>;
     })}</div></section>
-    <section className="problem-collection" id="taiwan"><div className="collection-heading"><div><h2>Taiwan</h2><p>Material de treinamento · volume 10</p></div><span>{taiwanVolume10.problems.length} problemas</span></div><div className="taiwan-problem-grid">{taiwanVolume10.problems.map((problem) => <Link className="taiwan-problem-row" href={`/problemas/taiwan/10/${problem.id}`} key={problem.id}><span>{String(problem.id).padStart(2,"0")}</span><strong>{problem.title_pt}</strong><small>p. {problem.page_start}{problem.page_end!==problem.page_start?`–${problem.page_end}`:""}</small></Link>)}</div></section>
+    <section className="problem-collection" id="taiwan"><div className="collection-heading"><div><h2>Taiwan</h2><p>Material de treinamento · volume 10</p></div><span>{taiwanVolume10.problems.length} problemas</span></div><section className="panel exam taiwan-exam"><div className="problem-list">{taiwanVolume10.problems.map((problem) => {
+      const attempts=data.taiwanAttempts.filter((attempt)=>attempt.volume===10&&attempt.problem_number===problem.id);
+      const completed=attempts.filter((attempt)=>attempt.status==="completed").length;
+      const inProgress=attempts.some((attempt)=>attempt.status==="in_progress");
+      const status=[inProgress?"em andamento":"",completed===1?"concluída":completed>1?`${completed}× concluída`:""].filter(Boolean).join(" · ");
+      return <Link className="problem-row" href={`/problemas/taiwan/10/${problem.id}`} key={problem.id}><span className="problem-code">{problem.code}</span><span className="problem-main"><strong>{problem.title_pt}</strong>{status&&<span className="problem-status">{status}</span>}</span></Link>;
+    })}</div></section></section>
   </>;
 }
 

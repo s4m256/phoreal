@@ -157,3 +157,25 @@ export const hintEvents = sqliteTable("user_hint_events", {
   model:text("model").notNull(), inputTokens:integer("input_tokens"), outputTokens:integer("output_tokens"),
   createdAt:text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 }, (t) => [index("user_hint_events_attempt_part_idx").on(t.attemptId,t.problemPartId),index("user_hint_events_owner_idx").on(t.ownerId)]);
+
+// Taiwan content is static site data. Only each user's activity is persisted.
+export const taiwanAttempts = sqliteTable("user_taiwan_attempts", {
+  id:text("id").primaryKey(), ownerId:text("owner_id").notNull(), volume:integer("volume").notNull(),
+  problemNumber:integer("problem_number").notNull(), status:text("status", { enum:["in_progress","completed"] }).notNull(),
+  currentState:text("current_state", { enum:["item_active","paused"] }).notNull(), activeItemCode:text("active_item_code"),
+  startedAt:text("started_at").notNull(), finishedAt:text("finished_at"),
+  createdAt:text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`), updatedAt:text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (t) => [index("user_taiwan_attempts_owner_problem_idx").on(t.ownerId,t.volume,t.problemNumber),index("user_taiwan_attempts_status_idx").on(t.status)]);
+
+export const taiwanTimeSegments = sqliteTable("user_taiwan_time_segments", {
+  id:text("id").primaryKey(), attemptId:text("attempt_id").notNull().references(() => taiwanAttempts.id, { onDelete:"cascade" }),
+  itemCode:text("item_code").notNull(), startedAt:text("started_at").notNull(), endedAt:text("ended_at"), durationSeconds:integer("duration_seconds"),
+}, (t) => [index("user_taiwan_segments_attempt_idx").on(t.attemptId),index("user_taiwan_segments_item_idx").on(t.itemCode)]);
+
+export const taiwanHintEvents = sqliteTable("user_taiwan_hint_events", {
+  id:text("id").primaryKey(), ownerId:text("owner_id").notNull(),
+  attemptId:text("attempt_id").notNull().references(() => taiwanAttempts.id, { onDelete:"cascade" }), itemCode:text("item_code").notNull(),
+  question:text("question"), answerText:text("answer_text").notNull(), answerHtml:text("answer_html").notNull(),
+  fullSolution:integer("full_solution", { mode:"boolean" }).notNull().default(false), model:text("model").notNull(),
+  inputTokens:integer("input_tokens"), outputTokens:integer("output_tokens"), createdAt:text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (t) => [index("user_taiwan_hints_attempt_item_idx").on(t.attemptId,t.itemCode),index("user_taiwan_hints_owner_idx").on(t.ownerId)]);

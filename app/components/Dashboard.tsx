@@ -7,7 +7,7 @@ import { Loading } from "./Loading";
 import { dayKey, dayNumber, dayStart, fixedPeriodDays, isTheoryTag, parseDayKey, splitSegmentByDay } from "./training-view-model.mjs";
 
 const STUDY_START = new Date(2026, 4, 2);
-const TBF_DATE = new Date(2027, 1, 20);
+const TBF_DATE = new Date(2027, 1, 19);
 
 type DailyEntry = {
   seconds: number;
@@ -97,7 +97,7 @@ export function Dashboard() {
     </section>
 
     <section className="panel tbf-progress" aria-label="Progresso entre o início dos estudos e o TBF">
-      <div className="tbf-dates"><span>02/05/2026<small>início</small></span><span>20/02/2027<small>TBF</small></span></div>
+      <div className="tbf-dates"><span>02/05/2026<small>início</small></span><span>19/02/2027<small>TBF</small></span></div>
       <div className="tbf-track"><div className="tbf-elapsed" style={{ width: `${progress}%` }}/><span className="tbf-today" style={{ left: `${progress}%` }} aria-label="Data atual"><i/></span></div>
     </section>
 
@@ -107,7 +107,7 @@ export function Dashboard() {
 
     <section className="two-col dashboard-main">
       <div className="panel heatmap-panel">
-        <div className="section-head"><div><p className="eyebrow">02/05/2026 — 20/02/2027</p><h2>Questões resolvidas por dia</h2></div></div>
+        <div className="section-head"><div><p className="eyebrow">02/05/2026 — 19/02/2027</p><h2>Questões resolvidas por dia</h2></div></div>
         <Heatmap days={metrics.heatmap} selected={selectedDay} onSelect={setSelectedDay}/>
         <div className="day-detail" aria-live="polite">
           <div className="day-detail-head"><div><strong>{formatDate(selectedDate)}</strong><span>{selectedIsFuture ? "Ainda não chegou" : `${formatQuestionCount(selectedEntry?.completed ?? 0)} · ${formatHoursMinutes(selectedEntry?.seconds ?? 0)}`}</span></div></div>
@@ -120,7 +120,7 @@ export function Dashboard() {
 
     <section className="panel"><div className="section-head"><div><p className="eyebrow">Conteúdos</p><h2>Questões resolvidas por tag</h2></div><span className="muted">Uma tentativa conta em todas as tags da questão.</span></div>{metrics.tags.length ? <TagBars tags={metrics.tags}/> : <p className="muted">Os conteúdos aparecerão após a primeira questão finalizada.</p>}</section>
 
-    {data.canEdit&&<section className="panel export-panel"><div><p className="eyebrow">Dados brutos</p><h2>Exportar tudo</h2><p className="muted">Catálogo, tags, tentativas, segmentos de tempo, simulados e laboratório.</p></div><div className="actions"><a className="button" href="/api/export/json">Baixar todos os dados</a></div></section>}
+    {data.canEdit&&<section className="panel export-panel"><div><p className="eyebrow">Feedback</p><h2>Exportar para análise</h2><p className="muted">Treinos, tempos por item, uso de hints, simulados e laboratório — sem enunciados nem o catálogo inteiro.</p></div><div className="actions"><a className="button" href="/api/export/json">Baixar dados para IA</a></div></section>}
   </>;
 }
 

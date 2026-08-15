@@ -4,12 +4,12 @@ import { compareProblemCodes, dayKey, fixedPeriodDays, isTheoryTag, splitSegment
 
 test("fixed training period contains every day from start through TBF", () => {
   const start = new Date(2026, 4, 2);
-  const end = new Date(2027, 1, 20);
+  const end = new Date(2027, 1, 19);
   const now = new Date(2026, 7, 9, 12).getTime();
   const days = fixedPeriodDays(start, end, new Map(), now);
-  assert.equal(days.length, 295);
+  assert.equal(days.length, 294);
   assert.equal(days[0].key, "2026-05-02");
-  assert.equal(days.at(-1).key, "2027-02-20");
+  assert.equal(days.at(-1).key, "2027-02-19");
   assert.equal(days.find((day) => day.key === "2026-08-09").seconds, 0);
   assert.equal(days.find((day) => day.key === "2026-08-09").questions, 0);
   assert.equal(days.find((day) => day.key === "2026-08-10").seconds, null);
