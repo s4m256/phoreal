@@ -29,6 +29,17 @@ test("segments crossing midnight are split and aggregated by problem", () => {
   assert.equal(dayKey(new Date(2026, 5, 2)), "2026-06-02");
 });
 
+test("daily aggregation accepts Taiwan problem keys without colliding with XY ids",()=>{
+  const daily=new Map();
+  const started=new Date(2026,7,15,10).toISOString();
+  splitSegmentByDay(started,120,"xy:10",daily);
+  splitSegmentByDay(started,180,"taiwan:10:10",daily);
+  const entry=daily.get("2026-08-15");
+  assert.equal(entry.seconds,300);
+  assert.equal(entry.problems.get("xy:10"),120);
+  assert.equal(entry.problems.get("taiwan:10:10"),180);
+});
+
 test("catalog orders T, E and PE using natural numeric order", () => {
   const codes = ["PE2", "E2", "T10", "T2", "PE", "E1", "T1", "PE1"];
   assert.deepEqual(codes.sort(compareProblemCodes), ["T1", "T2", "T10", "E1", "E2", "PE", "PE1", "PE2"]);

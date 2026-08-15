@@ -5,13 +5,14 @@ import { useMemo, useState } from "react";
 import { formatHoursMinutes, secondsFor, useClock, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 import { dayKey, dayNumber, dayStart, fixedPeriodDays, isTheoryTag, parseDayKey, splitSegmentByDay } from "./training-view-model.mjs";
+import taiwanVolume10 from "../../data/taiwan/volume-10.json";
 
 const STUDY_START = new Date(2026, 4, 2);
 const TBF_DATE = new Date(2027, 1, 19);
 
 type DailyEntry = {
   seconds: number;
-  problems: Map<number, number>;
+  problems: Map<string, number>;
   completed: number;
 };
 
@@ -23,6 +24,8 @@ type HeatmapDay = {
 };
 
 const formatDate = (date: Date) => date.toLocaleDateString("pt-BR");
+const xyProblemKey = (problemId: number) => `xy:${problemId}`;
+const taiwanProblemKey = (volume: number, problemNumber: number) => `taiwan:${volume}:${problemNumber}`;
 
 export function Dashboard() {
   const { data, error, loading } = useTrainingData();
@@ -33,7 +36,9 @@ export function Dashboard() {
     if (!data || !now) return null;
 
     const attemptsById = new Map(data.attempts.map((attempt) => [attempt.id, attempt]));
+    const taiwanAttemptsById = new Map(data.taiwanAttempts.map((attempt) => [attempt.id, attempt]));
     const completed = data.attempts.filter((attempt) => attempt.status === "completed");
+    const taiwanCompleted = data.taiwanAttempts.filter((attempt) => attempt.status === "completed");
     const completedByProblem = new Map<number, number>();
     for (const attempt of completed) {
       completedByProblem.set(attempt.problem_id, (completedByProblem.get(attempt.problem_id) ?? 0) + 1);
@@ -46,14 +51,31 @@ export function Dashboard() {
       const attempt = attemptsById.get(segment.attempt_id);
       if (!attempt) continue;
       totalSeconds += seconds;
-      splitSegmentByDay(segment.started_at, seconds, attempt.problem_id, daily);
+      splitSegmentByDay(segment.started_at, seconds, xyProblemKey(attempt.problem_id), daily);
+    }
+    for (const segment of data.taiwanTimeSegments) {
+      const seconds = secondsFor(segment, now);
+      const attempt = taiwanAttemptsById.get(segment.attempt_id);
+      if (!attempt) continue;
+      totalSeconds += seconds;
+      splitSegmentByDay(segment.started_at, seconds, taiwanProblemKey(attempt.volume, attempt.problem_number), daily);
     }
     for (const attempt of completed) {
       const finishedAt = attempt.finished_at ?? attempt.started_at;
       const key = dayKey(new Date(finishedAt));
-      const entry = daily.get(key) ?? { seconds: 0, problems: new Map<number, number>(), completed: 0 };
+      const entry = daily.get(key) ?? { seconds: 0, problems: new Map<string, number>(), completed: 0 };
       entry.completed = (entry.completed ?? 0) + 1;
-      if (!entry.problems.has(attempt.problem_id)) entry.problems.set(attempt.problem_id, 0);
+      const problemKey = xyProblemKey(attempt.problem_id);
+      if (!entry.problems.has(problemKey)) entry.problems.set(problemKey, 0);
+      daily.set(key, entry);
+    }
+    for (const attempt of taiwanCompleted) {
+      const finishedAt = attempt.finished_at ?? attempt.started_at;
+      const key = dayKey(new Date(finishedAt));
+      const entry = daily.get(key) ?? { seconds: 0, problems: new Map<string, number>(), completed: 0 };
+      entry.completed = (entry.completed ?? 0) + 1;
+      const problemKey = taiwanProblemKey(attempt.volume, attempt.problem_number);
+      if (!entry.problems.has(problemKey)) entry.problems.set(problemKey, 0);
       daily.set(key, entry);
     }
 
@@ -67,6 +89,7 @@ export function Dashboard() {
 
     return {
       completed,
+      completedCount: completed.length + taiwanCompleted.length,
       daily,
       heatmap: fixedPeriodDays(STUDY_START, TBF_DATE, daily, now) as HeatmapDay[],
       tags,
@@ -83,11 +106,18 @@ export function Dashboard() {
   const progress = Math.min(100, Math.max(0, ((dayNumber(today) - dayNumber(STUDY_START)) / periodLength) * 100));
   const selectedDate = parseDayKey(selectedDay);
   const selectedEntry = metrics.daily.get(selectedDay);
-  const selectedProblems = [...(selectedEntry?.problems.entries() ?? [])].map(([problemId, seconds]) => {
-    const problem = data.problems.find((item) => item.id === problemId);
-    const exam = data.exams.find((item) => item.id === problem?.exam_id);
-    return { problem, exam, seconds };
-  }).filter((item) => item.problem).sort((a, b) => b.seconds - a.seconds);
+  const selectedProblems = [...(selectedEntry?.problems.entries() ?? [])].map(([key, seconds]) => {
+    if (key.startsWith("xy:")) {
+      const problemId = Number(key.slice(3));
+      const problem = data.problems.find((item) => item.id === problemId);
+      const exam = data.exams.find((item) => item.id === problem?.exam_id);
+      return problem ? { key, href: `/questao/${problem.id}`, code: `${exam?.code ?? "XY"} · ${problem.code}`, title: problem.title_pt || problem.title, seconds } : null;
+    }
+    const [, volumeText, problemNumberText] = key.split(":");
+    const volume = Number(volumeText), problemNumber = Number(problemNumberText);
+    const problem = volume === 10 ? taiwanVolume10.problems.find((item) => item.id === problemNumber) : null;
+    return problem ? { key, href: `/problemas/taiwan/${volume}/${problem.id}`, code: `Taiwan ${volume} · ${problem.code}`, title: problem.title_pt, seconds } : null;
+  }).filter((item): item is NonNullable<typeof item> => Boolean(item)).sort((a, b) => b.seconds - a.seconds);
   const selectedIsFuture = selectedDate > today;
 
   return <>
@@ -101,9 +131,9 @@ export function Dashboard() {
       <div className="tbf-track"><div className="tbf-elapsed" style={{ width: `${progress}%` }}/><span className="tbf-today" style={{ left: `${progress}%` }} aria-label="Data atual"><i/></span></div>
     </section>
 
-    {data.attempts.some((attempt) => attempt.status === "in_progress") && <section className="notice"><strong>Tentativa em andamento</strong>{data.attempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = data.problems.find((item) => item.id === attempt.problem_id); return <Link key={attempt.id} href={`/questao/${attempt.problem_id}`}>{problem?.code} · {problem?.title_pt || problem?.title}</Link>; })}</section>}
+    {(data.attempts.some((attempt) => attempt.status === "in_progress") || data.taiwanAttempts.some((attempt) => attempt.status === "in_progress")) && <section className="notice"><strong>Tentativa em andamento</strong>{data.attempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = data.problems.find((item) => item.id === attempt.problem_id); return <Link key={attempt.id} href={`/questao/${attempt.problem_id}`}>{problem?.code} · {problem?.title_pt || problem?.title}</Link>; })}{data.taiwanAttempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = attempt.volume===10?taiwanVolume10.problems.find((item)=>item.id===attempt.problem_number):null; return <Link key={attempt.id} href={`/problemas/taiwan/${attempt.volume}/${attempt.problem_number}`}>Taiwan {attempt.volume} · {problem?.code} · {problem?.title_pt}</Link>; })}</section>}
 
-    <section className="metric-grid essentials"><Metric label="Questões resolvidas" value={String(metrics.completed.length)}/><Metric label="Tempo resolvendo" value={formatHoursMinutes(metrics.totalSeconds)}/><Metric label="Hoje" value={formatHoursMinutes(metrics.todaySeconds)}/></section>
+    <section className="metric-grid essentials"><Metric label="Questões resolvidas" value={String(metrics.completedCount)}/><Metric label="Tempo resolvendo" value={formatHoursMinutes(metrics.totalSeconds)}/><Metric label="Hoje" value={formatHoursMinutes(metrics.todaySeconds)}/></section>
 
     <section className="two-col dashboard-main">
       <div className="panel heatmap-panel">
@@ -111,7 +141,7 @@ export function Dashboard() {
         <Heatmap days={metrics.heatmap} selected={selectedDay} onSelect={setSelectedDay}/>
         <div className="day-detail" aria-live="polite">
           <div className="day-detail-head"><div><strong>{formatDate(selectedDate)}</strong><span>{selectedIsFuture ? "Ainda não chegou" : `${formatQuestionCount(selectedEntry?.completed ?? 0)} · ${formatHoursMinutes(selectedEntry?.seconds ?? 0)}`}</span></div></div>
-          {!selectedIsFuture && selectedProblems.length > 0 ? <div className="day-problems">{selectedProblems.map(({ problem, exam, seconds }) => <Link href={`/questao/${problem!.id}`} key={problem!.id}><span><strong>{exam?.code} · {problem!.code}</strong><small>{problem!.title_pt || problem!.title}</small></span><b>{formatHoursMinutes(seconds)}</b></Link>)}</div> : !selectedIsFuture && <p className="muted">Nenhum treino registrado neste dia.</p>}
+          {!selectedIsFuture && selectedProblems.length > 0 ? <div className="day-problems">{selectedProblems.map((problem) => <Link href={problem.href} key={problem.key}><span><strong>{problem.code}</strong><small>{problem.title}</small></span><b>{formatHoursMinutes(problem.seconds)}</b></Link>)}</div> : !selectedIsFuture && <p className="muted">Nenhum treino registrado neste dia.</p>}
         </div>
       </div>
 

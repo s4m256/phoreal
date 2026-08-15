@@ -9,6 +9,7 @@ test("keeps the dashboard essential and exports compact AI feedback",async()=>{
   assert.match(dashboard,/Questões resolvidas/);assert.match(dashboard,/Questões resolvidas por dia/);assert.match(dashboard,/Questões resolvidas por tag/);
   assert.match(dashboard,/STUDY_START = new Date\(2026, 4, 2\)/);assert.match(dashboard,/TBF_DATE = new Date\(2027, 1, 19\)/);assert.match(dashboard,/Baixar dados para IA/);
   assert.match(route,/purpose:"feedback de treino por IA"/);assert.match(route,/item_seconds/);assert.doesNotMatch(route,/readFullExportData|statement_html|solution_html/);
+  assert.match(dashboard,/data\.taiwanTimeSegments/);assert.match(dashboard,/taiwanCompleted\.length/);assert.match(dashboard,/\/problemas\/taiwan\/\$\{volume\}/);
 });
 
 test("separates X and Y and shows compact completion states",async()=>{
