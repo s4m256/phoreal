@@ -15,6 +15,26 @@ ITEM_RE = re.compile(r"\\begin\{itembox\}\{([^}]*)\}(.*?)\\end\{itembox\}", re.S
 IMAGE_RE = re.compile(r"\\includegraphics\[([^]]*)\]\{\\sourcepdf\}")
 SOLUTION_RE = re.compile(r"\\minorhead\{Solu(?:ção|ções)\}", re.I)
 PART_RE = re.compile(r"\\parttitle\{([^}]*)\}")
+FIGURE_HTML_RE = re.compile(r'<figure class="taiwan-figure">.*?</figure>', re.S)
+
+# Some source-PDF figures are physically placed after the answer even though
+# they define the setup referenced by the statement. Keep those with the
+# statement, including the bubble diagram printed beside problem 29 but used
+# by problem 28.
+STATEMENT_FIGURE_TARGETS = {
+    "p02-fig01.png": 2,
+    "p03-fig01.png": 3, "p03-fig02.png": 3,
+    "p04-fig02.png": 4,
+    "p08-fig02.png": 8,
+    "p10-fig01.png": 10, "p10-fig02.png": 10,
+    "p23-fig01.png": 23, "p23-fig02.png": 23,
+    "p24-fig01.png": 24,
+    "p25-fig01.png": 25,
+    "p26-fig01.png": 26,
+    "p27-fig01.png": 27,
+    "p29-fig01.png": 28,
+    "p29-fig02.png": 29,
+}
 
 
 def strip_comments(value: str) -> str:
@@ -203,6 +223,28 @@ def parts_for(statement_tex: str) -> list[dict]:
     return parts
 
 
+def place_statement_figures(problems: list[dict]) -> None:
+    by_id = {int(problem["id"]): problem for problem in problems}
+    moved: set[str] = set()
+    for problem in problems:
+        solution = problem.get("solution_html") or ""
+        for figure in FIGURE_HTML_RE.findall(solution):
+            filename_match = re.search(r'/([^/]+\.png)', figure)
+            if not filename_match:
+                continue
+            filename = filename_match.group(1)
+            target_id = STATEMENT_FIGURE_TARGETS.get(filename)
+            if target_id is None:
+                continue
+            problem["solution_html"] = (problem.get("solution_html") or "").replace(figure, "").strip() or None
+            target = by_id[target_id]
+            target["statement_html"] = f'{target["statement_html"]}\n{figure}'.strip()
+            moved.add(filename)
+    missing = set(STATEMENT_FIGURE_TARGETS) - moved
+    if missing:
+        raise ValueError(f"Statement figures not found in solution HTML: {sorted(missing)}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--tex", required=True, type=Path)
@@ -250,6 +292,7 @@ def main() -> None:
         total_images += converter.figure_number
         total_parts += len(parts)
     pdf.close()
+    place_statement_figures(problems)
 
     result = {
         "schema_version": 2,

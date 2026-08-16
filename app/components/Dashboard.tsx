@@ -150,7 +150,7 @@ export function Dashboard() {
 
     <section className="panel"><div className="section-head"><div><p className="eyebrow">Conteúdos</p><h2>Questões resolvidas por tag</h2></div><span className="muted">Uma tentativa conta em todas as tags da questão.</span></div>{metrics.tags.length ? <TagBars tags={metrics.tags}/> : <p className="muted">Os conteúdos aparecerão após a primeira questão finalizada.</p>}</section>
 
-    {data.canEdit&&<section className="panel export-panel"><div><p className="eyebrow">Feedback</p><h2>Exportar para análise</h2><p className="muted">Treinos, tempos por item, uso de hints, simulados e laboratório — sem enunciados nem o catálogo inteiro.</p></div><div className="actions"><a className="button" href="/api/export/json">Baixar dados para IA</a></div></section>}
+    {data.canEdit&&<section className="panel export-panel"><a className="button" href="/api/export/json">Exportar dados</a></section>}
   </>;
 }
 

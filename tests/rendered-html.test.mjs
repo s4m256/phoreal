@@ -4,11 +4,11 @@ import test from "node:test";
 
 const read=(path)=>readFile(new URL(`../${path}`,import.meta.url),"utf8");
 
-test("keeps the dashboard essential and exports compact AI feedback",async()=>{
+test("keeps the dashboard essential and exports only the last seven days",async()=>{
   const [dashboard,route]=await Promise.all([read("app/components/Dashboard.tsx"),read("app/api/export/json/route.ts")]);
   assert.match(dashboard,/Questões resolvidas/);assert.match(dashboard,/Questões resolvidas por dia/);assert.match(dashboard,/Questões resolvidas por tag/);
-  assert.match(dashboard,/STUDY_START = new Date\(2026, 4, 2\)/);assert.match(dashboard,/TBF_DATE = new Date\(2027, 1, 19\)/);assert.match(dashboard,/Baixar dados para IA/);
-  assert.match(route,/purpose:"feedback de treino por IA"/);assert.match(route,/item_seconds/);assert.doesNotMatch(route,/readFullExportData|statement_html|solution_html/);
+  assert.match(dashboard,/STUDY_START = new Date\(2026, 4, 2\)/);assert.match(dashboard,/TBF_DATE = new Date\(2027, 1, 19\)/);assert.match(dashboard,/>Exportar dados</);
+  assert.match(route,/WINDOW_DAYS=7/);assert.match(route,/purpose:"análise semanal de treino"/);assert.match(route,/item_seconds/);assert.match(route,/hints:assistance/);assert.doesNotMatch(route,/readFullExportData|statement_html|solution_html|mock_exams|experiments/);
   assert.match(dashboard,/data\.taiwanTimeSegments/);assert.match(dashboard,/taiwanCompleted\.length/);assert.match(dashboard,/\/problemas\/taiwan\/\$\{volume\}/);
 });
 
@@ -24,6 +24,7 @@ test("loads corrected Taiwan 10 with figures, parts and full training UI",async(
   const [page,workspace,raw]=await Promise.all([read("app/problemas/taiwan/10/[number]/page.tsx"),read("app/components/TaiwanProblemWorkspace.tsx"),read("data/taiwan/volume-10.json")]);const data=JSON.parse(raw);
   assert.equal(data.schema_version,2);assert.equal(data.problems.length,31);assert.equal(data.problems.reduce((sum,problem)=>sum+problem.parts.length,0),184);assert.equal(data.problems.reduce((sum,problem)=>sum+((problem.statement_html+(problem.solution_html||"")).match(/taiwan-figure/g)||[]).length,0),72);
   assert.ok(data.problems.every((problem)=>problem.title_pt&&problem.statement_html));assert.doesNotMatch(raw,/<br><br>tial/);assert.match(page,/TaiwanProblemWorkspace/);assert.match(workspace,/onPartClick=\{selectPart\}/);assert.match(workspace,/Mostrar resposta/);assert.match(workspace,/api\/taiwan\/attempts/);
+  for(const [problemId,images] of [[2,["p02-fig01.png"]],[3,["p03-fig01.png","p03-fig02.png"]],[4,["p04-fig02.png"]],[8,["p08-fig02.png"]],[10,["p10-fig01.png","p10-fig02.png"]],[23,["p23-fig01.png","p23-fig02.png"]],[24,["p24-fig01.png"]],[25,["p25-fig01.png"]],[26,["p26-fig01.png"]],[27,["p27-fig01.png"]],[28,["p29-fig01.png"]],[29,["p29-fig02.png"]]]){const problem=data.problems.find((item)=>item.id===problemId);for(const image of images){assert.match(problem.statement_html,new RegExp(image.replace(".","\\.")));assert.doesNotMatch(problem.solution_html||"",new RegExp(image.replace(".","\\.")));}}
 });
 
 test("clicking an XY item creates or resumes an attempt",async()=>{
