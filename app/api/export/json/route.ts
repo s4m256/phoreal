@@ -1,4 +1,4 @@
-import taiwanVolume10 from "../../../../data/taiwan/volume-10.json";
+import taiwanIndex from "../../../../data/taiwan/index.json";
 import { readAllData } from "../../../../db/runtime";
 import { requireSiteUserApi } from "../../../chatgpt-auth";
 
@@ -54,7 +54,7 @@ export async function GET() {
     return {source:"xy",problem:`${String(exam?.code||"")} ${String(problem?.code||"")}`.trim(),title:problem?.title_pt||problem?.title,tags:tagsByProblem.get(Number(attempt.problem_id))||[],status:attempt.status,finished_at:attempt.finished_at,total_seconds:time?.total_seconds||0,item_seconds:Object.fromEntries([...(time?.items||new Map()).entries()].map(([id,seconds])=>[partById.get(Number(id))?.code||id,seconds])),hints:assistance};
   });
   const taiwan=taiwanAttempts.map((attempt)=>{
-    const problem=taiwanVolume10.problems.find((item)=>item.id===Number(attempt.problem_number)),time=taiwanTimes.get(String(attempt.id));
+    const problem=taiwanIndex.volumes.find((item)=>item.volume===Number(attempt.volume))?.problems.find((item)=>item.id===Number(attempt.problem_number)),time=taiwanTimes.get(String(attempt.id));
     const assistance=recentTaiwanHints.filter((hint)=>hint.attempt_id===attempt.id).map((hint)=>({item:hint.item_code,question:hint.question,full_solution:Boolean(hint.full_solution),at:hint.created_at}));
     return {source:"taiwan",problem:`Taiwan ${attempt.volume} · ${problem?.code||attempt.problem_number}`,title:problem?.title_pt,tags:[],status:attempt.status,finished_at:attempt.finished_at,total_seconds:time?.total_seconds||0,item_seconds:Object.fromEntries(time?.items||[]),hints:assistance};
   });

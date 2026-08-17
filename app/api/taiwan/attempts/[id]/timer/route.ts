@@ -1,4 +1,4 @@
-import taiwanVolume10 from "../../../../../../data/taiwan/volume-10.json";
+import taiwanIndex from "../../../../../../data/taiwan/index.json";
 import { ensureDatabase, getD1 } from "../../../../../../db/runtime";
 import { requireSiteUserApi } from "../../../../../chatgpt-auth";
 
@@ -11,7 +11,7 @@ export async function POST(request:Request,{params}:{params:Promise<{id:string}>
   const db=getD1();
   const attempt=await db.prepare("SELECT * FROM user_taiwan_attempts WHERE id=? AND owner_id=?").bind(id,user.userId).first<Record<string,unknown>>();
   if (!attempt || attempt.status!=="in_progress") return Response.json({error:"Tentativa em andamento não encontrada"},{status:404});
-  const problem=taiwanVolume10.problems.find((item)=>item.id===Number(attempt.problem_number)&&Number(attempt.volume)===10);
+  const problem=taiwanIndex.volumes.find((item)=>item.volume===Number(attempt.volume))?.problems.find((item)=>item.id===Number(attempt.problem_number));
   if (!problem) return Response.json({error:"Problema de Taiwan não encontrado"},{status:404});
   const now=new Date().toISOString();
   const close=db.prepare("UPDATE user_taiwan_time_segments SET ended_at=?,duration_seconds=MAX(0,CAST((julianday(?)-julianday(started_at))*86400 AS INTEGER)) WHERE attempt_id=? AND ended_at IS NULL").bind(now,now,id);

@@ -38,3 +38,11 @@ test("normalizes every unit family found in the XY catalog",()=>{
   assert.equal((html.match(/class="katex"/g)||[]).length,9);
   assert.doesNotMatch(html,/[А-Яа-яЁё]/u);
 });
+
+test("renders the named operators used by the Taiwan collection",()=>{
+  const errors=[];
+  const html=renderStatementMath(String.raw`<p>$\erf(x)+\erfc(x)+\arctanh(x)+\cothop(x)+\sech(x)+\arsinh(x)$</p>`,{onError:(error)=>errors.push(error)});
+  assert.deepEqual(errors,[]);
+  assert.match(html,/class="katex"/);
+  assert.doesNotMatch(html,/katex-error|\\(?:erf|erfc|arctanh|cothop|sech|arsinh)/);
+});

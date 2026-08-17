@@ -11,7 +11,7 @@ type TaiwanPart={code:string;ordinal:number;score:number|null;prompt_text:string
 type TaiwanProblem={id:number;code:string;title_pt:string;page_start:number;page_end:number;source_url:string;statement_html:string;solution_html:string|null;parts:TaiwanPart[]};
 const segmentSeconds=(segment:{started_at:string;duration_seconds:number|null},now:number)=>segment.duration_seconds==null?Math.max(0,Math.floor((now-Date.parse(segment.started_at))/1000)):Number(segment.duration_seconds);
 
-export function TaiwanProblemWorkspace({problem,totalProblems}:{problem:TaiwanProblem;totalProblems:number}) {
+export function TaiwanProblemWorkspace({volume,problem,totalProblems}:{volume:number;problem:TaiwanProblem;totalProblems:number}) {
   const {data,error,loading,refresh}=useTrainingData();
   const now=useClock();
   const [busy,setBusy]=useState(false);
@@ -21,7 +21,7 @@ export function TaiwanProblemWorkspace({problem,totalProblems}:{problem:TaiwanPr
   const [question,setQuestion]=useState("");
   const [hintBusy,setHintBusy]=useState(false);
   const [hintError,setHintError]=useState<string|null>(null);
-  const attempts=useMemo(()=>data?.taiwanAttempts.filter((attempt)=>attempt.volume===10&&attempt.problem_number===problem.id)||[],[data,problem.id]);
+  const attempts=useMemo(()=>data?.taiwanAttempts.filter((attempt)=>attempt.volume===volume&&attempt.problem_number===problem.id)||[],[data,problem.id,volume]);
   const active=attempts.find((attempt)=>attempt.status==="in_progress");
   const segments=useMemo(()=>data?.taiwanTimeSegments.filter((segment)=>segment.attempt_id===active?.id)||[],[data,active]);
   const total=segments.reduce((sum,segment)=>sum+segmentSeconds(segment,now),0);
@@ -45,7 +45,7 @@ export function TaiwanProblemWorkspace({problem,totalProblems}:{problem:TaiwanPr
     setBusy(true);
     try{
       let attemptId=active?.id;
-      if(!attemptId){const created=await postJson("/api/taiwan/attempts",{volume:10,problemNumber:problem.id}) as {attempt:{id:string}};attemptId=created.attempt.id;}
+      if(!attemptId){const created=await postJson("/api/taiwan/attempts",{volume,problemNumber:problem.id}) as {attempt:{id:string}};attemptId=created.attempt.id;}
       await postJson(`/api/taiwan/attempts/${attemptId}/timer`,{action:"select_item",itemCode:part.code});
       await refresh({silent:true});
     }finally{setBusy(false);}
@@ -60,11 +60,11 @@ export function TaiwanProblemWorkspace({problem,totalProblems}:{problem:TaiwanPr
     finally{setHintBusy(false);}
   }
   return <div className="problem-page taiwan-problem-page">
-    <section className="problem-header"><div><p className="eyebrow">Taiwan · volume 10</p><h1><span>{problem.code}</span> {problem.title_pt}</h1></div><div className="source-links">{problem.solution_html&&<button type="button" className="solution-toggle" onClick={()=>setSolutionOpen((value)=>!value)}>{solutionOpen?"Ocultar resposta":"Mostrar resposta"}</button>}</div></section>
+    <section className="problem-header"><div><p className="eyebrow">Taiwan · volume {volume}</p><h1><span>{problem.code}</span> {problem.title_pt}</h1></div><div className="source-links">{problem.solution_html&&<button type="button" className="solution-toggle" onClick={()=>setSolutionOpen((value)=>!value)}>{solutionOpen?"Ocultar resposta":"Mostrar resposta"}</button>}</div></section>
     <div className="workspace"><div className="problem-main-column">
       <section className="panel statement-panel"><MathHtml className="statement-content" html={problem.statement_html} parts={linkedParts} activePartId={active?.current_state==="item_active"?currentPart?.ordinal:null} disabled={busy||!data.canEdit} onPartClick={selectPart}/></section>
       {solutionOpen&&problem.solution_html&&<section className="panel solution-panel" aria-label="Resposta"><MathHtml className="statement-content solution-content" html={problem.solution_html}/></section>}
-      <nav className="taiwan-problem-nav" aria-label="Navegação entre problemas"><span>{problem.id>1&&<Link href={`/problemas/taiwan/10/${problem.id-1}`}>← Anterior</Link>}</span><Link href="/problemas#taiwan">Todos</Link><span>{problem.id<totalProblems&&<Link href={`/problemas/taiwan/10/${problem.id+1}`}>Próximo →</Link>}</span></nav>
+      <nav className="taiwan-problem-nav" aria-label="Navegação entre problemas"><span>{problem.id>1&&<Link href={`/problemas/taiwan/${volume}/${problem.id-1}`}>← Anterior</Link>}</span><Link href="/problemas#taiwan">Todos</Link><span>{problem.id<totalProblems&&<Link href={`/problemas/taiwan/${volume}/${problem.id+1}`}>Próximo →</Link>}</span></nav>
     </div><aside className={`timer-card ${minimized?"minimized":""}`}>
       {!data.canEdit?<span className="timer-state">Entre para treinar</span>:minimized?<button type="button" className="timer-collapsed" onClick={()=>setMinimized(false)} aria-label="Expandir cronômetro">⏱</button>:<><div className="timer-top"><div><span className="timer-state">{!active?"Clique em um item":active.current_state==="paused"?currentPart?`Pausado · ${currentPart.code}`:"Pausado":`Item ${currentPart?.code||""}`}</span>{active&&<strong className="timer-total">{formatTime(total)}</strong>}</div>{active&&<button className="icon-button" onClick={()=>setMinimized(true)} aria-label="Minimizar cronômetro">—</button>}</div>{active&&<><div className="timer-details">{currentPart&&<div><dt>{currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}</dd>{active.current_state==="item_active"&&<button type="button" className="timer-discard" disabled={busy} onClick={discard} title="Descartar somente o intervalo atual">↶</button>}</span></div>}</div><div className="timer-actions">{(active.current_state!=="paused"||active.active_item_code)&&<button className="button" disabled={busy} onClick={()=>act(active.current_state==="paused"?"resume":"pause")}>{active.current_state==="paused"?"Continuar":"Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>Finalizar</button></div></>}</>}
     </aside></div>

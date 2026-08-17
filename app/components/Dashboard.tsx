@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { formatHoursMinutes, secondsFor, useClock, useTrainingData } from "./data";
 import { Loading } from "./Loading";
 import { dayKey, dayNumber, dayStart, fixedPeriodDays, isTheoryTag, parseDayKey, splitSegmentByDay } from "./training-view-model.mjs";
-import taiwanVolume10 from "../../data/taiwan/volume-10.json";
+import taiwanIndex from "../../data/taiwan/index.json";
 
 const STUDY_START = new Date(2026, 4, 2);
 const TBF_DATE = new Date(2027, 1, 19);
@@ -26,6 +26,7 @@ type HeatmapDay = {
 const formatDate = (date: Date) => date.toLocaleDateString("pt-BR");
 const xyProblemKey = (problemId: number) => `xy:${problemId}`;
 const taiwanProblemKey = (volume: number, problemNumber: number) => `taiwan:${volume}:${problemNumber}`;
+const taiwanProblem=(volume:number,problemNumber:number)=>taiwanIndex.volumes.find((item)=>item.volume===volume)?.problems.find((item)=>item.id===problemNumber);
 
 export function Dashboard() {
   const { data, error, loading } = useTrainingData();
@@ -115,7 +116,7 @@ export function Dashboard() {
     }
     const [, volumeText, problemNumberText] = key.split(":");
     const volume = Number(volumeText), problemNumber = Number(problemNumberText);
-    const problem = volume === 10 ? taiwanVolume10.problems.find((item) => item.id === problemNumber) : null;
+    const problem = taiwanProblem(volume,problemNumber);
     return problem ? { key, href: `/problemas/taiwan/${volume}/${problem.id}`, code: `Taiwan ${volume} · ${problem.code}`, title: problem.title_pt, seconds } : null;
   }).filter((item): item is NonNullable<typeof item> => Boolean(item)).sort((a, b) => b.seconds - a.seconds);
   const selectedIsFuture = selectedDate > today;
@@ -131,7 +132,7 @@ export function Dashboard() {
       <div className="tbf-track"><div className="tbf-elapsed" style={{ width: `${progress}%` }}/><span className="tbf-today" style={{ left: `${progress}%` }} aria-label="Data atual"><i/></span></div>
     </section>
 
-    {(data.attempts.some((attempt) => attempt.status === "in_progress") || data.taiwanAttempts.some((attempt) => attempt.status === "in_progress")) && <section className="notice"><strong>Tentativa em andamento</strong>{data.attempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = data.problems.find((item) => item.id === attempt.problem_id); return <Link key={attempt.id} href={`/questao/${attempt.problem_id}`}>{problem?.code} · {problem?.title_pt || problem?.title}</Link>; })}{data.taiwanAttempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = attempt.volume===10?taiwanVolume10.problems.find((item)=>item.id===attempt.problem_number):null; return <Link key={attempt.id} href={`/problemas/taiwan/${attempt.volume}/${attempt.problem_number}`}>Taiwan {attempt.volume} · {problem?.code} · {problem?.title_pt}</Link>; })}</section>}
+    {(data.attempts.some((attempt) => attempt.status === "in_progress") || data.taiwanAttempts.some((attempt) => attempt.status === "in_progress")) && <section className="notice"><strong>Tentativa em andamento</strong>{data.attempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = data.problems.find((item) => item.id === attempt.problem_id); return <Link key={attempt.id} href={`/questao/${attempt.problem_id}`}>{problem?.code} · {problem?.title_pt || problem?.title}</Link>; })}{data.taiwanAttempts.filter((attempt) => attempt.status === "in_progress").map((attempt) => { const problem = taiwanProblem(attempt.volume,attempt.problem_number); return <Link key={attempt.id} href={`/problemas/taiwan/${attempt.volume}/${attempt.problem_number}`}>Taiwan {attempt.volume} · {problem?.code} · {problem?.title_pt}</Link>; })}</section>}
 
     <section className="metric-grid essentials"><Metric label="Questões resolvidas" value={String(metrics.completedCount)}/><Metric label="Tempo resolvendo" value={formatHoursMinutes(metrics.totalSeconds)}/><Metric label="Hoje" value={formatHoursMinutes(metrics.todaySeconds)}/></section>
 

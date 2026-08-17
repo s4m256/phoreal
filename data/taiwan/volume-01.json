@@ -1,0 +1,1275 @@
+{
+  "schema_version": 2,
+  "collection": "Taiwan - volume 1",
+  "volume": 1,
+  "source_pdf": "/taiwan/taiwan-01.pdf",
+  "language": "pt-BR",
+  "problems": [
+    {
+      "id": 1,
+      "code": "01",
+      "title_pt": "Primeira Imagem De Um Buraco Negro",
+      "page_start": 2,
+      "page_end": 15,
+      "source_url": "/taiwan/taiwan-01.pdf#page=2",
+      "statement_html": "<p>O problema usa o buraco negro de Schwarzschild como modelo e fornece, passo a passo, as relações de relatividade geral necessárias. Considere um corpo central esférico, não rotativo, de massa $M$, e uma partícula teste de massa $m\\ll M$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p01-fig01.png\" alt=\"Primeira imagem de um buraco negro, usada como motivação do problema.\" loading=\"lazy\"><figcaption>Primeira imagem de um buraco negro, usada como motivação do problema.</figcaption></figure>\n<h2 class=\"statement-section statement-part-heading\">Parte A -- raio de Schwarzschild</h2>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Na mecânica newtoniana, determine a velocidade de escape $v_c$ a partir da superfície de um astro de massa $M$ e raio $R$.</p></div><small class=\"taiwan-item-points\">1 ponto</small></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Iguale a velocidade de escape à velocidade da luz e mostre que o raio crítico é\n\\[\n\\boxed{r_s=\\frac{2GM}{c^2}}.\n\\]\nInterprete $r_s$ como o raio do horizonte de eventos no modelo de Schwarzschild.</p></div><small class=\"taiwan-item-points\">1 ponto</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- geometria de Schwarzschild</h2>\n<p>Para uma trajetória plana $(r(t),\\theta(t))$, o material fornece a relação\n\\[\nd\\tau=dt\\sqrt{\\left(1-\\frac{2GM}{c^2r}\\right)\n-\\frac1{c^2}\\left[\n\\frac{1}{1-2GM/(c^2r)}\\left(\\frac{dr}{dt}\\right)^2\n+r^2\\left(\\frac{d\\theta}{dt}\\right)^2\\right]}.\n\\]\nA trajetória física torna estacionário o tempo próprio acumulado.</p>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>No caso $M=0$, temos\n\\[\nd\\tau=dt\\sqrt{1-\\frac{v^2}{c^2}}.\n\\]\nExplique por que, entre dois eventos fixos no espaço e no tempo, o movimento retilíneo uniforme maximiza o tempo próprio.</p></div><small class=\"taiwan-item-points\">6 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Usando cálculo variacional, obtenha as equações de movimento\n\\[\n\\frac{d}{d\\tau}\\!\\left[\\frac{1}{1-2GM/(c^2r)}\\frac{dr}{d\\tau}\\right]\n+\\frac{GM}{r^2}\\left(\\frac{dt}{d\\tau}\\right)^2\n+\\frac{GM}{c^2r^2}\\frac{(dr/d\\tau)^2}{[1-2GM/(c^2r)]^2}\n-r\\left(\\frac{d\\theta}{d\\tau}\\right)^2=0,\n\\]\n\\[\n\\frac{d}{d\\tau}\\!\\left[\\left(1-\\frac{2GM}{c^2r}\\right)\\frac{dt}{d\\tau}\\right]=0,\n\\qquad\n\\frac{d}{d\\tau}\\!\\left(r^2\\frac{d\\theta}{d\\tau}\\right)=0.\n\\]</p></div><small class=\"taiwan-item-points\">10 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Verifique os limites não relativísticos: para movimento radial instantaneamente em repouso,\n\\[\n\\frac{d^2r}{d\\tau^2}=-\\frac{GM}{r^2},\n\\]\ne para uma órbita circular,\n\\[\n\\frac{d\\theta}{dt}=\\sqrt{\\frac{GM}{r^3}}.\n\\]</p></div><small class=\"taiwan-item-points\">2 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Mostre que, no limite de campo fraco e baixa velocidade,\n\\[\n\\left(1-\\frac{2GM}{c^2r}\\right)c^2\\frac{dt}{d\\tau}\n\\approx c^2+\\frac{v^2}{2}-\\frac{GM}{r},\n\\qquad\nr^2\\frac{d\\theta}{d\\tau}\\approx r^2\\frac{d\\theta}{dt}.\n\\]\nInterprete os dois invariantes correspondentes como energia e momento angular e defina\n\\[\nE\\equiv mc^2\\left(1-\\frac{2GM}{c^2r}\\right)\\frac{dt}{d\\tau},\n\\qquad\nL\\equiv mr^2\\frac{d\\theta}{d\\tau}.\n\\]</p></div><small class=\"taiwan-item-points\">2 pontos</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte C -- raio interno de um disco de acreção</h2>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Elimine $dt/d\\tau$ e $d\\theta/d\\tau$ em favor de $E$ e $L$ e mostre que\n\\[\n\\frac{m}{2}\\left[\\left(\\frac{dr}{d\\tau}\\right)^2+r^2\\left(\\frac{d\\theta}{d\\tau}\\right)^2\\right]\n-\\left(\\frac{GMm}{r}+\\frac{GML^2}{mc^2r^3}\\right)\n=\\frac{E^2}{2mc^2}-\\frac12mc^2.\n\\]\nLogo, o potencial gravitacional efetivo contém\n\\[\nV(r)=-\\frac{GMm}{r}-\\frac{GML^2}{mc^2r^3},\n\\qquad\nF(r)=-\\frac{GMm}{r^2}-\\frac{3GML^2}{mc^2r^4}.\n\\]</p></div><small class=\"taiwan-item-points\">3 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Analise a estabilidade das órbitas circulares sob pequenas perturbações radiais e mostre que o menor raio de uma órbita circular estável é\n\\[\n\\boxed{r_{\\rm ISCO}=3r_s}.\n\\]</p></div><small class=\"taiwan-item-points\">10 pontos</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte D -- trajetória da luz</h2>\n<section class=\"taiwan-item statement-row\"><span>(i)</span><div class=\"taiwan-item-body\"><p>Para um fóton, tome o limite $d\\tau\\to0$ e mostre que\n\\[\n\\frac{dr}{d\\theta}\n=r^2\\sqrt{\\frac1{c^2}\\left(\\frac EL\\right)^2\n-\\frac1{r^2}\\left(1-\\frac{2GM}{c^2r}\\right)}.\n\\]</p></div><small class=\"taiwan-item-points\">5 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(j)</span><div class=\"taiwan-item-body\"><p>Mostre que uma órbita circular de luz ocorre em\n\\[\n\\boxed{r=\\frac32r_s},\n\\]\ne que ela é instável. Essa superfície é a esfera de fótons.</p></div><small class=\"taiwan-item-points\">5 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(k)</span><div class=\"taiwan-item-body\"><p>Considere raios luminosos vindos do infinito. Determine o menor parâmetro de impacto que evita captura pelo buraco negro e mostre que\n\\[\n\\boxed{b_{\\min}=\\frac{3\\sqrt3}{2}r_s\\approx2.6r_s}.\n\\]</p></div><small class=\"taiwan-item-points\">10 pontos</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte E -- imagem observada</h2>\n<section class=\"taiwan-item statement-row\"><span>(l)</span><div class=\"taiwan-item-body\"><p>Explique por que, em uma imagem de um disco de acreção em rotação, um dos lados pode aparecer mais brilhante que o outro.</p></div><small class=\"taiwan-item-points\">2 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(m)</span><div class=\"taiwan-item-body\"><p>Explique qualitativamente, com um esboço, como o forte desvio gravitacional da luz produz imagens aparentes adicionais do disco de acreção quando o sistema é observado inclinado.</p></div><small class=\"taiwan-item-points\">3 pontos</small></section>\n<h2 class=\"statement-section statement-part-heading\">Questões complementares</h2>\n<section class=\"taiwan-item statement-row\"><span>S1 (a)</span><div class=\"taiwan-item-body\"><p>Para movimento radial, obtenha a equação geodésica unidimensional e a aceleração própria radial. Mostre que\n\\[\n\\boxed{\\frac{d^2r}{d\\tau^2}=-\\frac{r_sc^2}{2r^2}}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>S2 (b)</span><div class=\"taiwan-item-body\"><p>Analise a queda radial de uma partícula inicialmente em repouso em $r_0>r_s$. Mostre que, para o observador externo, o horizonte é alcançado apenas assintoticamente, enquanto o tempo próprio da partícula até $r_s$ é finito.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>S3 (c)</span><div class=\"taiwan-item-body\"><p>Mostre, na aproximação de campo fraco, que a deflexão total de um raio luminoso com parâmetro de impacto $b$ é\n\\[\n\\boxed{\\Delta\\varphi=\\frac{4GM}{bc^2}}.\n\\]\nCalcule o valor para um raio tangente à superfície solar.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>S4 (d)</span><div class=\"taiwan-item-body\"><p>Use o termo relativístico adicional no potencial para estimar a precessão do periélio de uma órbita quase circular.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>S5 (e)</span><div class=\"taiwan-item-body\"><p>Considere um sinal de radar Terra--Vênus que passa próximo ao Sol. Determine a correção de tempo de Shapiro até primeira ordem em $GM/(c^2r)$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{v_c=\\sqrt{\\frac{2GM}{R}}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>Igualando $v_c=c$, obtém-se $\\boxed{r_s=2GM/c^2}$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>Para deslocamento e duração externos fixos, qualquer redistribuição não uniforme da velocidade reduz $\\int dt\\sqrt{1-v^2/c^2}$; o máximo ocorre para velocidade constante ao longo da reta entre os pontos.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>Aplicam-se diretamente as equações de Euler--Lagrange ao integrando $d\\tau/dt$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>As duas expressões indicadas coincidem, no limite apropriado, com a gravitação newtoniana.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>Os invariantes das duas equações cíclicas reduzem, respectivamente, à energia total newtoniana acrescida de $mc^2$ e ao momento angular.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>O material obtém exatamente as expressões mostradas no enunciado para $V(r)$ e $F(r)$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(h)</strong><div><p>Escrevendo o potencial radial efetivo\n\\[\nV_{\\rm eff}=\\frac{L^2}{2mr^2}-\\frac{GMm}{r}-\\frac{GML^2}{mc^2r^3},\n\\]\na condição $V'_{\\rm eff}=0$ fornece as órbitas circulares e $V''_{\\rm eff}>0$ exige $r>3r_s$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(i)</strong><div><p>Segue da condição nula do intervalo para fótons e das duas constantes de movimento.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(j)</strong><div><p>A condição de órbita circular fornece $r=3r_s/2$; a segunda derivada do potencial efetivo tem o sinal de instabilidade.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(k)</strong><div><p>No ponto de aproximação mínima $r=3r_s/2$, $dr/d\\theta=0$, o que dá\n\\[\n\\frac LE=\\frac{3\\sqrt3}{2}\\frac{r_s}{c},\n\\qquad\n\\boxed{b_{\\min}=\\frac{3\\sqrt3}{2}r_s}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(l)</strong><div><p>O material identifica o efeito como <em>Doppler beaming</em>: o lado do disco que se aproxima do observador é reforçado.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(m)</strong><div><p>O material fornece apenas uma explicação gráfica: a lente gravitacional permite ver partes do disco que geometricamente ficariam atrás do buraco negro.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>Complementar (a)</strong><div><p>\\[\\boxed{a\\equiv\\frac{d^2r}{d\\tau^2}=-\\frac{r_sc^2}{2r^2}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>Complementar (b)</strong><div><p>O horizonte crítico é $\\boxed{r_c=r_s}$. O tempo próprio de queda é finito.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>Complementar (c)</strong><div><p>\\[\\boxed{\\Delta\\varphi=\\frac{4GM}{bc^2}},\\qquad \\Delta\\varphi_{\\odot}=8.49\\times10^{-6}\\,\\mathrm{rad}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>Complementar (d)</strong><div><p>O resultado dado no material é\n\\[\n\\boxed{\\delta\\varphi\\approx\\frac{6\\pi G^2M^2m^2}{c^2L^2}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>Complementar (e)</strong><div><p>Com $\\ell_E=\\sqrt{r_E^2-b^2}$ e $\\ell_V=\\sqrt{r_V^2-b^2}$,\n\\[\nC_6=\\ln\\!\\frac{(r_E+\\ell_E)(r_V+\\ell_V)}{b^2}\n-\\frac12\\left(\\frac{\\ell_E}{r_E}+\\frac{\\ell_V}{r_V}\\right).\n\\]\nO maior atraso citado é $2.13\\times10^{-4}\\,\\mathrm{s}$ e\n\\[\n\\Delta\\tau\\approx\\left(1-\\frac{3GM}{2c^2r_E}\\right)\\Delta t.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": 1.0,
+          "prompt_text": "Na mecânica newtoniana, determine a velocidade de escape $v_c$ a partir da superfície de um astro de massa $M$ e raio $R$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": 1.0,
+          "prompt_text": "Iguale a velocidade de escape à velocidade da luz e mostre que o raio crítico é \\[\n\\boxed{r_s=\\frac{2GM}{c^2}}.\n\\] Interprete $r_s$ como o raio do horizonte de eventos no modelo de Schwarzschild."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": 6.0,
+          "prompt_text": "No caso $M=0$, temos \\[\nd\\tau=dt\\sqrt{1-\\frac{v^2}{c^2}}.\n\\] Explique por que, entre dois eventos fixos no espaço e no tempo, o movimento retilíneo uniforme maximiza o tempo próprio."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": 10.0,
+          "prompt_text": "Usando cálculo variacional, obtenha as equações de movimento \\[\n\\frac{d}{d\\tau}\\!\\left[\\frac{1}{1-2GM/(c^2r)}\\frac{dr}{d\\tau}\\right]\n+\\frac{GM}{r^2}\\left(\\frac{dt}{d\\tau}\\right)^2\n+\\frac{GM}{c^2r^2}\\frac{(dr/d\\tau)^2}{[1-2GM/(c^2r)]^2}\n-r\\left(\\frac{d\\theta}{d\\tau}\\right)^2=0,\n\\] \\[\n\\frac{d}{d\\tau}\\!\\left[\\left(1-\\frac{2GM}{c^2r}\\right)\\frac{dt}{d\\tau}\\right]=0,\n\\qquad\n\\frac{d}{d\\tau}\\!\\left(r^2\\frac{d\\theta}{d\\tau}\\right)=0.\n\\]"
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": 2.0,
+          "prompt_text": "Verifique os limites não relativísticos: para movimento radial instantaneamente em repouso, \\[\n\\frac{d^2r}{d\\tau^2}=-\\frac{GM}{r^2},\n\\] e para uma órbita circular, \\[\n\\frac{d\\theta}{dt}=\\sqrt{\\frac{GM}{r^3}}.\n\\]"
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": 2.0,
+          "prompt_text": "Mostre que, no limite de campo fraco e baixa velocidade, \\[\n\\left(1-\\frac{2GM}{c^2r}\\right)c^2\\frac{dt}{d\\tau}\n\\approx c^2+\\frac{v^2}{2}-\\frac{GM}{r},\n\\qquad\nr^2\\frac{d\\theta}{d\\tau}\\approx r^2\\frac{d\\theta}{dt}.\n\\] Interprete os dois invariantes correspondentes como energia e momento angular e defina \\[\nE\\equiv mc^2\\left(1-\\frac{2GM}{c^2r}\\right)\\frac{dt}{d\\tau},\n\\qquad\nL\\equiv mr^2\\frac{d\\theta}{d\\tau}.\n\\]"
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": 3.0,
+          "prompt_text": "Elimine $dt/d\\tau$ e $d\\theta/d\\tau$ em favor de $E$ e $L$ e mostre que \\[\n\\frac{m}{2}\\left[\\left(\\frac{dr}{d\\tau}\\right)^2+r^2\\left(\\frac{d\\theta}{d\\tau}\\right)^2\\right]\n-\\left(\\frac{GMm}{r}+\\frac{GML^2}{mc^2r^3}\\right)\n=\\frac{E^2}{2mc^2}-\\frac12mc^2.\n\\] Logo, o potencial gravitacional efetivo contém \\[\nV(r)=-\\frac{GMm}{r}-\\frac{GML^2}{mc^2r^3},\n\\qquad\nF(r)=-\\frac{GMm}{r^2}-\\frac{3GML^2}{mc^2r^4}.\n\\]"
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": 10.0,
+          "prompt_text": "Analise a estabilidade das órbitas circulares sob pequenas perturbações radiais e mostre que o menor raio de uma órbita circular estável é \\[\n\\boxed{r_{\\rm ISCO}=3r_s}.\n\\]"
+        },
+        {
+          "code": "(i)",
+          "ordinal": 9,
+          "score": 5.0,
+          "prompt_text": "Para um fóton, tome o limite $d\\tau\\to0$ e mostre que \\[\n\\frac{dr}{d\\theta}\n=r^2\\sqrt{\\frac1{c^2}\\left(\\frac EL\\right)^2\n-\\frac1{r^2}\\left(1-\\frac{2GM}{c^2r}\\right)}.\n\\]"
+        },
+        {
+          "code": "(j)",
+          "ordinal": 10,
+          "score": 5.0,
+          "prompt_text": "Mostre que uma órbita circular de luz ocorre em \\[\n\\boxed{r=\\frac32r_s},\n\\] e que ela é instável. Essa superfície é a esfera de fótons."
+        },
+        {
+          "code": "(k)",
+          "ordinal": 11,
+          "score": 10.0,
+          "prompt_text": "Considere raios luminosos vindos do infinito. Determine o menor parâmetro de impacto que evita captura pelo buraco negro e mostre que \\[\n\\boxed{b_{\\min}=\\frac{3\\sqrt3}{2}r_s\\approx2.6r_s}.\n\\]"
+        },
+        {
+          "code": "(l)",
+          "ordinal": 12,
+          "score": 2.0,
+          "prompt_text": "Explique por que, em uma imagem de um disco de acreção em rotação, um dos lados pode aparecer mais brilhante que o outro."
+        },
+        {
+          "code": "(m)",
+          "ordinal": 13,
+          "score": 3.0,
+          "prompt_text": "Explique qualitativamente, com um esboço, como o forte desvio gravitacional da luz produz imagens aparentes adicionais do disco de acreção quando o sistema é observado inclinado."
+        },
+        {
+          "code": "S1 (a)",
+          "ordinal": 14,
+          "score": null,
+          "prompt_text": "Para movimento radial, obtenha a equação geodésica unidimensional e a aceleração própria radial. Mostre que \\[\n\\boxed{\\frac{d^2r}{d\\tau^2}=-\\frac{r_sc^2}{2r^2}}.\n\\]"
+        },
+        {
+          "code": "S2 (b)",
+          "ordinal": 15,
+          "score": null,
+          "prompt_text": "Analise a queda radial de uma partícula inicialmente em repouso em $r_0>r_s$. Mostre que, para o observador externo, o horizonte é alcançado apenas assintoticamente, enquanto o tempo próprio da partícula até $r_s$ é finito."
+        },
+        {
+          "code": "S3 (c)",
+          "ordinal": 16,
+          "score": null,
+          "prompt_text": "Mostre, na aproximação de campo fraco, que a deflexão total de um raio luminoso com parâmetro de impacto $b$ é \\[\n\\boxed{\\Delta\\varphi=\\frac{4GM}{bc^2}}.\n\\] Calcule o valor para um raio tangente à superfície solar."
+        },
+        {
+          "code": "S4 (d)",
+          "ordinal": 17,
+          "score": null,
+          "prompt_text": "Use o termo relativístico adicional no potencial para estimar a precessão do periélio de uma órbita quase circular."
+        },
+        {
+          "code": "S5 (e)",
+          "ordinal": 18,
+          "score": null,
+          "prompt_text": "Considere um sinal de radar Terra--Vênus que passa próximo ao Sol. Determine a correção de tempo de Shapiro até primeira ordem em $GM/(c^2r)$."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "code": "02",
+      "title_pt": "Precessão Da Órbita De Mercúrio Por Perturbações Planetárias",
+      "page_start": 16,
+      "page_end": 17,
+      "source_url": "/taiwan/taiwan-01.pdf#page=16",
+      "statement_html": "<p>Modele os demais planetas como anéis circulares uniformes coplanares. O Sol tem massa $M_0$, Mercúrio tem massa $m$ e raio orbital médio $r_0$. Seja $V(r)$ o potencial adicional produzido pelos outros planetas.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p02-fig01.png\" alt=\"Precessão do periélio de uma órbita quase elíptica.\" loading=\"lazy\"><figcaption>Precessão do periélio de uma órbita quase elíptica.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Determine a frequência angular $\\omega_r$ da órbita circular de Mercúrio em termos de $V'(r_0)$ e dos demais parâmetros.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Aplique uma pequena perturbação radial à órbita circular e determine a frequência $\\omega_\\varphi$ das pequenas oscilações radiais em termos de $V'(r_0)$ e $V''(r_0)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Um planeta externo é substituído por um anel uniforme de massa $M$ e raio $R$, com $r\\ll R$. Expanda a energia potencial gravitacional $V_{\\rm ring}(r)$ até ordem $(r/R)^4$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Usando os resultados anteriores, mostre que a contribuição desse planeta para a precessão por período pode ser escrita aproximadamente como\n\\[\n\\boxed{\n\\frac{M}{M_0}\\left[\\frac34\\left(\\frac{r_0}{R}\\right)^3\n+\\frac{45}{32}\\left(\\frac{r_0}{R}\\right)^5+\\cdots\\right]360^\\circ }.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Some as contribuições de Vênus, Terra e Marte usando a tabela de massas e raios orbitais fornecida no material e estime a precessão acumulada em um século.</p></div></section>",
+      "solution_html": "<p>O material original não apresenta uma seção de solução para este problema; portanto, nenhuma solução foi acrescentada aqui.</p>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine a frequência angular $\\omega_r$ da órbita circular de Mercúrio em termos de $V'(r_0)$ e dos demais parâmetros."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Aplique uma pequena perturbação radial à órbita circular e determine a frequência $\\omega_\\varphi$ das pequenas oscilações radiais em termos de $V'(r_0)$ e $V''(r_0)$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Um planeta externo é substituído por um anel uniforme de massa $M$ e raio $R$, com $r\\ll R$. Expanda a energia potencial gravitacional $V_{\\rm ring}(r)$ até ordem $(r/R)^4$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Usando os resultados anteriores, mostre que a contribuição desse planeta para a precessão por período pode ser escrita aproximadamente como \\[\n\\boxed{\n\\frac{M}{M_0}\\left[\\frac34\\left(\\frac{r_0}{R}\\right)^3\n+\\frac{45}{32}\\left(\\frac{r_0}{R}\\right)^5+\\cdots\\right]360^\\circ }.\n\\]"
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Some as contribuições de Vênus, Terra e Marte usando a tabela de massas e raios orbitais fornecida no material e estime a precessão acumulada em um século."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "code": "03",
+      "title_pt": "O Que Acontece Com Uvas Em Um Forno De Micro-Ondas?",
+      "page_start": 18,
+      "page_end": 21,
+      "source_url": "/taiwan/taiwan-01.pdf#page=18",
+      "statement_html": "<p><strong>Aviso de segurança:</strong> o fenômeno é discutido apenas como problema teórico. Não tente reproduzi-lo: arcos elétricos podem causar incêndio e danificar o aparelho.</p>\n<p>O material analisa o acoplamento de micro-ondas com um objeto aquoso de escala centimétrica. Adote frequência $f=2.45\\,\\mathrm{GHz}$ e índice de refração efetivo da água $n\\approx8.9$ nessa faixa.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p03-fig01.png\" alt=\"Imagem ilustrativa do fenômeno discutido no problema original.\" loading=\"lazy\"><figcaption>Imagem ilustrativa do fenômeno discutido no problema original.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>É correto atribuir o aquecimento a uma ressonância direta entre $2.45\\,\\mathrm{GHz}$ e a frequência natural de vibração das moléculas de água? Justifique.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Calcule o comprimento de onda no ar e o comprimento de onda dentro da água.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Explique qualitativamente por que objetos com dimensões comparáveis ao comprimento de onda interno podem concentrar o campo eletromagnético e formar modos aproximadamente estacionários.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Num modelo unidimensional, suponha que a amplitude da onda dentro do meio decaia com coeficiente de absorção $\\alpha$. Escreva o fator de atenuação após percorrer uma distância $x$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Uma onda sofre múltiplas reflexões internas em uma região de comprimento $L$. Se $r$ é a amplitude refletida por ciclo e $t_0,t$ são os coeficientes de transmissão de entrada e saída, some a série geométrica e obtenha a intensidade transmitida. Identifique a condição aproximada de ressonância.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Use o modelo para explicar qualitativamente por que regiões de contato entre objetos aquosos podem apresentar maior concentração de campo e aquecimento.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>Não. O material observa que as frequências naturais relevantes da molécula de água estão acima de $1\\,\\mathrm{THz}$, muito acima de $2.45\\,\\mathrm{GHz}$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\lambda_{\\rm ar}=\\frac{c}{f}\\approx12.2\\,\\mathrm{cm},\n\\qquad\n\\lambda_{\\text{água}}=\\frac{\\lambda_{\\rm ar}}{n}\\approx1.38\\,\\mathrm{cm}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>O material interpreta o objeto como uma cavidade dielétrica de dimensões comparáveis a $\\lambda_{\\text{água}}$, permitindo reforço por interferência.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>A amplitude adquire o fator $\\boxed{e^{-\\alpha x}}$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>O resultado apresentado é\n\\[\n\\boxed{\nQ=\\frac{|t_0|^2|t|^2e^{-2\\alpha L}}\n{(1-re^{-\\alpha L})^2+4re^{-\\alpha L}\\sin^2(kL)}} ,\n\\qquad k=\\frac{2\\pi n}{\\lambda_{\\rm ar}}.\n\\]\nOs máximos ocorrem aproximadamente quando $\\boxed{L=m\\lambda_{\\rm ar}/(2n)}$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>A explicação do material é a concentração espacial do modo eletromagnético e, portanto, da dissipação dielétrica.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "É correto atribuir o aquecimento a uma ressonância direta entre $2.45\\,\\mathrm{GHz}$ e a frequência natural de vibração das moléculas de água? Justifique."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Calcule o comprimento de onda no ar e o comprimento de onda dentro da água."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Explique qualitativamente por que objetos com dimensões comparáveis ao comprimento de onda interno podem concentrar o campo eletromagnético e formar modos aproximadamente estacionários."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Num modelo unidimensional, suponha que a amplitude da onda dentro do meio decaia com coeficiente de absorção $\\alpha$. Escreva o fator de atenuação após percorrer uma distância $x$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Uma onda sofre múltiplas reflexões internas em uma região de comprimento $L$. Se $r$ é a amplitude refletida por ciclo e $t_0,t$ são os coeficientes de transmissão de entrada e saída, some a série geométrica e obtenha a intensidade transmitida. Identifique a condição aproximada de ressonância."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Use o modelo para explicar qualitativamente por que regiões de contato entre objetos aquosos podem apresentar maior concentração de campo e aquecimento."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "code": "04",
+      "title_pt": "Acelerador De “Energia Escura” Com Dipolo Elétrico",
+      "page_start": 22,
+      "page_end": 24,
+      "source_url": "/taiwan/taiwan-01.pdf#page=22",
+      "statement_html": "<p>Um dipolo é formado por cargas $+q$ e $-q$, separadas por uma haste rígida de comprimento $d$. Uma carga $+Q$ está na mediatriz do dipolo, a distância $R$ de seu centro.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Determine módulo e direção da força eletrostática resultante sobre o dipolo e sobre a carga $+Q$.</p></div><small class=\"taiwan-item-points\">3 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>A carga $+Q$ é fixada no centro de uma pista circular e o dipolo é obrigado a permanecer orientado enquanto desliza sem atrito pela pista. Avalie a alegação de que a força encontrada em (a) poderia produzir aumento indefinido da energia mecânica.</p></div><small class=\"taiwan-item-points\">7 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(c) -- bônus</span><div class=\"taiwan-item-body\"><p>Agora fixe o dipolo e libere $+Q$ do repouso na configuração inicial, com $R\\gg d$ e massa $m$. Determine a trajetória de $+Q$.</p></div><small class=\"taiwan-item-points\">10 pontos</small></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{F=\\frac{1}{4\\pi\\varepsilon_0}\n\\frac{Qqd}{(R^2+d^2/4)^{3/2}}}.\n\\]\nA força sobre $+Q$ tem mesmo módulo e direção oposta à força sobre o dipolo.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>A pista fornece a força normal necessária. Na configuração estática, ela cancela a componente resultante responsável pela aparente “aceleração” ao longo da direção proibida. A força usada para manter $+Q$ fixo também não realiza trabalho, pois seu ponto de aplicação não se desloca.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>Na aproximação $R\\gg d$, as equações polares são\n\\[\nm(\\ddot r-r\\dot\\theta^2)=\\frac{1}{4\\pi\\varepsilon_0}\\frac{Qqd}{r^3}\\cos\\theta,\n\\]\n\\[\nm(2\\dot r\\dot\\theta+r\\ddot\\theta)=\\frac{1}{4\\pi\\varepsilon_0}\\frac{Qqd}{r^3}\\sin\\theta.\n\\]\nCom as condições iniciais do problema, $r$ permanece constante: a carga percorre um semicírculo e retorna periodicamente, de modo análogo a um pêndulo.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": 3.0,
+          "prompt_text": "Determine módulo e direção da força eletrostática resultante sobre o dipolo e sobre a carga $+Q$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": 7.0,
+          "prompt_text": "A carga $+Q$ é fixada no centro de uma pista circular e o dipolo é obrigado a permanecer orientado enquanto desliza sem atrito pela pista. Avalie a alegação de que a força encontrada em (a) poderia produzir aumento indefinido da energia mecânica."
+        },
+        {
+          "code": "(c) -- bônus",
+          "ordinal": 3,
+          "score": 10.0,
+          "prompt_text": "Agora fixe o dipolo e libere $+Q$ do repouso na configuração inicial, com $R\\gg d$ e massa $m$. Determine a trajetória de $+Q$."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "code": "05",
+      "title_pt": "Pêndulos Sincronizados De Huygens",
+      "page_start": 25,
+      "page_end": 26,
+      "source_url": "/taiwan/taiwan-01.pdf#page=25",
+      "statement_html": "<p>Considere pequenos ângulos. Um pêndulo de massa $m$ e comprimento $L$ sofre uma força de atrito de módulo constante $mLb$ oposta ao movimento. Defina\n\\[\n\\omega=\\sqrt{\\frac gL}.\n\\]\nUma vez por período, quando $\\theta=-b/\\omega^2$ e $\\dot\\theta>0$, um mecanismo injeta energia cinética $mL^2h^2/2$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Após o regime permanente ser atingido, determine a velocidade angular $u$ logo depois de cada impulso.</p></div><small class=\"taiwan-item-points\">3 pontos</small></section>\n<p>Agora considere dois pêndulos idênticos. Quando um passa por $\\theta\\approx0$, transmite ao outro um pequeno impulso angular $mL^2\\alpha$. Trabalhe apenas até primeira ordem em $\\alpha/u$.</p>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Se no início do $n$-ésimo ciclo o pêndulo 2 atrasa uma fase $\\phi_n$ em relação ao 1, mostre que\n\\[\n\\boxed{\\phi_{n+1}\\approx\\phi_n-\\frac{2\\alpha}{u}\\sin\\phi_n}.\n\\]</p></div><small class=\"taiwan-item-points\">5 pontos</small></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Determine a relação de fase estável para $\\alpha>0$ e para $\\alpha<0$.</p></div><small class=\"taiwan-item-points\">2 pontos</small></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{u=\\frac{h^2\\omega}{8b}+\\frac{2b}{\\omega}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>O material omite a derivação detalhada e fornece a recorrência indicada.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>Para $\\alpha>0$, a solução estável é em fase; para $\\alpha<0$, em oposição de fase. O caso dos dois relógios de Huygens corresponde ao segundo tipo.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": 3.0,
+          "prompt_text": "Após o regime permanente ser atingido, determine a velocidade angular $u$ logo depois de cada impulso."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": 5.0,
+          "prompt_text": "Se no início do $n$-ésimo ciclo o pêndulo 2 atrasa uma fase $\\phi_n$ em relação ao 1, mostre que \\[\n\\boxed{\\phi_{n+1}\\approx\\phi_n-\\frac{2\\alpha}{u}\\sin\\phi_n}.\n\\]"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": 2.0,
+          "prompt_text": "Determine a relação de fase estável para $\\alpha>0$ e para $\\alpha<0$."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "code": "06",
+      "title_pt": "Reflexo Do Pôr Do Sol Na Superfície De Um Lago",
+      "page_start": 27,
+      "page_end": 28,
+      "source_url": "/taiwan/taiwan-01.pdf#page=27",
+      "statement_html": "<p>Em uma superfície perfeitamente plana, a imagem especular do Sol ocuparia uma pequena região. Ondulações locais mudam continuamente a normal da superfície e permitem que diferentes pontos reflitam luz para o observador.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p06-fig01.png\" alt=\"Exemplos de reflexão solar em superfícies com diferentes níveis de ondulação.\" loading=\"lazy\"><figcaption>Exemplos de reflexão solar em superfícies com diferentes níveis de ondulação.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Explique qualitativamente por que pequenas ondas superficiais alongam o reflexo do Sol no lago, sobretudo quando o Sol está próximo do horizonte.</p></div><small class=\"taiwan-item-points\">3 pontos</small></section>\n<p>Admita que o ângulo da normal local com a vertical varie aleatoriamente entre $0$ e um pequeno valor máximo $\\beta$. A luz solar chega como feixe paralelo de elevação $\\theta$.</p>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>A imagem observada é aproximadamente elíptica, com eixo curto $AB$ e eixo longo $CD$. Supondo que as dimensões reais da região refletora sejam pequenas comparadas à distância da câmera, obtenha uma relação entre $AB/CD$ e a elevação solar $\\theta$. Para $AB/CD=0.18$, estime $\\theta$.</p></div><small class=\"taiwan-item-points\">7 pontos</small></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>As inclinações locais funcionam como muitos pequenos espelhos com normais diferentes. Quanto menor a elevação solar, maior a extensão longitudinal de pontos capazes de satisfazer a lei da reflexão em direção ao observador.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>O material obtém\n\\[\n\\boxed{\\theta=\\sin^{-1}\\!\\left(\\frac{AB}{CD}\\right)}.\n\\]\nPara $AB/CD=0.18$, $\\boxed{\\theta\\approx10^\\circ}$.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": 3.0,
+          "prompt_text": "Explique qualitativamente por que pequenas ondas superficiais alongam o reflexo do Sol no lago, sobretudo quando o Sol está próximo do horizonte."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": 7.0,
+          "prompt_text": "A imagem observada é aproximadamente elíptica, com eixo curto $AB$ e eixo longo $CD$. Supondo que as dimensões reais da região refletora sejam pequenas comparadas à distância da câmera, obtenha uma relação entre $AB/CD$ e a elevação solar $\\theta$. Para $AB/CD=0.18$, estime $\\theta$."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "code": "07",
+      "title_pt": "Comunicação Sem Fio E Reflexão Na Ionosfera",
+      "page_start": 29,
+      "page_end": 30,
+      "source_url": "/taiwan/taiwan-01.pdf#page=29",
+      "statement_html": "<p>Modele a ionosfera como um plasma de densidade eletrônica $N$. Os elétrons têm carga $-e$ e massa $m$; os íons positivos são tratados como imóveis. Um campo harmônico de frequência angular $\\omega$ tem amplitude espacial $E(z)$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Assumindo densidade de carga líquida desprezível, use as equações de Maxwell e a equação de movimento dos elétrons para mostrar que\n\\[\n\\boxed{\\frac{d^2E}{dz^2}+\\mu_0\\varepsilon_0(\\omega^2-\\omega_p^2)E=0},\n\\]\ne determine a frequência de plasma $\\omega_p$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Para que faixa de frequências a onda é totalmente refletida? Explique a partir do sinal do número de onda quadrado.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Durante a reentrada de uma nave, suponha $N=2.2\\times10^8\\,\\mathrm{cm}^{-3}$. Determine a condição sobre a frequência para manter comunicação através do plasma.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>Como $\\mathbf J=-Ne\\mathbf v$ e $m\\dot{\\mathbf v}=-e\\mathbf E$,\n\\[\n\\frac{\\partial\\mathbf J}{\\partial t}=\\frac{Ne^2}{m}\\mathbf E.\n\\]\nCom Maxwell,\n\\[\n\\boxed{\\omega_p=\\sqrt{\\frac{Ne^2}{\\varepsilon_0m}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>Para $\\boxed{\\omega<\\omega_p}$, o número de onda longitudinal é imaginário e o campo no plasma é evanescente; a onda incidente é refletida.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>O valor numérico dado no material é $\\boxed{f>133\\,\\mathrm{MHz}}$.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Assumindo densidade de carga líquida desprezível, use as equações de Maxwell e a equação de movimento dos elétrons para mostrar que \\[\n\\boxed{\\frac{d^2E}{dz^2}+\\mu_0\\varepsilon_0(\\omega^2-\\omega_p^2)E=0},\n\\] e determine a frequência de plasma $\\omega_p$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Para que faixa de frequências a onda é totalmente refletida? Explique a partir do sinal do número de onda quadrado."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Durante a reentrada de uma nave, suponha $N=2.2\\times10^8\\,\\mathrm{cm}^{-3}$. Determine a condição sobre a frequência para manter comunicação através do plasma."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "code": "08",
+      "title_pt": "Padrões De Moiré",
+      "page_start": 31,
+      "page_end": 33,
+      "source_url": "/taiwan/taiwan-01.pdf#page=31",
+      "statement_html": "<p>Padrões de Moiré aparecem quando duas estruturas periódicas semelhantes são superpostas.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p08-fig01.png\" alt=\"Exemplos de padrões de Moiré produzidos por estruturas quase periódicas.\" loading=\"lazy\"><figcaption>Exemplos de padrões de Moiré produzidos por estruturas quase periódicas.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Duas famílias de retas paralelas têm períodos $p_1$ e $p_2$, com $|p_2-p_1|\\ll p_1$. Determine a distância $d$ entre franjas escuras sucessivas.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>A primeira família permanece fixa e a segunda se move para a direita com velocidade $v$. Determine a velocidade $u$ das franjas, incluindo o sinal.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Duas grades de mesmo período $p$ são giradas entre si de um pequeno ângulo $\\theta$. Determine a separação perpendicular entre as franjas de Moiré.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Uma grade de período inicial $h$ é desenhada sobre uma amostra de altura $D$ e comparada com uma grade de referência. Sob compressão uniforme $\\Delta p$, mede-se um espaçamento de Moiré $\\lambda$. Obtenha o módulo de Young a partir da deformação relativa inferida do padrão.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Adapte o método para uma deformação de cisalhamento e expresse o módulo de cisalhamento em termos da pressão aplicada, da rotação relativa inferida e dos parâmetros geométricos.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Duas famílias de $N\\gg1$ raios partem de centros separados por $\\Delta$. Escreva as curvas de franjas e mostre que sua forma coincide com as linhas de campo de duas linhas de carga uniformes apropriadas.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{d=\\frac{p_1p_2}{p_2-p_1}}\\] com o módulo usado para a distância física.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\\boxed{u=-\\frac{vp_1}{p_2-p_1}}.\\] Se $p_2>p_1$, as franjas movem-se no sentido oposto ao da grade móvel.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\\boxed{d=\\frac{p}{2\\sin(\\theta/2)}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)--(f)</strong><div><p>O material original não fornece respostas explícitas para estes itens.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Duas famílias de retas paralelas têm períodos $p_1$ e $p_2$, com $|p_2-p_1|\\ll p_1$. Determine a distância $d$ entre franjas escuras sucessivas."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "A primeira família permanece fixa e a segunda se move para a direita com velocidade $v$. Determine a velocidade $u$ das franjas, incluindo o sinal."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Duas grades de mesmo período $p$ são giradas entre si de um pequeno ângulo $\\theta$. Determine a separação perpendicular entre as franjas de Moiré."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Uma grade de período inicial $h$ é desenhada sobre uma amostra de altura $D$ e comparada com uma grade de referência. Sob compressão uniforme $\\Delta p$, mede-se um espaçamento de Moiré $\\lambda$. Obtenha o módulo de Young a partir da deformação relativa inferida do padrão."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Adapte o método para uma deformação de cisalhamento e expresse o módulo de cisalhamento em termos da pressão aplicada, da rotação relativa inferida e dos parâmetros geométricos."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Duas famílias de $N\\gg1$ raios partem de centros separados por $\\Delta$. Escreva as curvas de franjas e mostre que sua forma coincide com as linhas de campo de duas linhas de carga uniformes apropriadas."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "code": "09",
+      "title_pt": "Ondas De Gravidade E Tensão Superficial",
+      "page_start": 34,
+      "page_end": 36,
+      "source_url": "/taiwan/taiwan-01.pdf#page=34",
+      "statement_html": "<p>Considere um líquido incompressível de densidade $\\rho$, profundidade média $d$, superfície livre $z=h(x,t)$, pressão atmosférica $P_0$ e tensão superficial $\\sigma$. A propagação é ao longo de $x$ e $v_y=0$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Derive a continuidade bidimensional\n\\[\n\\boxed{\\frac{\\partial v_x}{\\partial x}+\\frac{\\partial v_z}{\\partial z}=0}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Escreva $P=P_0-\\rho gz+P_1$. Para pequenas velocidades e viscosidade desprezível, mostre que\n\\[\n\\rho\\frac{\\partial v_x}{\\partial t}=-\\frac{\\partial P_1}{\\partial x},\n\\qquad\n\\rho\\frac{\\partial v_z}{\\partial t}=-\\frac{\\partial P_1}{\\partial z}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Se $v_z=f(z)\\cos(kx-\\omega t)$ e $v_z(z=0)=0$, prove que o movimento local das partículas é elíptico:\n\\[\n\\boxed{\n\\frac{v_x^2}{[A\\cosh(kz)]^2}+\n\\frac{v_z^2}{[A\\sinh(kz)]^2}=1}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Use a condição de pressão na superfície e a curvatura induzida pela tensão superficial para provar a dispersão\n\\[\n\\boxed{\\omega^2=\\left(gk+\\frac{\\sigma}{\\rho}k^3\\right)\\tanh(kd)}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Determine o comprimento de onda de transição $\\lambda_c$ entre o regime dominado pela gravidade e o regime dominado pela tensão superficial.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Em água profunda, determine a menor velocidade de fase possível. Interprete-a como velocidade crítica abaixo da qual um corpo não produz um padrão estacionário de ondas.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Uma onda capilar é usada como grade de reflexão para um laser de comprimento de onda $\\lambda_L$. Se $\\theta$ é o ângulo do laser com a superfície e $\\gamma$ a separação angular entre o máximo central e o de primeira ordem, mostre que\n\\[\n\\boxed{k=\\frac{2\\pi}{\\lambda_L}\\sin\\theta\\sin\\gamma}.\n\\]\nExplique como determinar $\\sigma$ medindo também $\\omega$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)--(b)</strong><div><p>Seguem, respectivamente, da conservação de massa e da equação de Euler linearizada.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>A equação para $f$ é $f''=k^2f$; com $f(0)=0$, $\\boxed{f=A\\sinh(kz)}$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>A condição dinâmica na superfície é, na aproximação de pequena inclinação,\n\\[\n\\sigma\\frac{\\partial^2h}{\\partial x^2}=\\rho gh-P_1(h),\n\\]\nque, combinada com os resultados anteriores, leva à dispersão indicada.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\\boxed{\\lambda_c=2\\pi\\sqrt{\\frac{\\sigma}{\\rho g}}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>Para $kd\\gg1$,\n\\[\nv_\\phi^2=\\frac gk+\\frac{\\sigma k}{\\rho}.\n\\]\nO mínimo ocorre em $k=\\sqrt{\\rho g/\\sigma}$:\n\\[\n\\boxed{v_c=\\left(\\frac{4g\\sigma}{\\rho}\\right)^{1/4}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>No regime capilar, $\\omega^2=(\\sigma/\\rho)k^3$, logo\n\\[\n\\boxed{\\sigma=\\rho\\frac{\\omega^2}{k^3}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Derive a continuidade bidimensional \\[\n\\boxed{\\frac{\\partial v_x}{\\partial x}+\\frac{\\partial v_z}{\\partial z}=0}.\n\\]"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Escreva $P=P_0-\\rho gz+P_1$. Para pequenas velocidades e viscosidade desprezível, mostre que \\[\n\\rho\\frac{\\partial v_x}{\\partial t}=-\\frac{\\partial P_1}{\\partial x},\n\\qquad\n\\rho\\frac{\\partial v_z}{\\partial t}=-\\frac{\\partial P_1}{\\partial z}.\n\\]"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Se $v_z=f(z)\\cos(kx-\\omega t)$ e $v_z(z=0)=0$, prove que o movimento local das partículas é elíptico: \\[\n\\boxed{\n\\frac{v_x^2}{[A\\cosh(kz)]^2}+\n\\frac{v_z^2}{[A\\sinh(kz)]^2}=1}.\n\\]"
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Use a condição de pressão na superfície e a curvatura induzida pela tensão superficial para provar a dispersão \\[\n\\boxed{\\omega^2=\\left(gk+\\frac{\\sigma}{\\rho}k^3\\right)\\tanh(kd)}.\n\\]"
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Determine o comprimento de onda de transição $\\lambda_c$ entre o regime dominado pela gravidade e o regime dominado pela tensão superficial."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Em água profunda, determine a menor velocidade de fase possível. Interprete-a como velocidade crítica abaixo da qual um corpo não produz um padrão estacionário de ondas."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Uma onda capilar é usada como grade de reflexão para um laser de comprimento de onda $\\lambda_L$. Se $\\theta$ é o ângulo do laser com a superfície e $\\gamma$ a separação angular entre o máximo central e o de primeira ordem, mostre que \\[\n\\boxed{k=\\frac{2\\pi}{\\lambda_L}\\sin\\theta\\sin\\gamma}.\n\\] Explique como determinar $\\sigma$ medindo também $\\omega$."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "code": "10",
+      "title_pt": "Número De Colisões E O Número $$",
+      "page_start": 37,
+      "page_end": 37,
+      "source_url": "/taiwan/taiwan-01.pdf#page=37",
+      "statement_html": "<p>Dois blocos deslizam sem atrito numa linha horizontal diante de uma parede perfeitamente elástica. O bloco leve tem massa $m$; o pesado tem massa $M$. Todas as colisões são perfeitamente elásticas. O bloco pesado começa movendo-se em direção ao leve, que está inicialmente em repouso.</p>\n<section class=\"taiwan-item statement-row\"><span>Problema</span><div class=\"taiwan-item-body\"><p>Conte o número total de colisões entre os dois blocos e entre o bloco leve e a parede, até que ambos se afastem definitivamente. Investigue os casos\n\\[\n\\frac Mm=1,\\;100,\\;10^4,\\;10^6,\\ldots\n\\]\ne explique a relação entre a sequência obtida e os algarismos de $\\pi$.</p></div></section>",
+      "solution_html": "<p>O material registra a sequência $3,31,314,\\ldots$ para razões de massa sucessivamente iguais a potências de $100$, mas remete a referências externas para a derivação e não apresenta uma solução interna completa.</p>",
+      "parts": [
+        {
+          "code": "Problema",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Conte o número total de colisões entre os dois blocos e entre o bloco leve e a parede, até que ambos se afastem definitivamente. Investigue os casos \\[\n\\frac Mm=1,\\;100,\\;10^4,\\;10^6,\\ldots\n\\] e explique a relação entre a sequência obtida e os algarismos de $\\pi$."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "code": "11",
+      "title_pt": "Física Do Arco-Íris",
+      "page_start": 38,
+      "page_end": 46,
+      "source_url": "/taiwan/taiwan-01.pdf#page=38",
+      "statement_html": "<p>O problema combina um modelo microscópico de dispersão, a forma das gotas de chuva, óptica geométrica e difração para explicar as principais propriedades do arco-íris.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p11-fig01.png\" alt=\"Arco-íris observado após uma chuva, usado como motivação do problema.\" loading=\"lazy\"><figcaption>Arco-íris observado após uma chuva, usado como motivação do problema.</figcaption></figure>\n<h2 class=\"statement-section statement-part-heading\">Parte A -- origem da dispersão</h2>\n<p>Considere um átomo simplificado de número atômico $z$. O núcleo $+ze$ é pontual e a nuvem eletrônica $-ze$ ocupa uniformemente uma esfera de raio $R$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para um pequeno deslocamento $x$ entre o núcleo e a nuvem eletrônica, mostre que a interação produz uma força aproximadamente harmônica $F=-kx$ e determine $k$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Sob um campo óptico $E(t)=E_0\\sin\\omega t$, determine o deslocamento forçado $x(t)$ dos elétrons, ignorando amortecimento.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Se há $N$ átomos por unidade de volume, obtenha a susceptibilidade elétrica e o índice de refração $n(\\omega)$. Use o resultado para discutir por que, no modelo, o índice aumenta com a frequência na faixa visível considerada.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- tamanho das gotas</h2>\n<p>Considere uma gota aproximadamente esférica de diâmetro $D$ e densidade $\\rho$ caindo no ar.</p>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>No modelo do material, determine a força de arrasto por unidade de área $f$ necessária para sustentar a queda terminal da gota.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Calcule a componente horizontal da força de arrasto sobre um quarto da superfície da gota.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Se a tensão superficial da água é $\\sigma$, determine a componente horizontal da força de tensão superficial que tende a manter a gota esférica.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Defina como aproximadamente esférica uma gota para a qual a tensão superficial domine suficientemente o arrasto segundo o critério dado no material. Determine o diâmetro máximo $D_M$ e estime-o para água.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Parte C -- óptica geométrica do arco-íris</h2>\n<p>Uma luz incide numa gota esférica com ângulo $\\alpha$. Depois de entrar na gota, sofre $N$ reflexões internas e emerge. O índice da água é $n$.</p>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Determine o desvio angular total $\\Delta_N(\\alpha)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(i)</span><div class=\"taiwan-item-body\"><p>Explique por que a intensidade se concentra perto dos extremos de $\\Delta_N(\\alpha)$ e determine o ângulo de incidência $\\alpha_{Nm}$ correspondente.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(j)</span><div class=\"taiwan-item-body\"><p>Calcule $\\Delta_{Nm}=\\Delta_N(\\alpha_{Nm})$. Determine a condição sobre $n$ para a existência desse extremo e discuta se ela limita o número de ordens possíveis de arco-íris.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(k)</span><div class=\"taiwan-item-body\"><p>Usando os coeficientes de Fresnel fornecidos no material, compare as intensidades máximas dos arcos com uma, duas e três reflexões internas.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(l)</span><div class=\"taiwan-item-body\"><p>Se apenas arcos com intensidade ao menos $30\\%$ da intensidade do primário forem considerados observáveis, quantas ordens permanecem?</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(m)</span><div class=\"taiwan-item-body\"><p>Calcule os ângulos característicos para luz violeta $(390\\,\\mathrm{nm})$, verde $(550\\,\\mathrm{nm})$ e vermelha $(780\\,\\mathrm{nm})$ nos arcos primário e secundário, usando os índices fornecidos.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Parte D -- tamanho da gota e intensidade</h2>\n<p>Perto do ângulo de arco-íris, a frente de onda emergente pode ser aproximada localmente por uma cúbica.</p>\n<section class=\"taiwan-item statement-row\"><span>(n)</span><div class=\"taiwan-item-body\"><p>Mostre que, escolhendo a origem no ponto apropriado da frente de onda, sua forma local pode ser escrita como $y=c'x^3$ e relacione a escala de $c'$ ao raio $r$ da gota.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(o)</span><div class=\"taiwan-item-body\"><p>Para um observador na direção $\\theta$, escreva a diferença de fase de uma contribuição emitida a partir da coordenada $x$ e obtenha\n\\[\n\\delta=k\\left(x\\sin\\theta-\\frac{cx^3}{r^2}\\cos\\theta\\right).\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(p)</span><div class=\"taiwan-item-body\"><p>Faça as mudanças de variáveis indicadas no material e reduza a fase à forma cúbica universal\n\\[\n\\Phi=\\frac\\pi2(m\\xi-\\xi^3).\n\\]\nDetermine a escala angular $\\Theta'$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(q)</span><div class=\"taiwan-item-body\"><p>Após a correção tridimensional, determine como a intensidade característica depende do raio $r$ e do comprimento de onda $\\lambda$. Quanto ela aumenta se $r$ dobra?</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Parte E -- propriedades observáveis</h2>\n<section class=\"taiwan-item statement-row\"><span>(r)</span><div class=\"taiwan-item-body\"><p>Inclua o diâmetro angular aparente do Sol e estime a largura angular total do arco-íris primário no visível.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(s)</span><div class=\"taiwan-item-body\"><p>Estime o menor diâmetro de gota que ainda produz um arco-íris colorido, em vez de um arco de neblina.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(t)</span><div class=\"taiwan-item-body\"><p>Após a chuva, a base da nuvem está a $3000\\,\\mathrm{m}$. Usando a menor velocidade terminal relevante obtida no modelo, estime por quanto tempo ainda podem existir gotas capazes de produzir arco-íris a $300\\,\\mathrm{m}$ de altitude.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(u)</span><div class=\"taiwan-item-body\"><p>No equinócio e no equador, uma floresta está $7\\,\\mathrm{km}$ a leste do observador. Segundo a geometria do problema, determine por quanto tempo seria possível registrar o arco-íris em condições ideais.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{k=\\frac{(ze)^2}{4\\pi\\varepsilon_0R^3}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\\boxed{x(t)=-\\frac{zeE_0}{m(\\omega_0^2-\\omega^2)}\\sin\\omega t}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>Com $k=m\\omega_0^2$,\n\\[\n\\boxed{n=\\sqrt{1+\\chi_e}\n=\\sqrt{1+\\frac{Nze^2}{\\varepsilon_0(k-m\\omega^2)}}}.\n\\]\nNo regime considerado, $\\omega<\\omega_0$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)--(e)</strong><div><p>O material marca estes passos como omitidos.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\\boxed{F_t=\\frac{\\pi\\sigma D}{2}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>\\[\\boxed{D_M=\\sqrt{\\frac{3\\pi^2\\sigma}{100\\rho g}}\\approx1.5\\times10^{-3}\\,\\mathrm{m}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(h)</strong><div><p>\\[\\boxed{\\Delta_N=N\\pi+2\\alpha-(2N+2)\\sin^{-1}\\!\\left(\\frac{\\sin\\alpha}{n}\\right)}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(i)</strong><div><p>A concentração ocorre porque muitas trajetórias vizinhas emergem quase na mesma direção quando $d\\Delta_N/d\\alpha=0$. O material dá\n\\[\n\\boxed{\\alpha_{Nm}=\\sin^{-1}\\sqrt{\\frac{(N+1)^2-n^2}{(N+1)^2-1}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(j)</strong><div><p>Substitui-se $\\alpha_{Nm}$ na expressão de $\\Delta_N$. A condição de existência é\n\\[\n(N+1)^2-n^2\\ge0\\quad\\Longrightarrow\\quad n\\le N+1.\n\\]\nEla não impõe um limite superior a $N$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(k)</strong><div><p>\\[\\boxed{I_2/I_1=0.40,\\qquad I_3/I_1=0.22}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(l)</strong><div><p>\\[\\boxed{2\\text{ ordens}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(m)</strong><div><p>Para $N=1$:\n\\[\n\\theta_M(550)=41.9^\\circ,\\quad\n\\theta_M(390)=40.52^\\circ,\\quad\n\\theta_M(780)=42.28^\\circ.\n\\]\nPara $N=2$:\n\\[\n\\theta_M(550)=52.43^\\circ,\\quad\n\\theta_M(390)=54.96^\\circ,\\quad\n\\theta_M(780)=51.74^\\circ.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(n)</strong><div><p>O material omite a derivação.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(o)</strong><div><p>\\[\\boxed{\\delta=k\\left(x\\sin\\theta-\\frac{cx^3}{r^2}\\cos\\theta\\right)}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(p)</strong><div><p>\\[\n\\boxed{\\Theta'=\\left(\\frac{\\pi r^2}{2kc\\cos\\theta}\\right)^{1/3}},\n\\qquad\n\\boxed{\\Phi=\\frac\\pi2(m\\xi-\\xi^3)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(q)</strong><div><p>\\[\\boxed{I\\propto\\left(\\frac{r^7}{\\lambda}\\right)^{1/3}}.\\] Portanto, $r\\to2r$ multiplica a intensidade por $2^{7/3}\\approx5.04$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(r)</strong><div><p>\\[\\boxed{\\Delta\\theta\\approx2.26^\\circ}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(s)</strong><div><p>\\[\\boxed{d_{\\min}\\approx3\\times10^{-5}\\,\\mathrm{m}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(t)</strong><div><p>O material usa $v_{\\min}=85.4\\,\\mathrm{m/h}$ e obtém\n\\[\n\\boxed{t\\approx\\frac{3000-300}{85.4}\\approx31.6\\,\\mathrm{h}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(u)</strong><div><p>\\[\\boxed{1.76\\,\\mathrm{h}}.\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para um pequeno deslocamento $x$ entre o núcleo e a nuvem eletrônica, mostre que a interação produz uma força aproximadamente harmônica $F=-kx$ e determine $k$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Sob um campo óptico $E(t)=E_0\\sin\\omega t$, determine o deslocamento forçado $x(t)$ dos elétrons, ignorando amortecimento."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Se há $N$ átomos por unidade de volume, obtenha a susceptibilidade elétrica e o índice de refração $n(\\omega)$. Use o resultado para discutir por que, no modelo, o índice aumenta com a frequência na faixa visível considerada."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "No modelo do material, determine a força de arrasto por unidade de área $f$ necessária para sustentar a queda terminal da gota."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Calcule a componente horizontal da força de arrasto sobre um quarto da superfície da gota."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Se a tensão superficial da água é $\\sigma$, determine a componente horizontal da força de tensão superficial que tende a manter a gota esférica."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Defina como aproximadamente esférica uma gota para a qual a tensão superficial domine suficientemente o arrasto segundo o critério dado no material. Determine o diâmetro máximo $D_M$ e estime-o para água."
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": null,
+          "prompt_text": "Determine o desvio angular total $\\Delta_N(\\alpha)$."
+        },
+        {
+          "code": "(i)",
+          "ordinal": 9,
+          "score": null,
+          "prompt_text": "Explique por que a intensidade se concentra perto dos extremos de $\\Delta_N(\\alpha)$ e determine o ângulo de incidência $\\alpha_{Nm}$ correspondente."
+        },
+        {
+          "code": "(j)",
+          "ordinal": 10,
+          "score": null,
+          "prompt_text": "Calcule $\\Delta_{Nm}=\\Delta_N(\\alpha_{Nm})$. Determine a condição sobre $n$ para a existência desse extremo e discuta se ela limita o número de ordens possíveis de arco-íris."
+        },
+        {
+          "code": "(k)",
+          "ordinal": 11,
+          "score": null,
+          "prompt_text": "Usando os coeficientes de Fresnel fornecidos no material, compare as intensidades máximas dos arcos com uma, duas e três reflexões internas."
+        },
+        {
+          "code": "(l)",
+          "ordinal": 12,
+          "score": null,
+          "prompt_text": "Se apenas arcos com intensidade ao menos $30\\%$ da intensidade do primário forem considerados observáveis, quantas ordens permanecem?"
+        },
+        {
+          "code": "(m)",
+          "ordinal": 13,
+          "score": null,
+          "prompt_text": "Calcule os ângulos característicos para luz violeta $(390\\,\\mathrm{nm})$, verde $(550\\,\\mathrm{nm})$ e vermelha $(780\\,\\mathrm{nm})$ nos arcos primário e secundário, usando os índices fornecidos."
+        },
+        {
+          "code": "(n)",
+          "ordinal": 14,
+          "score": null,
+          "prompt_text": "Mostre que, escolhendo a origem no ponto apropriado da frente de onda, sua forma local pode ser escrita como $y=c'x^3$ e relacione a escala de $c'$ ao raio $r$ da gota."
+        },
+        {
+          "code": "(o)",
+          "ordinal": 15,
+          "score": null,
+          "prompt_text": "Para um observador na direção $\\theta$, escreva a diferença de fase de uma contribuição emitida a partir da coordenada $x$ e obtenha \\[\n\\delta=k\\left(x\\sin\\theta-\\frac{cx^3}{r^2}\\cos\\theta\\right).\n\\]"
+        },
+        {
+          "code": "(p)",
+          "ordinal": 16,
+          "score": null,
+          "prompt_text": "Faça as mudanças de variáveis indicadas no material e reduza a fase à forma cúbica universal \\[\n\\Phi=\\frac\\pi2(m\\xi-\\xi^3).\n\\] Determine a escala angular $\\Theta'$."
+        },
+        {
+          "code": "(q)",
+          "ordinal": 17,
+          "score": null,
+          "prompt_text": "Após a correção tridimensional, determine como a intensidade característica depende do raio $r$ e do comprimento de onda $\\lambda$. Quanto ela aumenta se $r$ dobra?"
+        },
+        {
+          "code": "(r)",
+          "ordinal": 18,
+          "score": null,
+          "prompt_text": "Inclua o diâmetro angular aparente do Sol e estime a largura angular total do arco-íris primário no visível."
+        },
+        {
+          "code": "(s)",
+          "ordinal": 19,
+          "score": null,
+          "prompt_text": "Estime o menor diâmetro de gota que ainda produz um arco-íris colorido, em vez de um arco de neblina."
+        },
+        {
+          "code": "(t)",
+          "ordinal": 20,
+          "score": null,
+          "prompt_text": "Após a chuva, a base da nuvem está a $3000\\,\\mathrm{m}$. Usando a menor velocidade terminal relevante obtida no modelo, estime por quanto tempo ainda podem existir gotas capazes de produzir arco-íris a $300\\,\\mathrm{m}$ de altitude."
+        },
+        {
+          "code": "(u)",
+          "ordinal": 21,
+          "score": null,
+          "prompt_text": "No equinócio e no equador, uma floresta está $7\\,\\mathrm{km}$ a leste do observador. Segundo a geometria do problema, determine por quanto tempo seria possível registrar o arco-íris em condições ideais."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "code": "12",
+      "title_pt": "Formação De Imagem Por Refração Na Água",
+      "page_start": 47,
+      "page_end": 48,
+      "source_url": "/taiwan/taiwan-01.pdf#page=47",
+      "statement_html": "<p>Um objeto pontual está no ponto $(0,-H)$ dentro de água de índice $n$. Um raio cruza a superfície plana no ponto $(x_0,0)$ e, prolongado para trás pelo observador no ar, parece vir do ponto imagem $(x_i,y_i)$.</p>\n<section class=\"taiwan-item statement-row\"><span>Problema</span><div class=\"taiwan-item-body\"><p>Determine parametricamente $(x_i,y_i)$ em função de $x_0$. Mostre, em particular, que para raios próximos à normal a profundidade aparente tende a $H/n$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>Resposta</strong><div><p>O material fornece\n\\[\n\\boxed{x_i=\\frac{n^2-1}{H^2}x_0^3},\n\\]\n\\[\n\\boxed{y_i=-\\frac{H}{n}\\left[1-\\frac{n^2-1}{H^2}x_0^2\\right]^{3/2}}.\n\\]\nPara $x_0\\to0$, $x_i\\to0$ e $y_i\\to-H/n$.</p></div></section>",
+      "parts": [
+        {
+          "code": "Problema",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine parametricamente $(x_i,y_i)$ em função de $x_0$. Mostre, em particular, que para raios próximos à normal a profundidade aparente tende a $H/n$."
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "code": "13",
+      "title_pt": "Estruturas De Resistores Em Escada",
+      "page_start": 49,
+      "page_end": 50,
+      "source_url": "/taiwan/taiwan-01.pdf#page=49",
+      "statement_html": "<p>Considere redes infinitas formadas pela repetição de células contendo resistores idênticos de resistência $r$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Determine a resistência equivalente da primeira escada infinita mostrada no material.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Determine a resistência equivalente da segunda estrutura periódica infinita.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{R_{\\rm eq}=(1+\\sqrt5)r}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\\boxed{R_{\\rm eq}=\\left(1+\\frac{\\sqrt5+\\sqrt{21}}{4}\\right)r}.\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine a resistência equivalente da primeira escada infinita mostrada no material."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Determine a resistência equivalente da segunda estrutura periódica infinita."
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "code": "14",
+      "title_pt": "Potencial De Repouso De Uma Célula",
+      "page_start": 51,
+      "page_end": 52,
+      "source_url": "/taiwan/taiwan-01.pdf#page=51",
+      "statement_html": "<p>Considere uma membrana que separa meios com concentrações diferentes de íons. As espécies têm coeficientes de difusão $D_i$ e mobilidades elétricas proporcionais às concentrações. O problema constrói primeiro o potencial de equilíbrio de uma espécie e depois a expressão de Goldman para várias espécies.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para um cátion cuja concentração é maior no exterior que no interior, determine qualitativamente qual lado deve ficar em potencial elétrico mais alto no equilíbrio.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Para uma espécie de concentração $c_1(x)$, coeficiente de difusão $D_1$ e condutividade local $\\sigma_1=\\alpha_1c_1$, imponha corrente líquida nula e derive a diferença de potencial de equilíbrio.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Compare com a distribuição de Boltzmann e determine $\\alpha_1$, obtendo a equação de Nernst.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Para duas espécies positivas e uma negativa, imponha corrente elétrica total nula e deduza a expressão do potencial transmembrana em termos das concentrações internas e externas e dos coeficientes $D_i$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>O lado de maior concentração do cátion deve ficar em potencial mais alto para que a força elétrica se oponha à difusão.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{V_1=\\frac{N_AD_1e}{\\alpha_1}\\ln\\frac{c_{1,\\rm in}}{c_{1,\\rm out}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{V_2=\\frac{RT}{N_Ae}\\ln\\frac{c_{1,\\rm in}}{c_{1,\\rm out}}},\n\\qquad\n\\boxed{\\alpha_1=\\frac{(N_Ae)^2D_1}{RT}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{\nV_t=\\frac{RT}{N_Ae}\n\\ln\\frac{D_1c_{1,\\rm in}+D_2c_{2,\\rm in}+D_3c_{3,\\rm out}}\n{D_1c_{1,\\rm out}+D_2c_{2,\\rm out}+D_3c_{3,\\rm in}} }.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para um cátion cuja concentração é maior no exterior que no interior, determine qualitativamente qual lado deve ficar em potencial elétrico mais alto no equilíbrio."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Para uma espécie de concentração $c_1(x)$, coeficiente de difusão $D_1$ e condutividade local $\\sigma_1=\\alpha_1c_1$, imponha corrente líquida nula e derive a diferença de potencial de equilíbrio."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Compare com a distribuição de Boltzmann e determine $\\alpha_1$, obtendo a equação de Nernst."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Para duas espécies positivas e uma negativa, imponha corrente elétrica total nula e deduza a expressão do potencial transmembrana em termos das concentrações internas e externas e dos coeficientes $D_i$."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "code": "15",
+      "title_pt": "Difração Por Reflexão Em Estruturas Unidimensionais",
+      "page_start": 53,
+      "page_end": 57,
+      "source_url": "/taiwan/taiwan-01.pdf#page=53",
+      "statement_html": "<p>Três amostras apresentam sulcos unidimensionais: uma com espaçamento continuamente variável, uma grade periódica de período $a$ e uma combinação das duas. Um feixe monocromático incide com geometria definida pelos ângulos $\\theta$ e $\\phi$, e o padrão refletido é observado numa tela a distância $D$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para a amostra de espaçamento variável, mostre que a curva contínua observada na tela satisfaz a equação indicada no material.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Para a grade periódica de período $a$, obtenha a condição adicional que seleciona pontos discretos de ordem $m$ sobre a curva geométrica.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Em um experimento RHEED com elétrons acelerados por $V=13\\,\\mathrm{kV}$ e tela a $D=26\\,\\mathrm{cm}$, use o padrão fornecido para estimar o espaçamento periódico da superfície de ZnSe.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>A curva é\n\\[\n\\boxed{\ny^2=\\frac{(D\\cos\\phi+x\\sin\\phi)^2}{\\cos^2\\theta\\cos^2\\phi}-x^2-D^2 }.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>Os máximos discretos obedecem também\n\\[\n\\boxed{x=\\frac{Dm\\lambda\\cos\\phi}{a\\cos\\theta-m\\lambda\\sin\\phi}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>Usando a relação de de Broglie relativisticamente corrigida fornecida no material, o valor obtido é\n\\[\n\\boxed{a\\approx3.96\\times10^{-10}\\,\\mathrm{m}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para a amostra de espaçamento variável, mostre que a curva contínua observada na tela satisfaz a equação indicada no material."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Para a grade periódica de período $a$, obtenha a condição adicional que seleciona pontos discretos de ordem $m$ sobre a curva geométrica."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Em um experimento RHEED com elétrons acelerados por $V=13\\,\\mathrm{kV}$ e tela a $D=26\\,\\mathrm{cm}$, use o padrão fornecido para estimar o espaçamento periódico da superfície de ZnSe."
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "code": "16",
+      "title_pt": "Efeito Casimir",
+      "page_start": 58,
+      "page_end": 59,
+      "source_url": "/taiwan/taiwan-01.pdf#page=58",
+      "statement_html": "<p>Duas placas metálicas paralelas muito grandes ocupam $x=0$ e $x=L$. O problema calcula a mudança da energia de ponto zero do campo eletromagnético entre as placas por regularização exponencial.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Qual é a energia de ponto zero de um oscilador harmônico de frequência angular $\\omega$?</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Explique por que os modos normais entre as placas devem satisfazer\n\\[\nk_x=\\frac{n\\pi}{L},\\qquad n=0,1,2,\\ldots\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Defina $u=\\sqrt{k_x^2+k_y^2+k_z^2}$ e escreva a energia de ponto zero por unidade de área como\n\\[\nE(L)=a\\sum_{n=0}^{\\infty}\\int_r^{\\infty}f(u)\\,du.\n\\]\nDetermine $a$, $r$ e $f(u)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Regularize o integrando com $e^{-\\eta u}$ e reduza a soma à forma envolvendo $d^2/d\\eta^2$. Determine $h(\\eta)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Expanda $\\sum_n h(\\eta)$ até segunda ordem em $\\eta$ e determine $q(\\eta)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Introduza uma terceira placa fixa em $x=R$, com $R\\gg L$, e escreva a energia total por unidade de área. Explique o papel físico da terceira placa.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Derive a força de Casimir por unidade de área sobre a placa móvel.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Para que separação a pressão de Casimir teria módulo aproximadamente igual a uma atmosfera?</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(i)</span><div class=\"taiwan-item-body\"><p>Compare a pressão de Casimir com a atração gravitacional entre duas lâminas de densidade superficial $\\Sigma$. Faça a estimativa indicada para prata, espessura e separação de $0.1\\,\\mathrm{cm}$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{E_0=\\frac12\\hbar\\omega}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>É a quantização dos modos estacionários compatíveis com as condições de contorno nas superfícies condutoras.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{a=\\frac{\\hbar c}{4\\pi}},\\qquad\n\\boxed{r=\\frac{n\\pi}{L}},\\qquad\n\\boxed{f(u)=u^2}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\\boxed{h_n(\\eta)=\\frac1\\eta e^{-n\\pi\\eta/L}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{q(\\eta)=\\frac{L}{\\pi\\eta^2}+\\frac1{2\\eta}+\\frac{\\pi}{12L}-\\frac{\\pi^3\\eta^2}{720L^3}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\\boxed{E_{\\rm tot}=2[E(L)+E(R-L)]}.\\] A placa distante torna explícito que apenas diferenças de energia dependentes da posição têm efeito físico.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>No limite $R\\gg L$,\n\\[\n\\boxed{\\frac FA=-\\frac{\\hbar c\\pi^2}{240L^4}},\n\\]\no sinal negativo indicando atração.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(h)</strong><div><p>\\[\\boxed{L\\approx17\\,\\mathrm{nm}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(i)</strong><div><p>A atração gravitacional por unidade de área entre lâminas infinitas é\n\\[\n\\boxed{P_g=2\\pi G\\Sigma^2}.\n\\]\nPara os números fornecidos, $|P_C|/P_g\\sim\\boxed{3\\times10^{-8}}$.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Qual é a energia de ponto zero de um oscilador harmônico de frequência angular $\\omega$?"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Explique por que os modos normais entre as placas devem satisfazer \\[\nk_x=\\frac{n\\pi}{L},\\qquad n=0,1,2,\\ldots\n\\]"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Defina $u=\\sqrt{k_x^2+k_y^2+k_z^2}$ e escreva a energia de ponto zero por unidade de área como \\[\nE(L)=a\\sum_{n=0}^{\\infty}\\int_r^{\\infty}f(u)\\,du.\n\\] Determine $a$, $r$ e $f(u)$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Regularize o integrando com $e^{-\\eta u}$ e reduza a soma à forma envolvendo $d^2/d\\eta^2$. Determine $h(\\eta)$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Expanda $\\sum_n h(\\eta)$ até segunda ordem em $\\eta$ e determine $q(\\eta)$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Introduza uma terceira placa fixa em $x=R$, com $R\\gg L$, e escreva a energia total por unidade de área. Explique o papel físico da terceira placa."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Derive a força de Casimir por unidade de área sobre a placa móvel."
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": null,
+          "prompt_text": "Para que separação a pressão de Casimir teria módulo aproximadamente igual a uma atmosfera?"
+        },
+        {
+          "code": "(i)",
+          "ordinal": 9,
+          "score": null,
+          "prompt_text": "Compare a pressão de Casimir com a atração gravitacional entre duas lâminas de densidade superficial $\\Sigma$. Faça a estimativa indicada para prata, espessura e separação de $0.1\\,\\mathrm{cm}$."
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "code": "17",
+      "title_pt": "Ondas De Choque",
+      "page_start": 60,
+      "page_end": 61,
+      "source_url": "/taiwan/taiwan-01.pdf#page=60",
+      "statement_html": "<p>Considere um gás ideal com razão de calores $\\gamma$. Uma frente de choque plana separa o estado não perturbado $(p_s,\\rho_s)$ do estado comprimido $(p_1,\\rho_1)$. Trabalhe no referencial da frente para impor conservação de massa, momento e energia.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Defina\n\\[\ny_1=\\frac{p_1}{p_s},\\qquad x_1=\\frac{\\rho_1}{\\rho_s}.\n\\]\nMostre que a relação de Rankine--Hugoniot pode ser escrita como\n\\[\ny_1=\\frac{\\alpha x_1-\\beta}{\\tau-\\sigma x_1},\n\\]\ne determine $\\alpha,\\beta,\\tau,\\sigma$ em termos de $\\gamma$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Determine a velocidade $c$ da frente de choque e o número de Mach $\\mathcal M=c/c_s$, com $c_s=\\sqrt{\\gamma p_s/\\rho_s}$.</p></div></section>\n<p>Considere agora uma expansão hemisférica muito energética que gera uma frente de choque de raio $R(t)$ num meio de densidade $\\rho_s$.</p>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Mostre, no modelo adotado, que a pressão interna é aproximadamente\n\\[\n\\boxed{P\\approx\\frac{3(\\gamma-1)E}{2\\pi R^3}}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Obtenha a lei de escala $R(t)$ para a frente de choque.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Use $R=100\\,\\mathrm{m}$, $t=0.025\\,\\mathrm{s}$, $\\rho_s=1.2\\,\\mathrm{kg/m^3}$ e $\\gamma=1.40$ para estimar a energia do evento no modelo. O objetivo é apenas reproduzir a estimativa histórica do material.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{\\alpha=\\tau=\\frac{\\gamma+1}{\\gamma-1}},\\qquad\n\\boxed{\\beta=\\sigma=1}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{c=\\sqrt{\\frac{\\gamma+1}{2}\n\\left(\\frac{p_1}{p_s}+\\frac{\\gamma-1}{\\gamma+1}\\right)\\frac{p_s}{\\rho_s}}},\n\\]\n\\[\n\\boxed{\\mathcal M=\\sqrt{\\frac{\\gamma+1}{2\\gamma}\n\\left(\\frac{p_1}{p_s}+\\frac{\\gamma-1}{\\gamma+1}\\right)}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>É a estimativa de energia interna do gás quente usada no texto.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{R(t)=\\left[\\frac{75(\\gamma^2-1)}{16\\pi}\\frac{E}{\\rho_s}t^2\\right]^{1/5}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>O material obtém uma energia equivalente, na unidade histórica usada no enunciado, a aproximadamente $\\boxed{3200}$ toneladas de TNT.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Defina \\[\ny_1=\\frac{p_1}{p_s},\\qquad x_1=\\frac{\\rho_1}{\\rho_s}.\n\\] Mostre que a relação de Rankine--Hugoniot pode ser escrita como \\[\ny_1=\\frac{\\alpha x_1-\\beta}{\\tau-\\sigma x_1},\n\\] e determine $\\alpha,\\beta,\\tau,\\sigma$ em termos de $\\gamma$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Determine a velocidade $c$ da frente de choque e o número de Mach $\\mathcal M=c/c_s$, com $c_s=\\sqrt{\\gamma p_s/\\rho_s}$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Mostre, no modelo adotado, que a pressão interna é aproximadamente \\[\n\\boxed{P\\approx\\frac{3(\\gamma-1)E}{2\\pi R^3}}.\n\\]"
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Obtenha a lei de escala $R(t)$ para a frente de choque."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Use $R=100\\,\\mathrm{m}$, $t=0.025\\,\\mathrm{s}$, $\\rho_s=1.2\\,\\mathrm{kg/m^3}$ e $\\gamma=1.40$ para estimar a energia do evento no modelo. O objetivo é apenas reproduzir a estimativa histórica do material."
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "code": "18",
+      "title_pt": "Forças Eletromagnéticas",
+      "page_start": 62,
+      "page_end": 63,
+      "source_url": "/taiwan/taiwan-01.pdf#page=62",
+      "statement_html": "<h2 class=\"statement-section statement-part-heading\">Parte A -- esfera condutora dividida por uma camada isolante</h2>\n<p>Uma esfera metálica de raio $R$ é cortada por um plano em duas peças. A área externa esférica de uma peça é $\\pi R^2$ e a da outra é $3\\pi R^2$. Uma camada isolante infinitamente fina separa as superfícies de corte. A peça menor recebe carga total $+Q$; a maior permanece com carga líquida nula.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Determine a distribuição de carga entre as quatro superfícies: casca esférica superior, face plana superior, casca esférica inferior e face plana inferior.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Calcule a força eletrostática entre as duas peças.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Calcule a energia eletrostática do sistema.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- camada supercondutora perfurada</h2>\n<p>Um dipolo magnético de massa $m$ e momento $\\mu$, perpendicular a uma camada supercondutora plana muito extensa, é inicialmente colocado à distância $a$ quando a camada ainda está normal. Após a transição para o estado supercondutor, o dipolo é colocado à distância $b$.</p>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Determine a força eletromagnética sobre o dipolo no modelo do material, supondo que as distâncias sejam muito maiores que o espaçamento da malha.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Para $b=a+\\delta$, $|\\delta|\\ll a$, mostre que o movimento vertical é harmônico e determine o período.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>As cargas dadas no material são\n\\[\n\\boxed{\\frac Q4,\\quad\\frac{3Q}{4},\\quad\\frac{3Q}{4},\\quad-\\frac{3Q}{4}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{F=\\frac{3Q^2}{8\\pi\\varepsilon_0R^2}-\\frac{3Q^2}{128\\pi\\varepsilon_0R^2}\n=\\frac{45Q^2}{128\\pi\\varepsilon_0R^2}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\\boxed{U=\\frac{Q^2}{8\\pi\\varepsilon_0R}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{F=\\frac{3\\mu_0\\mu^2}{2\\pi}\n\\left(\\frac{1}{16b^4}-\\frac{1}{(a+b)^4}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{T=2\\pi\\sqrt{\\frac{16m\\pi a^5}{3\\mu_0\\mu^2}}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine a distribuição de carga entre as quatro superfícies: casca esférica superior, face plana superior, casca esférica inferior e face plana inferior."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Calcule a força eletrostática entre as duas peças."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Calcule a energia eletrostática do sistema."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Determine a força eletromagnética sobre o dipolo no modelo do material, supondo que as distâncias sejam muito maiores que o espaçamento da malha."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Para $b=a+\\delta$, $|\\delta|\\ll a$, mostre que o movimento vertical é harmônico e determine o período."
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "code": "19",
+      "title_pt": "Pêndulo Invertido De Kapitza",
+      "page_start": 64,
+      "page_end": 64,
+      "source_url": "/taiwan/taiwan-01.pdf#page=64",
+      "statement_html": "<p>Um pêndulo invertido tem massa pontual $m$ na extremidade de uma haste sem massa de comprimento $l$. O pivô executa uma vibração vertical rápida descrita no material por um perfil de velocidade periódico, de amplitude $v_0$ e semiperíodo $T$, com $T\\ll l/v_0$ e aceleração muito maior que $g$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p19-fig01.png\" alt=\"Geometria do pêndulo invertido e perfil periódico de velocidade do pivô.\" loading=\"lazy\"><figcaption>Geometria do pêndulo invertido e perfil periódico de velocidade do pivô.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Se em $t=T/2$ o ângulo é $\\varphi_0$, separe a oscilação angular rápida $\\Delta\\varphi(t)$ da variação lenta. Esboce $\\Delta\\varphi(t)$ num ciclo e determine o torque inercial médio.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Inclua a gravidade e determine a condição para que $\\varphi=0$ seja estável.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>A oscilação rápida é parabólica por trechos, com amplitude\n\\[\n\\boxed{\\frac14\\frac{v_0T}{l}\\varphi_0},\n\\]\ne\n\\[\n\\boxed{\\langle\\tau\\rangle=-\\frac13mv_0^2\\varphi_0}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\\boxed{v_0^2>3gl}.\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Se em $t=T/2$ o ângulo é $\\varphi_0$, separe a oscilação angular rápida $\\Delta\\varphi(t)$ da variação lenta. Esboce $\\Delta\\varphi(t)$ num ciclo e determine o torque inercial médio."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Inclua a gravidade e determine a condição para que $\\varphi=0$ seja estável."
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "20",
+      "title_pt": "Pêndulo Invertido — Segunda Versão",
+      "page_start": 65,
+      "page_end": 65,
+      "source_url": "/taiwan/taiwan-01.pdf#page=65",
+      "statement_html": "<p>Um pêndulo de comprimento $l$ e massa $m$ é invertido. O pivô executa o movimento vertical\n\\[\ny(t)=a\\cos\\omega t,\n\\]\ncom $a\\ll l$ e frequência alta em comparação com a escala gravitacional.</p>\n<section class=\"taiwan-item statement-row\"><span>Problema</span><div class=\"taiwan-item-body\"><p>Determine a condição para que a configuração invertida $\\theta=0$ seja estável.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>Resposta</strong><div><p>\\[\\boxed{\\omega>\\frac{\\sqrt{2gl}}{a}}.\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "Problema",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine a condição para que a configuração invertida $\\theta=0$ seja estável."
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "code": "21",
+      "title_pt": "Explicação Clássica Da Separação De Linhas Espectrais",
+      "page_start": 65,
+      "page_end": 65,
+      "source_url": "/taiwan/taiwan-01.pdf#page=65",
+      "statement_html": "<p>Modele um elétron de valência, massa $m$ e carga $-e$, preso por uma força central harmônica\n\\[\n\\mathbf F=-m\\omega_0^2\\mathbf r.\n\\]\nAplique um campo magnético uniforme $\\mathbf B=B\\hat{\\mathbf z}$ e parametrize\n\\[\nB=\\frac{2m}{e}\\omega_L.\n\\]</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Escolha um referencial que gira uniformemente em torno de $z$ no qual a equação de movimento volte a ter forma de oscilador harmônico. Determine sua velocidade angular.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Determine as três frequências angulares observadas no laboratório após a aplicação do campo magnético.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{\\Omega_{\\rm ref}=\\omega_L}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\\omega_+=\\sqrt{\\omega_0^2+\\omega_L^2}+\\omega_L},\\qquad\n\\boxed{\\omega_-=\\sqrt{\\omega_0^2+\\omega_L^2}-\\omega_L},\n\\]\n\\[\n\\boxed{\\omega_z=\\omega_0}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Escolha um referencial que gira uniformemente em torno de $z$ no qual a equação de movimento volte a ter forma de oscilador harmônico. Determine sua velocidade angular."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Determine as três frequências angulares observadas no laboratório após a aplicação do campo magnético."
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "code": "22",
+      "title_pt": "Efeito Poynting—Robertson",
+      "page_start": 66,
+      "page_end": 68,
+      "source_url": "/taiwan/taiwan-01.pdf#page=66",
+      "statement_html": "<p>Considere uma pequena partícula que se move com velocidade $v\\ll c$ ao longo de $+x$. No referencial $S$ a fonte de radiação está em repouso; no referencial $S'$ a partícula está em repouso. A partícula absorve radiação e reemite isotropicamente em seu próprio referencial.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Um fóton de energia $E_0$ em $S$ incide transversalmente à direção do movimento. Determine sua energia $E_0'$ em $S'$ até a ordem necessária em $v/c$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Calcule a redução da velocidade da partícula na direção $x'$ devido à absorção do fóton, lembrando que a reemissão é isotrópica em $S'$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>(i) Um fóton emitido em $S'$ faz ângulo $\\theta'$ com $+x'$. Determine o ângulo $\\theta$ medido em $S$. (ii) Integre a distribuição de momento da radiação reemitida e verifique que a redução de velocidade coincide com a do item anterior até primeira ordem em $v/c$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Se a potência absorvida é $W$, determine a força de arrasto de Poynting--Robertson.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Uma partícula esférica de raio $r$ e massa $m$ orbita o Sol a uma distância $R$. Trate-a como corpo negro e suponha que o arrasto é uma pequena perturbação sobre órbitas quase circulares. Se $R(0)=R_0$, determine $R(t)$ em termos da luminosidade solar $L_S$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Modele o Sol como uma esfera de raio $R_S$ que gira com velocidade angular média $\\Omega$ e irradia isotropicamente com luminosidade $L_S$. Determine a taxa de perda de momento angular causada pelo mesmo efeito relativístico.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{E_0'=\\frac{E_0}{\\sqrt{1-v^2/c^2}}\\approx E_0}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\\Delta v_{x'}\\approx\\frac{E_0}{mc^2}v}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>A aberração relativística dá\n\\[\n\\boxed{\\cos\\theta=\\frac{v/c+\\cos\\theta'}{1+(v/c)\\cos\\theta'}}.\n\\]\nA média do momento reemitido fornece novamente $\\boxed{\\Delta v_x\\approx E_0v/(mc^2)}$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{F_{\\rm PR}=\\frac{W}{c^2}v},\n\\]\ndirigida contra o movimento.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>O material obtém\n\\[\n\\boxed{R(t)=\\sqrt{R_0^2-\\frac{L_Sr^2}{mc^2}t}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\n\\boxed{\\frac{dL}{dt}=-\\frac{2L_S\\Omega R_S^2}{3c^2}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Um fóton de energia $E_0$ em $S$ incide transversalmente à direção do movimento. Determine sua energia $E_0'$ em $S'$ até a ordem necessária em $v/c$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Calcule a redução da velocidade da partícula na direção $x'$ devido à absorção do fóton, lembrando que a reemissão é isotrópica em $S'$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "(i) Um fóton emitido em $S'$ faz ângulo $\\theta'$ com $+x'$. Determine o ângulo $\\theta$ medido em $S$. (ii) Integre a distribuição de momento da radiação reemitida e verifique que a redução de velocidade coincide com a do item anterior até primeira ordem em $v/c$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Se a potência absorvida é $W$, determine a força de arrasto de Poynting--Robertson."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Uma partícula esférica de raio $r$ e massa $m$ orbita o Sol a uma distância $R$. Trate-a como corpo negro e suponha que o arrasto é uma pequena perturbação sobre órbitas quase circulares. Se $R(0)=R_0$, determine $R(t)$ em termos da luminosidade solar $L_S$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Modele o Sol como uma esfera de raio $R_S$ que gira com velocidade angular média $\\Omega$ e irradia isotropicamente com luminosidade $L_S$. Determine a taxa de perda de momento angular causada pelo mesmo efeito relativístico."
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "code": "23",
+      "title_pt": "Aceleração De Fermi",
+      "page_start": 69,
+      "page_end": 71,
+      "source_url": "/taiwan/taiwan-01.pdf#page=69",
+      "statement_html": "<p>Uma frente de choque de supernova move-se com velocidade $v\\ll c$. Uma partícula relativística de energia $E$ cruza a frente, é desviada por campos magnéticos desordenados e retorna. Considere apenas termos de primeira ordem em $v/c$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p23-fig01.png\" alt=\"Ilustração de uma frente de choque associada a uma supernova.\" loading=\"lazy\"><figcaption>Ilustração de uma frente de choque associada a uma supernova.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Se os ângulos de entrada e saída em relação à normal da frente são $\\theta_1$ e $\\theta_2$, determine a energia $E'$ após um ciclo de reflexão magnética.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Para partículas incidentes e emergentes isotropicamente distribuídas, o ganho médio relativo é escrito como\n\\[\n\\left\\langle\\frac{\\Delta E}{E}\\right\\rangle=\\frac43\\beta.\n\\]\nDetermine $\\beta$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>A cada ciclo, uma fração $\\delta\\ll1$ das partículas deixa de retornar à frente de choque. Determine a lei de potência da distribuição de energia $f(E)$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>Como o campo magnético não realiza trabalho no referencial da frente,\n\\[\n\\boxed{E'\\approx E\\left[1+\\frac vc(\\cos\\theta_1+\\cos\\theta_2)\\right]}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\\boxed{\\beta=\\frac vc}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{f(E)\\propto E^{-\\left(\\frac{3\\delta}{4\\beta}+1\\right)}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Se os ângulos de entrada e saída em relação à normal da frente são $\\theta_1$ e $\\theta_2$, determine a energia $E'$ após um ciclo de reflexão magnética."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Para partículas incidentes e emergentes isotropicamente distribuídas, o ganho médio relativo é escrito como \\[\n\\left\\langle\\frac{\\Delta E}{E}\\right\\rangle=\\frac43\\beta.\n\\] Determine $\\beta$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "A cada ciclo, uma fração $\\delta\\ll1$ das partículas deixa de retornar à frente de choque. Determine a lei de potência da distribuição de energia $f(E)$."
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "code": "24",
+      "title_pt": "Fluidos Eletrorreológicos",
+      "page_start": 72,
+      "page_end": 73,
+      "source_url": "/taiwan/taiwan-01.pdf#page=72",
+      "statement_html": "<p>Um fluido eletrorreológico é modelado como esferas dielétricas de raio $R$ e permissividade $\\kappa\\varepsilon_0$, suspensas em um líquido de permissividade $\\varepsilon_0$. As esferas ocupam fração volumétrica $\\phi$. O fluido está entre placas paralelas separadas por $D$, com diferença de potencial $V$. O módulo de cisalhamento é definido por\n\\[\nG=\\frac{D}{A}\\frac{\\Delta F}{\\Delta x}.\n\\]</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Mostre que uma esfera em campo uniforme $\\mathbf E_0$ adquire momento de dipolo\n\\[\n\\boxed{\\mathbf p=4\\pi\\varepsilon_0R^3\\frac{\\kappa-1}{\\kappa+2}\\mathbf E_0}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Compare a energia de dois dipolos idênticos colocados lado a lado transversalmente ao campo ou alinhados ao longo do campo. Qual configuração tem menor energia?</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Para duas esferas alinhadas ao campo, desloque uma delas lateralmente por $\\delta a\\ll R$. Determine a força restauradora linear em $\\delta a$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Explique por que as partículas formam cadeias ao longo do campo e estime o módulo de cisalhamento do fluido quando as placas estão sob tensão $V$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>O resultado é o indicado no enunciado.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>A configuração com os centros alinhados paralelamente ao campo tem menor energia.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{F=\\frac{3p^2}{64\\pi\\varepsilon_0R^5}\\,\\delta a},\n\\]\ndirigida no sentido restaurador.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>A atração longitudinal entre os dipolos favorece cadeias. O material obtém\n\\[\n\\boxed{G=\\frac{9\\phi\\varepsilon_0}{4}\n\\left(\\frac{\\kappa-1}{\\kappa+2}\\right)^2\n\\left(\\frac VD\\right)^2}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Mostre que uma esfera em campo uniforme $\\mathbf E_0$ adquire momento de dipolo \\[\n\\boxed{\\mathbf p=4\\pi\\varepsilon_0R^3\\frac{\\kappa-1}{\\kappa+2}\\mathbf E_0}.\n\\]"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Compare a energia de dois dipolos idênticos colocados lado a lado transversalmente ao campo ou alinhados ao longo do campo. Qual configuração tem menor energia?"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Para duas esferas alinhadas ao campo, desloque uma delas lateralmente por $\\delta a\\ll R$. Determine a força restauradora linear em $\\delta a$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Explique por que as partículas formam cadeias ao longo do campo e estime o módulo de cisalhamento do fluido quando as placas estão sob tensão $V$."
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "code": "25",
+      "title_pt": "Profundidade De Uma Poça",
+      "page_start": 74,
+      "page_end": 75,
+      "source_url": "/taiwan/taiwan-01.pdf#page=74",
+      "statement_html": "<p>Uma poça suficientemente extensa sobre uma superfície horizontal é aproximada por uma camada de profundidade uniforme $h$, exceto perto da borda. Denote por $\\gamma_1$ a tensão líquido--gás, $\\gamma_2$ a tensão líquido--sólido e $\\gamma_3$ a tensão sólido--gás.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p25-fig01.png\" alt=\"Poças e geometria local da linha de contato usada no problema.\" loading=\"lazy\"><figcaption>Poças e geometria local da linha de contato usada no problema.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Minimize a energia total em relação à área ocupada pela poça, mantendo seu volume fixo, e determine $h$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Para água, $\\gamma_1=7.3\\times10^{-2}\\,\\mathrm{N/m}$ e $\\rho=1.0\\,\\mathrm{g/cm^3}$. Sobre parafina, o ângulo de contato é $\\theta_E=107^\\circ$. Use a relação de Young para calcular a profundidade máxima.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Refaça o problema por equilíbrio de forças na superfície livre. Se $\\theta(z)$ é o ângulo local da superfície com a horizontal, obtenha $\\cos\\theta(z)$ e recupere a profundidade distante da borda.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{h=\\sqrt{\\frac{2(\\gamma_1+\\gamma_2-\\gamma_3)}{\\rho g}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>Com $\\gamma_3-\\gamma_2=\\gamma_1\\cos\\theta_E$,\n\\[\n\\boxed{h=\\sqrt{\\frac{2\\gamma_1(1-\\cos\\theta_E)}{\\rho g}}\\approx0.44\\,\\mathrm{cm}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{\\cos\\theta=\\cos\\theta_E+\\frac{\\rho g}{2\\gamma_1}z^2}.\n\\]\nTomando $\\cos\\theta\\to1$ longe da borda, recupera-se a expressão do item (b).</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Minimize a energia total em relação à área ocupada pela poça, mantendo seu volume fixo, e determine $h$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Para água, $\\gamma_1=7.3\\times10^{-2}\\,\\mathrm{N/m}$ e $\\rho=1.0\\,\\mathrm{g/cm^3}$. Sobre parafina, o ângulo de contato é $\\theta_E=107^\\circ$. Use a relação de Young para calcular a profundidade máxima."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Refaça o problema por equilíbrio de forças na superfície livre. Se $\\theta(z)$ é o ângulo local da superfície com a horizontal, obtenha $\\cos\\theta(z)$ e recupere a profundidade distante da borda."
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "code": "26",
+      "title_pt": "Bolha Que Afunda",
+      "page_start": 76,
+      "page_end": 79,
+      "source_url": "/taiwan/taiwan-01.pdf#page=76",
+      "statement_html": "<p>Uma bolha pode afundar em um recipiente de líquido submetido a vibração vertical rápida. O problema separa a dinâmica rápida da lenta e usa o conceito de massa adicionada.</p>\n<p>Considere primeiro uma esfera de raio $R$ em um fluido incompressível de densidade $\\rho$. O campo de velocidade no referencial comóvel é fornecido no material e tende a um escoamento uniforme longe da esfera.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Calcule a energia cinética do fluido perturbado e determine a massa adicionada $m_0$ da esfera.</p></div></section>\n<p>Agora uma bolha está a profundidade $x$ num recipiente de profundidade $H_0$. O recipiente vibra verticalmente com deslocamento $A\\sin\\omega t$. Defina\n\\[\n\\gamma=\\frac{\\rho gH_0}{P_0},\\qquad\nw=\\frac{A\\omega^2}{g},\n\\]\ncom $\\gamma\\ll1$, $w\\gg1$ e $\\gamma w\\ll1$. A temperatura da bolha é constante e sua massa de gás é desprezível diante da massa adicionada.</p>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Escreva\n\\[\nx(t)=X(t)+\\varphi(t),\\qquad \\langle\\varphi\\rangle=0,\n\\]\nonde $\\varphi$ é a oscilação rápida e $X$ o movimento lento. Mostre que $\\varphi\\approx B\\sin\\omega t$ e determine $B$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Faça a média temporal sobre um período rápido e mostre que\n\\[\n\\ddot X=C_1X-C_2.\n\\]\nDetermine $C_1$ e $C_2$ e obtenha a condição para a bolha acelerar para baixo.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>A energia cinética do escoamento perturbado equivale a $m_0v^2/2$, com\n\\[\n\\boxed{m_0=\\frac12\\rho\\frac{4\\pi R^3}{3}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>O termo rápido dominante satisfaz\n\\[\n\\ddot\\varphi\\approx-2g w\\sin\\omega t=-2A\\omega^2\\sin\\omega t,\n\\]\nportanto\n\\[\n\\boxed{\\varphi(t)=2A\\sin\\omega t},\\qquad \\boxed{B=2A}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>A média fornece\n\\[\n\\boxed{\\ddot X=g\\left(\\frac{\\gamma w^2}{H_0}X-2\\right)}.\n\\]\nLogo\n\\[\n\\boxed{C_1=\\frac{\\gamma gw^2}{H_0}},\\qquad \\boxed{C_2=2g}.\n\\]\nA aceleração é para baixo quando\n\\[\n\\boxed{\\frac{\\gamma w^2}{H_0}X>2}.\n\\]\nO nível crítico é $X_c=2H_0/(\\gamma w^2)$.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Calcule a energia cinética do fluido perturbado e determine a massa adicionada $m_0$ da esfera."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Escreva \\[\nx(t)=X(t)+\\varphi(t),\\qquad \\langle\\varphi\\rangle=0,\n\\] onde $\\varphi$ é a oscilação rápida e $X$ o movimento lento. Mostre que $\\varphi\\approx B\\sin\\omega t$ e determine $B$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Faça a média temporal sobre um período rápido e mostre que \\[\n\\ddot X=C_1X-C_2.\n\\] Determine $C_1$ e $C_2$ e obtenha a condição para a bolha acelerar para baixo."
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "code": "27",
+      "title_pt": "Precessão Do Eixo De Rotação Da Terra",
+      "page_start": 80,
+      "page_end": 83,
+      "source_url": "/taiwan/taiwan-01.pdf#page=80",
+      "statement_html": "<p>Modele a Terra como um elipsoide de revolução de massa $m$. Seu momento de inércia em torno do eixo de simetria é $C$ e em torno de qualquer eixo perpendicular é $A$, com $C>A$. Um corpo distante de massa $M$ está a distância $R$, muito maior que o tamanho do elipsoide.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Expanda a energia gravitacional até segunda ordem nas coordenadas internas do corpo e mostre que\n\\[\nV=-\\frac{GMm}{R}-\\frac{GM}{2R^3}\\int(2x^2-y^2-z^2)\\,dm.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Se o eixo de simetria forma ângulo $\\theta$ com a direção do corpo externo, mostre que\n\\[\n\\boxed{V\\approx-\\frac{GMm}{R}-\\frac{GM}{2R^3}(1-3\\cos^2\\theta)(C-A)}\n\\]\ne determine módulo e direção do torque.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Para a geometria geral, represente o eixo de rotação terrestre pelo versor $\\hat{\\mathbf n}$ e escreva o vetor torque em função de $\\hat{\\mathbf x}\\times\\hat{\\mathbf n}$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Se o eixo terrestre mantém inclinação $\\varphi$ em relação à normal da eclíptica e o ângulo azimutal é $\\alpha$, projete o torque na direção efetiva de precessão e calcule sua média em $\\alpha$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Com velocidade angular de rotação própria $\\omega$, determine a velocidade angular de precessão e seu sentido.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Some as contribuições do Sol e da Lua usando os dados fornecidos no material e estime o período de precessão terrestre.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>Segue da expansão de $1/|\\mathbf R-\\mathbf r|$ em $r/R$ e da escolha da origem no centro de massa.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>O torque tem módulo\n\\[\n\\boxed{\\tau=\\frac{3GM}{R^3}(C-A)\\sin\\theta\\cos\\theta},\n\\]\ne atua para aumentar $\\theta$ em direção a $\\pi/2$ na convenção do material.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{\\boldsymbol\\tau=\\frac{3GM}{R^3}(C-A)\\sin\\theta\\cos\\theta\n\\frac{\\hat{\\mathbf x}\\times\\hat{\\mathbf n}}{|\\hat{\\mathbf x}\\times\\hat{\\mathbf n}|}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>Com $\\hat{\\mathbf n}=(\\sin\\varphi\\cos\\alpha,\\sin\\varphi\\sin\\alpha,\\cos\\varphi)$,\n\\[\n\\boxed{\\left\\langle\\boldsymbol\\tau\\cdot\\hat{\\mathbf e}\\right\\rangle\n=\\frac{3GM}{2R^3}(C-A)\\sin\\varphi\\cos\\varphi}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>Como $\\mathbf L=C\\omega\\hat{\\mathbf n}$,\n\\[\n\\boxed{\\frac{d\\alpha}{dt}=-\\frac{3GM}{2R^3}\\frac{C-A}{C}\\frac{\\cos\\varphi}{\\omega}}.\n\\]\nO sinal negativo corresponde ao sentido retrógrado adotado no texto.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>Somando Sol e Lua,\n\\[\n|\\Omega_p|=\\frac{3G}{2}\\frac{C-A}{C}\\frac{\\cos\\varphi}{\\omega}\n\\left(\\frac{M_S}{R_S^3}+\\frac{M_M}{R_M^3}\\right).\n\\]\nO material obtém $\\boxed{T_p\\approx2.55\\times10^4\\text{ anos}}$, próximo do valor real citado de $2.58\\times10^4$ anos.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Expanda a energia gravitacional até segunda ordem nas coordenadas internas do corpo e mostre que \\[\nV=-\\frac{GMm}{R}-\\frac{GM}{2R^3}\\int(2x^2-y^2-z^2)\\,dm.\n\\]"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Se o eixo de simetria forma ângulo $\\theta$ com a direção do corpo externo, mostre que \\[\n\\boxed{V\\approx-\\frac{GMm}{R}-\\frac{GM}{2R^3}(1-3\\cos^2\\theta)(C-A)}\n\\] e determine módulo e direção do torque."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Para a geometria geral, represente o eixo de rotação terrestre pelo versor $\\hat{\\mathbf n}$ e escreva o vetor torque em função de $\\hat{\\mathbf x}\\times\\hat{\\mathbf n}$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Se o eixo terrestre mantém inclinação $\\varphi$ em relação à normal da eclíptica e o ângulo azimutal é $\\alpha$, projete o torque na direção efetiva de precessão e calcule sua média em $\\alpha$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Com velocidade angular de rotação própria $\\omega$, determine a velocidade angular de precessão e seu sentido."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Some as contribuições do Sol e da Lua usando os dados fornecidos no material e estime o período de precessão terrestre."
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "code": "28",
+      "title_pt": "Força De Coriolis, Vórtices E Tufões",
+      "page_start": 84,
+      "page_end": 86,
+      "source_url": "/taiwan/taiwan-01.pdf#page=84",
+      "statement_html": "<p>Considere um escoamento axisimétrico num referencial preso à Terra. Em latitude $\\varphi$, use apenas a componente vertical da rotação terrestre,\n\\[\n\\omega=\\Omega\\sin\\varphi.\n\\]\nEm coordenadas cilíndricas, a velocidade horizontal é $\\mathbf v=\\dot r\\,\\hat{\\mathbf r}+r\\dot\\theta\\,\\hat{\\boldsymbol\\theta}$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p28-fig01.png\" alt=\"Imagem de um grande vórtice atmosférico e geometria de referência do problema.\" loading=\"lazy\"><figcaption>Imagem de um grande vórtice atmosférico e geometria de referência do problema.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Use a força de Coriolis para obter a equação diferencial da componente angular do movimento.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Se a velocidade angular é nula na borda $r=r_0$, determine $\\dot\\theta(r)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>No polo norte, quantas voltas por dia o modelo prevê em $r=r_0/2$?</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Sem impor a condição da borda, integre a equação e mostre que\n\\[\n\\boxed{\\dot\\theta=\\frac{c}{r^2}-\\omega},\n\\]\nonde $c$ representa a rotação inicial do escoamento.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Suponha um vórtice estacionário com $\\dot r\\approx\\ddot r\\approx0$. Obtenha a forma $y(r)$ da superfície livre levando em conta gravidade, pressão e força de Coriolis.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Determine o raio $r_c$ no qual a superfície tem altura máxima.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Aplique o modelo a um tufão de raio externo $300\\,\\mathrm{km}$, olho de raio $30\\,\\mathrm{km}$ e latitude $30^\\circ$. Estime a velocidade máxima na borda do olho.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>Da variação do momento angular,\n\\[\n\\boxed{d(r^2\\dot\\theta)=-2\\omega r\\,dr}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{r^2\\dot\\theta=\\omega(r_0^2-r^2)},\n\\qquad\n\\boxed{\\dot\\theta=\\omega\\left(\\frac{r_0^2}{r^2}-1\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>Para $r=r_0/2$ no polo, $\\dot\\theta=3\\Omega$, portanto $\\boxed{3}$ voltas por dia.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>Integração direta dá $r^2\\dot\\theta=-\\omega r^2+c$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>O equilíbrio radial conduz a\n\\[\n\\boxed{y(r)=-\\frac{c^2}{2gr^2}-\\frac{\\omega^2r^2}{2g}+C}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\n\\boxed{r_c=\\sqrt{\\frac c\\omega}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>O modelo fornece $\\boxed{v_{\\max}\\approx108\\,\\mathrm{m/s}}$; o material cita cerca de $80\\,\\mathrm{m/s}$ como valor real típico de comparação.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Use a força de Coriolis para obter a equação diferencial da componente angular do movimento."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Se a velocidade angular é nula na borda $r=r_0$, determine $\\dot\\theta(r)$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "No polo norte, quantas voltas por dia o modelo prevê em $r=r_0/2$?"
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Sem impor a condição da borda, integre a equação e mostre que \\[\n\\boxed{\\dot\\theta=\\frac{c}{r^2}-\\omega},\n\\] onde $c$ representa a rotação inicial do escoamento."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Suponha um vórtice estacionário com $\\dot r\\approx\\ddot r\\approx0$. Obtenha a forma $y(r)$ da superfície livre levando em conta gravidade, pressão e força de Coriolis."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Determine o raio $r_c$ no qual a superfície tem altura máxima."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Aplique o modelo a um tufão de raio externo $300\\,\\mathrm{km}$, olho de raio $30\\,\\mathrm{km}$ e latitude $30^\\circ$. Estime a velocidade máxima na borda do olho."
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "code": "29",
+      "title_pt": "Pêndulo De Foucault",
+      "page_start": 87,
+      "page_end": 89,
+      "source_url": "/taiwan/taiwan-01.pdf#page=87",
+      "statement_html": "<p>Um pêndulo de Foucault oscila com pequena amplitude numa latitude $\\varphi$. A Terra gira com velocidade angular $\\Omega$. Considere o plano horizontal local e a componente vertical da rotação terrestre.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p29-fig01.png\" alt=\"Pêndulo de Foucault usado para demonstrar a rotação da Terra.\" loading=\"lazy\"><figcaption>Pêndulo de Foucault usado para demonstrar a rotação da Terra.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>Problema</span><div class=\"taiwan-item-body\"><p>Determine a velocidade angular de rotação do plano de oscilação em relação ao solo e seu sentido nos dois hemisférios.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>Derivação dinâmica</strong><div><p>Defina\n\\[\n\\omega=\\Omega\\sin\\varphi.\n\\]\nPara $z=x+iy$, as equações horizontais se combinam em\n\\[\n\\boxed{\\ddot z+2i\\omega\\dot z+\\frac gl z=0}.\n\\]\nA solução pode ser escrita como uma oscilação rápida multiplicada por $e^{-i\\omega t}$. Portanto o plano de oscilação gira com\n\\[\n\\boxed{\\Omega_F=\\Omega\\sin\\varphi}.\n\\]\nNo hemisfério norte, o plano gira no sentido horário visto do solo; no sul, no sentido oposto.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>Interpretação geométrica</strong><div><p>Em um dia terrestre, o plano gira um ângulo\n\\[\n\\boxed{\\Delta\\beta=360^\\circ\\sin\\varphi}.\n\\]\nNo equador não há precessão; nos polos, o plano completa uma volta por dia.</p></div></section>",
+      "parts": [
+        {
+          "code": "Problema",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine a velocidade angular de rotação do plano de oscilação em relação ao solo e seu sentido nos dois hemisférios."
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "code": "30",
+      "title_pt": "Reflexão Interna Total E Deslocamento De Goos—Hänchen",
+      "page_start": 90,
+      "page_end": 93,
+      "source_url": "/taiwan/taiwan-01.pdf#page=90",
+      "statement_html": "<h2 class=\"statement-section statement-part-heading\">Parte A -- reflexão interna total</h2>\n<p>Uma onda plana monocromática TE passa do meio não magnético de índice $n_1$ para um meio de índice $n_2<n_1$. O ângulo de incidência é $\\theta_1$ e o número de onda no vácuo é $k=2\\pi/\\lambda$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-01/p30-fig01.png\" alt=\"Geometria da reflexão e refração na interface entre dois meios.\" loading=\"lazy\"><figcaption>Geometria da reflexão e refração na interface entre dois meios.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para $\\theta_1>\\theta_c$, a onda transmitida é evanescente:\n\\[\n\\mathbf E_t=\\mathbf E_{0t}e^{-\\alpha z}e^{i(k_{ty}y-\\omega t)}.\n\\]\nDetermine $\\alpha$ e $k_{ty}$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Derive, das condições de contorno eletromagnéticas, o coeficiente de reflexão de amplitude TE\n\\[\n\\frac{E_{0r}}{E_{0i}}=\n\\frac{n_1\\cos\\theta_1-n_2\\cos\\theta_2}\n{n_1\\cos\\theta_1+n_2\\cos\\theta_2}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Na reflexão interna total, determine a diferença de fase $\\varphi$ entre a onda refletida e a incidente.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Mostre explicitamente que a refletividade energética é $R=1$.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- deslocamento de Goos--Hänchen</h2>\n<p>Um feixe real possui uma pequena distribuição angular em torno de $\\theta_1$. Como a fase de reflexão varia com o ângulo, a recombinação dos componentes produz um deslocamento lateral $D$.</p>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Use o método da fase estacionária para mostrar que\n\\[\n\\boxed{D=-\\frac{\\lambda}{2\\pi n_1}\\frac{d\\varphi}{d\\theta_1}}.\n\\]\nSubstitua a fase encontrada em (c) e obtenha $D$ explicitamente.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Parte C -- análogo quântico</h2>\n<p>Uma partícula de massa $m$ e energia $E$ incide, a partir de $z<0$, sobre um degrau de potencial $V=0$ para $z<0$ e $V=V_0>0$ para $z>0$, com $E>V_0$. O estado incidente é\n\\[\n\\psi_i=e^{ik_1(\\sin\\theta_1\\,y+\\cos\\theta_1\\,z)},\n\\qquad k_1=\\frac{\\sqrt{2mE}}{\\hbar}.\n\\]</p>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Escreva $\\psi_t$ e $\\psi_r$, determine $k_2$, use a continuidade de $\\psi$ para relacionar $t$ e $r$, obtenha a conservação da componente tangencial do vetor de onda e determine o ângulo crítico.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Use a continuidade da derivada normal da função de onda para obter o coeficiente de reflexão $r$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Para incidência acima do ângulo crítico, escreva a onda transmitida como evanescente, determine $\\beta$, $k_{ty}$ e a fase de reflexão.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(i)</span><div class=\"taiwan-item-body\"><p>Aplique novamente o método da fase estacionária e determine o deslocamento de Goos--Hänchen quântico em função de $E$, $V_0$ e $\\theta_1$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{\\alpha=k\\sqrt{n_1^2\\sin^2\\theta_1-n_2^2}},\n\\qquad\n\\boxed{k_{ty}=n_1k\\sin\\theta_1}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>Segue das continuidades das componentes tangenciais de $\\mathbf E$ e $\\mathbf H$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{\\varphi=-2\\tan^{-1}\\!\\left(\n\\frac{\\sqrt{n_1^2\\sin^2\\theta_1-n_2^2}}{n_1\\cos\\theta_1}\n\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>O coeficiente de reflexão em (c) tem módulo unitário; logo $\\boxed{R=1}$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>Com $\\Phi=\\varphi+k_{ty}s$ e $D=s\\cos\\theta_1$, a condição $d\\Phi/d\\theta_1=0$ fornece\n\\[\n\\boxed{D=\\frac{\\lambda\\sin\\theta_1}\n{\\pi\\sqrt{n_1^2\\sin^2\\theta_1-n_2^2}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\n\\psi_t=t e^{ik_2(\\sin\\theta_2y+\\cos\\theta_2z)},\\qquad\n\\psi_r=r e^{ik_1(\\sin\\theta_1y-\\cos\\theta_1z)},\n\\]\n\\[\n\\boxed{k_2=\\frac{\\sqrt{2m(E-V_0)}}{\\hbar}},\\qquad\n1+r=t,\n\\]\n\\[\n\\boxed{k_1\\sin\\theta_1=k_2\\sin\\theta_2},\\qquad\n\\boxed{\\theta_c=\\sin^{-1}\\frac{k_2}{k_1}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>\\[\n\\boxed{r=\\frac{k_1\\cos\\theta_1-k_2\\cos\\theta_2}\n{k_1\\cos\\theta_1+k_2\\cos\\theta_2}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(h)</strong><div><p>\\[\n\\boxed{\\beta=\\sqrt{k_1^2\\sin^2\\theta_1-k_2^2}},\n\\qquad\n\\boxed{k_{ty}=k_1\\sin\\theta_1},\n\\]\n\\[\n\\boxed{\\varphi=-2\\tan^{-1}\\!\\left(\n\\frac{\\sqrt{k_1^2\\sin^2\\theta_1-k_2^2}}{k_1\\cos\\theta_1}\n\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(i)</strong><div><p>\\[\n\\boxed{D=\\frac{2\\sin\\theta_1}\n{\\sqrt{k_1^2\\sin^2\\theta_1-k_2^2}}}\n=\\frac{2\\hbar\\sin\\theta_1}\n{\\sqrt{2m[E\\sin^2\\theta_1-(E-V_0)]}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para $\\theta_1>\\theta_c$, a onda transmitida é evanescente: \\[\n\\mathbf E_t=\\mathbf E_{0t}e^{-\\alpha z}e^{i(k_{ty}y-\\omega t)}.\n\\] Determine $\\alpha$ e $k_{ty}$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Derive, das condições de contorno eletromagnéticas, o coeficiente de reflexão de amplitude TE \\[\n\\frac{E_{0r}}{E_{0i}}=\n\\frac{n_1\\cos\\theta_1-n_2\\cos\\theta_2}\n{n_1\\cos\\theta_1+n_2\\cos\\theta_2}.\n\\]"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Na reflexão interna total, determine a diferença de fase $\\varphi$ entre a onda refletida e a incidente."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Mostre explicitamente que a refletividade energética é $R=1$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Use o método da fase estacionária para mostrar que \\[\n\\boxed{D=-\\frac{\\lambda}{2\\pi n_1}\\frac{d\\varphi}{d\\theta_1}}.\n\\] Substitua a fase encontrada em (c) e obtenha $D$ explicitamente."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Escreva $\\psi_t$ e $\\psi_r$, determine $k_2$, use a continuidade de $\\psi$ para relacionar $t$ e $r$, obtenha a conservação da componente tangencial do vetor de onda e determine o ângulo crítico."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Use a continuidade da derivada normal da função de onda para obter o coeficiente de reflexão $r$."
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": null,
+          "prompt_text": "Para incidência acima do ângulo crítico, escreva a onda transmitida como evanescente, determine $\\beta$, $k_{ty}$ e a fase de reflexão."
+        },
+        {
+          "code": "(i)",
+          "ordinal": 9,
+          "score": null,
+          "prompt_text": "Aplique novamente o método da fase estacionária e determine o deslocamento de Goos--Hänchen quântico em função de $E$, $V_0$ e $\\theta_1$."
+        }
+      ]
+    }
+  ]
+}

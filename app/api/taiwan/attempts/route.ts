@@ -1,4 +1,4 @@
-import taiwanVolume10 from "../../../../data/taiwan/volume-10.json";
+import taiwanIndex from "../../../../data/taiwan/index.json";
 import { ensureDatabase, getD1 } from "../../../../db/runtime";
 import { requireSiteUserApi } from "../../../chatgpt-auth";
 
@@ -6,7 +6,8 @@ export async function POST(request:Request) {
   const user=await requireSiteUserApi(); if (user instanceof Response) return user;
   await ensureDatabase();
   const body=await request.json() as {volume?:number;problemNumber?:number};
-  if (body.volume!==10 || !taiwanVolume10.problems.some((problem)=>problem.id===body.problemNumber)) return Response.json({error:"Problema de Taiwan inválido"},{status:400});
+  const volume=taiwanIndex.volumes.find((item)=>item.volume===body.volume);
+  if (!volume?.problems.some((problem)=>problem.id===body.problemNumber)) return Response.json({error:"Problema de Taiwan inválido"},{status:400});
   const db=getD1();
   const existing=await db.prepare("SELECT * FROM user_taiwan_attempts WHERE owner_id=? AND volume=? AND problem_number=? AND status='in_progress' LIMIT 1").bind(user.userId,body.volume,body.problemNumber).first();
   if (existing) return Response.json({attempt:existing,resumed:true});

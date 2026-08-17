@@ -1,0 +1,104 @@
+{
+  "volumes": [
+    {
+      "volume": 1,
+      "problems": 30,
+      "parts": 151,
+      "images": 12,
+      "solutions": 30,
+      "source_tex_sha256": "064e1602a94120a3d067e45f5e034712897fc9a3e0ed2cee9f6490d38011edb7",
+      "source_pdf_sha256": "54db2579ad71da99bb1e594b680522c46d4df180f2ff34ecb865f8739ffbd6ff",
+      "output_sha256": "a537069bd8f9cf0b1ffbf0c846f7719cfde0a3e8156e535c6ce3896bdf5e3022"
+    },
+    {
+      "volume": 2,
+      "problems": 32,
+      "parts": 193,
+      "images": 29,
+      "solutions": 32,
+      "source_tex_sha256": "f74c0ee4e8d57e46480c1c5e44674f88cc77e45fb1f61e22af92efeac0c9979e",
+      "source_pdf_sha256": "77c75d7ac9723bf6b92361daddbd6f3c6a06267839dc6dd70ada9654bd9a48e3",
+      "output_sha256": "e32aa7266ee834e2b83d1770bead954f602e2ef7334d12d8fbc343b59a7b1e39"
+    },
+    {
+      "volume": 3,
+      "problems": 33,
+      "parts": 165,
+      "images": 43,
+      "solutions": 33,
+      "source_tex_sha256": "571988cdece5d1762bf8f1f379b3e6d2a4586ee306facd2f7b5a9a25b907751e",
+      "source_pdf_sha256": "8eb432f8a6a5d2a9cbc43f71cda621eaf7896d07f9d3bd7ca93af0efd19615f1",
+      "output_sha256": "c6228f9c70d8e2919e0521bbc49dd4a5fa7f3e882b7624db65f60556366549b3"
+    },
+    {
+      "volume": 4,
+      "problems": 30,
+      "parts": 171,
+      "images": 12,
+      "solutions": 30,
+      "source_tex_sha256": "9acfeb190180856b4dfd492f6ff7f5e30d2fb986c9a6fa8c5de432f466320850",
+      "source_pdf_sha256": "684725238fdafb095fad937be40114053b48df63e7c35de8ccb6e29e0b0378d9",
+      "output_sha256": "36fe0e3b3b6e599c4ac7c5850716a7fb768fe7cf6c91e8ca87d6f6dfb3d82488"
+    },
+    {
+      "volume": 5,
+      "problems": 28,
+      "parts": 171,
+      "images": 17,
+      "solutions": 28,
+      "source_tex_sha256": "fc0689189acffe9d7416b5c15acba63da1d68b0d68dd227c6f7b8ea77a994efb",
+      "source_pdf_sha256": "a5f91d43876a3b7585a243d5f215665271121a5cec8ae541f41c3693329503aa",
+      "output_sha256": "5bbf4c9299150144b401eb8c86c5e78b6fd0ab8bac89b8785d8f1a2e4032caee"
+    },
+    {
+      "volume": 6,
+      "problems": 24,
+      "parts": 174,
+      "images": 36,
+      "solutions": 24,
+      "source_tex_sha256": "dc90d39103c54d97bf6ffd696d6d8bada6a007297f05410a6339d67ef96598f2",
+      "source_pdf_sha256": "9a45267b9cbe9b2b9e161a0225f80e2a1da5822646019d7a1249d14e686dab0b",
+      "output_sha256": "510c7eb172abc5f6a5710cd493fb2b66acf0ec2feaf3a0b1580254fcc335a0f6"
+    },
+    {
+      "volume": 7,
+      "problems": 25,
+      "parts": 187,
+      "images": 45,
+      "solutions": 25,
+      "source_tex_sha256": "fa260c59231ad076f99724b1855ba882eb54a19c2b99a34476e9a0dd4e2fac3f",
+      "source_pdf_sha256": "1194e009189b9665bd2970b7644095a536dfcb83adb65b4b18a66d4578ec9665",
+      "output_sha256": "e75cfe104b7ec3120095decccc3c81cc072d16e6c7f32db087479c8d02ed38e0"
+    },
+    {
+      "volume": 8,
+      "problems": 32,
+      "parts": 174,
+      "images": 40,
+      "solutions": 32,
+      "source_tex_sha256": "9f72ec294e4045296f572c07cc4cd99bbb0f197aa71e04a962b1c5a0f7f3a54d",
+      "source_pdf_sha256": "c18ea370b659492597974e4fbbb74832ea5b58dbce723c53521be156b5eb4c9d",
+      "output_sha256": "3c440b7a1d36cd7cf026f1be3a61bdab9547a0d4c69d7d81b1f296bf7882a2cb"
+    },
+    {
+      "volume": 9,
+      "problems": 31,
+      "parts": 177,
+      "images": 43,
+      "solutions": 31,
+      "source_tex_sha256": "2c657aa9dc493c75feb9f391d2b59e0a44094f3ba58a416a94d54a3a436b47b1",
+      "source_pdf_sha256": "bcd253af204c16f6525e8f571eb35518465156c8325ba0d9caa204379d34f77f",
+      "output_sha256": "19cb2a25bc0a7791426fc538b489744c1761ed1dcedd0a64157267a584721ccc"
+    },
+    {
+      "volume": 10,
+      "problems": 31,
+      "parts": 184,
+      "images": 72,
+      "solutions": 26,
+      "source_tex_sha256": "613a8b531397f6655bf86e0af73757c85dbe09f379817e209bccdbf6e86ea308",
+      "source_pdf_sha256": "49ac800da7a46dc374469fe76d1b04d1c11e7e95cf5ba6c14d0db9396c3af4af",
+      "output_sha256": "25e8f549c80544293387dc50eb452ca2766eea01009a2ce3b096bae781ef8f24"
+    }
+  ]
+}

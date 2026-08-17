@@ -96,6 +96,12 @@ export function normalizeLegacyLatex(formula) {
     .replace(/_\{([^{}]*?)\\(min|max)\b([^{}]*)\}/g,"_{$1\\mathrm{$2}$3}")
     .replace(/\\tag\{#\}/g,"\\tag{\\#}")
     .replace(/(\\circ\s*)С\b/gu,"$1\\mathrm{C}")
+    .replace(/\\erfc(?![A-Za-z])/g,"\\operatorname{erfc}")
+    .replace(/\\erf(?![A-Za-z])/g,"\\operatorname{erf}")
+    .replace(/\\arctanh(?![A-Za-z])/g,"\\operatorname{arctanh}")
+    .replace(/\\cothop(?![A-Za-z])/g,"\\operatorname{coth}")
+    .replace(/\\sech(?![A-Za-z])/g,"\\operatorname{sech}")
+    .replace(/\\arsinh(?![A-Za-z])/g,"\\operatorname{arsinh}")
     .replace(/\\begin\{array\}\s*\\\s+(?=[A-Za-z\\])/g,"\\begin{array}{c} ");
 }
 

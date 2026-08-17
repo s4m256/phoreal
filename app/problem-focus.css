@@ -8,6 +8,11 @@
   padding: clamp(22px, 3vw, 48px);
 }
 
+.problem-page .statement-panel .statement-content,
+.problem-page .solution-panel .statement-content {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
 .problem-page .timer-card {
   position: fixed;
   top: 58px;
@@ -122,7 +127,16 @@
 .taiwan-figure img { display: inline-block; max-width: 100%; height: auto; }
 .taiwan-item { display: block; margin: 1em 0; }
 .taiwan-item>span:first-child { margin-right: 5px; }
+.taiwan-item-body { display: inline; }
+.taiwan-item-body>p:first-child { display: inline; }
+.taiwan-item-points { float: right; margin-left: 12px; color: var(--muted); font-family: Verdana,Arial,sans-serif; font-size: 10px; }
+.taiwan-solution-item { position: relative; margin: 1em 0; padding-left: 34px; }
+.taiwan-solution-item>strong { position: absolute; left: 0; top: 0; }
+.taiwan-solution-item>div>p:first-child { margin-top: 0; }
 .taiwan-table { overflow: auto; white-space: pre-wrap; }
+.taiwan-table { display: block; width: 100%; border-collapse: collapse; margin: 1em 0; font-family: Georgia,"Times New Roman",serif; white-space: normal; }
+.taiwan-table tbody { display: table; width: 100%; }
+.taiwan-table td { border: 1px solid var(--line); padding: 5px 7px; vertical-align: top; }
 .taiwan-problem-page { max-width: none; }
 
 .ai-hint-body {

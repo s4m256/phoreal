@@ -169,14 +169,17 @@ class Converter:
         value = re.sub(r"\\par\b", "\n\n", value)
         value = re.sub(r"\n\s*\n+", "\n\n", value)
         chunks = []
-        for chunk in re.split(r"\n\n+", value):
-            chunk = chunk.strip()
-            if not chunk:
+        for piece in re.split(r"(@@BLOCK\d+@@)", value):
+            piece = piece.strip()
+            if not piece:
                 continue
-            if re.fullmatch(r"(?:@@BLOCK\d+@@\s*)+", chunk):
-                chunks.append(chunk)
-            else:
-                chunks.append(f"<p>{chunk}</p>")
+            if re.fullmatch(r"@@BLOCK\d+@@", piece):
+                chunks.append(piece)
+                continue
+            for paragraph in re.split(r"\n\s*\n+", piece):
+                paragraph = paragraph.strip()
+                if paragraph:
+                    chunks.append(f"<p>{paragraph}</p>")
         result = "\n".join(chunks)
         result = restore_tokens(result, "BLOCK", self.blocks)
         return re.sub(r"<p>\s*</p>", "", result).strip()

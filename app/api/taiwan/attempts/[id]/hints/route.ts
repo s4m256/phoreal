@@ -1,6 +1,6 @@
 import { load } from "cheerio";
 import { env } from "cloudflare:workers";
-import taiwanVolume10 from "../../../../../../data/taiwan/volume-10.json";
+import taiwanCatalog from "../../../../../../data/taiwan/catalog.json";
 import { ensureDatabase, getD1 } from "../../../../../../db/runtime";
 import { requireAiOwnerApi } from "../../../../../chatgpt-auth";
 import { parseHintModelOutput,safeHintHtml } from "../../../../../lib/ai-hints.mjs";
@@ -21,7 +21,8 @@ export async function POST(request:Request,{params}:{params:Promise<{id:string}>
   if (!question) return Response.json({error:"Escreva uma dúvida específica"},{status:400});
   const attempt=await db.prepare("SELECT * FROM user_taiwan_attempts WHERE id=? AND owner_id=?").bind(id,user.userId).first<Record<string,unknown>>();
   if (!attempt||attempt.status!=="in_progress"||!attempt.active_item_code) return Response.json({error:"Inicie a tentativa e selecione um item antes de pedir uma dica"},{status:400});
-  const problem=taiwanVolume10.problems.find((item)=>item.id===Number(attempt.problem_number)&&Number(attempt.volume)===10);
+  const volume=taiwanCatalog.volumes.find((item)=>item.volume===Number(attempt.volume));
+  const problem=volume?.problems.find((item)=>item.id===Number(attempt.problem_number));
   const part=problem?.parts.find((item)=>item.code===attempt.active_item_code);
   if (!problem||!part) return Response.json({error:"Item de Taiwan não encontrado"},{status:404});
   if (!problem.solution_html) return Response.json({error:"Este problema não possui solução no material corrigido"},{status:503});

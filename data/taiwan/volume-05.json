@@ -1,0 +1,1371 @@
+{
+  "schema_version": 2,
+  "collection": "Taiwan - volume 5",
+  "volume": 5,
+  "source_pdf": "/taiwan/taiwan-05.pdf",
+  "language": "pt-BR",
+  "problems": [
+    {
+      "id": 1,
+      "code": "01",
+      "title_pt": "Vetor De Laplace—Runge—Lenz",
+      "page_start": 2,
+      "page_end": 5,
+      "source_url": "/taiwan/taiwan-05.pdf#page=2",
+      "statement_html": "<p>Sob uma força central de inverso do quadrado,\n\\[\n\\mathbf F=-\\frac{k}{r^2}\\hat{\\mathbf r},\n\\]\ndefina o vetor de Laplace--Runge--Lenz (LRL)\n\\[\n\\mathbf A=\\mathbf p\\times\\mathbf L-mk\\hat{\\mathbf r},\n\\qquad \\mathbf L=\\mathbf r\\times\\mathbf p.\n\\]\nPara o problema gravitacional, $k=GMm$. O objetivo é obter a órbita cônica sem resolver diretamente a equação diferencial radial.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p01-fig01.png\" alt=\"Geometria usada na definição e nas propriedades do vetor LRL.\" loading=\"lazy\"><figcaption>Geometria usada na definição e nas propriedades do vetor LRL.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Mostre que $\\mathbf A$ é constante durante o movimento quando a única força é a força central acima.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Calcule $\\mathbf A\\cdot\\mathbf r$ e mostre que, se $\\theta$ é o ângulo entre $\\mathbf A$ e $\\mathbf r$,\n\\[\nr=\\frac{L^2}{mk+A\\cos\\theta}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Calcule $\\mathbf A\\cdot\\mathbf A$ e prove\n\\[\nA^2=p^2L^2+m^2k^2-\\frac{2mk}{r}L^2.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Use a energia mecânica $E$ para eliminar $p$ e, para $k=GMm$, obtenha\n\\[\n\\ell=\\frac{L^2}{GMm^2},\n\\qquad\n\\varepsilon=\\left(1+\\frac{2EL^2}{G^2M^2m^3}\\right)^{1/2},\n\\]\nde modo que $r(\\theta)=\\ell/(1+\\varepsilon\\cos\\theta)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Escolha o eixo $z$ paralelo a $\\mathbf L$ e o eixo $x$ ao longo do semieixo maior. Mostre que, no hodógrafo do momento, a ponta de $\\mathbf p$ percorre um círculo de raio $mk/L$ e centro $(0,A/L)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>No hodógrafo, seja $\\eta$ o ângulo definido no original. Mostre que\n\\[\n\\varepsilon=\\cos\\eta.\n\\]\nPode ser útil definir $p_0=\\sqrt{2m|E|}$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Uma partícula chega do infinito com velocidade $v_0$ e parâmetro de impacto $b$, sendo desviada pelo campo gravitacional de uma massa fixa $M$. Se\n\\[\n\\varphi=\\pi-2\\tan^{-1}(b\\gamma),\n\\]\ndetermine $\\gamma$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Se $d\\sigma$ é a área de incidência associada ao intervalo $b$ a $b+db$ e $d\\Omega$ é o ângulo sólido espalhado, mostre que\n\\[\n\\frac{d\\sigma}{d\\Omega}\n=\\frac{1}{4\\gamma^2\\sin^4(\\varphi/2)}.\n\\]</p></div></section>",
+      "solution_html": "<p>Os itens (a)--(f) seguem diretamente da conservação de $\\mathbf L$, da identidade de produto vetorial e da definição de $\\mathbf A$. Em particular,\n\\[\nA^2=m^2k^2+2mEL^2,\n\\qquad\n\\varepsilon=\\frac{A}{mk}.\n\\]</p>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>\\[\n\\boxed{\\gamma=\\frac{v_0^2}{GM}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(h)</strong><div><p>Com $b=\\gamma^{-1}\\cot(\\varphi/2)$ e $d\\sigma=2\\pi b\\,db$, $d\\Omega=2\\pi\\sin\\varphi\\,d\\varphi$,\n\\[\n\\boxed{\\frac{d\\sigma}{d\\Omega}\n=\\frac{1}{4\\gamma^2\\sin^4(\\varphi/2)}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Mostre que $\\mathbf A$ é constante durante o movimento quando a única força é a força central acima."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Calcule $\\mathbf A\\cdot\\mathbf r$ e mostre que, se $\\theta$ é o ângulo entre $\\mathbf A$ e $\\mathbf r$, \\[\nr=\\frac{L^2}{mk+A\\cos\\theta}.\n\\]"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Calcule $\\mathbf A\\cdot\\mathbf A$ e prove \\[\nA^2=p^2L^2+m^2k^2-\\frac{2mk}{r}L^2.\n\\]"
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Use a energia mecânica $E$ para eliminar $p$ e, para $k=GMm$, obtenha \\[\n\\ell=\\frac{L^2}{GMm^2},\n\\qquad\n\\varepsilon=\\left(1+\\frac{2EL^2}{G^2M^2m^3}\\right)^{1/2},\n\\] de modo que $r(\\theta)=\\ell/(1+\\varepsilon\\cos\\theta)$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Escolha o eixo $z$ paralelo a $\\mathbf L$ e o eixo $x$ ao longo do semieixo maior. Mostre que, no hodógrafo do momento, a ponta de $\\mathbf p$ percorre um círculo de raio $mk/L$ e centro $(0,A/L)$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "No hodógrafo, seja $\\eta$ o ângulo definido no original. Mostre que \\[\n\\varepsilon=\\cos\\eta.\n\\] Pode ser útil definir $p_0=\\sqrt{2m|E|}$."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Uma partícula chega do infinito com velocidade $v_0$ e parâmetro de impacto $b$, sendo desviada pelo campo gravitacional de uma massa fixa $M$. Se \\[\n\\varphi=\\pi-2\\tan^{-1}(b\\gamma),\n\\] determine $\\gamma$."
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": null,
+          "prompt_text": "Se $d\\sigma$ é a área de incidência associada ao intervalo $b$ a $b+db$ e $d\\Omega$ é o ângulo sólido espalhado, mostre que \\[\n\\frac{d\\sigma}{d\\Omega}\n=\\frac{1}{4\\gamma^2\\sin^4(\\varphi/2)}.\n\\]"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "code": "02",
+      "title_pt": "Vórtices Duplos",
+      "page_start": 6,
+      "page_end": 10,
+      "source_url": "/taiwan/taiwan-05.pdf#page=6",
+      "statement_html": "<p>Modele um vórtice por um filamento com circulação\n\\[\n\\left|\\oint \\mathbf v\\cdot d\\mathbf l\\right|=2\\pi\\kappa,\n\\]\nde modo que, para um filamento retilíneo e axialmente simétrico,\n\\[\nv(r)=\\frac{\\kappa}{r}.\n\\]\nIntroduza um raio de núcleo $a$ para evitar a singularidade em $r=0$. Quando o problema tratar do oceano, considere profundidade uniforme $h$, densidade $\\rho$ e despreze viscosidade e força de Coriolis, salvo indicação contrária.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p02-fig01.png\" alt=\"Modelo de um vórtice oceânico e sistema de coordenadas.\" loading=\"lazy\"><figcaption>Modelo de um vórtice oceânico e sistema de coordenadas.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para um vórtice oceânico de circulação $\\kappa$, determine a variação da altura da superfície $z(r)$ em função da distância ao eixo. Use a gravidade $g$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Considere um anel de vórtice arbitrário no plano $xy$, com área interna $A$, em um fluido de densidade $\\rho$. Determine o momento linear total do fluido na direção $z$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>No oceano, represente um vórtice por $\\{(x,y),-\\kappa\\}$. Se ele sofre uma força líquida $F_y\\hat{\\mathbf y}$, determine seu movimento subsequente.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Considere os vórtices $\\{(x,y),\\kappa\\}$ e $\\{(x+r,y),-\\kappa\\}$. Determine o momento linear total e a energia total do escoamento.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>A partir do item anterior, determine a força de interação entre os dois vórtices.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Descreva o movimento da dupla de vórtices de sinais opostos.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Um único vórtice de circulação $-\\kappa$ está a uma distância $d$ de uma costa retilínea. A componente normal da velocidade deve ser nula na costa. Determine direção e módulo da velocidade de translação do vórtice.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Dois vórtices de sinais opostos estão em $(d_1,d_2)$ e $(d_1,-d_2)$. Determine a trajetória, a separação final e a velocidade final, desprezando a costa distante oposta.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{z(r)=-\\frac{\\kappa^2}{2gr^2}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{p_z=2\\pi\\rho\\kappa A}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>O vórtice se move na direção $+x$ com\n\\[\n\\boxed{v=\\frac{F_y}{2\\pi\\rho h\\kappa}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{\\mathbf p=2\\pi\\rho h\\kappa r\\,\\hat{\\mathbf y}},\n\\qquad\n\\boxed{E=2\\pi\\rho h\\kappa^2\\ln\\!\\frac{r}{a}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{F=-\\frac{dE}{dr}=-\\frac{2\\pi\\rho h\\kappa^2}{r}},\n\\]\nlogo a interação é atrativa.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>Ambos se transladam na direção $+y$ com velocidade constante\n\\[\n\\boxed{v=\\frac{\\kappa}{r}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>Pelo método das imagens,\n\\[\n\\boxed{v=\\frac{\\kappa}{2d}}\n\\]\nna direção $+y$ indicada no original.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(h)</strong><div><p>\\[\n\\boxed{\\frac1{x^2}+\\frac1{y^2}=\\frac1{d_1^2}+\\frac1{d_2^2}},\n\\]\n\\[\n\\boxed{D_f=\\frac{2d_1d_2}{\\sqrt{d_1^2+d_2^2}}},\n\\qquad\n\\boxed{v_f=\\frac{\\kappa\\sqrt{d_1^2+d_2^2}}{2d_1d_2}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para um vórtice oceânico de circulação $\\kappa$, determine a variação da altura da superfície $z(r)$ em função da distância ao eixo. Use a gravidade $g$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Considere um anel de vórtice arbitrário no plano $xy$, com área interna $A$, em um fluido de densidade $\\rho$. Determine o momento linear total do fluido na direção $z$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "No oceano, represente um vórtice por $\\{(x,y),-\\kappa\\}$. Se ele sofre uma força líquida $F_y\\hat{\\mathbf y}$, determine seu movimento subsequente."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Considere os vórtices $\\{(x,y),\\kappa\\}$ e $\\{(x+r,y),-\\kappa\\}$. Determine o momento linear total e a energia total do escoamento."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "A partir do item anterior, determine a força de interação entre os dois vórtices."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Descreva o movimento da dupla de vórtices de sinais opostos."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Um único vórtice de circulação $-\\kappa$ está a uma distância $d$ de uma costa retilínea. A componente normal da velocidade deve ser nula na costa. Determine direção e módulo da velocidade de translação do vórtice."
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": null,
+          "prompt_text": "Dois vórtices de sinais opostos estão em $(d_1,d_2)$ e $(d_1,-d_2)$. Determine a trajetória, a separação final e a velocidade final, desprezando a costa distante oposta."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "code": "03",
+      "title_pt": "Problema Dos Neutrinos Solares",
+      "page_start": 11,
+      "page_end": 21,
+      "source_url": "/taiwan/taiwan-05.pdf#page=11",
+      "statement_html": "<p>O problema dos neutrinos solares surgiu porque o fluxo de neutrinos eletrônicos medido na Terra era muito menor que o previsto pelo modelo solar. O exercício percorre quatro ideias: decaimento beta, cadeia próton--próton, detecção de neutrinos e oscilação entre sabores.</p>\n<h2 class=\"statement-section statement-part-heading\">Parte A -- Decaimento $\\beta$ e neutrinos</h2>\n<section class=\"taiwan-item statement-row\"><span>A.1</span><div class=\"taiwan-item-body\"><p>No modelo antigo $n\\to p+e^-$, considere o referencial de repouso do nêutron. Determine a energia do elétron. Nesse modelo de dois corpos ela seria única.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.2</span><div class=\"taiwan-item-body\"><p>No processo correto\n\\[\nn\\to p+e^-+\\bar\\nu_e,\n\\]\nconsidere a massa do neutrino desprezível frente às massas do elétron e do próton. Determine a energia máxima do elétron e a velocidade do antineutrino nessa situação limite.</p></div><small class=\"taiwan-item-points\">1,5 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- Cadeia próton--próton e neutrinos solares</h2>\n<p>Considere $R_\\odot=7\\times10^8\\,\\mathrm m$, $M_\\odot=2\\times10^{30}\\,\\mathrm{kg}$ e $T_\\odot=6\\times10^3\\,\\mathrm K$.</p>\n<section class=\"taiwan-item statement-row\"><span>B.1</span><div class=\"taiwan-item-body\"><p>Aproxime o Sol por um corpo negro e calcule sua potência radiada total.</p></div><small class=\"taiwan-item-points\">0,3 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.2</span><div class=\"taiwan-item-body\"><p>A reação líquida da cadeia é\n\\[\n4p\\to{}^4\\mathrm{He}+2e^++2\\nu_e.\n\\]\nEstime a energia total carregada pelos neutrinos na produção de um núcleo de hélio.</p></div><small class=\"taiwan-item-points\">0,2 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.3</span><div class=\"taiwan-item-body\"><p>Inclua a aniquilação pósitron--elétron e estime a energia total levada por neutrinos e fótons por núcleo de hélio produzido.</p></div><small class=\"taiwan-item-points\">0,2 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.4</span><div class=\"taiwan-item-body\"><p>Suponha que apenas a região interna correspondente a $1/8$ da massa solar possa realizar fusão. Estime a vida do Sol e compare com a idade adotada no original, $5\\times10^9$ anos.</p></div><small class=\"taiwan-item-points\">0,4 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.5</span><div class=\"taiwan-item-body\"><p>Ignore efeitos quânticos e estime a temperatura mínima necessária para dois prótons vencerem classicamente a barreira Coulombiana até a distância $r_p=0{,}85\\times10^{-15}\\,\\mathrm m$. Compare com $T_c=1{,}8\\times10^6\\,\\mathrm K$.</p></div><small class=\"taiwan-item-points\">0,4 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.6</span><div class=\"taiwan-item-body\"><p>Para a equação de Schrödinger unidimensional estacionária, escreva $\\psi=Ae^{i\\phi}$. Mostre que\n\\[\nA^2\\phi'=\\text{constante}.\n\\]</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.7</span><div class=\"taiwan-item-body\"><p>Na aproximação WKB, suponha $A''/A\\ll\\phi'^2$ e $A''/A\\ll p^2/\\hbar^2$. Mostre que\n\\[\n\\psi(x)\\approx\\frac{C}{\\sqrt{p(x)}}\n\\exp\\!\\left(\\pm\\frac{i}{\\hbar}\\int p(x)\\,dx\\right).\n\\]</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.8</span><div class=\"taiwan-item-body\"><p>Para uma barreira $V(x)>E$ entre $0$ e $a$, explique por que a transmissão satisfaz\n\\[\nP\\propto\\exp\\!\\left[-\\frac{2}{\\hbar}\\int_0^a\\sqrt{2m(V-E)}\\,dx\\right].\n\\]</p></div><small class=\"taiwan-item-points\">0,3 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.9</span><div class=\"taiwan-item-body\"><p>Use WKB para estimar a probabilidade de fusão de dois prótons que se aproximam com velocidades de módulo $v$. Escreva o resultado em função de $v$, $c$ e da constante de estrutura fina\n\\[\n\\alpha=\\frac{e^2}{4\\pi\\varepsilon_0\\hbar c}.\n\\]</p></div><small class=\"taiwan-item-points\">0,7 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte C -- Detecção de neutrinos</h2>\n<p>Neutrinos de alta energia podem espalhar elétrons na água. O elétron resultante pode emitir radiação Cherenkov quando se move mais rápido que a luz no meio de índice $n$.</p>\n<section class=\"taiwan-item statement-row\"><span>C.1</span><div class=\"taiwan-item-body\"><p>Determine o ângulo entre a direção de emissão Cherenkov e a velocidade de um elétron de velocidade $v$.</p></div><small class=\"taiwan-item-points\">0,2 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.2</span><div class=\"taiwan-item-body\"><p>Suponha que a taxa de perda de energia do elétron seja constante, $\\alpha_E$, e que a emissão Cherenkov dure $\\Delta t$. Determine a energia inicialmente transferida pelo neutrino ao elétron.</p></div><small class=\"taiwan-item-points\">0,6 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.3</span><div class=\"taiwan-item-body\"><p>A seção de choque de neutrinos eletrônicos é aproximadamente seis vezes a de neutrinos muônicos ou tauônicos. Se sem oscilação seriam detectados $N_1$ eventos por ano e com oscilação são detectados $N_2$, determine a fração $f$ de $\\nu_e$ convertida em outros sabores.</p></div><small class=\"taiwan-item-points\">0,2 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte D -- Oscilação de neutrinos</h2>\n<p>Para dois sabores, use\n\\[\nU=\\begin{pmatrix}\\cos\\theta&\\sin\\theta\\\\-\\sin\\theta&\\cos\\theta\\end{pmatrix}\n\\]\nentre autoestados de sabor e de massa.</p>\n<section class=\"taiwan-item statement-row\"><span>D.1</span><div class=\"taiwan-item-body\"><p>Um neutrino é produzido como $|\\nu_\\alpha\\rangle$ com energia $E$ e percorre uma distância $L$. Calcule a probabilidade de ser medido como $|\\nu_\\beta\\rangle$, assumindo $m_1,m_2\\ll E/c^2$ e massas próximas.</p></div><small class=\"taiwan-item-points\">2,0 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>D.2</span><div class=\"taiwan-item-body\"><p>Considere dois pêndulos idênticos de massa $m$ e comprimento $\\ell$, acoplados por uma mola de constante $k$. Após uma rotação de coordenadas pelo mesmo tipo de matriz $U$, os modos normais são $x_a$ e $x_b$. Determine $\\theta$, $\\omega_1$ e $\\omega_2$.</p></div><small class=\"taiwan-item-points\">0,75 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>D.3</span><div class=\"taiwan-item-body\"><p>Se $x_1(0)=A$, $x_2(0)=0$ e ambas as velocidades iniciais são nulas, determine $x_2(t)$.</p></div><small class=\"taiwan-item-points\">0,75 pt</small></section>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p03-fig01.png\" alt=\"Exemplo de probabilidades de oscilação de sabores de neutrinos.\" loading=\"lazy\"><figcaption>Exemplo de probabilidades de oscilação de sabores de neutrinos.</figcaption></figure>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>A.1</strong><div><p>Usando energia e momento relativísticos,\n\\[\nE_e=\\frac{m_n^2-m_p^2+m_e^2}{2m_n}\\approx1{,}30\\,\\mathrm{MeV},\n\\]\nquando as massas são expressas em unidades de energia.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.2</strong><div><p>O gabarito remete ao problema 3 da IPhO 2003. No limite de massa desprezível do neutrino, a energia máxima do elétron é aproximadamente $1{,}29\\,\\mathrm{MeV}$ e o neutrino move-se com velocidade aproximadamente $c$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.1</strong><div><p>\\[\n\\boxed{P_\\odot\\approx4{,}5\\times10^{26}\\,\\mathrm W}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.2--B.4</strong><div><p>O gabarito fornece, respectivamente,\n\\[\nE_\\nu\\approx24\\,\\mathrm{MeV},\\qquad\nE_{\\nu+\\gamma}\\approx26\\,\\mathrm{MeV},\\qquad\n\\tau_\\odot\\approx1{,}1\\times10^{10}\\,\\mathrm{anos}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.5</strong><div><p>\\[\nT_*\\sim\\frac{e^2}{4\\pi\\varepsilon_0\\,3k_Br_p}\n\\approx6{,}5\\times10^9\\,\\mathrm K,\n\\]\nmuito acima da temperatura central solar adotada no enunciado.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.6--B.8</strong><div><p>A separação das partes real e imaginária da equação de Schrödinger dá $A^2\\phi'=\\text{constante}$ e, na aproximação de amplitude lentamente variável,\n\\[\n\\psi\\approx\\frac{C}{\\sqrt p}e^{\\pm(i/\\hbar)\\int p\\,dx}.\n\\]\nNa região proibida $p=i\\sqrt{2m(V-E)}$, produzindo a exponencial de tunelamento indicada no enunciado.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.9</strong><div><p>Para a barreira Coulombiana entre dois prótons, o gabarito reduz o fator de Gamow a\n\\[\n\\boxed{P\\propto\\exp\\!\\left(-\\frac{\\pi\\alpha c}{v}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.1</strong><div><p>\\[\n\\boxed{\\cos\\theta_C=\\frac{c}{nv}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.2</strong><div><p>A emissão cessa em $v=c/n$. Portanto,\n\\[\n\\boxed{E_{\\rm imp}=\\alpha_E\\Delta t+\n\\left(\\frac{n}{\\sqrt{n^2-1}}-1\\right)m_ec^2}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.3</strong><div><p>\\[\n\\boxed{f=\\frac65\\left(1-\\frac{N_2}{N_1}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>D.1</strong><div><p>Em unidades naturais, conforme o original,\n\\[\n\\boxed{P_{\\alpha\\to\\beta}=\\sin^2(2\\theta)\n\\sin^2\\!\\left(\\frac{(m_1^2-m_2^2)L}{4E}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>D.2</strong><div><p>\\[\n\\boxed{\\theta=45^\\circ},\\qquad\n\\boxed{\\omega_1=\\sqrt{\\frac g\\ell+\\frac{2k}{m}}},\\qquad\n\\boxed{\\omega_2=\\sqrt{\\frac g\\ell}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>D.3</strong><div><p>\\[\n\\boxed{x_2(t)=\\frac A2\\left[\n\\cos\\!\\left(\\sqrt{\\frac g\\ell}\\,t\\right)\n-\\cos\\!\\left(\\sqrt{\\frac g\\ell+\\frac{2k}{m}}\\,t\\right)\n\\right]}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "A.1",
+          "ordinal": 1,
+          "score": 0.5,
+          "prompt_text": "No modelo antigo $n\\to p+e^-$, considere o referencial de repouso do nêutron. Determine a energia do elétron. Nesse modelo de dois corpos ela seria única."
+        },
+        {
+          "code": "A.2",
+          "ordinal": 2,
+          "score": 1.5,
+          "prompt_text": "No processo correto \\[\nn\\to p+e^-+\\bar\\nu_e,\n\\] considere a massa do neutrino desprezível frente às massas do elétron e do próton. Determine a energia máxima do elétron e a velocidade do antineutrino nessa situação limite."
+        },
+        {
+          "code": "B.1",
+          "ordinal": 3,
+          "score": 0.3,
+          "prompt_text": "Aproxime o Sol por um corpo negro e calcule sua potência radiada total."
+        },
+        {
+          "code": "B.2",
+          "ordinal": 4,
+          "score": 0.2,
+          "prompt_text": "A reação líquida da cadeia é \\[\n4p\\to{}^4\\mathrm{He}+2e^++2\\nu_e.\n\\] Estime a energia total carregada pelos neutrinos na produção de um núcleo de hélio."
+        },
+        {
+          "code": "B.3",
+          "ordinal": 5,
+          "score": 0.2,
+          "prompt_text": "Inclua a aniquilação pósitron--elétron e estime a energia total levada por neutrinos e fótons por núcleo de hélio produzido."
+        },
+        {
+          "code": "B.4",
+          "ordinal": 6,
+          "score": 0.4,
+          "prompt_text": "Suponha que apenas a região interna correspondente a $1/8$ da massa solar possa realizar fusão. Estime a vida do Sol e compare com a idade adotada no original, $5\\times10^9$ anos."
+        },
+        {
+          "code": "B.5",
+          "ordinal": 7,
+          "score": 0.4,
+          "prompt_text": "Ignore efeitos quânticos e estime a temperatura mínima necessária para dois prótons vencerem classicamente a barreira Coulombiana até a distância $r_p=0{,}85\\times10^{-15}\\,\\mathrm m$. Compare com $T_c=1{,}8\\times10^6\\,\\mathrm K$."
+        },
+        {
+          "code": "B.6",
+          "ordinal": 8,
+          "score": 0.5,
+          "prompt_text": "Para a equação de Schrödinger unidimensional estacionária, escreva $\\psi=Ae^{i\\phi}$. Mostre que \\[\nA^2\\phi'=\\text{constante}.\n\\]"
+        },
+        {
+          "code": "B.7",
+          "ordinal": 9,
+          "score": 0.5,
+          "prompt_text": "Na aproximação WKB, suponha $A''/A\\ll\\phi'^2$ e $A''/A\\ll p^2/\\hbar^2$. Mostre que \\[\n\\psi(x)\\approx\\frac{C}{\\sqrt{p(x)}}\n\\exp\\!\\left(\\pm\\frac{i}{\\hbar}\\int p(x)\\,dx\\right).\n\\]"
+        },
+        {
+          "code": "B.8",
+          "ordinal": 10,
+          "score": 0.3,
+          "prompt_text": "Para uma barreira $V(x)>E$ entre $0$ e $a$, explique por que a transmissão satisfaz \\[\nP\\propto\\exp\\!\\left[-\\frac{2}{\\hbar}\\int_0^a\\sqrt{2m(V-E)}\\,dx\\right].\n\\]"
+        },
+        {
+          "code": "B.9",
+          "ordinal": 11,
+          "score": 0.7,
+          "prompt_text": "Use WKB para estimar a probabilidade de fusão de dois prótons que se aproximam com velocidades de módulo $v$. Escreva o resultado em função de $v$, $c$ e da constante de estrutura fina \\[\n\\alpha=\\frac{e^2}{4\\pi\\varepsilon_0\\hbar c}.\n\\]"
+        },
+        {
+          "code": "C.1",
+          "ordinal": 12,
+          "score": 0.2,
+          "prompt_text": "Determine o ângulo entre a direção de emissão Cherenkov e a velocidade de um elétron de velocidade $v$."
+        },
+        {
+          "code": "C.2",
+          "ordinal": 13,
+          "score": 0.6,
+          "prompt_text": "Suponha que a taxa de perda de energia do elétron seja constante, $\\alpha_E$, e que a emissão Cherenkov dure $\\Delta t$. Determine a energia inicialmente transferida pelo neutrino ao elétron."
+        },
+        {
+          "code": "C.3",
+          "ordinal": 14,
+          "score": 0.2,
+          "prompt_text": "A seção de choque de neutrinos eletrônicos é aproximadamente seis vezes a de neutrinos muônicos ou tauônicos. Se sem oscilação seriam detectados $N_1$ eventos por ano e com oscilação são detectados $N_2$, determine a fração $f$ de $\\nu_e$ convertida em outros sabores."
+        },
+        {
+          "code": "D.1",
+          "ordinal": 15,
+          "score": 2.0,
+          "prompt_text": "Um neutrino é produzido como $|\\nu_\\alpha\\rangle$ com energia $E$ e percorre uma distância $L$. Calcule a probabilidade de ser medido como $|\\nu_\\beta\\rangle$, assumindo $m_1,m_2\\ll E/c^2$ e massas próximas."
+        },
+        {
+          "code": "D.2",
+          "ordinal": 16,
+          "score": 0.75,
+          "prompt_text": "Considere dois pêndulos idênticos de massa $m$ e comprimento $\\ell$, acoplados por uma mola de constante $k$. Após uma rotação de coordenadas pelo mesmo tipo de matriz $U$, os modos normais são $x_a$ e $x_b$. Determine $\\theta$, $\\omega_1$ e $\\omega_2$."
+        },
+        {
+          "code": "D.3",
+          "ordinal": 17,
+          "score": 0.75,
+          "prompt_text": "Se $x_1(0)=A$, $x_2(0)=0$ e ambas as velocidades iniciais são nulas, determine $x_2(t)$."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "code": "04",
+      "title_pt": "Lágrimas Do Vinho",
+      "page_start": 22,
+      "page_end": 29,
+      "source_url": "/taiwan/taiwan-05.pdf#page=22",
+      "statement_html": "<p>O fenômeno das “lágrimas do vinho” é modelado como uma película fina de solução subindo pela parede inclinada de uma taça devido a gradientes de tensão superficial. Use coordenadas em que $x$ mede a distância normal à parede, $z$ a direção ao longo da parede, espessura local $\\delta$, viscosidade $\\eta$, densidade $\\rho$ e inclinação $\\beta$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p04-fig01.png\" alt=\"Fenômeno das lágrimas do vinho.\" loading=\"lazy\"><figcaption>Fenômeno das lágrimas do vinho.</figcaption></figure>\n<h2 class=\"statement-section statement-part-heading\">Parte A -- Escoamento de película fina</h2>\n<section class=\"taiwan-item statement-row\"><span>A.1</span><div class=\"taiwan-item-body\"><p>Use conservação de massa para escrever a equação satisfeita por $v_x$ e $v_z$.</p></div><small class=\"taiwan-item-points\">0,2 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.2</span><div class=\"taiwan-item-body\"><p>Determine a tensão de cisalhamento na superfície produzida por um gradiente de tensão superficial $\\partial\\gamma/\\partial z$.</p></div><small class=\"taiwan-item-points\">0,3 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.3</span><div class=\"taiwan-item-body\"><p>Considere o balanço de forças na direção $z$ e determine $v_z(x,z)$ para a película.</p></div><small class=\"taiwan-item-points\">1,3 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.4</span><div class=\"taiwan-item-body\"><p>Calcule a velocidade média $\\langle v_z\\rangle$ na espessura e a espessura crítica $\\delta_c$ acima da qual a gravidade vence o efeito de Marangoni.</p></div><small class=\"taiwan-item-points\">0,4 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.5</span><div class=\"taiwan-item-body\"><p>Escreva a condição de conservação de massa na superfície quando há evaporação com fluxo mássico $F_{\\rm evap}$.</p></div><small class=\"taiwan-item-points\">0,3 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.6</span><div class=\"taiwan-item-body\"><p>Combine a condição superficial do item anterior com a incompressibilidade para obter a equação de evolução da vazão da película.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- Evaporação, composição e temperatura</h2>\n<p>Considere fração mássica de álcool $w(x,z)$, temperatura $T(x,z)$, coeficiente de difusão $D$, condutividade térmica $\\lambda$, calor específico $c_p$ e\n\\[\n\\frac{\\partial\\gamma}{\\partial z}\n=\\frac{\\partial\\gamma}{\\partial T}\\frac{\\partial T}{\\partial z}\n+\\frac{\\partial\\gamma}{\\partial w}\\frac{\\partial w}{\\partial z}.\n\\]</p>\n<section class=\"taiwan-item statement-row\"><span>B.1</span><div class=\"taiwan-item-body\"><p>Mostre, a partir de conservação, as formas estacionárias das equações de transporte por difusão e convecção usadas no original.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.2</span><div class=\"taiwan-item-body\"><p>Na superfície $x=\\delta$, mostre\n\\[\n-\\rho D\\frac{\\partial w}{\\partial x}=F_{\\rm evap}(1-w),\n\\qquad\n-\\lambda\\frac{\\partial T}{\\partial x}=\\Delta h_{\\rm vap}F_{\\rm evap}.\n\\]\nAdote ainda $F_{\\rm evap}=k_g\\phi\\,w(\\delta,z)$.</p></div><small class=\"taiwan-item-points\">0,7 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.3</span><div class=\"taiwan-item-body\"><p>Derive\n\\[\n\\rho\\delta\\left\\langle v_z\\frac{\\partial w}{\\partial z}\\right\\rangle\n=-k_g\\phi\\,w(1-w),\n\\]\n\\[\n\\rho c_p\\delta\\left\\langle v_z\\frac{\\partial T}{\\partial z}\\right\\rangle\n=-k_g\\phi\\,w\\Delta h_{\\rm vap}.\n\\]</p></div><small class=\"taiwan-item-points\">0,6 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.4</span><div class=\"taiwan-item-body\"><p>Para $\\delta\\to\\delta_0$ e $w\\to w_0$, reescreva $\\langle v_z\\rangle$ na forma adimensional dada no original e determine $V,C_1,C_2,C_3$.</p></div><small class=\"taiwan-item-points\">1,2 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.5</span><div class=\"taiwan-item-body\"><p>Com os dados da tabela do original, estime a ordem de grandeza de $V$.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte C -- Instabilidade da película</h2>\n<p>Use as constantes $C_4,C_5,C_6$ definidas no desenvolvimento do original e perturbe $\\delta=\\delta_0+\\delta_1e^{i(ky-\\omega t)}$.</p>\n<section class=\"taiwan-item statement-row\"><span>C.1</span><div class=\"taiwan-item-body\"><p>Obtenha a equação diferencial não linear de evolução de $\\delta(y,t)$.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.2</span><div class=\"taiwan-item-body\"><p>Linearize em torno de $\\delta_0$ e determine a condição para crescimento da perturbação.</p></div><small class=\"taiwan-item-points\">1,0 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.3</span><div class=\"taiwan-item-body\"><p>Determine o número de onda $k$ de crescimento máximo.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>A.1</strong><div><p>\\[\n\\boxed{\\frac{\\partial v_x}{\\partial x}+\\frac{\\partial v_z}{\\partial z}=0}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.2</strong><div><p>\\[\n\\boxed{T_{xz}=\\tau=\\frac{\\partial\\gamma}{\\partial z}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.3</strong><div><p>\\[\n\\boxed{v_z(x,z)=\\frac{\\rho g\\cos\\beta\\,\\delta^2}{2\\eta}\n\\left[\\left(\\frac{x}{\\delta}\\right)^2-2\\frac{x}{\\delta}\\right]\n+\\frac{\\delta}{\\eta}\\frac{\\partial\\gamma}{\\partial z}\\frac{x}{\\delta}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.4</strong><div><p>\\[\n\\boxed{\\langle v_z\\rangle=-\\frac{\\rho g\\cos\\beta\\,\\delta^2}{3\\eta}\n+\\frac{\\delta}{2\\eta}\\frac{\\partial\\gamma}{\\partial z}},\n\\]\n\\[\n\\boxed{\\delta_c=\\frac{3}{2\\rho g\\cos\\beta}\\frac{\\partial\\gamma}{\\partial z}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.5--A.6</strong><div><p>O gabarito indica aplicar conservação de massa na superfície e, em seguida, integração por partes usando A.1.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.1--B.3</strong><div><p>O ponto central é $\\nabla\\cdot\\mathbf J=0$; integrando as equações de transporte na espessura e usando as condições de B.2 obtêm-se exatamente as duas expressões dadas em B.3.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.4</strong><div><p>\\[\n\\boxed{V=\\frac{\\rho g\\cos\\beta\\,\\delta_0^2}{3\\eta}},\\qquad\n\\boxed{C_1=-\\frac12},\\qquad\n\\boxed{C_2=\\frac14},\\qquad\n\\boxed{C_3=\\frac{k_g}{2\\rho\\eta V^2}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.5</strong><div><p>\\[\n\\boxed{V\\sim10^{-4}\\,\\mathrm{m/s}},\n\\]\ncom $10^{-3}$ a $10^{-5}\\,\\mathrm{m/s}$ aceitos no original.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.1</strong><div><p>\\[\n\\boxed{\n\\frac{\\partial\\delta}{\\partial t}\n+\\left[\n\\frac13\\delta^3(C_5\\delta_{yyy}-C_4\\sin\\beta\\,\\delta_y)\n+\\frac14C_6\\delta^4\\delta_y(1-C_4\\delta\\cos\\beta)\n\\right]_y=0}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.2</strong><div><p>A condição de instabilidade registrada no gabarito é\n\\[\n\\boxed{\\frac13C_4\\sin\\beta>\n\\frac14C_6\\delta_0(1-C_4\\delta_0\\cos\\beta)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.3</strong><div><p>\\[\n\\boxed{k=\\sqrt{\n\\frac{\\frac38C_6\\delta_0^4(1-C_4\\delta_0\\cos\\beta)-\\frac12C_4\\sin\\beta}\n{C_5\\delta_0^3}}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "A.1",
+          "ordinal": 1,
+          "score": 0.2,
+          "prompt_text": "Use conservação de massa para escrever a equação satisfeita por $v_x$ e $v_z$."
+        },
+        {
+          "code": "A.2",
+          "ordinal": 2,
+          "score": 0.3,
+          "prompt_text": "Determine a tensão de cisalhamento na superfície produzida por um gradiente de tensão superficial $\\partial\\gamma/\\partial z$."
+        },
+        {
+          "code": "A.3",
+          "ordinal": 3,
+          "score": 1.3,
+          "prompt_text": "Considere o balanço de forças na direção $z$ e determine $v_z(x,z)$ para a película."
+        },
+        {
+          "code": "A.4",
+          "ordinal": 4,
+          "score": 0.4,
+          "prompt_text": "Calcule a velocidade média $\\langle v_z\\rangle$ na espessura e a espessura crítica $\\delta_c$ acima da qual a gravidade vence o efeito de Marangoni."
+        },
+        {
+          "code": "A.5",
+          "ordinal": 5,
+          "score": 0.3,
+          "prompt_text": "Escreva a condição de conservação de massa na superfície quando há evaporação com fluxo mássico $F_{\\rm evap}$."
+        },
+        {
+          "code": "A.6",
+          "ordinal": 6,
+          "score": 0.5,
+          "prompt_text": "Combine a condição superficial do item anterior com a incompressibilidade para obter a equação de evolução da vazão da película."
+        },
+        {
+          "code": "B.1",
+          "ordinal": 7,
+          "score": 0.5,
+          "prompt_text": "Mostre, a partir de conservação, as formas estacionárias das equações de transporte por difusão e convecção usadas no original."
+        },
+        {
+          "code": "B.2",
+          "ordinal": 8,
+          "score": 0.7,
+          "prompt_text": "Na superfície $x=\\delta$, mostre \\[\n-\\rho D\\frac{\\partial w}{\\partial x}=F_{\\rm evap}(1-w),\n\\qquad\n-\\lambda\\frac{\\partial T}{\\partial x}=\\Delta h_{\\rm vap}F_{\\rm evap}.\n\\] Adote ainda $F_{\\rm evap}=k_g\\phi\\,w(\\delta,z)$."
+        },
+        {
+          "code": "B.3",
+          "ordinal": 9,
+          "score": 0.6,
+          "prompt_text": "Derive \\[\n\\rho\\delta\\left\\langle v_z\\frac{\\partial w}{\\partial z}\\right\\rangle\n=-k_g\\phi\\,w(1-w),\n\\] \\[\n\\rho c_p\\delta\\left\\langle v_z\\frac{\\partial T}{\\partial z}\\right\\rangle\n=-k_g\\phi\\,w\\Delta h_{\\rm vap}.\n\\]"
+        },
+        {
+          "code": "B.4",
+          "ordinal": 10,
+          "score": 1.2,
+          "prompt_text": "Para $\\delta\\to\\delta_0$ e $w\\to w_0$, reescreva $\\langle v_z\\rangle$ na forma adimensional dada no original e determine $V,C_1,C_2,C_3$."
+        },
+        {
+          "code": "B.5",
+          "ordinal": 11,
+          "score": 0.5,
+          "prompt_text": "Com os dados da tabela do original, estime a ordem de grandeza de $V$."
+        },
+        {
+          "code": "C.1",
+          "ordinal": 12,
+          "score": 0.5,
+          "prompt_text": "Obtenha a equação diferencial não linear de evolução de $\\delta(y,t)$."
+        },
+        {
+          "code": "C.2",
+          "ordinal": 13,
+          "score": 1.0,
+          "prompt_text": "Linearize em torno de $\\delta_0$ e determine a condição para crescimento da perturbação."
+        },
+        {
+          "code": "C.3",
+          "ordinal": 14,
+          "score": 0.5,
+          "prompt_text": "Determine o número de onda $k$ de crescimento máximo."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "code": "05",
+      "title_pt": "Análise Dinâmica De Um Bumerangue",
+      "page_start": 30,
+      "page_end": 32,
+      "source_url": "/taiwan/taiwan-05.pdf#page=30",
+      "statement_html": "<section class=\"taiwan-item statement-row\"><span>Q</span></section>\n<p>Considere um bumerangue idealizado por três lâminas idênticas, separadas por $120^\\circ$. Cada lâmina tem massa $m$, comprimento $\\ell$ e momento de inércia aproximadamente $m\\ell^2$ em torno da extremidade. A força aerodinâmica por unidade de comprimento é proporcional ao quadrado da velocidade local,\n\\[\ndF=k v^2\\,dr.\n\\]\nO plano do bumerangue faz ângulo $\\theta$ com a horizontal. Em uma trajetória circular estável, determine a velocidade de translação $v_c$ e a velocidade angular de rotação própria $\\omega$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p05-fig01.png\" alt=\"Exemplos de bumerangues usados na discussão.\" loading=\"lazy\"><figcaption>Exemplos de bumerangues usados na discussão.</figcaption></figure>",
+      "solution_html": "<p>O balanço de força vertical, força centrípeta e torque giroscópico fornece\n\\[\nk\\left(\\frac32\\omega^2\\ell^3+v_c^2\\ell\\right)\\cos\\theta=3mg,\n\\]\n\\[\nk\\left(\\frac32\\omega^2\\ell^3+v_c^2\\ell\\right)\\sin\\theta\n=3m\\frac{v_c^2}{R},\n\\]\n\\[\nk\\omega v_c\\ell^3=m\\ell^2\\omega\\frac{v_c}{R}\\sin\\theta.\n\\]\nEliminando $R$,\n\\[\n\\boxed{\\omega=\\frac{3v_c}{\\ell}\\sqrt{\\frac{1}{\\sin^2\\theta}-\\frac12}},\n\\qquad\n\\boxed{v_c=\\sqrt{\\frac{mg\\sin\\theta}{k\\ell\\sqrt{\\cos\\theta}}}}.\n\\]</p>",
+      "parts": [
+        {
+          "code": "Q",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Considere um bumerangue idealizado por três lâminas idênticas, separadas por $120^\\circ$. Cada lâmina tem massa $m$, comprimento $\\ell$ e momento de inércia aproximadamente $m\\ell^2$ em torno da extremidade. A força aerodinâmica por unidade de comprimento é proporcional ao quadrado da velocidade local, \\[\ndF=k v^2\\,dr.\n\\] O plano do bumerangue faz ângulo $\\theta$ com a horizontal. Em uma trajetória circular estável, determine a velocidade de translação $v_c$ e a velocidade angular de rotação própria $\\omega$. 30140205954700.65 Exemplos de bumerangues usados na discussão."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "code": "06",
+      "title_pt": "Atraso Térmico Na Coalescência De Gotas",
+      "page_start": 33,
+      "page_end": 39,
+      "source_url": "/taiwan/taiwan-05.pdf#page=33",
+      "statement_html": "<p>Uma gota aproxima-se de uma superfície líquida, mas uma fina camada de ar entre ambas retarda o contato. Modele essa camada como um filme axisimétrico de espessura $h(t)$ e raio característico $R$. A viscosidade do ar é $\\eta_a$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p06-fig01.png\" alt=\"Gota sobre uma superfície líquida.\" loading=\"lazy\"><figcaption>Gota sobre uma superfície líquida.</figcaption></figure>\n<h2 class=\"statement-section statement-part-heading\">Parte A -- Filme de ar comprimido</h2>\n<section class=\"taiwan-item statement-row\"><span>A.1</span><div class=\"taiwan-item-body\"><p>Determine a velocidade radial $v_r(r,z,t)$ em função de $\\eta_a$, $h(t)$ e do gradiente de pressão.</p></div><small class=\"taiwan-item-points\">0,8 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.2</span><div class=\"taiwan-item-body\"><p>Use conservação de massa para obter $v_z(r,z,t)$.</p></div><small class=\"taiwan-item-points\">1,4 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.3</span><div class=\"taiwan-item-body\"><p>Use $v_z(z=h)=dh/dt$ e $p(R,t)=p_a$ para determinar $p(r,t)$.</p></div><small class=\"taiwan-item-points\">1,3 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>A.4</span><div class=\"taiwan-item-body\"><p>Imponha equilíbrio de forças na placa/gota superior, de massa $m$, e determine $h(t)$. O contato ocorre em tempo finito?</p></div><small class=\"taiwan-item-points\">1,0 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- Tensão superficial e temperatura</h2>\n<section class=\"taiwan-item statement-row\"><span>B.1</span><div class=\"taiwan-item-body\"><p>Relacione a tensão superficial da água $\\sigma$ com a densidade $\\rho$, o calor latente de vaporização $L$ e uma espessura molecular $d_w$ por uma estimativa de energia superficial.</p></div><small class=\"taiwan-item-points\">0,7 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.2</span><div class=\"taiwan-item-body\"><p>Se $c_w$ e $c_g$ são os calores específicos a pressão constante da água líquida e do vapor, determine $dL/dT$.</p></div><small class=\"taiwan-item-points\">0,4 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.3</span><div class=\"taiwan-item-body\"><p>Estime $c_w$ e $c_g$ à temperatura ambiente e conclua o sinal de $d\\sigma/dT$.</p></div><small class=\"taiwan-item-points\">0,4 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte C -- Convecção termocapilar</h2>\n<section class=\"taiwan-item statement-row\"><span>C.1</span><div class=\"taiwan-item-body\"><p>Se $\\gamma(x)=\\gamma_0+\\tau x$, determine a tensão de cisalhamento de Marangoni e sua direção.</p></div><small class=\"taiwan-item-points\">0,4 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.2</span><div class=\"taiwan-item-body\"><p>Se $\\sigma_T=|d\\sigma/dT|$, a diferença de temperatura é $\\Delta T$ e a viscosidade do líquido é $\\eta$, estime a velocidade da convecção termocapilar.</p></div><small class=\"taiwan-item-points\">0,6 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte D -- Levitação da gota</h2>\n<section class=\"taiwan-item statement-row\"><span>D.1</span><div class=\"taiwan-item-body\"><p>Generalize A.1--A.3 quando as duas fronteiras do filme possuem velocidades radiais $v_b$ e $v_d$. Obtenha $v_r$, $v_z$, $p(r,t)$ e a força total vertical.</p></div><small class=\"taiwan-item-points\">2,5 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>D.2</span><div class=\"taiwan-item-body\"><p>Use $-(v_b+v_d)\\sim\\sigma_T\\Delta T/\\eta$ para estimar a diferença mínima de temperatura que pode sustentar uma gota a altura $h$.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>A.1</strong><div><p>\\[\n\\boxed{v_r=\\frac{1}{2\\eta_a}\\frac{\\partial p}{\\partial r}(z^2-hz)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.2</strong><div><p>\\[\n\\boxed{v_z=-\\frac{1}{2\\eta_a r}\\frac{\\partial}{\\partial r}\n\\left(r\\frac{\\partial p}{\\partial r}\\right)\n\\left(\\frac{z^3}{3}-\\frac{hz^2}{2}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.3</strong><div><p>\\[\n\\boxed{p(r,t)=p_a+\\frac{3\\eta_a}{h^3}\\frac{dh}{dt}(r^2-R^2)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>A.4</strong><div><p>\\[\nmg=-\\frac{3\\pi\\eta_aR^4}{2h^3}\\frac{dh}{dt},\n\\]\nportanto\n\\[\n\\boxed{h(t)=\\left[\\frac1{h_0^2}+\\frac{4mg}{3\\pi\\eta_aR^4}t\\right]^{-1/2}}.\n\\]\nNo modelo, $h$ tende a zero apenas assintoticamente: não há contato em tempo finito.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.1--B.3</strong><div><p>\\[\n\\boxed{\\sigma\\approx\\rho Ld_w},\\qquad\n\\boxed{\\frac{dL}{dT}=c_g-c_w}.\n\\]\nO original estima\n\\[\nc_g\\approx1{,}39\\,\\mathrm{kJ/(kg\\,K)},\\qquad\nc_w\\approx4{,}2\\,\\mathrm{kJ/(kg\\,K)},\n\\]\nlogo a tensão superficial diminui com a temperatura.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.1--C.2</strong><div><p>\\[\n\\boxed{\\tau=\\frac{d\\sigma}{dx}},\n\\qquad\n\\boxed{v\\sim\\frac{\\sigma_T\\Delta T}{\\eta}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>D.1</strong><div><p>\\[\nv_r=\\frac{1}{2\\eta_a}\\frac{\\partial p}{\\partial r}(z^2-hz)\n+(v_d-v_b)\\frac zh+v_b,\n\\]\n\\[\nv_z=-\\frac{1}{2\\eta_a r}\\frac{\\partial}{\\partial r}\n\\left(r\\frac{\\partial p}{\\partial r}\\right)\n\\left(\\frac{z^3}{3}-\\frac{hz^2}{2}\\right)\n-\\frac{v_d-v_b}{2hr}z^2-\\frac{v_b}{r}z,\n\\]\n\\[\np=p_a+\\frac{3\\eta_a}{h^3}\\frac{dh}{dt}(r^2-R^2)\n+\\frac{6\\eta_a(v_d+v_b)}{h^2}(r^2-R^2).\n\\]\nA força vertical total, tomando para cima como positivo, é\n\\[\n\\boxed{F=-\\frac{3\\pi\\eta_aR^4}{2h^3}\\frac{dh}{dt}\n-\\frac{2\\pi\\eta_aR^3(v_d+v_b)}{h^2}-mg}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>D.2</strong><div><p>\\[\n\\boxed{\\Delta T\\ge\n\\frac{mg h^2\\eta}{2\\pi\\eta_aR^3\\sigma_T}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "A.1",
+          "ordinal": 1,
+          "score": 0.8,
+          "prompt_text": "Determine a velocidade radial $v_r(r,z,t)$ em função de $\\eta_a$, $h(t)$ e do gradiente de pressão."
+        },
+        {
+          "code": "A.2",
+          "ordinal": 2,
+          "score": 1.4,
+          "prompt_text": "Use conservação de massa para obter $v_z(r,z,t)$."
+        },
+        {
+          "code": "A.3",
+          "ordinal": 3,
+          "score": 1.3,
+          "prompt_text": "Use $v_z(z=h)=dh/dt$ e $p(R,t)=p_a$ para determinar $p(r,t)$."
+        },
+        {
+          "code": "A.4",
+          "ordinal": 4,
+          "score": 1.0,
+          "prompt_text": "Imponha equilíbrio de forças na placa/gota superior, de massa $m$, e determine $h(t)$. O contato ocorre em tempo finito?"
+        },
+        {
+          "code": "B.1",
+          "ordinal": 5,
+          "score": 0.7,
+          "prompt_text": "Relacione a tensão superficial da água $\\sigma$ com a densidade $\\rho$, o calor latente de vaporização $L$ e uma espessura molecular $d_w$ por uma estimativa de energia superficial."
+        },
+        {
+          "code": "B.2",
+          "ordinal": 6,
+          "score": 0.4,
+          "prompt_text": "Se $c_w$ e $c_g$ são os calores específicos a pressão constante da água líquida e do vapor, determine $dL/dT$."
+        },
+        {
+          "code": "B.3",
+          "ordinal": 7,
+          "score": 0.4,
+          "prompt_text": "Estime $c_w$ e $c_g$ à temperatura ambiente e conclua o sinal de $d\\sigma/dT$."
+        },
+        {
+          "code": "C.1",
+          "ordinal": 8,
+          "score": 0.4,
+          "prompt_text": "Se $\\gamma(x)=\\gamma_0+\\tau x$, determine a tensão de cisalhamento de Marangoni e sua direção."
+        },
+        {
+          "code": "C.2",
+          "ordinal": 9,
+          "score": 0.6,
+          "prompt_text": "Se $\\sigma_T=|d\\sigma/dT|$, a diferença de temperatura é $\\Delta T$ e a viscosidade do líquido é $\\eta$, estime a velocidade da convecção termocapilar."
+        },
+        {
+          "code": "D.1",
+          "ordinal": 10,
+          "score": 2.5,
+          "prompt_text": "Generalize A.1--A.3 quando as duas fronteiras do filme possuem velocidades radiais $v_b$ e $v_d$. Obtenha $v_r$, $v_z$, $p(r,t)$ e a força total vertical."
+        },
+        {
+          "code": "D.2",
+          "ordinal": 11,
+          "score": 0.5,
+          "prompt_text": "Use $-(v_b+v_d)\\sim\\sigma_T\\Delta T/\\eta$ para estimar a diferença mínima de temperatura que pode sustentar uma gota a altura $h$."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "code": "07",
+      "title_pt": "Ativação De Plaquetas Por Campo Elétrico Pulsado Intenso",
+      "page_start": 40,
+      "page_end": 46,
+      "source_url": "/taiwan/taiwan-05.pdf#page=40",
+      "statement_html": "<p>Pulsos elétricos de duração nanométrica podem abrir poros transitórios em membranas internas de plaquetas sem necessariamente romper a membrana celular externa. O exercício modela a eletroporação, um circuito equivalente e uma célula esférica em um campo pulsado.</p>\n<h2 class=\"statement-section statement-part-heading\">Parte A -- Eletroporação</h2>\n<section class=\"taiwan-item statement-row\"><span>A.1</span><div class=\"taiwan-item-body\"><p>Modele a membrana por um capacitor de placas paralelas, separação $d$ e permissividade $\\varepsilon$. A membrana possui módulo de Young $Y$: se a espessura é comprimida de $d$ para $d'$, a força restauradora por unidade de área é $Y(d-d')/d$. Determine a tensão crítica $U_C$ acima da qual não existe equilíbrio estático.</p></div><small class=\"taiwan-item-points\">2,0 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte B -- Modelo de circuito simplificado</h2>\n<p>Duas camadas de espessuras $d_1,d_2$, condutividades $\\sigma_1,\\sigma_2$ e permissividades $\\varepsilon_1,\\varepsilon_2$ estão em série entre placas de área $A$. Em $t=0$, aplica-se uma tensão constante $V$.</p>\n<section class=\"taiwan-item statement-row\"><span>B.1</span><div class=\"taiwan-item-body\"><p>Determine as tensões $V_1(t)$ e $V_2(t)$ nas duas camadas.</p></div><small class=\"taiwan-item-points\">1,2 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.2</span><div class=\"taiwan-item-body\"><p>Se $\\varepsilon_1/\\sigma_1>\\varepsilon_2/\\sigma_2$, esboce qualitativamente $V_1(t)$ e $V_2(t)$.</p></div><small class=\"taiwan-item-points\">0,3 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>B.3</span><div class=\"taiwan-item-body\"><p>Se $\\varepsilon_1/\\sigma_1\\gg\\varepsilon_2/\\sigma_2$ e $d_1\\ll d_2$, estime a duração característica máxima do pulso para manter o campo da camada 1 menor que o da camada 2.</p></div><small class=\"taiwan-item-points\">0,5 pt</small></section>\n<h2 class=\"statement-section statement-part-heading\">Parte C -- Célula esférica em campo pulsado</h2>\n<p>Considere uma célula esférica de raio $R$ em uma matriz uniforme. Em $t=0$ aplica-se $\\mathbf E=E\\hat{\\mathbf z}$. A membrana tem espessura $d\\ll R$, condutividade desprezível e permissividade $\\varepsilon_m$; as condutividades do citoplasma e do meio externo são $\\sigma_i$ e $\\sigma_e$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p07-fig01.png\" alt=\"Modelo esférico da célula em um campo elétrico uniforme.\" loading=\"lazy\"><figcaption>Modelo esférico da célula em um campo elétrico uniforme.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>C.1</span><div class=\"taiwan-item-body\"><p>No regime estacionário, mostre que o potencial em cada região pode ser escrito na forma\n\\[\n\\phi(r,\\theta)=\\left(Ar+\\frac{B}{r^2}\\right)\\cos\\theta.\n\\]</p></div><small class=\"taiwan-item-points\">0,8 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.2</span><div class=\"taiwan-item-body\"><p>Determine $\\phi_{i,\\mathrm{st}}$, $\\phi_{e,\\mathrm{st}}$ e a diferença de potencial através da membrana $U_{\\mathrm{st}}(\\theta)$.</p></div><small class=\"taiwan-item-points\">1,0 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.3</span><div class=\"taiwan-item-body\"><p>Use a hipótese de cargas superficiais opostas nas duas faces da membrana para escrever a condição de contorno em $r=R$ para $\\phi_i$ e $\\phi_e$.</p></div><small class=\"taiwan-item-points\">0,7 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.4</span><div class=\"taiwan-item-body\"><p>Admitindo uma única constante de tempo $\\tau_m$ para a parte transitória, determine $\\phi_i(r,\\theta,t)$, $\\phi_e(r,\\theta,t)$ e $U(\\theta,t)$.</p></div><small class=\"taiwan-item-points\">1,7 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.5</span><div class=\"taiwan-item-body\"><p>Mostre que o campo elétrico no interior da célula é uniforme e determine $E_i(t)$.</p></div><small class=\"taiwan-item-points\">0,4 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.6</span><div class=\"taiwan-item-body\"><p>Para diâmetro celular $10\\,\\mu\\mathrm m$, resistividades interna e externa $100\\,\\Omega\\,\\mathrm{cm}$ e capacitância superficial da membrana $1\\,\\mu\\mathrm F/\\mathrm{cm}^2$, calcule $\\tau_m$.</p></div><small class=\"taiwan-item-points\">0,6 pt</small></section>\n<section class=\"taiwan-item statement-row\"><span>C.7</span><div class=\"taiwan-item-body\"><p>Uma organela esférica interna possui raio $R_o\\ll R$ e constante de tempo $\\tau_o\\ll\\tau_m$. Para $\\tau_o\\ll t\\ll\\tau_m$, determine a razão entre a tensão de membrana da organela $U_o$ e a tensão da membrana celular $U$.</p></div><small class=\"taiwan-item-points\">0,8 pt</small></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>A.1</strong><div><p>\\[\n\\boxed{U_C=\\sqrt{\\frac{8Yd^2}{27\\varepsilon}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.1</strong><div><p>Defina\n\\[\nR_i=\\frac{d_i}{\\sigma_iA},\\qquad C_i=\\frac{\\varepsilon_iA}{d_i},\n\\qquad\n\\tau=\\frac{C_1+C_2}{1/R_1+1/R_2}.\n\\]\nEntão\n\\[\n\\boxed{V_1(t)=V\\left\\{\n\\frac{R_1}{R_1+R_2}-\n\\left[\\frac{R_1}{R_1+R_2}-\\frac{C_2}{C_1+C_2}\\right]e^{-t/\\tau}\n\\right\\}},\n\\]\n\\[\n\\boxed{V_2(t)=V\\left\\{\n\\frac{R_2}{R_1+R_2}-\n\\left[\\frac{R_2}{R_1+R_2}-\\frac{C_1}{C_1+C_2}\\right]e^{-t/\\tau}\n\\right\\}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>B.2--B.3</strong><div><p>$V_1$ cresce de $C_2V/(C_1+C_2)$ para $R_1V/(R_1+R_2)$, enquanto $V_2$ diminui do valor complementar para $R_2V/(R_1+R_2)$. No limite pedido,\n\\[\n\\boxed{\\tau\\approx\\frac{\\varepsilon_1}{\\sigma_1}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.1</strong><div><p>É a superposição do potencial de um campo uniforme com o de um dipolo elétrico.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.2</strong><div><p>\\[\n\\boxed{\\phi_{e,\\mathrm{st}}=-E\\left(r+\\frac{R^3}{2r^2}\\right)\\cos\\theta},\n\\qquad\n\\boxed{\\phi_{i,\\mathrm{st}}=0},\n\\]\n\\[\n\\boxed{U_{\\mathrm{st}}(\\theta)=\\frac32ER\\cos\\theta}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.3</strong><div><p>Em $r=R$,\n\\[\n\\boxed{\n\\sigma_i\\frac{\\partial\\phi_i}{\\partial r}\n=\\sigma_e\\frac{\\partial\\phi_e}{\\partial r}\n=\\frac{\\varepsilon_m}{d}\n\\left(\\frac{\\partial\\phi_e}{\\partial t}-\\frac{\\partial\\phi_i}{\\partial t}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.4</strong><div><p>\\[\n\\boxed{\\tau_m=\\frac{R\\varepsilon_m}{2d}\\frac{\\sigma_i+2\\sigma_e}{\\sigma_i\\sigma_e}},\n\\]\n\\[\n\\phi_e=-E\\left(r+\\frac{R^3}{2r^2}\\right)\\cos\\theta\n+\\frac{3\\sigma_i}{2(\\sigma_i+2\\sigma_e)}E\\frac{R^3}{r^2}\\cos\\theta\\,e^{-t/\\tau_m},\n\\]\n\\[\n\\phi_i=-\\frac{3\\sigma_e}{\\sigma_i+2\\sigma_e}Er\\cos\\theta\\,e^{-t/\\tau_m},\n\\]\n\\[\n\\boxed{U(\\theta,t)=\\frac32ER\\cos\\theta\\left(1-e^{-t/\\tau_m}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.5--C.6</strong><div><p>\\[\n\\boxed{E_i(t)=\\frac{3\\sigma_e}{\\sigma_i+2\\sigma_e}E\\,e^{-t/\\tau_m}},\n\\qquad\n\\boxed{\\tau_m\\approx75\\,\\mathrm{ns}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>C.7</strong><div><p>\\[\nU_o\\approx\\frac32\\frac{3\\sigma_e}{\\sigma_i+2\\sigma_e}\nER_o\\cos\\theta\\,e^{-t/\\tau_m},\n\\]\n\\[\n\\boxed{\\frac{U_o}{U}\n=\\frac{3\\sigma_e}{\\sigma_i+2\\sigma_e}\\frac{R_o}{R}\n\\frac{1}{e^{t/\\tau_m}-1}\n\\approx\n\\frac{3\\sigma_e}{\\sigma_i+2\\sigma_e}\\frac{R_o}{R}\\frac{\\tau_m}{t}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "A.1",
+          "ordinal": 1,
+          "score": 2.0,
+          "prompt_text": "Modele a membrana por um capacitor de placas paralelas, separação $d$ e permissividade $\\varepsilon$. A membrana possui módulo de Young $Y$: se a espessura é comprimida de $d$ para $d'$, a força restauradora por unidade de área é $Y(d-d')/d$. Determine a tensão crítica $U_C$ acima da qual não existe equilíbrio estático."
+        },
+        {
+          "code": "B.1",
+          "ordinal": 2,
+          "score": 1.2,
+          "prompt_text": "Determine as tensões $V_1(t)$ e $V_2(t)$ nas duas camadas."
+        },
+        {
+          "code": "B.2",
+          "ordinal": 3,
+          "score": 0.3,
+          "prompt_text": "Se $\\varepsilon_1/\\sigma_1>\\varepsilon_2/\\sigma_2$, esboce qualitativamente $V_1(t)$ e $V_2(t)$."
+        },
+        {
+          "code": "B.3",
+          "ordinal": 4,
+          "score": 0.5,
+          "prompt_text": "Se $\\varepsilon_1/\\sigma_1\\gg\\varepsilon_2/\\sigma_2$ e $d_1\\ll d_2$, estime a duração característica máxima do pulso para manter o campo da camada 1 menor que o da camada 2."
+        },
+        {
+          "code": "C.1",
+          "ordinal": 5,
+          "score": 0.8,
+          "prompt_text": "No regime estacionário, mostre que o potencial em cada região pode ser escrito na forma \\[\n\\phi(r,\\theta)=\\left(Ar+\\frac{B}{r^2}\\right)\\cos\\theta.\n\\]"
+        },
+        {
+          "code": "C.2",
+          "ordinal": 6,
+          "score": 1.0,
+          "prompt_text": "Determine $\\phi_{i,\\mathrm{st}}$, $\\phi_{e,\\mathrm{st}}$ e a diferença de potencial através da membrana $U_{\\mathrm{st}}(\\theta)$."
+        },
+        {
+          "code": "C.3",
+          "ordinal": 7,
+          "score": 0.7,
+          "prompt_text": "Use a hipótese de cargas superficiais opostas nas duas faces da membrana para escrever a condição de contorno em $r=R$ para $\\phi_i$ e $\\phi_e$."
+        },
+        {
+          "code": "C.4",
+          "ordinal": 8,
+          "score": 1.7,
+          "prompt_text": "Admitindo uma única constante de tempo $\\tau_m$ para a parte transitória, determine $\\phi_i(r,\\theta,t)$, $\\phi_e(r,\\theta,t)$ e $U(\\theta,t)$."
+        },
+        {
+          "code": "C.5",
+          "ordinal": 9,
+          "score": 0.4,
+          "prompt_text": "Mostre que o campo elétrico no interior da célula é uniforme e determine $E_i(t)$."
+        },
+        {
+          "code": "C.6",
+          "ordinal": 10,
+          "score": 0.6,
+          "prompt_text": "Para diâmetro celular $10\\,\\mu\\mathrm m$, resistividades interna e externa $100\\,\\Omega\\,\\mathrm{cm}$ e capacitância superficial da membrana $1\\,\\mu\\mathrm F/\\mathrm{cm}^2$, calcule $\\tau_m$."
+        },
+        {
+          "code": "C.7",
+          "ordinal": 11,
+          "score": 0.8,
+          "prompt_text": "Uma organela esférica interna possui raio $R_o\\ll R$ e constante de tempo $\\tau_o\\ll\\tau_m$. Para $\\tau_o\\ll t\\ll\\tau_m$, determine a razão entre a tensão de membrana da organela $U_o$ e a tensão da membrana celular $U$."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "code": "08",
+      "title_pt": "Escoamento Irrotacional",
+      "page_start": 47,
+      "page_end": 47,
+      "source_url": "/taiwan/taiwan-05.pdf#page=47",
+      "statement_html": "<section class=\"taiwan-item statement-row\"><span>Q</span></section>\n<p>Considere um escoamento bidimensional, incompressível, invíscido e irrotacional no primeiro quadrante, limitado por duas paredes perpendiculares. Uma fonte de fluido está localizada na origem. Encontre uma função $f(x,y)$ cujas curvas de nível $f=\\mathrm{constante}$ sejam as linhas de corrente.</p>",
+      "solution_html": "<p>Uma escolha proporcional à função de corrente é\n\\[\n\\boxed{f(x,y)=xy}.\n\\]</p>",
+      "parts": [
+        {
+          "code": "Q",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Considere um escoamento bidimensional, incompressível, invíscido e irrotacional no primeiro quadrante, limitado por duas paredes perpendiculares. Uma fonte de fluido está localizada na origem. Encontre uma função $f(x,y)$ cujas curvas de nível $f=\\mathrm{constante}$ sejam as linhas de corrente."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "code": "09",
+      "title_pt": "Analogia Rlc Dos Vasos Sanguíneos",
+      "page_start": 48,
+      "page_end": 50,
+      "source_url": "/taiwan/taiwan-05.pdf#page=48",
+      "statement_html": "<p>O exercício compara propagação elétrica em uma linha distribuída com propagação de pulsos de pressão em um vaso sanguíneo elástico.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p09-fig01.png\" alt=\"Modelo distribuído usado na analogia RLC.\" loading=\"lazy\"><figcaption>Modelo distribuído usado na analogia RLC.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para uma linha com resistência $R$, indutância $L$ e capacitância $C$ por unidade de comprimento, mostre que a corrente satisfaz\n\\[\n\\frac{\\partial^2 I}{\\partial x^2}\n=RC\\frac{\\partial I}{\\partial t}+LC\\frac{\\partial^2I}{\\partial t^2}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>No limite sem perdas, identifique a velocidade de propagação eletromagnética.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Para escoamento de Poiseuille em um vaso cilíndrico de raio $r$ e viscosidade $\\eta$, determine a resistência hidráulica por unidade de comprimento.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Para densidade do fluido $\\rho$, módulo de Young da parede $E$ e espessura $h$, determine os análogos hidráulicos da indutância e da capacitância por unidade de comprimento.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Obtenha a velocidade de propagação de um pulso de pressão no vaso.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{I_{xx}=RC\\,I_t+LC\\,I_{tt}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{v=\\frac1{\\sqrt{\\mu\\varepsilon}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{R=\\frac{8\\eta}{\\pi r^4}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{L=\\frac{\\rho}{\\pi r^2}},\\qquad\n\\boxed{C=\\frac{2\\pi r^3}{Eh}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{v=\\sqrt{\\frac{Eh}{2\\rho r}}},\n\\]\na relação de Moens--Korteweg no modelo adotado.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para uma linha com resistência $R$, indutância $L$ e capacitância $C$ por unidade de comprimento, mostre que a corrente satisfaz \\[\n\\frac{\\partial^2 I}{\\partial x^2}\n=RC\\frac{\\partial I}{\\partial t}+LC\\frac{\\partial^2I}{\\partial t^2}.\n\\]"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "No limite sem perdas, identifique a velocidade de propagação eletromagnética."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Para escoamento de Poiseuille em um vaso cilíndrico de raio $r$ e viscosidade $\\eta$, determine a resistência hidráulica por unidade de comprimento."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Para densidade do fluido $\\rho$, módulo de Young da parede $E$ e espessura $h$, determine os análogos hidráulicos da indutância e da capacitância por unidade de comprimento."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Obtenha a velocidade de propagação de um pulso de pressão no vaso."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "code": "10",
+      "title_pt": "Emissão Termiônica",
+      "page_start": 51,
+      "page_end": 51,
+      "source_url": "/taiwan/taiwan-05.pdf#page=51",
+      "statement_html": "<p>Considere um metal de função trabalho $W$ em equilíbrio a temperatura $T$, com $W\\gg k_BT$. Trate os elétrons emitidos como um gás diluído não degenerado fora do metal.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Determine a pressão de equilíbrio do gás de elétrons logo fora da superfície.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Use a distribuição de velocidades para obter a densidade de corrente de emissão na forma de Richardson\n\\[\nJ=A_GT^a e^{-W/(k_BT)},\n\\]\ne determine $a$ e $A_G$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{P=2k_BT\\left(\\frac{mk_BT}{2\\pi\\hbar^2}\\right)^{3/2}\n e^{-W/(k_BT)}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{a=2},\\qquad\n\\boxed{A_G=\\frac{4\\pi m k_B^2e}{h^3}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine a pressão de equilíbrio do gás de elétrons logo fora da superfície."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Use a distribuição de velocidades para obter a densidade de corrente de emissão na forma de Richardson \\[\nJ=A_GT^a e^{-W/(k_BT)},\n\\] e determine $a$ e $A_G$."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "code": "11",
+      "title_pt": "Profundidade De Penetração De London",
+      "page_start": 52,
+      "page_end": 52,
+      "source_url": "/taiwan/taiwan-05.pdf#page=52",
+      "statement_html": "<p>Um supercondutor contém densidade $n_s$ de portadores de massa $m$ e carga $-e$. Considere o campo magnético $\\mathbf B(\\mathbf r)$ e a energia cinética da supercorrente.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Mostre que a energia livre magnética pode ser escrita na forma\n\\[\nF=\\int d^3r\\left[C|\\nabla\\times\\mathbf B|^2+\\frac{|\\mathbf B|^2}{2\\mu_0}\\right]\n\\]\ne determine $C$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Minimize $F$ em relação a $\\mathbf B$ e identifique a profundidade de penetração de London $\\lambda_L$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>Usando $\\nabla\\times\\mathbf B=\\mu_0\\mathbf J$ e $\\mathbf J=-n_se\\mathbf v$,\n\\[\n\\boxed{C=\\frac{m}{2\\mu_0^2n_se^2}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>A escala característica é\n\\[\n\\boxed{\\lambda_L=\\sqrt{\\frac{m}{\\mu_0n_se^2}}}.\n\\]\nO original escreve a equação de London para $\\mathbf B$ em termos dessa escala; em geometria plana o campo decai exponencialmente no interior em distância da ordem de $\\lambda_L$.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Mostre que a energia livre magnética pode ser escrita na forma \\[\nF=\\int d^3r\\left[C|\\nabla\\times\\mathbf B|^2+\\frac{|\\mathbf B|^2}{2\\mu_0}\\right]\n\\] e determine $C$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Minimize $F$ em relação a $\\mathbf B$ e identifique a profundidade de penetração de London $\\lambda_L$."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "code": "12",
+      "title_pt": "Atividade Óptica",
+      "page_start": 53,
+      "page_end": 55,
+      "source_url": "/taiwan/taiwan-05.pdf#page=53",
+      "statement_html": "<p>O exercício modela rotação da polarização por uma diferença entre os índices de refração das componentes circularmente polarizadas. Considere elétrons ligados com frequência natural $\\omega_0$, densidade numérica $N$ e um campo magnético externo paralelo à propagação.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p12-fig01.png\" alt=\"Geometria da rotação do plano de polarização.\" loading=\"lazy\"><figcaption>Geometria da rotação do plano de polarização.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Explique qualitativamente como duas componentes circulares com índices distintos produzem rotação da polarização linear.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Para um oscilador ligado em campo $B\\hat z$, obtenha a diferença entre $n_+^2$ e $n_-^2$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>No limite $eB\\omega/m\\ll|\\omega_0^2-\\omega^2|$, determine o ângulo de rotação após comprimento $\\ell$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Para propagação em plasma interestelar, mostre a lei de Faraday $\\beta=R\\lambda^2$ e determine a constante que multiplica $\\int n_eB_\\parallel ds$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\nn_+^2-n_-^2=\n\\frac{Ne^2}{\\varepsilon_0m}\n\\left[\n\\frac{1}{\\omega_0^2-\\omega^2+eB\\omega/m}\n-\\frac{1}{\\omega_0^2-\\omega^2-eB\\omega/m}\n\\right]}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>No regime de campo fraco, o gabarito fornece\n\\[\n\\boxed{\n\\beta=\\frac{Ne^2}{\\varepsilon_0m(\\omega_0^2-\\omega^2)^2}\n\\frac{eB\\omega^2\\ell}{mc^2n}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{\\beta=R\\lambda^2},\\qquad\nR=C_2\\int n_eB_\\parallel ds,\n\\]\n\\[\n\\boxed{C_2=\\frac{e^3}{8\\pi^2\\varepsilon_0m^2c^3}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Explique qualitativamente como duas componentes circulares com índices distintos produzem rotação da polarização linear."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Para um oscilador ligado em campo $B\\hat z$, obtenha a diferença entre $n_+^2$ e $n_-^2$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "No limite $eB\\omega/m\\ll|\\omega_0^2-\\omega^2|$, determine o ângulo de rotação após comprimento $\\ell$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Para propagação em plasma interestelar, mostre a lei de Faraday $\\beta=R\\lambda^2$ e determine a constante que multiplica $\\int n_eB_\\parallel ds$."
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "code": "13",
+      "title_pt": "Moeda Rolando",
+      "page_start": 56,
+      "page_end": 57,
+      "source_url": "/taiwan/taiwan-05.pdf#page=56",
+      "statement_html": "<p>Considere um disco homogêneo de massa $m$ e raio $r$ rolando sem deslizar sobre um plano horizontal. Use a base solidária ao disco $(\\hat{\\mathbf e}_1,\\hat{\\mathbf e}_2,\\hat{\\mathbf e}_3)$, o ângulo de inclinação $\\theta$, o ângulo azimutal $\\phi$ e a rotação própria $\\omega_3$.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p13-fig01.png\" alt=\"Geometria e base móvel para a moeda em rolamento.\" loading=\"lazy\"><figcaption>Geometria e base móvel para a moeda em rolamento.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Determine $d\\hat{\\mathbf e}_1/dt$, $d\\hat{\\mathbf e}_2/dt$ e $d\\hat{\\mathbf e}_3/dt$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Determine a velocidade e a aceleração do centro de massa.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Determine o torque total em relação ao centro de massa.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Determine o momento angular do disco.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Mostre que as equações de movimento podem ser escritas como\n\\[\nI_1(\\ddot\\phi\\cos\\theta-2\\dot\\theta\\dot\\phi\\sin\\theta)=I_3\\omega_3\\dot\\theta,\n\\]\n\\[\n(I_1+mr^2)\\ddot\\theta+(I_3+mr^2)\\omega_3\\dot\\phi\\cos\\theta\n+I_1\\dot\\phi^2\\sin\\theta\\cos\\theta=mgr\\sin\\theta,\n\\]\n\\[\n(I_3+mr^2)\\dot\\omega_3=mr^2\\dot\\theta\\dot\\phi\\cos\\theta,\n\\]\ncom $I_1=mr^2/4$ e $I_3=mr^2/2$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Para movimento circular estável de raio $R$ e inclinação constante $\\theta$, determine a velocidade do centro de massa.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Para rolamento aproximadamente vertical, determine a velocidade mínima para estabilidade contra pequenas inclinações.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\dot{\\hat{\\mathbf e}}_1=-\\dot\\phi\\sin\\theta\\,\\hat{\\mathbf e}_2+\\dot\\theta\\,\\hat{\\mathbf e}_3,\n\\]\n\\[\n\\dot{\\hat{\\mathbf e}}_2=\\dot\\phi\\sin\\theta\\,\\hat{\\mathbf e}_1+\\dot\\phi\\cos\\theta\\,\\hat{\\mathbf e}_3,\n\\]\n\\[\n\\dot{\\hat{\\mathbf e}}_3=-\\dot\\theta\\,\\hat{\\mathbf e}_1-\\dot\\phi\\cos\\theta\\,\\hat{\\mathbf e}_2.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\\mathbf v_c=r\\omega_3\\hat{\\mathbf e}_2+r\\dot\\theta\\hat{\\mathbf e}_3},\n\\]\n\\[\n\\mathbf a_c=(-r\\dot\\theta^2+r\\omega_3\\dot\\phi\\sin\\theta)\\hat{\\mathbf e}_1\n+(-r\\dot\\theta\\dot\\phi\\cos\\theta+r\\dot\\omega_3)\\hat{\\mathbf e}_2\n+(r\\ddot\\theta+r\\omega_3\\dot\\phi\\cos\\theta)\\hat{\\mathbf e}_3.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\mathbf\\tau=\n\\left[mr^2(\\ddot\\theta+\\omega_3\\dot\\phi\\cos\\theta)-mgr\\sin\\theta\\right]\\hat{\\mathbf e}_2\n+mr^2(\\dot\\theta\\dot\\phi\\cos\\theta-\\dot\\omega_3)\\hat{\\mathbf e}_3.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{\\mathbf L=I_1\\dot\\phi\\cos\\theta\\,\\hat{\\mathbf e}_1\n-I_1\\dot\\theta\\,\\hat{\\mathbf e}_2+I_3\\omega_3\\hat{\\mathbf e}_3}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>Substitua $d\\mathbf L/dt=\\mathbf\\tau$ e projete na base móvel; isso produz as três equações dadas no enunciado.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\n\\boxed{v_c=R\\sqrt{\\frac{4g\\tan\\theta}{6R+r\\sin\\theta}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>\\[\n\\boxed{v_{\\min}=\\sqrt{\\frac{gr}{3}}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine $d\\hat{\\mathbf e}_1/dt$, $d\\hat{\\mathbf e}_2/dt$ e $d\\hat{\\mathbf e}_3/dt$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Determine a velocidade e a aceleração do centro de massa."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Determine o torque total em relação ao centro de massa."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Determine o momento angular do disco."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Mostre que as equações de movimento podem ser escritas como \\[\nI_1(\\ddot\\phi\\cos\\theta-2\\dot\\theta\\dot\\phi\\sin\\theta)=I_3\\omega_3\\dot\\theta,\n\\] \\[\n(I_1+mr^2)\\ddot\\theta+(I_3+mr^2)\\omega_3\\dot\\phi\\cos\\theta\n+I_1\\dot\\phi^2\\sin\\theta\\cos\\theta=mgr\\sin\\theta,\n\\] \\[\n(I_3+mr^2)\\dot\\omega_3=mr^2\\dot\\theta\\dot\\phi\\cos\\theta,\n\\] com $I_1=mr^2/4$ e $I_3=mr^2/2$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Para movimento circular estável de raio $R$ e inclinação constante $\\theta$, determine a velocidade do centro de massa."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Para rolamento aproximadamente vertical, determine a velocidade mínima para estabilidade contra pequenas inclinações."
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "code": "14",
+      "title_pt": "Ondas Em Uma Corda Vertical Suspensa",
+      "page_start": 58,
+      "page_end": 59,
+      "source_url": "/taiwan/taiwan-05.pdf#page=58",
+      "statement_html": "<p>Uma corda inextensível de comprimento $L$ e densidade linear constante $\\rho$ está pendurada verticalmente, fixa em $x=0$, com $x$ positivo para baixo. Seja $y(x,t)$ o pequeno deslocamento transversal.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Mostre que, para $|\\partial y/\\partial x|\\ll1$,\n\\[\n\\frac{\\partial^2y}{\\partial t^2}=g\\frac{\\partial}{\\partial x}\n\\left[(L-x)\\frac{\\partial y}{\\partial x}\\right].\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Use separação $y(x,t)=\\xi(x)\\tau(t)$ e mostre que existe uma constante $\\lambda$ tal que\n\\[\n(x-L)\\xi''+\\xi'-\\lambda\\xi=0,\n\\qquad\n\\tau''+\\lambda g\\tau=0.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Como $\\xi(L)$ é finito, use\n\\[\n\\xi(x)=\\sum_{n=0}^{\\infty}a_n(x-L)^n\n\\]\npara obter a recorrência de $a_n$ e a equação que determina $\\lambda$ a partir de $\\xi(0)=0$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Determine a menor frequência de oscilação. É dado que a menor raiz positiva de\n\\[\n\\sum_{n=0}^{\\infty}\\frac{(-1)^nk^n}{(n!)^2}=0\n\\]\né $k\\approx1{,}5$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>A tensão na posição $x$ é $T(x)=\\rho g(L-x)$. Aplicando a segunda lei a um elemento $dx$ e linearizando a inclinação obtém-se a equação pedida.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>Após dividir por $\\xi\\tau$, um lado depende apenas de $t$ e o outro apenas de $x$; ambos devem ser uma constante, escolhida como $-\\lambda$.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>A recorrência é\n\\[\n\\boxed{(n+1)^2a_{n+1}=\\lambda a_n},\n\\qquad\n a_n=\\frac{\\lambda^n}{(n!)^2}a_0.\n\\]\nLogo,\n\\[\n\\boxed{\\sum_{n=0}^{\\infty}\\frac{(-1)^n(\\lambda L)^n}{(n!)^2}=0}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>Como $\\omega^2=\\lambda g$ e a menor raiz satisfaz $\\lambda L\\approx1{,}5$,\n\\[\n\\boxed{\\omega_{\\min}\\approx\\sqrt{\\frac{1{,}5g}{L}}},\n\\qquad\n\\boxed{f_{\\min}\\approx\\frac{1}{2\\pi}\\sqrt{\\frac{1{,}5g}{L}}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Mostre que, para $|\\partial y/\\partial x|\\ll1$, \\[\n\\frac{\\partial^2y}{\\partial t^2}=g\\frac{\\partial}{\\partial x}\n\\left[(L-x)\\frac{\\partial y}{\\partial x}\\right].\n\\]"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Use separação $y(x,t)=\\xi(x)\\tau(t)$ e mostre que existe uma constante $\\lambda$ tal que \\[\n(x-L)\\xi''+\\xi'-\\lambda\\xi=0,\n\\qquad\n\\tau''+\\lambda g\\tau=0.\n\\]"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Como $\\xi(L)$ é finito, use \\[\n\\xi(x)=\\sum_{n=0}^{\\infty}a_n(x-L)^n\n\\] para obter a recorrência de $a_n$ e a equação que determina $\\lambda$ a partir de $\\xi(0)=0$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Determine a menor frequência de oscilação. É dado que a menor raiz positiva de \\[\n\\sum_{n=0}^{\\infty}\\frac{(-1)^nk^n}{(n!)^2}=0\n\\] é $k\\approx1{,}5$."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "code": "15",
+      "title_pt": "Controle Magnético Do Fluxo De Elétrons Entre Dois Condutores Cilíndricos",
+      "page_start": 60,
+      "page_end": 60,
+      "source_url": "/taiwan/taiwan-05.pdf#page=60",
+      "statement_html": "<p>Considere dois cilindros coaxiais de raios $a<b$ com diferença de potencial $V$, em um campo magnético uniforme paralelo ao eixo. Elétrons são emitidos a partir do cilindro interno. Determine o campo crítico necessário para impedir que atinjam o cilindro externo e generalize para velocidade inicial com componentes radial e azimutal.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p15-fig01.png\" alt=\"Geometria dos cilindros coaxiais e trajetória eletrônica.\" loading=\"lazy\"><figcaption>Geometria dos cilindros coaxiais e trajetória eletrônica.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Sem campo magnético e partindo do repouso, determine a velocidade ao chegar ao cilindro externo.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Para uma partícula lançada com velocidade $v_0$ a partir do raio $a$, determine o campo $B_C$ para que a órbita tangencie $r=b$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Mostre que uma combinação do momento angular mecânico com $Br^2$ é conservada e determine o coeficiente.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Aplique o resultado ao elétron acelerado por $V$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Generalize para velocidade inicial com componentes $v_r$ e $v_\\theta$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{v=\\sqrt{\\frac{2eV}{m}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{B_C=\\frac{2bm v_0}{e(b^2-a^2)}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>A quantidade conservada pode ser escrita como\n\\[\n\\boxed{L-\\frac12eBr^2=\\text{constante}},\n\\]\ncom o sinal correspondente à carga do elétron e à convenção do original.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{B_C=\\frac{2b}{b^2-a^2}\\sqrt{\\frac{2mV}{e}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{B_C=\\frac{2mb}{e(b^2-a^2)}\n\\left[\\sqrt{v_\\theta^2+v_r^2+\\frac{2eV}{m}}-\\frac abv_\\theta\\right]}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Sem campo magnético e partindo do repouso, determine a velocidade ao chegar ao cilindro externo."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Para uma partícula lançada com velocidade $v_0$ a partir do raio $a$, determine o campo $B_C$ para que a órbita tangencie $r=b$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Mostre que uma combinação do momento angular mecânico com $Br^2$ é conservada e determine o coeficiente."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Aplique o resultado ao elétron acelerado por $V$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Generalize para velocidade inicial com componentes $v_r$ e $v_\\theta$."
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "code": "16",
+      "title_pt": "Lente Magnética",
+      "page_start": 61,
+      "page_end": 61,
+      "source_url": "/taiwan/taiwan-05.pdf#page=61",
+      "statement_html": "<p>Um feixe paraxial de partículas de carga $q$ e momento longitudinal $p_0$ atravessa uma região curta de campo magnético aproximadamente uniforme $B_0$ ao longo do eixo. Trate a região como uma lente fina.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para uma região de comprimento $L$, determine a pequena deflexão azimutal $\\theta_y$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Mostre que a componente radial de focalização satisfaz, para deslocamento inicial $x_0$,\n\\[\n\\theta_x\\approx-\\frac{x_0}{L}\\theta_y^2.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Determine a distância focal $f$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Verifique que, na aproximação de lente fina, vale a equação gaussiana $1/s+1/s'=1/f$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{\\theta_y=\\frac{qB_0L}{p_0}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\\theta_x\\approx-\\frac{x_0}{L}\\theta_y^2}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{f=\\frac{p_0^2}{q^2B_0^2L}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>Sim; a transformação paraxial coincide com a de uma lente fina de distância focal $f$.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para uma região de comprimento $L$, determine a pequena deflexão azimutal $\\theta_y$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Mostre que a componente radial de focalização satisfaz, para deslocamento inicial $x_0$, \\[\n\\theta_x\\approx-\\frac{x_0}{L}\\theta_y^2.\n\\]"
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Determine a distância focal $f$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Verifique que, na aproximação de lente fina, vale a equação gaussiana $1/s+1/s'=1/f$."
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "code": "17",
+      "title_pt": "Levitação Magnética",
+      "page_start": 62,
+      "page_end": 62,
+      "source_url": "/taiwan/taiwan-05.pdf#page=62",
+      "statement_html": "<p>Um ímã fixo de momento dipolar $m_0$ sustenta um pequeno ímã de momento $m$ e massa $M$ sobre seu eixo. No eixo,\n\\[\nB(h)=\\frac{\\mu_0}{4\\pi}\\frac{2m_0}{h^3}.\n\\]\nO exercício considera três mecanismos: restrição de orientação, estabilização giroscópica e estabilização por campo alternado.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Mantendo a orientação do pequeno ímã fixa e permitindo apenas movimento vertical, determine a altura de equilíbrio $h_1$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Determine a frequência de pequenas oscilações verticais em torno de $h_1$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>O pequeno ímã é uma esfera uniforme com momento de inércia $I_0$ e gira rapidamente com velocidade angular $\\omega_0$ em torno do próprio momento magnético. Para uma pequena inclinação, determine a velocidade angular de precessão $\\Omega$ em torno da vertical.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Em vez da estabilização giroscópica, adicione um campo vertical de alta frequência $B_1\\cos\\omega t$. Determine a amplitude mínima $B_1$ para estabilidade angular na aproximação de alta frequência.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{h_1=\\left(\\frac{3\\mu_0mm_0}{2\\pi Mg}\\right)^{1/4}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>Como $\\omega_z^2=4g/h_1$,\n\\[\n\\boxed{f=\\frac1\\pi\\sqrt{\\frac g{h_1}}}\n=\\frac{g^{1/2}}{\\pi}\n\\left(\\frac{2\\pi Mg}{3\\mu_0mm_0}\\right)^{1/8}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{\\Omega=\\frac{Mgh_1}{3I_0\\omega_0}}\n=\\frac{1}{3I_0\\omega_0}\n\\left(\\frac{3\\mu_0mm_0M^3g^3}{2\\pi}\\right)^{1/4}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{B_{1,\\min}=\\omega\\sqrt{\\frac{\\mu_0m_0I_0}{\\pi m h_1^3}}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Mantendo a orientação do pequeno ímã fixa e permitindo apenas movimento vertical, determine a altura de equilíbrio $h_1$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Determine a frequência de pequenas oscilações verticais em torno de $h_1$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "O pequeno ímã é uma esfera uniforme com momento de inércia $I_0$ e gira rapidamente com velocidade angular $\\omega_0$ em torno do próprio momento magnético. Para uma pequena inclinação, determine a velocidade angular de precessão $\\Omega$ em torno da vertical."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Em vez da estabilização giroscópica, adicione um campo vertical de alta frequência $B_1\\cos\\omega t$. Determine a amplitude mínima $B_1$ para estabilidade angular na aproximação de alta frequência."
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "code": "18",
+      "title_pt": "Resistência Entre Dois Pontos De Um Disco Fino",
+      "page_start": 63,
+      "page_end": 63,
+      "source_url": "/taiwan/taiwan-05.pdf#page=63",
+      "statement_html": "<p>O exercício usa transformações conformes para calcular a resistência entre dois pequenos contatos na borda ou no interior de um disco condutor fino. Preserve as variáveis adimensionais $\\eta,\\zeta,\\xi,\\gamma,\\chi,\\mu$ definidas no enunciado original.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Obtenha $\\zeta(\\eta)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Obtenha $\\xi(\\eta)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Obtenha $\\gamma(\\theta)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Obtenha $\\chi(\\phi)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Obtenha $\\chi'(\\mu)$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\\boxed{\\zeta=\\frac{4}{1+\\eta^2}}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\\xi=\\frac{(1+\\eta^2)^2}{2\\eta^2}\n\\arccos\\!\\left(\\frac{1-\\eta^2}{1+\\eta^2}\\right)-\\frac{1-\\eta^2}{\\eta}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\\boxed{\\gamma=\\frac12\\left|\\ln\\left|\\cot\\frac\\theta2\\right|\\right|}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\\boxed{\\chi=\\sin\\frac\\phi2}.\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\\boxed{\\chi'=\\frac12\\left(\\mu+\\frac1\\mu\\right)}.\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Obtenha $\\zeta(\\eta)$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Obtenha $\\xi(\\eta)$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Obtenha $\\gamma(\\theta)$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Obtenha $\\chi(\\phi)$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Obtenha $\\chi'(\\mu)$."
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "code": "19",
+      "title_pt": "Anel Carregado Em Um Campo Magnético",
+      "page_start": 64,
+      "page_end": 64,
+      "source_url": "/taiwan/taiwan-05.pdf#page=64",
+      "statement_html": "<p>Um anel de raio $R$, massa $M$, momento de inércia $I$ e carga total $nq$ pode transladar ao longo de $z$ e girar em torno do próprio eixo. O campo é\n\\[\n\\mathbf B=k(-r\\hat{\\mathbf r}+2z\\hat{\\mathbf z}).\n\\]\nInicialmente $z=0$ e a velocidade angular é $\\omega_0$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Verifique que $\\nabla\\cdot\\mathbf B=0$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Determine $z(t)$ e $\\omega(t)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Mostre que a energia cinética total permanece constante.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{z(t)=\\frac{I\\omega_0}{nqkR^2}\n\\left[1-\\cos\\!\\left(\\frac{nqkR^2}{\\sqrt{MI}}t\\right)\\right]},\n\\]\n\\[\n\\boxed{\\omega(t)=\\omega_0\\cos\\!\\left(\\frac{nqkR^2}{\\sqrt{MI}}t\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{K=\\frac12I\\omega_0^2=\\text{constante}},\n\\]\ncomo esperado porque a força magnética não realiza trabalho.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Verifique que $\\nabla\\cdot\\mathbf B=0$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Determine $z(t)$ e $\\omega(t)$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Mostre que a energia cinética total permanece constante."
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "20",
+      "title_pt": "Guia De Onda Em Filme Dielétrico",
+      "page_start": 64,
+      "page_end": 64,
+      "source_url": "/taiwan/taiwan-05.pdf#page=64",
+      "statement_html": "<section class=\"taiwan-item statement-row\"><span>Q</span></section>\n<p>Uma camada dielétrica de espessura $d$ e índice $n_1$ está entre meios de índices $n_0$ e $n_2$, com $n_1>n_0\\ge n_2$. A luz se propaga por reflexões internas sucessivas. Determine o maior comprimento de onda, medido dentro da camada $n_1$, que admite um modo guiado.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p20-fig01.png\" alt=\"Geometria do guia de onda de filme dielétrico.\" loading=\"lazy\"><figcaption>Geometria do guia de onda de filme dielétrico.</figcaption></figure>",
+      "solution_html": "<p>O gabarito fornece\n\\[\n\\boxed{\n\\lambda_{\\max}=\n\\frac{2\\pi d\\sqrt{1-n_0^2/n_1^2}}\n{\\tan^{-1}\\!\\sqrt{\\dfrac{n_0^2-n_2^2}{n_1^2-n_0^2}}}}\n\\]\ncom a defasagem de reflexão obtida pelas relações de Fresnel.</p>",
+      "parts": [
+        {
+          "code": "Q",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Uma camada dielétrica de espessura $d$ e índice $n_1$ está entre meios de índices $n_0$ e $n_2$, com $n_1>n_0\\ge n_2$. A luz se propaga por reflexões internas sucessivas. Determine o maior comprimento de onda, medido dentro da camada $n_1$, que admite um modo guiado. 642201751955100.60 Geometria do guia de onda de filme dielétrico."
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "code": "21",
+      "title_pt": "Colisão Entre Partícula E Haste Fina",
+      "page_start": 65,
+      "page_end": 66,
+      "source_url": "/taiwan/taiwan-05.pdf#page=65",
+      "statement_html": "<p>Uma haste rígida sem massa, de comprimento $\\ell$, possui massas $m_1$ e $m_2$ nas extremidades e está em repouso sobre uma mesa sem atrito. Uma partícula de massa $m$ e velocidade $v_0$ colide elasticamente com $m_2$. A direção incidente forma ângulo $\\theta$ com a haste; o impulso de contato entre $m$ e $m_2$ está na linha dos centros.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p21-fig01.png\" alt=\"Geometria da colisão entre a partícula e a haste.\" loading=\"lazy\"><figcaption>Geometria da colisão entre a partícula e a haste.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Determine a velocidade final da partícula incidente.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Determine a velocidade de $m_1$ imediatamente após a colisão.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Analise os impulsos transmitidos às duas extremidades da haste e a soma dos impulsos sobre a haste.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Mostre que o impulso transmitido pela haste é sempre paralelo à própria haste.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Determine quando $m_1$ permanece instantaneamente em repouso e interprete fisicamente o resultado.</p></div></section>",
+      "solution_html": "<p>Defina\n\\[\nD=(m_1+m_2)+m\\left(1+\\frac{m_1}{m_2}\\sin^2\\theta\\right).\n\\]</p>\n<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>A solução física é oposta à direção incidente, com módulo dado pelo coeficiente\n\\[\n\\boxed{v=\\frac{(m_1+m_2)-m\\left(1+\\frac{m_1}{m_2}\\sin^2\\theta\\right)}{D}\\,v_0}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>A velocidade do centro de massa do conjunto haste--massas é\n\\[\n v_c=\\frac{2mv_0}{D},\n\\]\ne $m_1$ move-se ao longo da haste, de $m_1$ para $m_2$, com módulo\n\\[\n\\boxed{|v_1|=v_c|\\cos\\theta|}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)--(d)</strong><div><p>Os impulsos aplicados pela haste nas duas massas são iguais e opostos, paralelos à haste. Como a haste é sem massa,\n\\[\n\\boxed{\\mathbf J_{\\rm haste}=0}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>$|v_1|=0$ quando $\\cos\\theta=0$, isto é,\n\\[\n\\boxed{\\theta=90^\\circ}.\n\\]\nNesse caso, a haste não recebe impulso axial durante o impacto e o processo reduz-se à colisão elástica unidimensional entre $m$ e $m_2$:\n\\[\n\\boxed{v=\\frac{m_2-m}{m_2+m}v_0}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Determine a velocidade final da partícula incidente."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Determine a velocidade de $m_1$ imediatamente após a colisão."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Analise os impulsos transmitidos às duas extremidades da haste e a soma dos impulsos sobre a haste."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Mostre que o impulso transmitido pela haste é sempre paralelo à própria haste."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Determine quando $m_1$ permanece instantaneamente em repouso e interprete fisicamente o resultado."
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "code": "22",
+      "title_pt": "Frequência Natural De Oscilação De Uma Bolha",
+      "page_start": 67,
+      "page_end": 69,
+      "source_url": "/taiwan/taiwan-05.pdf#page=67",
+      "statement_html": "<p>Considere uma bolha esférica de raio de equilíbrio $R$ em um líquido de densidade $\\rho$, viscosidade $\\eta$ e tensão superficial $S$. A pressão externa é $P_0$ e o gás interno responde aproximadamente adiabaticamente com expoente $\\gamma$.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Para uma pequena variação radial $\\Delta(t)$, determine a energia cinética total do líquido.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Ignorando viscosidade e tensão superficial, determine a frequência angular natural.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>A partir do tensor de tensões de um fluido newtoniano, recupere a equação de Navier--Stokes radial usada no problema.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Mostre que a pressão na superfície pode ser escrita como $(P(R,t)-P_0)/\\rho=k_1R\\ddot R+k_2\\dot R^2$ e determine $k_1,k_2$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Inclua viscosidade e tensão superficial e obtenha a equação de Rayleigh--Plesset na forma do original.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Linearize a equação em torno do raio de equilíbrio e determine o amortecimento e a frequência.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{K=2\\pi R^3\\rho\\left(\\frac{d\\Delta}{dt}\\right)^2}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\\omega=\\frac1R\\sqrt{\\frac{3\\gamma P_0}{\\rho}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{k_1=1},\\qquad \\boxed{k_2=\\frac32}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{R\\ddot R+\\frac32\\dot R^2=\n\\frac1\\rho\\left(P_B-P_0-\\frac{4\\eta\\dot R}{R}-\\frac{2S}{R}\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>A folha de respostas registra\n\\[\n\\boxed{b=-\\frac{2\\eta}{\\rho R^2}},\n\\]\n\\[\n\\boxed{\\omega=\n\\sqrt{\\frac1{\\rho R^2}\n\\left[3\\gamma\\left(P_0+\\frac{2S}{R}\\right)-\\frac{2S}{R}\n-\\frac{4\\eta^2}{\\rho R^2}\\right]}}.\n\\]\nA expressão acima foi mantida como aparece no gabarito original.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Para uma pequena variação radial $\\Delta(t)$, determine a energia cinética total do líquido."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Ignorando viscosidade e tensão superficial, determine a frequência angular natural."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "A partir do tensor de tensões de um fluido newtoniano, recupere a equação de Navier--Stokes radial usada no problema."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Mostre que a pressão na superfície pode ser escrita como $(P(R,t)-P_0)/\\rho=k_1R\\ddot R+k_2\\dot R^2$ e determine $k_1,k_2$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Inclua viscosidade e tensão superficial e obtenha a equação de Rayleigh--Plesset na forma do original."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Linearize a equação em torno do raio de equilíbrio e determine o amortecimento e a frequência."
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "code": "23",
+      "title_pt": "Expansão Do Universo",
+      "page_start": 70,
+      "page_end": 77,
+      "source_url": "/taiwan/taiwan-05.pdf#page=70",
+      "statement_html": "<p>Use um Universo homogêneo e isotrópico descrito por um fator de escala $a(t)$, de modo que a distância física entre observadores comóveis é $r_p=a(t)r$. O exercício constrói, em etapas, redshift cosmológico, equações de Friedmann em um modelo newtoniano e propriedades da radiação cósmica de fundo.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Mostre que o comprimento de onda de um fóton escala com $a(t)$ e obtenha\n\\[\n1+z=\\frac{a(t_0)}{a(t_e)}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Uma estrela emite potência $P_e$ no instante $t_e$ e hoje está a distância física $r_p=a(t_0)r$. Se a área efetiva do detector é $A$, determine a potência recebida $P_r$, incluindo a diluição geométrica e os dois fatores de redshift de energia e taxa de chegada.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Em um Universo estático com densidade uniforme de estrelas, estime a energia total recebida do céu ao longo de uma idade finita $t_0$ e explique a resolução cosmológica do paradoxo de Olbers.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Com a densidade média atual adotada no original, estime a potência do fundo estelar em comparação com a potência solar recebida na Terra.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Dinâmica do fator de escala</h2>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Em um argumento newtoniano para matéria não relativística, mostre que\n\\[\nH^2=\\left(\\frac{\\dot a}{a}\\right)^2=A_1\\rho\n\\]\ne determine $A_1$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Para um fluido homogêneo com pressão $P(t)$, use a primeira lei em expansão adiabática para mostrar a equação de continuidade cosmológica e determine o coeficiente numérico $A_2$ da forma usada no original.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Para uma equação de estado $P=w\\rho c^2$, determine $w$ para: (1) matéria não relativística, (2) radiação e (3) energia escura cosmológica.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Determine como $\\rho_m$, $\\rho_r$ e $\\rho_\\Lambda$ dependem de $a(t)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(i)</span><div class=\"taiwan-item-body\"><p>Derive as relações entre os parâmetros de densidade $\\Omega_m,\\Omega_r,\\Omega_\\Lambda$ e a equação de Friedmann normalizada para o presente.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(j)</span><div class=\"taiwan-item-body\"><p>Defina $q=-a\\ddot a/\\dot a^2$. Expresse $q(t_0)$ em termos de $\\Omega_m$ e $\\Omega_\\Lambda$ e diga se o modelo atual está acelerando.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(k)</span><div class=\"taiwan-item-body\"><p>Negligenciando radiação no Universo tardio, resolva $a(t)$ e obtenha a idade atual $t_0$ em termos de $H_0,\\Omega_m,\\Omega_\\Lambda$ e $a(t_0)$.</p></div></section>\n<h2 class=\"statement-section statement-part-heading\">Radiação cósmica de fundo</h2>\n<section class=\"taiwan-item statement-row\"><span>(l)</span><div class=\"taiwan-item-body\"><p>Relacione a temperatura atual $T_0$ com a temperatura de recombinação $T_{\\rm rec}$ e com $a(t_{\\rm rec})/a(t_0)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(m)</span><div class=\"taiwan-item-body\"><p>Um observador move-se com velocidade $v$ em relação ao referencial comóvel. Determine a temperatura aparente $T'(\\theta')$ da radiação de fundo em função da direção observada.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(n)</span><div class=\"taiwan-item-body\"><p>Use a anisotropia dipolar observada no mapa do original para estimar a velocidade da Terra em relação ao referencial da radiação cósmica de fundo.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(o)</span><div class=\"taiwan-item-body\"><p>No regime primordial em que radiação e matéria dominam, derive a expressão aproximada para o tempo conforme $\\eta_{\\rm rec}$ dada pelas integrais do original.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(p)</span><div class=\"taiwan-item-body\"><p>Derive a expressão integral para o tempo conforme atual $\\eta_0$ no modelo matéria $+$ energia escura.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(q)</span><div class=\"taiwan-item-body\"><p>A partir de $\\eta_{\\rm rec}$ e $\\eta_0$, estime a maior separação angular no céu entre regiões que podiam estar causalmente conectadas na recombinação.</p></div></section>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p23-fig01.png\" alt=\"Mapa de anisotropias da radiação cósmica de fundo.\" loading=\"lazy\"><figcaption>Mapa de anisotropias da radiação cósmica de fundo.</figcaption></figure>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{P_r=\\frac{A}{4\\pi r_p^2}\n\\frac{a(t_e)^2}{a(t_0)^2}P_e}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)--(d)</strong><div><p>A estimativa do original para o caso estático é proporcional a\n\\[\n\\frac{N}{n+1}c\\pi R_e^2P_e t_0,\n\\]\ne, com os números adotados, a contribuição é da ordem de\n\\[\n\\boxed{10^{-8}}\n\\]\nda potência solar recebida.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)--(f)</strong><div><p>\\[\n\\boxed{A_1=\\frac{8\\pi G}{3c^2}},\\qquad\n\\boxed{A_2=3}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)--(h)</strong><div><p>\\[\n\\boxed{w_m=0},\\qquad \\boxed{w_r=\\frac13},\\qquad \\boxed{w_\\Lambda=-1},\n\\]\n\\[\n\\boxed{\\rho_m=\\rho_{m0}\\left(\\frac{a_0}{a}\\right)^3},\\qquad\n\\boxed{\\rho_r=\\rho_{r0}\\left(\\frac{a_0}{a}\\right)^4},\\qquad\n\\boxed{\\rho_\\Lambda=\\rho_{\\Lambda0}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(j)</strong><div><p>\\[\n\\boxed{q(t_0)=\\frac{\\Omega_m}{2}-\\Omega_\\Lambda}.\n\\]\nCom os parâmetros considerados no original, a expansão é acelerada.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(k)</strong><div><p>\\[\nH^2(a)=H_0^2\\left[\\Omega_m\\left(\\frac{a_0}{a}\\right)^3\n+\\Omega_r\\left(\\frac{a_0}{a}\\right)^4+\\Omega_\\Lambda\\right]\n\\approx H_0^2\\left[\\Omega_m\\left(\\frac{a_0}{a}\\right)^3+\\Omega_\\Lambda\\right],\n\\]\n\\[\n\\boxed{a(t)=a_0\\left(\\frac{\\Omega_m}{\\Omega_\\Lambda}\\right)^{1/3}\n\\left[\\sinh\\!\\left(\\frac32\\sqrt{\\Omega_\\Lambda}H_0t\\right)\\right]^{2/3}},\n\\]\n\\[\n\\boxed{t_0=\\frac{2}{3\\sqrt{\\Omega_\\Lambda}H_0}\n\\arsinh\\sqrt{\\frac{\\Omega_\\Lambda}{\\Omega_m}}}\n\\approx13\\text{--}14\\,\\mathrm{Gyr}.\n\\]</p></div></section>\n<p>\\newpage</p>\n<section class=\"taiwan-solution-item\"><strong>(l)</strong><div><p>\\[\n\\boxed{T_0=T_{\\rm rec}\\frac{a(t_{\\rm rec})}{a(t_0)}},\n\\qquad\n\\frac{a(t_{\\rm rec})}{a(t_0)}\\approx\\frac1{1101}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(m)--(n)</strong><div><p>\\[\n\\boxed{T'(\\theta')=T_0\\frac{\\sqrt{1-v^2/c^2}}{1-(v/c)\\cos\\theta'}},\n\\]\ne o gabarito registra uma velocidade de aproximadamente\n\\[\n\\boxed{361\\,\\mathrm{km/s}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(o)--(p)</strong><div><p>O original deixa as demonstrações indicadas pelas integrais de tempo conforme, sem uma etapa algébrica adicional no gabarito.</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(q)</strong><div><p>\\[\n\\boxed{\\frac{2\\eta_{\\rm rec}}{\\eta_0}\\approx2^\\circ}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Mostre que o comprimento de onda de um fóton escala com $a(t)$ e obtenha \\[\n1+z=\\frac{a(t_0)}{a(t_e)}.\n\\]"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Uma estrela emite potência $P_e$ no instante $t_e$ e hoje está a distância física $r_p=a(t_0)r$. Se a área efetiva do detector é $A$, determine a potência recebida $P_r$, incluindo a diluição geométrica e os dois fatores de redshift de energia e taxa de chegada."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Em um Universo estático com densidade uniforme de estrelas, estime a energia total recebida do céu ao longo de uma idade finita $t_0$ e explique a resolução cosmológica do paradoxo de Olbers."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Com a densidade média atual adotada no original, estime a potência do fundo estelar em comparação com a potência solar recebida na Terra."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Em um argumento newtoniano para matéria não relativística, mostre que \\[\nH^2=\\left(\\frac{\\dot a}{a}\\right)^2=A_1\\rho\n\\] e determine $A_1$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Para um fluido homogêneo com pressão $P(t)$, use a primeira lei em expansão adiabática para mostrar a equação de continuidade cosmológica e determine o coeficiente numérico $A_2$ da forma usada no original."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Para uma equação de estado $P=w\\rho c^2$, determine $w$ para: (1) matéria não relativística, (2) radiação e (3) energia escura cosmológica."
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": null,
+          "prompt_text": "Determine como $\\rho_m$, $\\rho_r$ e $\\rho_\\Lambda$ dependem de $a(t)$."
+        },
+        {
+          "code": "(i)",
+          "ordinal": 9,
+          "score": null,
+          "prompt_text": "Derive as relações entre os parâmetros de densidade $\\Omega_m,\\Omega_r,\\Omega_\\Lambda$ e a equação de Friedmann normalizada para o presente."
+        },
+        {
+          "code": "(j)",
+          "ordinal": 10,
+          "score": null,
+          "prompt_text": "Defina $q=-a\\ddot a/\\dot a^2$. Expresse $q(t_0)$ em termos de $\\Omega_m$ e $\\Omega_\\Lambda$ e diga se o modelo atual está acelerando."
+        },
+        {
+          "code": "(k)",
+          "ordinal": 11,
+          "score": null,
+          "prompt_text": "Negligenciando radiação no Universo tardio, resolva $a(t)$ e obtenha a idade atual $t_0$ em termos de $H_0,\\Omega_m,\\Omega_\\Lambda$ e $a(t_0)$."
+        },
+        {
+          "code": "(l)",
+          "ordinal": 12,
+          "score": null,
+          "prompt_text": "Relacione a temperatura atual $T_0$ com a temperatura de recombinação $T_{\\rm rec}$ e com $a(t_{\\rm rec})/a(t_0)$."
+        },
+        {
+          "code": "(m)",
+          "ordinal": 13,
+          "score": null,
+          "prompt_text": "Um observador move-se com velocidade $v$ em relação ao referencial comóvel. Determine a temperatura aparente $T'(\\theta')$ da radiação de fundo em função da direção observada."
+        },
+        {
+          "code": "(n)",
+          "ordinal": 14,
+          "score": null,
+          "prompt_text": "Use a anisotropia dipolar observada no mapa do original para estimar a velocidade da Terra em relação ao referencial da radiação cósmica de fundo."
+        },
+        {
+          "code": "(o)",
+          "ordinal": 15,
+          "score": null,
+          "prompt_text": "No regime primordial em que radiação e matéria dominam, derive a expressão aproximada para o tempo conforme $\\eta_{\\rm rec}$ dada pelas integrais do original."
+        },
+        {
+          "code": "(p)",
+          "ordinal": 16,
+          "score": null,
+          "prompt_text": "Derive a expressão integral para o tempo conforme atual $\\eta_0$ no modelo matéria $+$ energia escura."
+        },
+        {
+          "code": "(q)",
+          "ordinal": 17,
+          "score": null,
+          "prompt_text": "A partir de $\\eta_{\\rm rec}$ e $\\eta_0$, estime a maior separação angular no céu entre regiões que podiam estar causalmente conectadas na recombinação."
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "code": "24",
+      "title_pt": "Pulsar",
+      "page_start": 78,
+      "page_end": 80,
+      "source_url": "/taiwan/taiwan-05.pdf#page=78",
+      "statement_html": "<p>Um pulsar é uma estrela de nêutrons em rotação rápida e com campo magnético intenso. O exercício estima densidade, limite de rotação, suporte por degenerescência, radiação dipolar e campos extremos.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p24-fig01.png\" alt=\"Nebulosa associada a um pulsar.\" loading=\"lazy\"><figcaption>Nebulosa associada a um pulsar.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Estime a densidade média de uma estrela de nêutrons a partir da densidade nuclear.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Obtenha a velocidade angular máxima antes da ruptura centrífuga.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Para uma estrela de volume $V$ contendo $N$ nêutrons de massa $m_n$, estime a pressão gravitacional interna $P_{\\rm in}$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Calcule a energia de degenerescência de um gás de elétrons não relativísticos confinado ao volume $V$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>A partir dessa energia, obtenha a pressão de degenerescência $P_{\\rm out}$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Use o equilíbrio após captura eletrônica para estimar o raio de uma estrela de nêutrons típica.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Mostre que um dipolo magnético variável radia potência $\\mathcal P=\\mu_0|\\ddot{\\mathbf m}|^2/(6\\pi c^3)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(h)</span><div class=\"taiwan-item-body\"><p>Para um dipolo de módulo $m_0$ fazendo ângulo $\\alpha$ com o eixo de rotação de frequência angular $\\omega$, determine a potência radiada.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(i)</span><div class=\"taiwan-item-body\"><p>Use o período e sua derivada para estimar a idade máxima do pulsar da Nebulosa do Caranguejo.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(j)</span><div class=\"taiwan-item-body\"><p>Para o magnetar SGR 1806-20, use $T=7{,}5\\,\\mathrm s$, $\\dot T=8\\times10^{-11}$, $M=1{,}4M_\\odot$, $R=10\\,\\mathrm{km}$ e $\\alpha=90^\\circ$ para estimar o campo superficial máximo.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(k)</span><div class=\"taiwan-item-body\"><p>Estime o campo crítico em que o movimento eletrônico deixa de ser classicamente tratável, o limite de Schwinger.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)--(b)</strong><div><p>\\[\n\\boxed{\\rho\\approx2{,}3\\times10^{17}\\,\\mathrm{kg/m^3}},\n\\qquad\n\\boxed{\\omega_{\\max}=\\sqrt{\\frac{4\\pi G\\rho}{3}}\\approx8{,}0\\times10^3\\,\\mathrm{rad/s}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{P_{\\rm in}=\\frac15\\left(\\frac{4\\pi}{3}\\right)^{1/3}\nG(Nm_n)^2V^{-4/3}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>Conforme a expressão do gabarito,\n\\[\n\\boxed{P_{\\rm out}=\\frac{\\pi\\hbar^2}{60m_e}\n\\left(\\frac{3N_e}{\\pi V}\\right)^{5/3}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\n\\boxed{R\\approx9{,}9\\,\\mathrm{km}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(h)</strong><div><p>\\[\n\\boxed{\\mathcal P=\\frac{\\mu_0}{6\\pi c^3}m_0^2\\omega^4\\sin^2\\alpha}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(i)</strong><div><p>\\[\n\\boxed{t\\approx1300\\,\\mathrm{anos}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(j)</strong><div><p>\\[\n\\boxed{B_{\\max}=\\frac{\\mu_0m_0}{2\\pi R^3}\n=\\frac{\\mu_0}{2\\pi R^3}\n\\sqrt{\\frac{3T\\dot TMR^2c^3}{5\\pi\\mu_0}}\n\\approx1{,}66\\times10^{11}\\,\\mathrm T}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(k)</strong><div><p>\\[\n\\boxed{B_{\\rm crit}=\\frac{m_e^2c^2}{\\hbar e}\n\\approx4{,}4\\times10^9\\,\\mathrm T}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Estime a densidade média de uma estrela de nêutrons a partir da densidade nuclear."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Obtenha a velocidade angular máxima antes da ruptura centrífuga."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Para uma estrela de volume $V$ contendo $N$ nêutrons de massa $m_n$, estime a pressão gravitacional interna $P_{\\rm in}$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Calcule a energia de degenerescência de um gás de elétrons não relativísticos confinado ao volume $V$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "A partir dessa energia, obtenha a pressão de degenerescência $P_{\\rm out}$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Use o equilíbrio após captura eletrônica para estimar o raio de uma estrela de nêutrons típica."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Mostre que um dipolo magnético variável radia potência $\\mathcal P=\\mu_0|\\ddot{\\mathbf m}|^2/(6\\pi c^3)$."
+        },
+        {
+          "code": "(h)",
+          "ordinal": 8,
+          "score": null,
+          "prompt_text": "Para um dipolo de módulo $m_0$ fazendo ângulo $\\alpha$ com o eixo de rotação de frequência angular $\\omega$, determine a potência radiada."
+        },
+        {
+          "code": "(i)",
+          "ordinal": 9,
+          "score": null,
+          "prompt_text": "Use o período e sua derivada para estimar a idade máxima do pulsar da Nebulosa do Caranguejo."
+        },
+        {
+          "code": "(j)",
+          "ordinal": 10,
+          "score": null,
+          "prompt_text": "Para o magnetar SGR 1806-20, use $T=7{,}5\\,\\mathrm s$, $\\dot T=8\\times10^{-11}$, $M=1{,}4M_\\odot$, $R=10\\,\\mathrm{km}$ e $\\alpha=90^\\circ$ para estimar o campo superficial máximo."
+        },
+        {
+          "code": "(k)",
+          "ordinal": 11,
+          "score": null,
+          "prompt_text": "Estime o campo crítico em que o movimento eletrônico deixa de ser classicamente tratável, o limite de Schwinger."
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "code": "25",
+      "title_pt": "Excentricidade Da Órbita De Um Cometa",
+      "page_start": 81,
+      "page_end": 84,
+      "source_url": "/taiwan/taiwan-05.pdf#page=81",
+      "statement_html": "<section class=\"taiwan-item statement-row\"><span>Q</span></section>\n<p>Um cometa descreve uma órbita elíptica em torno do Sol. Em dois pontos distintos da órbita, os vetores velocidade são perpendiculares entre si e seus módulos satisfazem\n\\[\n|\\mathbf v_1|=2|\\mathbf v_2|.\n\\]\nDetermine o menor valor possível da excentricidade $\\varepsilon$ da órbita.</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p25-fig01.png\" alt=\"Construção geométrica da órbita elíptica.\" loading=\"lazy\"><figcaption>Construção geométrica da órbita elíptica.</figcaption></figure>",
+      "solution_html": "<p>A solução do problema de 2021 citada no original pode ser feita pela geometria da elipse ou pelo vetor LRL. O menor valor é\n\\[\n\\boxed{\\varepsilon_{\\min}=\\frac{1}{\\sqrt5}}.\n\\]</p>",
+      "parts": [
+        {
+          "code": "Q",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Um cometa descreve uma órbita elíptica em torno do Sol. Em dois pontos distintos da órbita, os vetores velocidade são perpendiculares entre si e seus módulos satisfazem \\[\n|\\mathbf v_1|=2|\\mathbf v_2|.\n\\] Determine o menor valor possível da excentricidade $\\varepsilon$ da órbita. 831953151652900.50 Construção geométrica da órbita elíptica."
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "code": "26",
+      "title_pt": "Isolante Topológico",
+      "page_start": 85,
+      "page_end": 86,
+      "source_url": "/taiwan/taiwan-05.pdf#page=85",
+      "statement_html": "<section class=\"taiwan-item statement-row\"><span>Q</span></section>\n<p>Considere a interface plana $z=0$ entre um isolante comum em $z>0$ e um isolante topológico em $z<0$. Para simplificar, ambos os volumes têm $\\varepsilon=\\varepsilon_0$ e $\\mu=\\mu_0$, mas a interface apresenta a resposta magnetoelétrica:</p>\n<ul><li><p>um campo uniforme $\\mathbf B=B\\hat z$ induz densidade superficial de carga $\\varepsilon_0\\alpha cB$;</p></li><li><p>um campo uniforme $\\mathbf E=E\\hat y$ induz corrente superficial $\\varepsilon_0\\alpha cE\\,\\hat x$.</p></li></ul>\n<p>Aqui\n\\[\n\\alpha=\\frac{e^2}{4\\pi\\varepsilon_0\\hbar c}\\approx\\frac1{137}.\n\\]\nColoque uma carga $+q$ em $(0,0,d)$. Determine os campos elétrico e magnético nos dois meios.</p>",
+      "solution_html": "<p>Defina\n\\[\n\\mathbf R_-=(x,y,z-d),\\qquad \\mathbf R_+=(x,y,z+d),\n\\qquad R_\\pm=|\\mathbf R_\\pm|.\n\\]\nA folha original apresenta a solução pelo método de cargas-imagem elétricas e magnéticas. A transcrição abaixo preserva literalmente o expoente $5/2$ impresso nos denominadores da fonte. Na região $z>0$:\n\\[\n\\boxed{\\mathbf E=\\frac{q}{4\\pi\\varepsilon_0}\n\\left[\\frac{\\mathbf R_-}{R_-^5}\n-\\frac{\\alpha^2}{4+\\alpha^2}\\frac{\\mathbf R_+}{R_+^5}\\right]},\n\\]\n\\[\n\\boxed{\\mathbf B=-\\frac{q}{4\\pi\\varepsilon_0}\n\\frac{2\\alpha}{(4+\\alpha^2)c}\\frac{\\mathbf R_+}{R_+^5}}.\n\\]\nNa região $z<0$:\n\\[\n\\boxed{\\mathbf E=\\frac{q}{4\\pi\\varepsilon_0}\n\\frac{4}{4+\\alpha^2}\\frac{\\mathbf R_-}{R_-^5}},\n\\]\n\\[\n\\boxed{\\mathbf B=\\frac{q}{4\\pi\\varepsilon_0}\n\\frac{2\\alpha}{(4+\\alpha^2)c}\\frac{\\mathbf R_-}{R_-^5}}.\n\\]\nEssas expressões tornam explícita a interpretação em termos de uma carga elétrica imagem e de um monopolo magnético imagem.</p>",
+      "parts": [
+        {
+          "code": "Q",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Considere a interface plana $z=0$ entre um isolante comum em $z>0$ e um isolante topológico em $z<0$. Para simplificar, ambos os volumes têm $\\varepsilon=\\varepsilon_0$ e $\\mu=\\mu_0$, mas a interface apresenta a resposta magnetoelétrica: um campo uniforme $\\mathbf B=B\\hat z$ induz densidade superficial de carga $\\varepsilon_0\\alpha cB$; um campo uniforme $\\mathbf E=E\\hat y$ induz corrente superficial $\\varepsilon_0\\alpha cE\\,\\hat x$. Aqui \\[\n\\alpha=\\frac{e^2}{4\\pi\\varepsilon_0\\hbar c}\\approx\\frac1{137}.\n\\] Coloque uma carga $+q$ em $(0,0,d)$. Determine os campos elétrico e magnético nos dois meios."
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "code": "27",
+      "title_pt": "Transição Supercondutora",
+      "page_start": 87,
+      "page_end": 88,
+      "source_url": "/taiwan/taiwan-05.pdf#page=87",
+      "statement_html": "<p>Para um metal de volume $V$, aproxime os calores específicos nas fases supercondutora e normal por\n\\[\nC_s(T)=V\\alpha T^3,\n\\qquad\nC_n(T)=V(\\beta T^3+\\gamma T),\n\\qquad \\alpha>\\beta.\n\\]\nO objetivo é reconstruir a temperatura crítica e o campo crítico de um supercondutor tipo I.</p>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Use estatística de Fermi--Dirac para mostrar que, para $k_BT$ muito menor que a energia de Fermi, a contribuição eletrônica normal ao calor específico é proporcional a $T$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>Use estatística de Bose--Einstein para mostrar que a contribuição dos fônons é proporcional a $T^3$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Admitindo a terceira lei da Termodinâmica, determine $S_n(T)$ e $S_s(T)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>A transição em campo nulo não possui calor latente. Determine $T_c$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Se $E_n(0)=E_0$ e $E_s(0)=E_0-V\\Delta$, determine $E_n(T)$ e $E_s(T)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Use equilíbrio de fases em $T_c$ para determinar $\\Delta$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(g)</span><div class=\"taiwan-item-body\"><p>Inclua um campo externo $H$. No estado Meissner, $\\mathbf M=-\\mathbf H$. Usando a primeira lei modificada pela energia magnética, mostre que\n\\[\nH_c(T)=H_0\\left(1-\\frac{T^2}{T_c^2}\\right)\n\\]\ne determine $H_0$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(c)</strong><div><p>\\[\n\\boxed{S_n(T)=V\\left(\\frac13\\beta T^3+\\gamma T\\right)},\n\\qquad\n\\boxed{S_s(T)=\\frac{V\\alpha T^3}{3}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(d)</strong><div><p>\\[\n\\boxed{T_c=\\sqrt{\\frac{3\\gamma}{\\alpha-\\beta}}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{E_n(T)=E_0+V\\left(\\frac12\\gamma T^2+\\frac14\\beta T^4\\right)},\n\\]\n\\[\n\\boxed{E_s(T)=E_0+V\\left(-\\Delta+\\frac14\\alpha T^4\\right)}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>\\[\n\\boxed{\\Delta=\\frac{3\\gamma^2}{4(\\alpha-\\beta)}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(g)</strong><div><p>\\[\n\\boxed{H_0=\\sqrt{\\mu_0\\frac{3\\gamma^2}{2(\\alpha-\\beta)}}}.\n\\]</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Use estatística de Fermi--Dirac para mostrar que, para $k_BT$ muito menor que a energia de Fermi, a contribuição eletrônica normal ao calor específico é proporcional a $T$."
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "Use estatística de Bose--Einstein para mostrar que a contribuição dos fônons é proporcional a $T^3$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Admitindo a terceira lei da Termodinâmica, determine $S_n(T)$ e $S_s(T)$."
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "A transição em campo nulo não possui calor latente. Determine $T_c$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Se $E_n(0)=E_0$ e $E_s(0)=E_0-V\\Delta$, determine $E_n(T)$ e $E_s(T)$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Use equilíbrio de fases em $T_c$ para determinar $\\Delta$."
+        },
+        {
+          "code": "(g)",
+          "ordinal": 7,
+          "score": null,
+          "prompt_text": "Inclua um campo externo $H$. No estado Meissner, $\\mathbf M=-\\mathbf H$. Usando a primeira lei modificada pela energia magnética, mostre que \\[\nH_c(T)=H_0\\left(1-\\frac{T^2}{T_c^2}\\right)\n\\] e determine $H_0$."
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "code": "28",
+      "title_pt": "Espalhamento Brillouin Estimulado",
+      "page_start": 89,
+      "page_end": 91,
+      "source_url": "/taiwan/taiwan-05.pdf#page=89",
+      "statement_html": "<p>O espalhamento Brillouin estimulado acopla duas ondas ópticas contra-propagantes a uma onda acústica gerada por eletrostrição. A permissividade do material depende da densidade, $\\varepsilon=\\varepsilon(\\rho)$, e a densidade de equilíbrio é $\\rho_0$.</p>\n<p>Considere\n\\[\nE(z,t)=E_1(z)e^{i(k_1z-\\omega_1t)}+E_2(z)e^{i(k_2z-\\omega_2t)}+\\text{c.c.},\n\\]\n\\[\nq=k_1-k_2,\\qquad \\Omega=\\omega_1-\\omega_2.\n\\]</p>\n<figure class=\"taiwan-figure\"><img src=\"/taiwan/volume-05/p28-fig01.png\" alt=\"Geometria das ondas ópticas contra-propagantes.\" loading=\"lazy\"><figcaption>Geometria das ondas ópticas contra-propagantes.</figcaption></figure>\n<section class=\"taiwan-item statement-row\"><span>(a)</span><div class=\"taiwan-item-body\"><p>Mostre que a pressão eletrostritiva pode ser escrita como\n\\[\np_{\\rm es}=-\\frac12\\gamma|E|^2,\n\\qquad\n\\gamma=\\rho_0\\left.\\frac{\\partial\\varepsilon}{\\partial\\rho}\\right|_{\\rho_0}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(b)</span><div class=\"taiwan-item-body\"><p>A perturbação de densidade satisfaz\n\\[\n\\rho_{tt}-v^2\\rho_{zz}-\\Gamma\\,\\partial_t\\rho_{zz}=\\partial_z^2p_{\\rm es}.\n\\]\nPara $\\rho=\\rho_0+\\alpha e^{i(qz-\\Omega t)}+\\text{c.c.}$, determine $\\alpha$. Defina $\\Omega_B=qv$ e $\\Gamma_B=q^2\\Gamma$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(c)</span><div class=\"taiwan-item-body\"><p>Derive a equação de onda óptica na presença da polarização eletrostritiva $P_{\\rm es}$:\n\\[\nE_{zz}-\\frac{n^2}{c^2}E_{tt}=\\frac{1}{\\varepsilon_0c^2}P_{{\\rm es},tt}.\n\\]</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(d)</span><div class=\"taiwan-item-body\"><p>Para $\\omega_1\\approx\\omega_2\\approx\\omega$ e $k_1\\approx-k_2\\approx k$, obtenha as equações acopladas para $E_1(z)$ e $E_2(z)$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(e)</span><div class=\"taiwan-item-body\"><p>Com $I_i=2n\\varepsilon_0c|E_i|^2$, mostre que\n\\[\n\\frac{dI_1}{dz}=\\frac{dI_2}{dz}=-gI_1I_2\n\\]\ne obtenha a forma lorentziana de $g(\\Omega)$ e o ganho de pico $g_0$.</p></div></section>\n<section class=\"taiwan-item statement-row\"><span>(f)</span><div class=\"taiwan-item-body\"><p>Em um material de comprimento $L$, imponha $I_1(0)=I_0$ e $I_2(L)=\\eta I_0$. Resolva as equações acopladas e escreva a condição que determina a constante de integração $C$.</p></div></section>",
+      "solution_html": "<section class=\"taiwan-solution-item\"><strong>(a)</strong><div><p>\\[\n\\boxed{p_{\\rm es}=-\\frac12\\gamma|E|^2},\n\\qquad\n\\boxed{\\gamma=\\rho_0\\frac{\\partial\\varepsilon}{\\partial\\rho}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(b)</strong><div><p>\\[\n\\boxed{\\alpha=\\frac{q^2\\gamma E_1\\overline{E}_2}\n{\\Omega_B^2-\\Omega^2-i\\Omega\\Gamma_B}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(c)--(d)</strong><div><p>As equações de Maxwell fornecem a equação de onda e, na aproximação de envelope lentamente variável,\n\\[\n\\boxed{\\frac{dE_1}{dz}=\\frac{i\\omega\\gamma}{2n\\varepsilon_0c\\rho_0}\\alpha E_2},\n\\]\n\\[\n\\boxed{\\frac{dE_2}{dz}=-\\frac{i\\omega\\gamma}{2n\\varepsilon_0c\\rho_0}\\overline\\alpha E_1}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(e)</strong><div><p>\\[\n\\boxed{g(\\Omega)=g_0\\frac{(\\Gamma_B/2)^2}\n{(\\Omega_B-\\Omega)^2+(\\Gamma_B/2)^2}},\n\\]\n\\[\n\\boxed{g_0=\\frac{\\omega^2\\gamma^2}{n\\varepsilon_0^2vc^2\\rho_0\\Gamma_B}}.\n\\]</p></div></section>\n<section class=\"taiwan-solution-item\"><strong>(f)</strong><div><p>Como $I_1-I_2=C$ é constante,\n\\[\n\\boxed{I_1(z)=\\frac{C}{1-\\dfrac{I_0-C}{I_0}e^{-Cg z}}},\n\\qquad\nI_2(z)=I_1(z)-C.\n\\]\nA condição de contorno final é\n\\[\n\\boxed{I_1(L)-C=\\eta I_0},\n\\]\nque determina $C$.</p></div></section>",
+      "parts": [
+        {
+          "code": "(a)",
+          "ordinal": 1,
+          "score": null,
+          "prompt_text": "Mostre que a pressão eletrostritiva pode ser escrita como \\[\np_{\\rm es}=-\\frac12\\gamma|E|^2,\n\\qquad\n\\gamma=\\rho_0\\left.\\frac{\\partial\\varepsilon}{\\partial\\rho}\\right|_{\\rho_0}.\n\\]"
+        },
+        {
+          "code": "(b)",
+          "ordinal": 2,
+          "score": null,
+          "prompt_text": "A perturbação de densidade satisfaz \\[\n\\rho_{tt}-v^2\\rho_{zz}-\\Gamma\\,\\partial_t\\rho_{zz}=\\partial_z^2p_{\\rm es}.\n\\] Para $\\rho=\\rho_0+\\alpha e^{i(qz-\\Omega t)}+\\text{c.c.}$, determine $\\alpha$. Defina $\\Omega_B=qv$ e $\\Gamma_B=q^2\\Gamma$."
+        },
+        {
+          "code": "(c)",
+          "ordinal": 3,
+          "score": null,
+          "prompt_text": "Derive a equação de onda óptica na presença da polarização eletrostritiva $P_{\\rm es}$: \\[\nE_{zz}-\\frac{n^2}{c^2}E_{tt}=\\frac{1}{\\varepsilon_0c^2}P_{{\\rm es},tt}.\n\\]"
+        },
+        {
+          "code": "(d)",
+          "ordinal": 4,
+          "score": null,
+          "prompt_text": "Para $\\omega_1\\approx\\omega_2\\approx\\omega$ e $k_1\\approx-k_2\\approx k$, obtenha as equações acopladas para $E_1(z)$ e $E_2(z)$."
+        },
+        {
+          "code": "(e)",
+          "ordinal": 5,
+          "score": null,
+          "prompt_text": "Com $I_i=2n\\varepsilon_0c|E_i|^2$, mostre que \\[\n\\frac{dI_1}{dz}=\\frac{dI_2}{dz}=-gI_1I_2\n\\] e obtenha a forma lorentziana de $g(\\Omega)$ e o ganho de pico $g_0$."
+        },
+        {
+          "code": "(f)",
+          "ordinal": 6,
+          "score": null,
+          "prompt_text": "Em um material de comprimento $L$, imponha $I_1(0)=I_0$ e $I_2(L)=\\eta I_0$. Resolva as equações acopladas e escreva a condição que determina a constante de integração $C$."
+        }
+      ]
+    }
+  ]
+}

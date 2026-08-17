@@ -9,7 +9,7 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "vinext start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/selected-problems.test.mjs tests/statement-headings.test.mjs tests/statement-images.test.mjs tests/statement-math.test.mjs tests/training-core.test.mjs tests/training-view-model.test.mjs tests/phors-importer.test.mjs tests/openai-translation-transport.test.mjs",
+    "test": "npm run validate:taiwan && npm run build && node --test tests/rendered-html.test.mjs tests/selected-problems.test.mjs tests/statement-headings.test.mjs tests/statement-images.test.mjs tests/statement-math.test.mjs tests/training-core.test.mjs tests/training-view-model.test.mjs tests/phors-importer.test.mjs tests/openai-translation-transport.test.mjs",
     "test:hints": "node --test tests/ai-hints.test.mjs tests/marking-scheme.test.mjs",
     "test:training": "node --test tests/training-core.test.mjs",
     "test:phors": "node --test tests/phors-importer.test.mjs",
@@ -23,6 +23,7 @@
     "translate:apply:x24": "python scripts/external-phors-translation.py apply",
     "phors:site-data": "node scripts/build-phors-site-data.mjs",
     "validate:site-data": "node scripts/validate-phors-site-data.mjs",
+    "validate:taiwan": "node scripts/validate-taiwan-collection.mjs",
     "phors:sample": "node scripts/sync-phors.mjs --db data/phors-sample.sqlite --export data/phors-sample.json --limit-per-exam 2 https://xy.pho.rs/W25 https://xy.pho.rs/X24 https://xy.pho.rs/Y25",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern work",
     "db:generate": "drizzle-kit generate"
