@@ -161,14 +161,14 @@ export function ProblemWorkspace() {
         </section>
         {solutionOpen&&<section className="panel solution-panel" aria-label="Resposta oficial">{solutionBusy?<p className="muted">Carregando resposta…</p>:solutionError?<p className="muted">{solutionError}</p>:solutionHtml?<MathHtml className="statement-content solution-content" html={solutionHtml}/>:<p className="muted">Resposta oficial não disponível.</p>}</section>}
       </div>
-      <aside className={`timer-card ${minimized ? "minimized" : ""}`}>
-        {!data.canEdit ? <><span className="timer-state">Entre para treinar</span><p className="timer-instruction">Faça login para registrar seu próprio tempo.</p></> : minimized ?
+      {data.canEdit&&<aside className={`timer-card ${minimized ? "minimized" : ""}`}>
+        {minimized ?
           <button type="button" className="timer-collapsed" onClick={() => setMinimized(false)} aria-label="Expandir cronômetro" title="Expandir cronômetro">⏱</button>
           : <>
             <div className="timer-top"><div><span className="timer-state">{!active ? "Clique em um item" : active.current_state === "paused" ? currentPart ? `Pausado · ${currentPart.code}` : "Pausado" : `Item ${currentPart?.code || ""}`}</span>{active && <strong className="timer-total">{formatTime(total)}</strong>}</div>{active && <button className="icon-button" onClick={() => setMinimized(true)} aria-label="Minimizar cronômetro">—</button>}</div>
             {active && <><div className="timer-details">{currentPart && <div><dt>{currentPart.code}</dt><span className="timer-current-actions"><dd>{formatTime(currentPartTime)}</dd>{active.current_state === "item_active" && <button type="button" className="timer-discard" disabled={busy} onClick={discardCurrent} aria-label={`Descartar intervalo atual de ${currentPart.code}`} title="Descartar somente o intervalo atual">↶</button>}</span></div>}</div><div className="timer-actions">{(active.current_state !== "paused" || active.active_part_id) && <button className="button" disabled={busy} onClick={() => act(active.current_state === "paused" ? "resume" : "pause")}>{active.current_state === "paused" ? "Continuar" : "Pausar"}</button>}<button className="button danger" disabled={busy} onClick={finish}>Finalizar</button></div></>}
           </>}
-      </aside>
+      </aside>}
     </div>
     <BrownNoiseButton/>
     {data.canUseAi && <aside className={`ai-hint-card ${aiMinimized ? "minimized" : ""}`}>
@@ -193,6 +193,6 @@ export function ProblemWorkspace() {
           </>}
       </div>}
     </aside>}
-    <section className="panel history"><div className="section-head"><h2>Dados pessoais desta questão</h2><span>{attempts.length} tentativa(s)</span></div>{attempts.length ? <div className="history-list">{attempts.map((attempt) => { const seconds = data.timeSegments.filter((segment) => segment.attempt_id === attempt.id).reduce((sum,segment) => sum + secondsFor(segment,now),0); return <div key={attempt.id}><span>{attempt.status === "completed" ? "Concluída" : "Em andamento"}</span><strong>{formatTime(seconds)}</strong><small>{new Date(attempt.started_at).toLocaleString("pt-BR")}</small></div>; })}</div> : <p className="muted">Ainda não há treino registrado.</p>}</section>
+    {data.canEdit&&<section className="panel history"><div className="section-head"><h2>Dados pessoais desta questão</h2><span>{attempts.length} tentativa(s)</span></div>{attempts.length ? <div className="history-list">{attempts.map((attempt) => { const seconds = data.timeSegments.filter((segment) => segment.attempt_id === attempt.id).reduce((sum,segment) => sum + secondsFor(segment,now),0); return <div key={attempt.id}><span>{attempt.status === "completed" ? "Concluída" : "Em andamento"}</span><strong>{formatTime(seconds)}</strong><small>{new Date(attempt.started_at).toLocaleString("pt-BR")}</small></div>; })}</div> : <p className="muted">Ainda não há treino registrado.</p>}</section>}
   </div>;
 }

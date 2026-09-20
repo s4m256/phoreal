@@ -42,7 +42,7 @@ function addPartButtons(root:HTMLElement, parts:LinkedPart[], disabled:boolean) 
     button.dataset.partId = String(part.id);
     button.disabled = disabled;
     button.textContent = match[2];
-    button.title = disabled ? "Entre para registrar seu tempo" : `Contar tempo no item ${part.code}`;
+    button.title = disabled ? "Modo de leitura" : `Contar tempo no item ${part.code}`;
     node.replaceWith(document.createTextNode(match[1]),button,document.createTextNode((node.textContent || "").slice(match[0].length)));
   }
 

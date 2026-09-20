@@ -2,7 +2,7 @@
 
 Physics olympiad training built around a structured problem corpus, import validation and persistent timing per problem item.
 
-[Browse problems](https://treino-fisica-xy-fabiano.al-2312-samuelsantia.chatgpt.site/problemas) · [Reproducible corpus report](docs/CORPUS.md)
+[Browse problems](https://phoreal.s4m256.workers.dev/problemas#taiwan) · [Reproducible corpus report](docs/CORPUS.md)
 
 <!-- corpus-summary:start -->
 **Public XY snapshot:** 18 exams · 165 problems · 2,200 part records · 233 tags. 164 public statements; 1 requires source authentication. The reproducible report checks unique IDs/source URLs and relational integrity.
@@ -25,7 +25,7 @@ flowchart LR
 
 PhoReal connects physics problem statements to a training record: attempts, reading time, repeated work on individual items, and explicit completion. The counts above are generated from the checked-in source snapshot, not live usage; part records include hierarchy and are not independent questions.
 
-The anonymous catalog was checked in a browser on 2026-09-19. Saving personal records requires sign-in; production persistence and AI hints were not exercised in that check.
+The anonymous catalog and problem pages are public. Personal timing and AI hints remain separate authenticated capabilities and are not required for browsing.
 
 ## Technical highlights
 
@@ -58,7 +58,7 @@ npm run dev
 npm run build
 ```
 
-The application uses React, Vinext/Vite and Cloudflare D1, with ChatGPT sign-in for personal records. Runtime bindings and authentication must be configured for the deployed application; a frontend build alone does not establish that those services work.
+The public deployment uses the existing Vinext/Vite Worker and Cloudflare D1 architecture. The deploy script builds and publishes the Worker through Wrangler.
 
 ## Content and limitations
 
