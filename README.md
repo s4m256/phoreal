@@ -25,7 +25,7 @@ flowchart LR
 
 PhoReal connects physics problem statements to a training record: attempts, reading time, repeated work on individual items, and explicit completion. The counts above are generated from the checked-in source snapshot, not live usage; part records include hierarchy and are not independent questions.
 
-The anonymous catalog and problem pages are public. Personal timing and AI hints remain separate authenticated capabilities and are not required for browsing.
+The anonymous catalog and Taiwan problem pages are public. The Cloudflare seed includes the XY index but not XY statement HTML. Personal timing and AI hints remain separate authenticated capabilities.
 
 ## Technical highlights
 
