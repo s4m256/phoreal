@@ -20,6 +20,9 @@ const SIGN_OUT_PATH = "/signout-with-chatgpt";
 const CALLBACK_PATH = "/callback";
 
 export async function getChatGPTUser(): Promise<ChatGPTUser | null> {
+  // Direct Worker requests have no identity-verifying proxy. Never trust headers
+  // supplied by a public client; proxy auth must be explicitly configured.
+  if ((env as unknown as { TRUST_AUTH_PROXY?: string }).TRUST_AUTH_PROXY !== "true") return null;
   const requestHeaders = await headers();
   const userId = requestHeaders.get(USER_ID_HEADER);
   const email = requestHeaders.get(USER_EMAIL_HEADER);

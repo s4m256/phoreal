@@ -2,7 +2,7 @@
 
 Physics olympiad training built around a structured problem corpus, import validation and persistent timing per problem item.
 
-[Browse problems](https://phoreal.s4m256.workers.dev/problemas#taiwan) · [Reproducible corpus report](docs/CORPUS.md)
+[Browse problems](https://phoreal.s4m256.workers.dev/problemas) · [Reproducible corpus report](docs/CORPUS.md)
 
 <!-- corpus-summary:start -->
 **Public XY snapshot:** 18 exams · 165 problems · 2,200 part records · 233 tags. 164 public statements; 1 requires source authentication. The reproducible report checks unique IDs/source URLs and relational integrity.
@@ -25,7 +25,7 @@ flowchart LR
 
 PhoReal connects physics problem statements to a training record: attempts, reading time, repeated work on individual items, and explicit completion. The counts above are generated from the checked-in source snapshot, not live usage; part records include hierarchy and are not independent questions.
 
-The anonymous catalog and Taiwan problem pages are public. The Cloudflare seed includes the XY index but not XY statement HTML. Personal timing and AI hints remain separate authenticated capabilities.
+Browse XY and Taiwan problems without an account. The public Cloudflare deployment includes 164 XY statements and translations; one source statement requires authentication and is not imported. Personal timing and AI hints are implemented but disabled on this anonymous deployment.
 
 ## Technical highlights
 
@@ -58,7 +58,7 @@ npm run dev
 npm run build
 ```
 
-The public deployment uses the existing Vinext/Vite Worker and Cloudflare D1 architecture. The deploy script builds and publishes the Worker through Wrangler.
+The public deployment uses the existing Vinext/Vite Worker and Cloudflare D1 architecture. The deploy script builds and publishes the Worker through Wrangler. See [deployment and corpus restoration](docs/DEPLOYMENT.md).
 
 ## Content and limitations
 
